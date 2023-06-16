@@ -2,6 +2,7 @@ import {
     SafeAreaView,
     StyleSheet,
     Text,
+    ScrollView,
     TextInput,
     TouchableOpacity,
     View,
@@ -20,7 +21,7 @@ import {
   
   const LoginScreen: React.FC<Props> = ({ navigation: { navigate } }) => {
     return (
-      <SafeAreaView>
+        <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
         <View
           style={{
             padding: Spacing * 2,
@@ -49,7 +50,7 @@ import {
                 textAlign: "center",
               }}
             >
-              Welcome back you've been missed!
+              Bienvenido, te extrañabamos!
             </Text>
           </View>
           <View
@@ -70,7 +71,7 @@ import {
                 alignSelf: "flex-end",
               }}
             >
-              Forgot your password ?
+              Olvidaste tu contraseña?
             </Text>
           </View>
   
@@ -186,7 +187,7 @@ import {
             </View>
           </View>
         </View>
-      </SafeAreaView>
+        </ScrollView>
     );
   };
   

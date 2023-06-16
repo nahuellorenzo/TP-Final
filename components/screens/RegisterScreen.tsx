@@ -2,6 +2,7 @@ import {
     SafeAreaView,
     StyleSheet,
     Text,
+    ScrollView,
     TextInput,
     TouchableOpacity,
     View,
@@ -20,7 +21,7 @@ import {
   
   const RegisterScreen: React.FC<Props> = ({ navigation: { navigate } }) => {
     return (
-      <SafeAreaView>
+        <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
         <View
           style={{
             padding: Spacing * 2,
@@ -39,7 +40,7 @@ import {
                 marginVertical: Spacing * 3,
               }}
             >
-              Create account
+              Crea tu cuenta
             </Text>
             <Text
               style={{
@@ -49,7 +50,7 @@ import {
                 textAlign: "center",
               }}
             >
-              Create an account so you can explore all the existing jobs
+              Crea una cuenta asi podes disfrutar de los mejores juegos
             </Text>
           </View>
           <View
@@ -102,7 +103,7 @@ import {
                 fontSize: FontSize.small,
               }}
             >
-              Already have an account
+              Ya tengo una cuenta
             </Text>
           </TouchableOpacity>
   
@@ -174,7 +175,7 @@ import {
             </View>
           </View>
         </View>
-      </SafeAreaView>
+      </ScrollView>
     );
   };
   
