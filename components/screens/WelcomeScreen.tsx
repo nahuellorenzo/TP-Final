@@ -43,7 +43,7 @@ import {
                 textAlign: "center",
               }}
             >
-              Discover Your Dream Job here
+              Agiliza tu mente aqui
             </Text>
   
             <Text
@@ -55,8 +55,7 @@ import {
                 marginTop: Spacing * 2,
               }}
             >
-              Explore all the existing job roles based or your interest and study
-              major
+              Explora los juegos que tenemos para ti y empieza con los mejores juegos de memoria
             </Text>
           </View>
           <View
