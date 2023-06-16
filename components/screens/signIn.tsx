@@ -16,10 +16,32 @@ import {
   import { NativeStackScreenProps } from "@react-navigation/native-stack";
     import { RootStackParamList } from "../../types";
   import AppTextInput from "../AppTextInput";
+  import { LoginContext } from '../context/LoginContext'
+  import { useContext, useState } from 'react'
   
   type Props = NativeStackScreenProps<RootStackParamList, "Login">;
   
   const LoginScreen: React.FC<Props> = ({ navigation: { navigate } }) => {
+
+    const { login, googleLogin } = useContext(LoginContext)
+
+    const [values, setValues] = useState({
+        email: '',
+        password: ''
+    })
+
+  const handleInputChange = (name, value) => {
+    setValues({
+      ...values,
+      [name]: value,
+    });
+  };
+  const handleSubmit = () => {
+    // Realizar validaciones si es necesario
+    console.log(values)
+    login(values);
+  };
+
     return (
         <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
         <View
@@ -58,8 +80,15 @@ import {
               marginVertical: Spacing * 3,
             }}
           >
-            <AppTextInput placeholder="Email" />
-            <AppTextInput placeholder="Password" />
+            <AppTextInput
+              value={values.email}
+              onChangeText={(text) => handleInputChange("email", text)} 
+              placeholder="Email" />
+            <AppTextInput 
+              placeholder="Password"
+              secureTextEntry
+              value={values.password}
+              onChangeText={(text) => handleInputChange("password", text)} />
           </View>
   
           <View>
@@ -76,7 +105,7 @@ import {
           </View>
   
           <TouchableOpacity
-          onPress={() => navigate("Main")}
+          onPress={handleSubmit}
             style={{
               padding: Spacing * 2,
               backgroundColor: Colors.primary,
@@ -144,6 +173,7 @@ import {
               }}
             >
               <TouchableOpacity
+              onPress={googleLogin}
                 style={{
                   padding: Spacing,
                   backgroundColor: Colors.gray,

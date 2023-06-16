@@ -2,16 +2,19 @@ import { useFonts } from "expo-font";
 import { StatusBar } from "expo-status-bar";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import fonts from "./components/config/fonts";
+import { LoginProvider } from "./components/context/LoginContext";
 
-import Navigation from "./components/navigation";
+import AppRouter from "./components/navigation/appRouter";
 
 export default function App() {
   const [fontsLoaded] = useFonts(fonts);
 
   return !fontsLoaded ? null : (
+    <LoginProvider>
     <SafeAreaProvider>
-      <Navigation />
+      <AppRouter />
       <StatusBar />
     </SafeAreaProvider>
+    </LoginProvider>
   );
 }

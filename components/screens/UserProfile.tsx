@@ -17,11 +17,14 @@ import {
   import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../../types";
   import AppTextInput from "../AppTextInput";
+  import { useContext } from "react";
+  import { LoginContext } from "../context/LoginContext";
   const { height } = Dimensions.get("window");
   
   type Props = NativeStackScreenProps<RootStackParamList, "UserProfile">;
   
   const UserProfileScreen: React.FC<Props> = ({ navigation: { navigate } }) => {
+    const { logout, user } = useContext(LoginContext)
     return (
       <SafeAreaView>
           <ImageBackground
@@ -48,7 +51,7 @@ import { RootStackParamList } from "../../types";
                 fontSize: FontSize.large,
               }}
             >
-              Nombre de Usuario
+              Email del Usuario
             </Text>
 
             <Text
@@ -60,7 +63,7 @@ import { RootStackParamList } from "../../types";
                 fontSize: FontSize.large,
               }}
             >
-              - Tomás Perez
+              {user.email}
             </Text>
 
             <Text
@@ -133,7 +136,7 @@ import { RootStackParamList } from "../../types";
               }}
             >
               <TouchableOpacity
-                onPress={() => navigate("Welcome")}
+                onPress={logout}
                 style={{
                   marginVertical: Spacing * 2,
                   padding: Spacing,
