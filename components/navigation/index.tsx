@@ -12,6 +12,7 @@ import LoginScreen from "../screens/signIn";
 import RegisterScreen from "../screens/RegisterScreen";
 import Welcome from "../screens/WelcomeScreen";
 import MainScreen from "../screens/Main";
+import UserProfileScreen from "../screens/UserProfile";
 
 import { RootStackParamList } from "../../types";
 
@@ -48,6 +49,7 @@ function RootNavigator() {
       <Stack.Screen name="Login" component={LoginScreen} />
       <Stack.Screen name="Register" component={RegisterScreen} />
       <Stack.Screen name="Main" component={MainScreen} />
+      <Stack.Screen name="UserProfile" component={UserProfileScreen} />
     </Stack.Navigator>
   );
 }

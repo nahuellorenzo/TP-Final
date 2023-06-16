@@ -125,6 +125,7 @@ import {
               }}
             >
               <TouchableOpacity
+              onPress={() => navigate("UserProfile")}
                 style={{
                   padding: Spacing,
                   backgroundColor: Colors.gray,
