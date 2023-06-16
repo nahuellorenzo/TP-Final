@@ -1,6 +1,8 @@
 import React, { createContext, useEffect, useState } from "react";
-import { signOut, createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signInWithCredential } from "firebase/auth";
-import { auth, provider } from "../firebase/config";
+import { signOut, createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword,signInWithRedirect, signInWithCredential, GoogleAuthProvider } from "firebase/auth";
+import { auth, provider, provider2 } from "../firebase/config";
+import { getAuth, signInWithPopup, FacebookAuthProvider } from "firebase/auth";
+
 
 export const LoginContext = createContext();
 
@@ -12,7 +14,7 @@ export const LoginProvider = ({ children }) => {
   });
 
   const googleLogin = () => {
-    signInWithCredential(auth, provider)
+    signInWithRedirect(auth, provider)
       .then((result) => {
         console.log(result);
       })
@@ -20,6 +22,16 @@ export const LoginProvider = ({ children }) => {
         console.log(error);
       });
   };
+
+  const facebookLogin = () => {
+    signInWithRedirect(auth, provider2)
+      .then((result) => {
+        console.log(result);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
 
   const login = (values) => {
     signInWithEmailAndPassword(auth, values.email, values.password)
@@ -74,6 +86,7 @@ export const LoginProvider = ({ children }) => {
         login,
         logout,
         googleLogin,
+        facebookLogin,
       }}
     >
       {children}

@@ -23,7 +23,7 @@ import {
   
   const RegisterScreen: React.FC<Props> = ({ navigation: { navigate } }) => {
 
-    const { register, googleLogin } = useContext(LoginContext)
+    const { register, googleLogin, facebookLogin } = useContext(LoginContext)
 
     const [values, setValues] = useState({
         email: '',
@@ -193,6 +193,7 @@ import {
                 />
               </TouchableOpacity>
               <TouchableOpacity
+              onPress={facebookLogin}
                 style={{
                   padding: Spacing,
                   backgroundColor: Colors.gray,
