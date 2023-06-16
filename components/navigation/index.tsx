@@ -11,6 +11,7 @@ import Colors from "../constants/Color";
 import LoginScreen from "../screens/signIn";
 import RegisterScreen from "../screens/RegisterScreen";
 import Welcome from "../screens/WelcomeScreen";
+import MainScreen from "../screens/Main";
 
 import { RootStackParamList } from "../../types";
 
@@ -46,6 +47,7 @@ function RootNavigator() {
       <Stack.Screen name="Welcome" component={Welcome} />
       <Stack.Screen name="Login" component={LoginScreen} />
       <Stack.Screen name="Register" component={RegisterScreen} />
+      <Stack.Screen name="Main" component={MainScreen} />
     </Stack.Navigator>
   );
 }
