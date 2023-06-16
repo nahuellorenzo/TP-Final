@@ -75,6 +75,7 @@ import {
           </View>
   
           <TouchableOpacity
+          onPress={() => navigate("Main")}
             style={{
               padding: Spacing * 2,
               backgroundColor: Colors.primary,
