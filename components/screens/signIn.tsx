@@ -23,7 +23,7 @@ import {
   
   const LoginScreen: React.FC<Props> = ({ navigation: { navigate } }) => {
 
-    const { login, googleLogin, facebookLogin} = useContext(LoginContext)
+    const { login, googleLogin, facebookLogin, logueo} = useContext(LoginContext)
 
     const [values, setValues] = useState({
         email: '',
@@ -89,6 +89,9 @@ import {
               secureTextEntry
               value={values.password}
               onChangeText={(text) => handleInputChange("password", text)} />
+              {!logueo && <Text style={{ color: "red", fontFamily: Fonts["poppins-semiBold"], fontSize: FontSize.small, marginTop: 5 }}>
+              Las credenciales no coinciden. Prueba de nuevo!
+            </Text>}
           </View>
   
           <View>

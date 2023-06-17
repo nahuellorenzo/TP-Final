@@ -13,6 +13,8 @@ export const LoginProvider = ({ children }) => {
     uid: null,
   });
 
+  const [logueo, setLogueo] = useState(true);
+
   const googleLogin = () => {
     signInWithRedirect(auth, provider)
       .then((result) => {
@@ -35,8 +37,12 @@ export const LoginProvider = ({ children }) => {
 
   const login = (values) => {
     signInWithEmailAndPassword(auth, values.email, values.password)
+    .then(() => {
+      setLogueo(true);
+    })
       .catch((error) => {
         console.log(error);
+        setLogueo(false);
       });
   };
 
@@ -87,6 +93,7 @@ export const LoginProvider = ({ children }) => {
         logout,
         googleLogin,
         facebookLogin,
+        logueo,
       }}
     >
       {children}
