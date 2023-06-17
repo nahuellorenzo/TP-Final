@@ -188,7 +188,7 @@ function UserProfileScreen({ navigation: { navigate } }: Props) {
             <View style={styles.buttonWrapper}>
               <Pressable
                 style={[styles.button, styles.buttonClose]}
-                onPress={() => navigate("Main")}
+                onPress={logout}
               >
                 <Text style={styles.textStyle}>Salir</Text>
               </Pressable>
