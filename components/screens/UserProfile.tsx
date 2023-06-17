@@ -27,6 +27,31 @@ import { RootStackParamList } from "../../types";
     const { logout, user } = useContext(LoginContext)
     return (
       <SafeAreaView>
+          <TouchableOpacity
+            onPress={() => navigate("Main")}
+            style={{
+              width: 40,
+              height: 40, 
+              padding: Spacing / 4,
+              backgroundColor: Colors.darkText,
+              marginVertical: "center",
+              borderRadius: Spacing,
+              shadowColor: Colors.darkText,
+              shadowOpacity: 0.3,
+              shadowRadius: Spacing,
+              alignItems: 'center',
+              justifyContent: 'center',
+              marginTop: Spacing*2,
+              marginLeft: Spacing*2,
+            }}
+          >
+            <Ionicons
+              name="arrow-back"
+              color={Colors.onPrimary}
+              size={Spacing * 2}
+            />
+          </TouchableOpacity>
+
           <ImageBackground
             style={{
               height: height / 5,
