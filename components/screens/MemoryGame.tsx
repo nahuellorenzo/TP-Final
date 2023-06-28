@@ -158,6 +158,12 @@ const MemoryGame: React.FC = ({ navigation: { navigate } }: Props) => {
                             paddingHorizontal: Spacing * 2,
                             width: "48%",
                             borderRadius: Spacing,
+                            shadowOffset: {
+                                width: 0,
+                                height: Spacing,
+                            },
+                            shadowOpacity: 0.3,
+                            shadowRadius: Spacing,
                         }}
                     >
                         <Text
