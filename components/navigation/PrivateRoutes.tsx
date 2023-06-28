@@ -12,6 +12,8 @@ import MainScreen from "../screens/Main";
 import UserProfileScreen from "../screens/UserProfile";
 
 import { RootStackParamList } from "../../types";
+import MemoryGame from "../screens/MemoryGame";
+import Again from "../screens/Again";
 
 const theme = {
   ...DefaultTheme,
@@ -44,6 +46,8 @@ function RootNavigatorPrivate() {
     >
       <Stack.Screen name="Main" component={MainScreen} />
       <Stack.Screen name="UserProfile" component={UserProfileScreen} />
+      <Stack.Screen name="MemoryGame" component={MemoryGame} />
+      <Stack.Screen name="Again" component={Again} />
     </Stack.Navigator>
   );
 }
