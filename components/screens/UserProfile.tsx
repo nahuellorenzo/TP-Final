@@ -10,6 +10,7 @@ import {
   Alert,
   Modal,
   Pressable,
+  ScrollView
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
@@ -32,7 +33,7 @@ function UserProfileScreen({ navigation: { navigate } }: Props) {
   const [modalVisible, setModalVisible] = useState(false);
 
   return (
-    <SafeAreaView>
+    <ScrollView>
       <TouchableOpacity
         onPress={() => navigate("Main")}
         style={{
@@ -40,7 +41,7 @@ function UserProfileScreen({ navigation: { navigate } }: Props) {
           height: 40,
           padding: Spacing / 4,
           backgroundColor: Colors.darkText,
-          marginVertical: "center",
+          marginVertical: 0,
           borderRadius: Spacing,
           shadowColor: Colors.darkText,
           shadowOpacity: 0.3,
@@ -210,7 +211,7 @@ function UserProfileScreen({ navigation: { navigate } }: Props) {
   </Modal>
 </View>
       </View>
-    </SafeAreaView>
+    </ScrollView>
   );
 }
 
