@@ -18,6 +18,7 @@ import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../../types";
 import { useIsFocused } from "@react-navigation/native"
 import { ScoreContext } from "../context/ScoreContext";
+import { imagePaths } from "../constants/Images";
 const { height } = Dimensions.get("window");
 
 const { width } = Dimensions.get("window");
@@ -33,15 +34,17 @@ const MemoryGame: React.FC = ({ navigation: { navigate } }: Props) => {
     useEffect(() => {
         // Simulación de carga de la imagen por 10 segundos
         setPreviousImage(null);
-        const imagen = require(`./../../assets/imagesGame/image${Math.floor(Math.random() * 5) + 1}.png`);
-        setCurrentImage(imagen);
-        console.log(currentImage);
+        const randomImageIndex = Math.floor(Math.random() * imagePaths.length);
+        const randomImagePath = imagePaths[randomImageIndex];
+        setCurrentImage(randomImagePath);
+        console.log(randomImagePath);
         console.log(require("./../../assets/imagesGame/image1.png"))
         const timer = setTimeout(() => {
             // Obtener una nueva imagen al azar de la carpeta de imágenes
-            const newImage = require(`./../../assets/imagesGame/image${Math.floor(Math.random() * 5) + 1}.png`);
-            setPreviousImage(imagen);
-            setCurrentImage(newImage);
+            const newrandomImageIndex = Math.floor(Math.random() * imagePaths.length);
+            const newrandomImagePath = imagePaths[newrandomImageIndex];
+            setPreviousImage(randomImagePath);
+            setCurrentImage(newrandomImagePath);
         
         }, 2000);
 
@@ -113,7 +116,7 @@ const MemoryGame: React.FC = ({ navigation: { navigate } }: Props) => {
                     source={currentImage}
                 />
                 {
-                    previousImage && (
+                    previousImage !== null && (
                         <View
                     style={{
                         paddingHorizontal: Spacing * 2,
