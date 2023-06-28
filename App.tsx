@@ -5,16 +5,19 @@ import fonts from "./components/config/fonts";
 import { LoginProvider } from "./components/context/LoginContext";
 
 import AppRouter from "./components/navigation/AppRouter";
+import { ScoreProvider } from "./components/context/ScoreContext";
 
 export default function App() {
   const [fontsLoaded] = useFonts(fonts);
 
   return !fontsLoaded ? null : (
     <LoginProvider>
-    <SafeAreaProvider>
-      <AppRouter />
-      <StatusBar />
-    </SafeAreaProvider>
+      <ScoreProvider>
+        <SafeAreaProvider>
+          <AppRouter />
+          <StatusBar />
+        </SafeAreaProvider>
+      </ScoreProvider>
     </LoginProvider>
   );
 }

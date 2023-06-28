@@ -20,6 +20,7 @@ import Colors from "../constants/Color";
 import Fonts from "../constants/Fonts";
 import AppTextInput from "../AppTextInput";
 import { LoginContext } from "../context/LoginContext";
+import { ScoreContext } from "../context/ScoreContext";
 
 const { height } = Dimensions.get("window");
 
@@ -27,6 +28,7 @@ type Props = NativeStackScreenProps<RootStackParamList, "UserProfile">;
 
 function UserProfileScreen({ navigation: { navigate } }: Props) {
   const { logout, user } = useContext(LoginContext);
+  const { score } = useContext(ScoreContext)
   const [modalVisible, setModalVisible] = useState(false);
 
   return (
@@ -95,7 +97,7 @@ function UserProfileScreen({ navigation: { navigate } }: Props) {
             fontSize: FontSize.large,
           }}
         >
-          Nivel del Usuario
+          Puntaje correctas del usuario
         </Text>
 
         <Text
@@ -107,7 +109,7 @@ function UserProfileScreen({ navigation: { navigate } }: Props) {
             fontSize: FontSize.large,
           }}
         >
-          - 100
+          - {score.correct}
         </Text>
 
         <Text

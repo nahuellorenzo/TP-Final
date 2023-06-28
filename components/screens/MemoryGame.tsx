@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import {
     Dimensions,
     Image,
@@ -17,6 +17,7 @@ import Fonts from "../constants/Fonts";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../../types";
 import { useIsFocused } from "@react-navigation/native"
+import { ScoreContext } from "../context/ScoreContext";
 const { height } = Dimensions.get("window");
 
 const { width } = Dimensions.get("window");
@@ -27,6 +28,7 @@ const MemoryGame: React.FC = ({ navigation: { navigate } }: Props) => {
     const [currentImage, setCurrentImage] = useState(null);
     const [previousImage, setPreviousImage] = useState(null);
     const isFocused = useIsFocused();
+    const { score, setScore } = useContext(ScoreContext);
 
     useEffect(() => {
         // Simulación de carga de la imagen por 10 segundos
@@ -49,8 +51,16 @@ const MemoryGame: React.FC = ({ navigation: { navigate } }: Props) => {
     const handleOptionSelected = (isSameImage: boolean) => {
         if (isSameImage) {
             console.log("Bien es lo correcto")
+            setScore({
+                correct: score.correct + 1,
+                incorrect: score.incorrect,
+              });
         } else {
             console.log("Te equivocaste, no es lo correta")
+            setScore({
+                correct: score.correct,
+                incorrect: score.incorrect + 1,
+              });
         }
         navigate("Again");
     };
