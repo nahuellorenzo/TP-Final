@@ -115,6 +115,16 @@ const MemoryGame: React.FC = ({ navigation: { navigate } }: Props) => {
                     resizeMode="contain"
                     source={currentImage}
                 />
+                <Text
+                style={{
+                        fontSize: FontSize.large,
+                        color: Colors.primary,
+                        fontFamily: Fonts["poppins-bold"],
+                        textAlign: "center",
+                    }}
+                >
+                    Puntaje actual: {score.correct}
+                </Text>
                 {
                     previousImage !== null && (
                         <View
