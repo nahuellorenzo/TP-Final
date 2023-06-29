@@ -110,7 +110,7 @@ function UserProfileScreen({ navigation: { navigate } }: Props) {
             fontSize: FontSize.large,
           }}
         >
-          - {score.correct}
+           {score.correct}
         </Text>
 
         <Text
