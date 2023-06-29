@@ -11,6 +11,7 @@ export const LoginProvider = ({ children }) => {
     email: null,
     logged: false,
     uid: null,
+    creacion:null,
   });
 
   const [logueo, setLogueo] = useState(true);
@@ -60,6 +61,7 @@ export const LoginProvider = ({ children }) => {
           email: null,
           logged: false,
           uid: null,
+          creacion:null,
         });
       })
       .catch((error) => {
@@ -75,6 +77,7 @@ export const LoginProvider = ({ children }) => {
           email: user.email,
           logged: true,
           uid: user.uid,
+          creacion: user.metadata.creationTime,
         });
       } else {
         logout();

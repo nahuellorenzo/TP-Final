@@ -25,7 +25,7 @@ type Props = NativeStackScreenProps<RootStackParamList, "Again">;
 
 const Again: React.FC = ({ navigation: { navigate } }: Props) => {
   const { logout, user } = useContext(LoginContext);
-  const { score } = useContext(ScoreContext)
+  const { score, updateScore } = useContext(ScoreContext)
   return (
     <SafeAreaView>
       <View>
@@ -87,7 +87,9 @@ const Again: React.FC = ({ navigation: { navigate } }: Props) => {
 
           {/* Botón "No" */}
           <TouchableOpacity
-            onPress={() => navigate("Main")}
+            onPress={() =>{ 
+              updateScore(score.correct, score.incorrect)
+              navigate("Main")}}
             style={{
               paddingVertical: Spacing * 1.5,
               paddingHorizontal: Spacing * 2,

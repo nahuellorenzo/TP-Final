@@ -110,7 +110,7 @@ function UserProfileScreen({ navigation: { navigate } }: Props) {
             fontSize: FontSize.large,
           }}
         >
-           {score.correct}
+          - {score.correct}
         </Text>
 
         <Text
@@ -134,7 +134,7 @@ function UserProfileScreen({ navigation: { navigate } }: Props) {
             fontSize: FontSize.large,
           }}
         >
-          - 5/5/2023
+          {`- ${user.creacion.substring(user.creacion.indexOf(",") + 2, user.creacion.lastIndexOf("GMT") - 1)}`}
         </Text>
 
         <View>
