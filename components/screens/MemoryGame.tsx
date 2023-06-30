@@ -58,13 +58,20 @@ const MemoryGame: React.FC = ({ navigation: { navigate } }: Props) => {
       setCurrentImage(randomImagePath);
 
       const timer = setTimeout(() => {
+        setCurrentImage(null);
+        setPreviousImage(null);
+      }, 3000);
+
+      setCurrentImage(randomImagePath);
+      const timer1 = setTimeout(() => {
         const newrandomImageIndex = Math.floor(Math.random() * imagePaths1.length);
         const newrandomImagePath = imagePaths1[newrandomImageIndex];
+        timer;
         setPreviousImage(randomImagePath);
         setCurrentImage(newrandomImagePath);
-      }, 2000);
+      }, 6000);
 
-      return () => clearTimeout(timer);
+      return () => clearTimeout(timer1);
     }
 
     if (bandera == 2) {
@@ -74,11 +81,18 @@ const MemoryGame: React.FC = ({ navigation: { navigate } }: Props) => {
       setCurrentImage(randomImagePath);
 
       const timer = setTimeout(() => {
+        setCurrentImage(null);
+        setPreviousImage(null);
+      }, 3000);
+
+      setCurrentImage(randomImagePath);
+      const timer1 = setTimeout(() => {
         const newrandomImageIndex = Math.floor(Math.random() * imagePaths2.length);
         const newrandomImagePath = imagePaths2[newrandomImageIndex];
+        timer;
         setPreviousImage(randomImagePath);
         setCurrentImage(newrandomImagePath);
-      }, 2000);
+      }, 6000);
 
       return () => clearTimeout(timer);
     }
@@ -90,11 +104,18 @@ const MemoryGame: React.FC = ({ navigation: { navigate } }: Props) => {
       setCurrentImage(randomImagePath);
 
       const timer = setTimeout(() => {
+        setCurrentImage(null);
+        setPreviousImage(null);
+      }, 3000);
+
+      setCurrentImage(randomImagePath);
+      const timer1 = setTimeout(() => {
         const newrandomImageIndex = Math.floor(Math.random() * imagePaths3.length);
         const newrandomImagePath = imagePaths3[newrandomImageIndex];
+        timer;
         setPreviousImage(randomImagePath);
         setCurrentImage(newrandomImagePath);
-      }, 2000);
+      }, 6000);
 
       return () => clearTimeout(timer);
     }
@@ -106,12 +127,18 @@ const MemoryGame: React.FC = ({ navigation: { navigate } }: Props) => {
       setCurrentImage(randomImagePath);
 
       const timer = setTimeout(() => {
+        setCurrentImage(null);
+        setPreviousImage(null);
+      }, 3000);
+
+      setCurrentImage(randomImagePath);
+      const timer1 = setTimeout(() => {
         const newrandomImageIndex = Math.floor(Math.random() * imagePaths4.length);
         const newrandomImagePath = imagePaths4[newrandomImageIndex];
+        timer;
         setPreviousImage(randomImagePath);
         setCurrentImage(newrandomImagePath);
-      }, 2000);
-
+      }, 6000);
       return () => clearTimeout(timer);
     }
   }, [isFocused]);
