@@ -18,33 +18,87 @@ import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../../types";
 import { useIsFocused } from "@react-navigation/native";
 import { ScoreContext } from "../context/ScoreContext";
-import { imagePaths } from "../constants/Images";
-
+import { imagePaths1 } from "../constants/Images1";
+import { imagePaths2 } from "../constants/Images2";
+import { imagePaths3 } from "../constants/images3";
+import { imagePaths4 } from "../constants/images4";
+import { bandera } from "./Categories";
 const { height } = Dimensions.get("window");
 const { width } = Dimensions.get("window");
 
 type Props = NativeStackScreenProps<RootStackParamList, "MemoryGame">;
 
 const MemoryGame: React.FC = ({ navigation: { navigate } }: Props) => {
+
   const [currentImage, setCurrentImage] = useState(null);
   const [previousImage, setPreviousImage] = useState(null);
   const isFocused = useIsFocused();
   const { score, setScore } = useContext(ScoreContext);
 
   useEffect(() => {
-    setPreviousImage(null);
-    const randomImageIndex = Math.floor(Math.random() * imagePaths.length);
-    const randomImagePath = imagePaths[randomImageIndex];
-    setCurrentImage(randomImagePath);
+    if (bandera == 1) {
+      setPreviousImage(null);
+      const randomImageIndex = Math.floor(Math.random() * imagePaths1.length);
+      const randomImagePath = imagePaths1[randomImageIndex];
+      setCurrentImage(randomImagePath);
 
-    const timer = setTimeout(() => {
-      const newrandomImageIndex = Math.floor(Math.random() * imagePaths.length);
-      const newrandomImagePath = imagePaths[newrandomImageIndex];
-      setPreviousImage(randomImagePath);
-      setCurrentImage(newrandomImagePath);
-    }, 2000);
+      const timer = setTimeout(() => {
+        const newrandomImageIndex = Math.floor(Math.random() * imagePaths1.length);
+        const newrandomImagePath = imagePaths1[newrandomImageIndex];
+        setPreviousImage(randomImagePath);
+        setCurrentImage(newrandomImagePath);
+      }, 2000);
 
-    return () => clearTimeout(timer);
+      return () => clearTimeout(timer);
+    }
+
+    if (bandera == 2) {
+      setPreviousImage(null);
+      const randomImageIndex = Math.floor(Math.random() * imagePaths2.length);
+      const randomImagePath = imagePaths2[randomImageIndex];
+      setCurrentImage(randomImagePath);
+
+      const timer = setTimeout(() => {
+        const newrandomImageIndex = Math.floor(Math.random() * imagePaths2.length);
+        const newrandomImagePath = imagePaths2[newrandomImageIndex];
+        setPreviousImage(randomImagePath);
+        setCurrentImage(newrandomImagePath);
+      }, 2000);
+
+      return () => clearTimeout(timer);
+    }
+
+    if (bandera == 3) {
+      setPreviousImage(null);
+      const randomImageIndex = Math.floor(Math.random() * imagePaths3.length);
+      const randomImagePath = imagePaths3[randomImageIndex];
+      setCurrentImage(randomImagePath);
+
+      const timer = setTimeout(() => {
+        const newrandomImageIndex = Math.floor(Math.random() * imagePaths3.length);
+        const newrandomImagePath = imagePaths3[newrandomImageIndex];
+        setPreviousImage(randomImagePath);
+        setCurrentImage(newrandomImagePath);
+      }, 2000);
+
+      return () => clearTimeout(timer);
+    }
+
+    if (bandera == 4) {
+      setPreviousImage(null);
+      const randomImageIndex = Math.floor(Math.random() * imagePaths4.length);
+      const randomImagePath = imagePaths4[randomImageIndex];
+      setCurrentImage(randomImagePath);
+
+      const timer = setTimeout(() => {
+        const newrandomImageIndex = Math.floor(Math.random() * imagePaths4.length);
+        const newrandomImagePath = imagePaths4[newrandomImageIndex];
+        setPreviousImage(randomImagePath);
+        setCurrentImage(newrandomImagePath);
+      }, 2000);
+
+      return () => clearTimeout(timer);
+    }
   }, [isFocused]);
 
   const handleOptionSelected = (isSameImage: boolean) => {

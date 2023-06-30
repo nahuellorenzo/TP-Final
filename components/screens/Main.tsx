@@ -33,7 +33,7 @@ import {
           >
 
         <TouchableOpacity
-          onPress={() => navigate("MemoryGame")}
+          onPress={() => navigate("Categories")}
             style={{
               padding: Spacing * 3,
               backgroundColor: Colors.primary,

@@ -19,6 +19,7 @@ export type RootStackParamList = {
   UserProfile: undefined;
   MemoryGame: undefined;
   Again: undefined;
+  Categories: undefined;
 };
 
 export type RootStackScreenProps<Screen extends keyof RootStackParamList> =
