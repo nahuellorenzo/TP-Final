@@ -22,6 +22,7 @@ import { imagePaths1 } from "../constants/Images1";
 import { imagePaths2 } from "../constants/Images2";
 import { imagePaths3 } from "../constants/images3";
 import { imagePaths4 } from "../constants/images4";
+import {Button, StatusBar} from 'react-native';
 import { bandera } from "./Categories";
 const { height } = Dimensions.get("window");
 const { width } = Dimensions.get("window");
@@ -29,7 +30,12 @@ const { width } = Dimensions.get("window");
 type Props = NativeStackScreenProps<RootStackParamList, "MemoryGame">;
 
 const MemoryGame: React.FC = ({ navigation: { navigate } }: Props) => {
-
+  const showToastCorrect = () => {
+    ToastAndroid.show('Respuesta correcta!', ToastAndroid.SHORT);
+  };
+  const showToastIncorrect = () => {
+    ToastAndroid.show('Respuesta incorrecta!', ToastAndroid.SHORT);
+  };
   const [currentImage, setCurrentImage] = useState(null);
   const [previousImage, setPreviousImage] = useState(null);
   const isFocused = useIsFocused();
@@ -104,12 +110,14 @@ const MemoryGame: React.FC = ({ navigation: { navigate } }: Props) => {
   const handleOptionSelected = (isSameImage: boolean) => {
     if (isSameImage) {
       console.log("Bien es lo correcto");
+     // showToastCorrect();
       setScore({
         correct: score.correct + 1,
         incorrect: score.incorrect,
       });
     } else {
       console.log("Te equivocaste, no es lo correcto");
+     // showToastIncorrect();
       setScore({
         correct: score.correct,
         incorrect: score.incorrect + 1,
@@ -246,5 +254,15 @@ const MemoryGame: React.FC = ({ navigation: { navigate } }: Props) => {
     </SafeAreaView>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    paddingTop: StatusBar.currentHeight,
+    backgroundColor: '#888888',
+    padding: 8,
+  },
+});
 
 export default MemoryGame;
