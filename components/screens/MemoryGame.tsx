@@ -27,7 +27,6 @@ import { imagePaths4 } from "../constants/images4";
 import {Button, StatusBar} from 'react-native';
 import { bandera } from "./Categories";
 import { Audio } from 'expo-av';
-import SoundAudio from "./Sound";
 const { height } = Dimensions.get("window");
 const { width } = Dimensions.get("window");
 

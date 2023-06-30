@@ -16,7 +16,6 @@ import {
   import { NativeStackScreenProps } from "@react-navigation/native-stack";
   import { RootStackParamList } from "../../types";
   import AppTextInput from "../AppTextInput";
-  import SoundAudio from "./Sound";
   
   type Props = NativeStackScreenProps<RootStackParamList, "Main">;
   
