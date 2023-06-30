@@ -79,13 +79,13 @@ const MemoryGame: React.FC = ({ navigation: { navigate } }: Props) => {
   useEffect(() => {
     if (bandera == 1) {
       setPreviousImage(null);
-      const randomImageIndex = Math.floor(Math.random() * `imagePaths${bandera}`.length);
-      const randomImagePath = `imagePaths${bandera}`[randomImageIndex];
+      const randomImageIndex = Math.floor(Math.random() * imagePaths1.length);
+      const randomImagePath = imagePaths1[randomImageIndex];
       setCurrentImage(randomImagePath);
 
       const timer = setTimeout(() => {
-        const newrandomImageIndex = Math.floor(Math.random() * `imagePaths${bandera}`.length);
-        const newrandomImagePath = `imagePaths${bandera}`[newrandomImageIndex];
+        const newrandomImageIndex = Math.floor(Math.random() * imagePaths1.length);
+        const newrandomImagePath = imagePaths1[newrandomImageIndex];
         setPreviousImage(randomImagePath);
         setCurrentImage(newrandomImagePath);
       }, 2000);
