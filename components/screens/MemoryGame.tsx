@@ -26,6 +26,8 @@ import { imagePaths3 } from "../constants/images3";
 import { imagePaths4 } from "../constants/images4";
 import {Button, StatusBar} from 'react-native';
 import { bandera } from "./Categories";
+import { Audio } from 'expo-av';
+import SoundAudio from "./Sound";
 const { height } = Dimensions.get("window");
 const { width } = Dimensions.get("window");
 
@@ -34,12 +36,36 @@ const Separator = () => {
   return <View style={Platform.OS === 'android' ? styles.separator : null} />;
 };
 const MemoryGame: React.FC = ({ navigation: { navigate } }: Props) => {
+  const [sound, setSound] = useState<Audio.Sound | null>(null);
+
+  async function playSound(respuesta: String) {
+    console.log('Loading Sound');
+    const { sound: audioSound } = await Audio.Sound.createAsync(
+      respuesta === "correcta" ? require('./../../assets/audio/correct-ding.mp3') : require('./../../assets/audio/error-fallo-1.mp3') 
+    );
+    setSound(audioSound);
+
+    console.log('Playing Sound');
+    await audioSound.playAsync();
+  }
+
+  useEffect(() => {
+    return sound
+      ? () => {
+          console.log('Unloading Sound');
+          sound.unloadAsync();
+        }
+      : undefined;
+  }, [sound]);
+
   const showToastCorrect = () => {
     ToastAndroid.show('Respuesta correcta!', ToastAndroid.SHORT);
   };
+
   const showToastIncorrect = () => {
     ToastAndroid.show('Respuesta incorrecta!', ToastAndroid.SHORT);
   };
+
   const [currentImage, setCurrentImage] = useState(null);
   const [previousImage, setPreviousImage] = useState(null);
   const isFocused = useIsFocused();
@@ -50,16 +76,17 @@ const MemoryGame: React.FC = ({ navigation: { navigate } }: Props) => {
     2 * ONE_SECOND_IN_MS,
     3 * ONE_SECOND_IN_MS,
   ];
+
   useEffect(() => {
     if (bandera == 1) {
       setPreviousImage(null);
-      const randomImageIndex = Math.floor(Math.random() * imagePaths1.length);
-      const randomImagePath = imagePaths1[randomImageIndex];
+      const randomImageIndex = Math.floor(Math.random() * `imagePaths${bandera}`.length);
+      const randomImagePath = `imagePaths${bandera}`[randomImageIndex];
       setCurrentImage(randomImagePath);
 
       const timer = setTimeout(() => {
-        const newrandomImageIndex = Math.floor(Math.random() * imagePaths1.length);
-        const newrandomImagePath = imagePaths1[newrandomImageIndex];
+        const newrandomImageIndex = Math.floor(Math.random() * `imagePaths${bandera}`.length);
+        const newrandomImagePath = `imagePaths${bandera}`[newrandomImageIndex];
         setPreviousImage(randomImagePath);
         setCurrentImage(newrandomImagePath);
       }, 2000);
@@ -125,6 +152,8 @@ const MemoryGame: React.FC = ({ navigation: { navigate } }: Props) => {
         correct: score.correct + 1,
         incorrect: score.incorrect,
       });
+      playSound("correcta");
+      
     } else {
       console.log("Te equivocaste, no es lo correcto");
      // showToastIncorrect();
@@ -133,6 +162,7 @@ const MemoryGame: React.FC = ({ navigation: { navigate } }: Props) => {
         correct: score.correct,
         incorrect: score.incorrect + 1,
       });
+      playSound("incorrecta");
     }
     navigate("Again");
   };

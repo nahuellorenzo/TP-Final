@@ -5,6 +5,7 @@ import {
     TextInput,
     TouchableOpacity,
     View,
+    ScrollView,
   } from "react-native";
   import React from "react";
   import Spacing from "../constants/Spacing";
@@ -13,14 +14,15 @@ import {
   import Fonts from "../constants/Fonts";
   import { Ionicons } from "@expo/vector-icons";
   import { NativeStackScreenProps } from "@react-navigation/native-stack";
-    import { RootStackParamList } from "../../types";
+  import { RootStackParamList } from "../../types";
   import AppTextInput from "../AppTextInput";
+  import SoundAudio from "./Sound";
   
   type Props = NativeStackScreenProps<RootStackParamList, "Main">;
   
   const MainScreen: React.FC<Props> = ({ navigation: { navigate } }) => {
     return (
-      <SafeAreaView>
+      <ScrollView>
         <View
           style={{
             padding: Spacing * 2,
@@ -158,7 +160,7 @@ import {
             </View>
           </View>
         </View>
-      </SafeAreaView>
+      </ScrollView>
     );
   };
   
