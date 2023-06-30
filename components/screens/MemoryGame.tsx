@@ -9,6 +9,8 @@ import {
   View,
   ToastAndroid,
   ImageBackground,
+  Platform,
+  Vibration,
 } from "react-native";
 import Spacing from "../constants/Spacing";
 import FontSize from "../constants/FontSize";
@@ -28,7 +30,9 @@ const { height } = Dimensions.get("window");
 const { width } = Dimensions.get("window");
 
 type Props = NativeStackScreenProps<RootStackParamList, "MemoryGame">;
-
+const Separator = () => {
+  return <View style={Platform.OS === 'android' ? styles.separator : null} />;
+};
 const MemoryGame: React.FC = ({ navigation: { navigate } }: Props) => {
   const showToastCorrect = () => {
     ToastAndroid.show('Respuesta correcta!', ToastAndroid.SHORT);
@@ -40,7 +44,12 @@ const MemoryGame: React.FC = ({ navigation: { navigate } }: Props) => {
   const [previousImage, setPreviousImage] = useState(null);
   const isFocused = useIsFocused();
   const { score, setScore } = useContext(ScoreContext);
-
+  const ONE_SECOND_IN_MS = 1000;
+  const PATTERN = [
+    1 * ONE_SECOND_IN_MS,
+    2 * ONE_SECOND_IN_MS,
+    3 * ONE_SECOND_IN_MS,
+  ];
   useEffect(() => {
     if (bandera == 1) {
       setPreviousImage(null);
@@ -111,6 +120,7 @@ const MemoryGame: React.FC = ({ navigation: { navigate } }: Props) => {
     if (isSameImage) {
       console.log("Bien es lo correcto");
      // showToastCorrect();
+     Vibration.vibrate(0.5 * ONE_SECOND_IN_MS)
       setScore({
         correct: score.correct + 1,
         incorrect: score.incorrect,
@@ -118,6 +128,7 @@ const MemoryGame: React.FC = ({ navigation: { navigate } }: Props) => {
     } else {
       console.log("Te equivocaste, no es lo correcto");
      // showToastIncorrect();
+     Vibration.vibrate(0.5 * ONE_SECOND_IN_MS)
       setScore({
         correct: score.correct,
         incorrect: score.incorrect + 1,
@@ -126,6 +137,10 @@ const MemoryGame: React.FC = ({ navigation: { navigate } }: Props) => {
     navigate("Again");
   };
 
+  const PATTERN_DESC =
+    Platform.OS === 'android'
+      ? 'wait 1s, vibrate 2s, wait 3s'
+      : 'wait 1s, vibrate, wait 2s, vibrate, wait 3s';
   return (
     <SafeAreaView>
       <View>
@@ -262,6 +277,20 @@ const styles = StyleSheet.create({
     paddingTop: StatusBar.currentHeight,
     backgroundColor: '#888888',
     padding: 8,
+  },
+  header: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    textAlign: 'center',
+  },
+  paragraph: {
+    margin: 24,
+    textAlign: 'center',
+  },
+  separator: {
+    marginVertical: 8,
+    borderBottomColor: '#737373',
+    borderBottomWidth: StyleSheet.hairlineWidth,
   },
 });
 
