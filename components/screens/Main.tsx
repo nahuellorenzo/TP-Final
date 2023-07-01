@@ -18,11 +18,21 @@ import {
   import { RootStackParamList } from "../../types";
   import AppTextInput from "../AppTextInput";
 import Color from "../constants/Color";
-  
+import Toast from 'react-native-root-toast';
+
   type Props = NativeStackScreenProps<RootStackParamList, "Main">;
-  const showToast = () => {
-    ToastAndroid.show('El juego estará disponible proximamente', ToastAndroid.SHORT);
-  };
+
+  const showToast1 = () => {
+    Toast.show('El juego estará disponible proximamente', {
+      duration: Toast.durations.LONG,
+      animation: true,
+      backgroundColor: Color.primary,
+      textColor: Color.onPrimary,
+      hideOnPress: true,
+      shadow: true,
+    });
+  }
+
   const MainScreen: React.FC<Props> = ({ navigation: { navigate } }) => {
     return (
       <ScrollView>
@@ -66,7 +76,7 @@ import Color from "../constants/Color";
           </TouchableOpacity>
 
           <TouchableOpacity
-          onPress={() => showToast()}
+          onPress={() => showToast1()}
             style={{
               padding: Spacing * 3,
               backgroundColor: Colors.second_gray,
@@ -97,7 +107,7 @@ import Color from "../constants/Color";
                 color: Colors.onPrimary,
                 textAlign: "center",
                 fontSize: FontSize.large,
-                paddingLeft:"4rem",
+                paddingLeft: Spacing*6,
               }}
             >
                 Juego 2
@@ -105,7 +115,7 @@ import Color from "../constants/Color";
           </TouchableOpacity>
 
           <TouchableOpacity
-          onPress={() => showToast()}
+          onPress={() => showToast1()}
             style={{
               padding: Spacing * 3,
               backgroundColor: Colors.second_gray,
@@ -136,53 +146,12 @@ import Color from "../constants/Color";
                 color: Colors.onPrimary,
                 textAlign: "center",
                 fontSize: FontSize.large,
-                paddingLeft:"4rem",
+                paddingLeft:Spacing*6,
               }}
             >
               Juego 3
             </Text>
           </TouchableOpacity>
-            
-            <View
-              style={{
-                marginTop: Spacing,
-                flexDirection: "row",
-                justifyContent: "space-between", // Cambiamos a "space-between"
-                alignItems: "flex-end", // Cambiamos a "flex-end"
-              }}
-            >
-              <TouchableOpacity
-              onPress={() => navigate("UserProfile")}
-                style={{
-                  padding: Spacing,
-                  backgroundColor: Colors.gray,
-                  borderRadius: Spacing / 2,
-                  marginLeft: 16, // Cambiamos a "marginLeft"
-                  marginBottom: 16,
-                }}
-              >
-                <Ionicons
-                  name="person"
-                  color={Colors.text}
-                  size={Spacing * 2}
-                />
-              </TouchableOpacity>
-              <TouchableOpacity
-                style={{
-                  padding: Spacing,
-                  backgroundColor: Colors.gray,
-                  borderRadius: Spacing / 2,
-                  marginRight: 16, // Cambiamos a "marginRight"
-                  marginBottom: 16,
-                }}
-              >
-                <Ionicons
-                  name="settings"
-                  color={Colors.text}
-                  size={Spacing * 2}
-                />
-              </TouchableOpacity>
-            </View>
           </View>
         </View>
       </ScrollView>
