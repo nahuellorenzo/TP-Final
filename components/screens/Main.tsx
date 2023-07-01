@@ -18,11 +18,21 @@ import {
   import { RootStackParamList } from "../../types";
   import AppTextInput from "../AppTextInput";
 import Color from "../constants/Color";
-  
+import Toast from 'react-native-root-toast';
+
   type Props = NativeStackScreenProps<RootStackParamList, "Main">;
-  const showToast = () => {
-    ToastAndroid.show('El juego estará disponible proximamente', ToastAndroid.SHORT);
-  };
+
+  const showToast1 = () => {
+    Toast.show('El juego estará disponible proximamente', {
+      duration: Toast.durations.LONG,
+      animation: true,
+      backgroundColor: Color.primary,
+      textColor: Color.onPrimary,
+      hideOnPress: true,
+      shadow: true,
+    });
+  }
+
   const MainScreen: React.FC<Props> = ({ navigation: { navigate } }) => {
     return (
       <ScrollView>
@@ -66,7 +76,7 @@ import Color from "../constants/Color";
           </TouchableOpacity>
 
           <TouchableOpacity
-          onPress={() => showToast()}
+          onPress={() => showToast1()}
             style={{
               padding: Spacing * 3,
               backgroundColor: Colors.second_gray,
@@ -105,7 +115,7 @@ import Color from "../constants/Color";
           </TouchableOpacity>
 
           <TouchableOpacity
-          onPress={() => showToast()}
+          onPress={() => showToast1()}
             style={{
               padding: Spacing * 3,
               backgroundColor: Colors.second_gray,

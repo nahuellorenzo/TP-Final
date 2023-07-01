@@ -26,9 +26,11 @@ import { imagePaths2 } from "../constants/Images2";
 import { imagePaths3 } from "../constants/images3";
 import { imagePaths4 } from "../constants/images4";
 import { Button, StatusBar } from 'react-native';
+import Color from "../constants/Color";
 import { bandera } from "./Categories";
 import { Audio } from 'expo-av';
 import Loader from "./Loader";
+import Toast from 'react-native-root-toast';
 const { height } = Dimensions.get("window");
 const { width } = Dimensions.get("window");
 
@@ -60,12 +62,26 @@ const MemoryGame: React.FC = ({ navigation: { navigate } }: Props) => {
   }, [sound]);
 
   const showToastCorrect = () => {
-    ToastAndroid.show('Respuesta correcta!', ToastAndroid.SHORT);
-  };
+    Toast.show('Respuesta correcta!', {
+      duration: Toast.durations.LONG,
+      animation: true,
+      backgroundColor: Color.primary,
+      textColor: Color.onPrimary,
+      hideOnPress: true,
+      shadow: true,
+    });
+  }
 
-  const showToastIncorrect = () => {
-    ToastAndroid.show('Respuesta incorrecta!', ToastAndroid.SHORT);
-  };
+  const showToastInCorrect = () => {
+    Toast.show('Respuesta incorrecta, Vuelve a intentarlo!', {
+      duration: Toast.durations.LONG,
+      animation: true,
+      backgroundColor: Color.primary,
+      textColor: Color.onPrimary,
+      hideOnPress: true,
+      shadow: true,
+    });
+  }
 
   const [currentImage, setCurrentImage] = useState(null);
   const [previousImage, setPreviousImage] = useState(null);
@@ -205,6 +221,7 @@ const MemoryGame: React.FC = ({ navigation: { navigate } }: Props) => {
         incorrect: score.incorrect,
       });
       playSound("correcta");
+      showToastCorrect();
 
     } else {
       console.log("Te equivocaste, no es lo correcto");
@@ -215,6 +232,7 @@ const MemoryGame: React.FC = ({ navigation: { navigate } }: Props) => {
         incorrect: score.incorrect + 1,
       });
       playSound("incorrecta");
+      showToastInCorrect();
     }
     navigate("Again");
   };
