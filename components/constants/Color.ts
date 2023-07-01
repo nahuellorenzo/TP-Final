@@ -5,6 +5,7 @@ const blue = "#1F41BB";
 const gray = "#ECECEC";
 const lightBlue = "#f1f4ff";
 const red = "#FF0000";
+const second_gray = "#85929E"
 
 export default {
   darkText: dark,
@@ -17,4 +18,5 @@ export default {
   lightPrimary: lightBlue,
   gray: gray,
   red: red,
+  second_gray: second_gray,
 };
