@@ -142,47 +142,6 @@ import Color from "../constants/Color";
               Juego 3
             </Text>
           </TouchableOpacity>
-            
-            <View
-              style={{
-                marginTop: Spacing,
-                flexDirection: "row",
-                justifyContent: "space-between", // Cambiamos a "space-between"
-                alignItems: "flex-end", // Cambiamos a "flex-end"
-              }}
-            >
-              <TouchableOpacity
-              onPress={() => navigate("UserProfile")}
-                style={{
-                  padding: Spacing,
-                  backgroundColor: Colors.gray,
-                  borderRadius: Spacing / 2,
-                  marginLeft: 16, // Cambiamos a "marginLeft"
-                  marginBottom: 16,
-                }}
-              >
-                <Ionicons
-                  name="person"
-                  color={Colors.text}
-                  size={Spacing * 2}
-                />
-              </TouchableOpacity>
-              <TouchableOpacity
-                style={{
-                  padding: Spacing,
-                  backgroundColor: Colors.gray,
-                  borderRadius: Spacing / 2,
-                  marginRight: 16, // Cambiamos a "marginRight"
-                  marginBottom: 16,
-                }}
-              >
-                <Ionicons
-                  name="settings"
-                  color={Colors.text}
-                  size={Spacing * 2}
-                />
-              </TouchableOpacity>
-            </View>
           </View>
         </View>
       </ScrollView>
