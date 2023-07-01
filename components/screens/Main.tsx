@@ -16,6 +16,7 @@ import {
   import { NativeStackScreenProps } from "@react-navigation/native-stack";
   import { RootStackParamList } from "../../types";
   import AppTextInput from "../AppTextInput";
+import Color from "../constants/Color";
   
   type Props = NativeStackScreenProps<RootStackParamList, "Main">;
   
@@ -65,27 +66,38 @@ import {
           onPress={() => navigate("Main")}
             style={{
               padding: Spacing * 3,
-              backgroundColor: Colors.primary,
+              backgroundColor: Colors.second_gray,
               marginVertical: Spacing * 4,
               borderRadius: Spacing,
-              shadowColor: Colors.primary,
+              shadowColor: Colors.gray,
               shadowOffset: {
                 width: 0,
                 height: Spacing,
               },
               shadowOpacity: 0.3,
               shadowRadius: Spacing,
+              display:"flex",
+              flexDirection:"row",
+              justifyContent:"flex-start",
+              alignItems:"center",
             }}
           >
+            <Ionicons
+                  name="lock-closed"
+                  color={Colors.onPrimary}
+                  size={Spacing * 4}
+                  style={{textAlign:"justify"}}
+                />
             <Text
               style={{
                 fontFamily: Fonts["poppins-bold"],
                 color: Colors.onPrimary,
                 textAlign: "center",
                 fontSize: FontSize.large,
+                paddingLeft:"4rem",
               }}
             >
-              Juego 2
+                Juego 2
             </Text>
           </TouchableOpacity>
 
@@ -93,24 +105,35 @@ import {
           onPress={() => navigate("Main")}
             style={{
               padding: Spacing * 3,
-              backgroundColor: Colors.primary,
+              backgroundColor: Colors.second_gray,
               marginVertical: Spacing * 4,
               borderRadius: Spacing,
-              shadowColor: Colors.primary,
+              shadowColor: Colors.gray,
               shadowOffset: {
                 width: 0,
                 height: Spacing,
               },
               shadowOpacity: 0.3,
               shadowRadius: Spacing,
+              display:"flex",
+              flexDirection:"row",
+              justifyContent:"flex-start",
+              alignItems:"center",
             }}
           >
+            <Ionicons
+                  name="lock-closed"
+                  color={Colors.onPrimary}
+                  size={Spacing * 4}
+                  style={{textAlign:"justify"}}
+                />
             <Text
               style={{
                 fontFamily: Fonts["poppins-bold"],
                 color: Colors.onPrimary,
                 textAlign: "center",
                 fontSize: FontSize.large,
+                paddingLeft:"4rem",
               }}
             >
               Juego 3
