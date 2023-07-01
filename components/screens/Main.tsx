@@ -97,7 +97,7 @@ import Color from "../constants/Color";
                 color: Colors.onPrimary,
                 textAlign: "center",
                 fontSize: FontSize.large,
-                paddingLeft:"4rem",
+                paddingLeft: Spacing*6,
               }}
             >
                 Juego 2
@@ -136,7 +136,7 @@ import Color from "../constants/Color";
                 color: Colors.onPrimary,
                 textAlign: "center",
                 fontSize: FontSize.large,
-                paddingLeft:"4rem",
+                paddingLeft:Spacing*6,
               }}
             >
               Juego 3
