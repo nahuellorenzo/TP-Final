@@ -114,12 +114,7 @@ function SettingsStack() {
       <Stack.Screen
         name="UserProfile"
         component={UserProfileScreen}
-        options={{ title: 'Setting Page' }}
-      />
-      <Stack.Screen
-        name="Main"
-        component={MainScreen}
-        options={{ title: 'Details Page' }}
+        options={{ title: 'User Page' }}
       />
     </Stack.Navigator>
   );
@@ -148,7 +143,7 @@ function RootNavigatorPrivate() {
           name="SettingsStack"
           component={SettingsStack}
           options={{
-            tabBarLabel: 'Settings',
+            tabBarLabel: 'Profile',
             tabBarIcon: ({ color, size }) => (
               <FontAwesome name="user" size={24} color={color} />
             ),

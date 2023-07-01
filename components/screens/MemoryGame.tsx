@@ -248,7 +248,7 @@ const MemoryGame: React.FC = ({ navigation: { navigate } }: Props) => {
             <View
               style={{
                 paddingHorizontal: Spacing * 4,
-                paddingTop: Spacing * 15,
+                paddingTop: Spacing * 10,
               }}>
               <Loader />
             </View>
