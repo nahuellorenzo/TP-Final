@@ -33,7 +33,7 @@ import Color from "../constants/Color";
         >  
           <View
             style={{
-              marginVertical: Spacing * 3,
+              marginVertical: Spacing*0.1,
             }}
           >
 
