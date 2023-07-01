@@ -80,19 +80,33 @@ const MemoryGame: React.FC = ({ navigation: { navigate } }: Props) => {
   ];
 
   useEffect(() => {
+    setPreviousImage(null);
+    setCurrentImage(null);
     if (bandera == 1) {
       setPreviousImage(null);
       const randomImageIndex = Math.floor(Math.random() * imagePaths1.length);
       const randomImagePath = imagePaths1[randomImageIndex];
-
+      console.log(randomImagePath)
+      const newrandomImageIndex = Math.floor(Math.random() * imagePaths1.length);
+      const newrandomImagePath = imagePaths1[newrandomImageIndex];
       setCurrentImage(randomImagePath);
-      setTimeout(() => {
-        const newrandomImageIndex = Math.floor(Math.random() * imagePaths1.length);
-        const newrandomImagePath = imagePaths1[newrandomImageIndex];
+
+        const numero2 = setTimeout(() => {
+          setPreviousImage(null);
+          setCurrentImage(null);
+          console.log("Entre")
+          setLoader(true);
+        }, 4000);
+
+      
+      const numero1 = setTimeout(() => {
+        console.log(newrandomImagePath)
         setPreviousImage(randomImagePath);
         setCurrentImage(newrandomImagePath);
         setLoader(false);
       }, 6000);
+      return () => {clearTimeout(numero1)
+      clearTimeout(numero2)};
     }
 
     else if (bandera == 2) {
@@ -101,7 +115,14 @@ const MemoryGame: React.FC = ({ navigation: { navigate } }: Props) => {
       const randomImagePath = imagePaths2[randomImageIndex];
       setCurrentImage(randomImagePath);
 
-      setTimeout(() => {
+      const numero2 = setTimeout(() => {
+        setPreviousImage(null);
+        setCurrentImage(null);
+        console.log("Entre")
+        setLoader(true);
+      }, 4000);
+
+      const numero1 = setTimeout(() => {
         const newRandomImageIndex = Math.floor(Math.random() * imagePaths2.length);
         const newRandomImagePath = imagePaths2[newRandomImageIndex];
 
@@ -109,6 +130,8 @@ const MemoryGame: React.FC = ({ navigation: { navigate } }: Props) => {
         setCurrentImage(newRandomImagePath);
         setLoader(false);
       }, 6000);
+      return () => {clearTimeout(numero1);
+        clearTimeout(numero2)}
     }
 
     else if (bandera == 3) {
@@ -118,13 +141,22 @@ const MemoryGame: React.FC = ({ navigation: { navigate } }: Props) => {
       setCurrentImage(randomImagePath);
 
       setCurrentImage(randomImagePath);
-      setTimeout(() => {
+
+      const numero2 = setTimeout(() => {
+        setPreviousImage(null);
+        setCurrentImage(null);
+        console.log("Entre")
+        setLoader(true);
+      }, 4000);
+      const numero1 = setTimeout(() => {
         const newrandomImageIndex = Math.floor(Math.random() * imagePaths3.length);
         const newrandomImagePath = imagePaths3[newrandomImageIndex];
         setPreviousImage(randomImagePath);
         setCurrentImage(newrandomImagePath);
         setLoader(false);
       }, 6000);
+      return () => {clearTimeout(numero1);
+        clearTimeout(numero2)}
     }
 
     else if (bandera == 4) {
@@ -133,7 +165,15 @@ const MemoryGame: React.FC = ({ navigation: { navigate } }: Props) => {
       const randomImagePath = imagePaths4[randomImageIndex];
 
       setCurrentImage(randomImagePath);
-      setTimeout(() => {
+
+      const numero2 = setTimeout(() => {
+        setPreviousImage(null);
+        setCurrentImage(null);
+        console.log("Entre")
+        setLoader(true);
+      }, 4000);
+
+      const numero1 = setTimeout(() => {
         const newrandomImageIndex = Math.floor(Math.random() * imagePaths4.length);
         const newrandomImagePath = imagePaths4[newrandomImageIndex];
 
@@ -141,13 +181,18 @@ const MemoryGame: React.FC = ({ navigation: { navigate } }: Props) => {
         setCurrentImage(newrandomImagePath);
         setLoader(false);
       }, 6000);
+      return () => {clearTimeout(numero1)
+      clearTimeout(numero2)};
     }
 
-    setTimeout(() => {
+   setTimeout(() => {
       setPreviousImage(null);
       setCurrentImage(null);
+      console.log("Entre")
       setLoader(true);
     }, 4000);
+
+    
   }, [isFocused]);
 
   const handleOptionSelected = (isSameImage: boolean) => {
