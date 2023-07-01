@@ -6,6 +6,7 @@ import {
     TouchableOpacity,
     View,
     ScrollView,
+    ToastAndroid,
   } from "react-native";
   import React from "react";
   import Spacing from "../constants/Spacing";
@@ -19,7 +20,9 @@ import {
 import Color from "../constants/Color";
   
   type Props = NativeStackScreenProps<RootStackParamList, "Main">;
-  
+  const showToast = () => {
+    ToastAndroid.show('El juego estará disponible proximamente', ToastAndroid.SHORT);
+  };
   const MainScreen: React.FC<Props> = ({ navigation: { navigate } }) => {
     return (
       <ScrollView>
@@ -58,12 +61,12 @@ import Color from "../constants/Color";
                 fontSize: FontSize.large,
               }}
             >
-              Juego 1
+              Memory Game 
             </Text>
           </TouchableOpacity>
 
           <TouchableOpacity
-          onPress={() => navigate("Main")}
+          onPress={() => showToast()}
             style={{
               padding: Spacing * 3,
               backgroundColor: Colors.second_gray,
@@ -102,7 +105,7 @@ import Color from "../constants/Color";
           </TouchableOpacity>
 
           <TouchableOpacity
-          onPress={() => navigate("Main")}
+          onPress={() => showToast()}
             style={{
               padding: Spacing * 3,
               backgroundColor: Colors.second_gray,
