@@ -11,6 +11,7 @@ import {
   ImageBackground,
   Platform,
   Vibration,
+  ScrollView,
 } from "react-native";
 import Spacing from "../constants/Spacing";
 import FontSize from "../constants/FontSize";
@@ -24,9 +25,10 @@ import { imagePaths1 } from "../constants/Images1";
 import { imagePaths2 } from "../constants/Images2";
 import { imagePaths3 } from "../constants/images3";
 import { imagePaths4 } from "../constants/images4";
-import {Button, StatusBar} from 'react-native';
+import { Button, StatusBar } from 'react-native';
 import { bandera } from "./Categories";
 import { Audio } from 'expo-av';
+import Loader from "./Loader";
 const { height } = Dimensions.get("window");
 const { width } = Dimensions.get("window");
 
@@ -40,7 +42,7 @@ const MemoryGame: React.FC = ({ navigation: { navigate } }: Props) => {
   async function playSound(respuesta: String) {
     console.log('Loading Sound');
     const { sound: audioSound } = await Audio.Sound.createAsync(
-      respuesta === "correcta" ? require('./../../assets/audio/correct-ding.mp3') : require('./../../assets/audio/error-fallo-1.mp3') 
+      respuesta === "correcta" ? require('./../../assets/audio/correct-ding.mp3') : require('./../../assets/audio/error-fallo-1.mp3')
     );
     setSound(audioSound);
 
@@ -51,9 +53,9 @@ const MemoryGame: React.FC = ({ navigation: { navigate } }: Props) => {
   useEffect(() => {
     return sound
       ? () => {
-          console.log('Unloading Sound');
-          sound.unloadAsync();
-        }
+        console.log('Unloading Sound');
+        sound.unloadAsync();
+      }
       : undefined;
   }, [sound]);
 
@@ -68,6 +70,7 @@ const MemoryGame: React.FC = ({ navigation: { navigate } }: Props) => {
   const [currentImage, setCurrentImage] = useState(null);
   const [previousImage, setPreviousImage] = useState(null);
   const isFocused = useIsFocused();
+  const [loader, setLoader] = useState(false);
   const { score, setScore } = useContext(ScoreContext);
   const ONE_SECOND_IN_MS = 1000;
   const PATTERN = [
@@ -81,109 +84,87 @@ const MemoryGame: React.FC = ({ navigation: { navigate } }: Props) => {
       setPreviousImage(null);
       const randomImageIndex = Math.floor(Math.random() * imagePaths1.length);
       const randomImagePath = imagePaths1[randomImageIndex];
-      setCurrentImage(randomImagePath);
-
-      const timer = setTimeout(() => {
-        setCurrentImage(null);
-        setPreviousImage(null);
-      }, 3000);
 
       setCurrentImage(randomImagePath);
-      const timer1 = setTimeout(() => {
+      setTimeout(() => {
         const newrandomImageIndex = Math.floor(Math.random() * imagePaths1.length);
         const newrandomImagePath = imagePaths1[newrandomImageIndex];
-        timer;
         setPreviousImage(randomImagePath);
         setCurrentImage(newrandomImagePath);
+        setLoader(false);
       }, 6000);
-
-      return () => clearTimeout(timer1);
     }
 
-    if (bandera == 2) {
+    else if (bandera == 2) {
       setPreviousImage(null);
       const randomImageIndex = Math.floor(Math.random() * imagePaths2.length);
       const randomImagePath = imagePaths2[randomImageIndex];
       setCurrentImage(randomImagePath);
 
-      const timer = setTimeout(() => {
-        setCurrentImage(null);
-        setPreviousImage(null);
-      }, 3000);
+      setTimeout(() => {
+        const newRandomImageIndex = Math.floor(Math.random() * imagePaths2.length);
+        const newRandomImagePath = imagePaths2[newRandomImageIndex];
 
-      setCurrentImage(randomImagePath);
-      const timer1 = setTimeout(() => {
-        const newrandomImageIndex = Math.floor(Math.random() * imagePaths2.length);
-        const newrandomImagePath = imagePaths2[newrandomImageIndex];
-        timer;
         setPreviousImage(randomImagePath);
-        setCurrentImage(newrandomImagePath);
+        setCurrentImage(newRandomImagePath);
+        setLoader(false);
       }, 6000);
-
-      return () => clearTimeout(timer);
     }
 
-    if (bandera == 3) {
+    else if (bandera == 3) {
       setPreviousImage(null);
       const randomImageIndex = Math.floor(Math.random() * imagePaths3.length);
       const randomImagePath = imagePaths3[randomImageIndex];
       setCurrentImage(randomImagePath);
 
-      const timer = setTimeout(() => {
-        setCurrentImage(null);
-        setPreviousImage(null);
-      }, 3000);
-
       setCurrentImage(randomImagePath);
-      const timer1 = setTimeout(() => {
+      setTimeout(() => {
         const newrandomImageIndex = Math.floor(Math.random() * imagePaths3.length);
         const newrandomImagePath = imagePaths3[newrandomImageIndex];
-        timer;
         setPreviousImage(randomImagePath);
         setCurrentImage(newrandomImagePath);
+        setLoader(false);
       }, 6000);
-
-      return () => clearTimeout(timer);
     }
 
-    if (bandera == 4) {
+    else if (bandera == 4) {
       setPreviousImage(null);
       const randomImageIndex = Math.floor(Math.random() * imagePaths4.length);
       const randomImagePath = imagePaths4[randomImageIndex];
-      setCurrentImage(randomImagePath);
-
-      const timer = setTimeout(() => {
-        setCurrentImage(null);
-        setPreviousImage(null);
-      }, 3000);
 
       setCurrentImage(randomImagePath);
-      const timer1 = setTimeout(() => {
+      setTimeout(() => {
         const newrandomImageIndex = Math.floor(Math.random() * imagePaths4.length);
         const newrandomImagePath = imagePaths4[newrandomImageIndex];
-        timer;
+
         setPreviousImage(randomImagePath);
         setCurrentImage(newrandomImagePath);
+        setLoader(false);
       }, 6000);
-      return () => clearTimeout(timer);
     }
+
+    setTimeout(() => {
+      setPreviousImage(null);
+      setCurrentImage(null);
+      setLoader(true);
+    }, 4000);
   }, [isFocused]);
 
   const handleOptionSelected = (isSameImage: boolean) => {
     if (isSameImage) {
       console.log("Bien es lo correcto");
-     // showToastCorrect();
-     Vibration.vibrate(0.5 * ONE_SECOND_IN_MS)
+      // showToastCorrect();
+      Vibration.vibrate(0.5 * ONE_SECOND_IN_MS)
       setScore({
         correct: score.correct + 1,
         incorrect: score.incorrect,
       });
       playSound("correcta");
-      
+
     } else {
       console.log("Te equivocaste, no es lo correcto");
-     // showToastIncorrect();
-     Vibration.vibrate(0.5 * ONE_SECOND_IN_MS)
+      // showToastIncorrect();
+      Vibration.vibrate(0.5 * ONE_SECOND_IN_MS)
       setScore({
         correct: score.correct,
         incorrect: score.incorrect + 1,
@@ -198,7 +179,37 @@ const MemoryGame: React.FC = ({ navigation: { navigate } }: Props) => {
       ? 'wait 1s, vibrate 2s, wait 3s'
       : 'wait 1s, vibrate, wait 2s, vibrate, wait 3s';
   return (
-    <SafeAreaView>
+    <ScrollView>
+      <View>
+        {
+          loader === true ? (<View>
+            <View
+              style={{
+                paddingHorizontal: Spacing * 4,
+                paddingTop: Spacing * 4,
+              }}
+            >
+              <Text
+                style={{
+                  fontSize: FontSize.xxLarge,
+                  color: Colors.primary,
+                  fontFamily: Fonts["poppins-bold"],
+                  textAlign: "center",
+                }}
+              >
+                No te olvides la imagen!
+              </Text>
+            </View>
+            <View
+              style={{
+                paddingHorizontal: Spacing * 4,
+                paddingTop: Spacing * 15,
+              }}>
+              <Loader />
+            </View>
+          </View>
+          ) :
+      (
       <View>
         {previousImage === null ? (
           <View
@@ -237,14 +248,22 @@ const MemoryGame: React.FC = ({ navigation: { navigate } }: Props) => {
             </Text>
           </View>
         )}
-        <ImageBackground
+        <View
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}>
+        <Image
           style={{
             height: height / 2.5,
             marginTop: Spacing * 4,
+            borderRadius: 300,
           }}
           resizeMode="contain"
           source={currentImage}
         />
+        </View>
         <Text
           style={{
             fontSize: FontSize.large,
@@ -321,8 +340,9 @@ const MemoryGame: React.FC = ({ navigation: { navigate } }: Props) => {
             </TouchableOpacity>
           </View>
         )}
-      </View>
-    </SafeAreaView>
+      </View>)}
+    </View>
+    </ScrollView >
   );
 };
 

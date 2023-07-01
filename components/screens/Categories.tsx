@@ -9,6 +9,7 @@ import {
   View,
   ToastAndroid,
   ImageBackground,
+  ScrollView
 } from "react-native";
 import Spacing from "../constants/Spacing";
 import FontSize from "../constants/FontSize";
@@ -24,7 +25,7 @@ export var bandera=0;
 type Props = NativeStackScreenProps<RootStackParamList, "Categories">;
 const CategoriesScreen: React.FC<Props> = ({ navigation: { navigate } }: Props) => {
     return (
-        <SafeAreaView>
+        <ScrollView>
             <View
                 style={{
                     padding: Spacing * 2,
@@ -168,7 +169,7 @@ const CategoriesScreen: React.FC<Props> = ({ navigation: { navigate } }: Props) 
                     </TouchableOpacity>
                 </View>
             </View>
-        </SafeAreaView>
+        </ScrollView>
     );
 };
 
