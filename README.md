@@ -14,10 +14,10 @@ Esta aplicación fue desarrollada como trabajo final para la materia de Aplicaci
 
 ## Desarrolladores
 
-- [Agustin Gomez D'Addario]
-- [Manuel de la Mano]
-- [Nahuel Lorenzo]
-- [Ulises Mijael Ben]
+- Agustin Gomez D'Addario
+- Manuel de la Mano
+- Nahuel Lorenzo
+- Ulises Mijael Ben
 
 ## Tecnologías Utilizadas
 
