@@ -23,14 +23,19 @@ import Toast from 'react-native-root-toast';
   type Props = NativeStackScreenProps<RootStackParamList, "Main">;
 
   const showToast1 = () => {
-    Toast.show('El juego estará disponible proximamente', {
-      duration: Toast.durations.LONG,
-      animation: true,
-      backgroundColor: Color.primary,
-      textColor: Color.onPrimary,
-      hideOnPress: true,
-      shadow: true,
-    });
+    try{
+      Toast.show('El juego estará disponible proximamente', {
+        duration: Toast.durations.LONG,
+        animation: true,
+        backgroundColor: Color.primary,
+        textColor: Color.onPrimary,
+        hideOnPress: true,
+        shadow: true,
+      });
+    }
+    catch(error){
+      console.log(error)
+    }
   }
 
   const MainScreen: React.FC<Props> = ({ navigation: { navigate } }) => {

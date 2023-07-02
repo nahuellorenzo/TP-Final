@@ -62,25 +62,35 @@ const MemoryGame: React.FC = ({ navigation: { navigate } }: Props) => {
   }, [sound]);
 
   const showToastCorrect = () => {
-    Toast.show('Respuesta correcta!', {
-      duration: Toast.durations.LONG,
-      animation: true,
-      backgroundColor: Color.primary,
-      textColor: Color.onPrimary,
-      hideOnPress: true,
-      shadow: true,
-    });
+    try{
+      Toast.show('Respuesta correcta!', {
+        duration: Toast.durations.LONG,
+        animation: true,
+        backgroundColor: Color.primary,
+        textColor: Color.onPrimary,
+        hideOnPress: true,
+        shadow: true,
+      });
+    }
+    catch(error){
+      console.log(error)
+    }
   }
 
   const showToastInCorrect = () => {
-    Toast.show('Respuesta incorrecta, Vuelve a intentarlo!', {
-      duration: Toast.durations.LONG,
-      animation: true,
-      backgroundColor: Color.primary,
-      textColor: Color.onPrimary,
-      hideOnPress: true,
-      shadow: true,
-    });
+    try{
+      Toast.show('Respuesta incorrecta, Vuelve a intentarlo!', {
+        duration: Toast.durations.LONG,
+        animation: true,
+        backgroundColor: Color.primary,
+        textColor: Color.onPrimary,
+        hideOnPress: true,
+        shadow: true,
+      });
+    }
+    catch(error){
+      console.log(error)
+    }
   }
 
   const [currentImage, setCurrentImage] = useState(null);
@@ -200,15 +210,6 @@ const MemoryGame: React.FC = ({ navigation: { navigate } }: Props) => {
       return () => {clearTimeout(numero1)
       clearTimeout(numero2)};
     }
-
-   setTimeout(() => {
-      setPreviousImage(null);
-      setCurrentImage(null);
-      console.log("Entre")
-      setLoader(true);
-    }, 4000);
-
-    
   }, [isFocused]);
 
   const handleOptionSelected = (isSameImage: boolean) => {
@@ -313,15 +314,15 @@ const MemoryGame: React.FC = ({ navigation: { navigate } }: Props) => {
         )}
         <View
         style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
+          
         }}>
         <Image
           style={{
             height: height / 2.5,
+            width: width / 1.5,
             marginTop: Spacing * 4,
-            borderRadius: 300,
+            borderRadius:  Math.min(height, width)/5,
+            alignSelf: "center",
           }}
           resizeMode="contain"
           source={currentImage}
