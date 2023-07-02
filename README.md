@@ -14,15 +14,22 @@ Esta aplicación fue desarrollada como trabajo final para la materia de Aplicaci
 
 ## Desarrolladores
 
-- [Nombre del integrante 1]
-- [Nombre del integrante 2]
-- [Nombre del integrante 3]
+- [Agustin Gomez D'Addario]
+- [Manuel de la Mano]
+- [Nahuel Lorenzo]
+- [Ulises Mijael Ben]
 
 ## Tecnologías Utilizadas
 
 - React Native: Framework de desarrollo de aplicaciones móviles multiplataforma.
 - Firebase: Plataforma de desarrollo de aplicaciones móviles y web que proporciona autenticación y base de datos en tiempo real.
 - Sensores de Vibración y Sonido: Utilizados para proporcionar retroalimentación al usuario durante el juego.
+
+## Aplicación Web para Médicos
+
+Los datos recopilados por la aplicación móvil se pueden visualizar y analizar en la aplicación web específicamente diseñada para los médicos. Esta aplicación web proporciona una interfaz intuitiva para revisar los datos de cada paciente y tomar decisiones informadas.
+
+Accede a la [Aplicación Web para Médicos](https://app-medico-three.vercel.app/) para ver y analizar los datos de los pacientes.
 
 ## Instalación y Uso
 
@@ -32,5 +39,4 @@ Esta aplicación fue desarrollada como trabajo final para la materia de Aplicaci
 4. Ejecuta `npm start` para iniciar la aplicación.
 
 ¡Gracias por utilizar nuestra aplicación! Esperamos que sea útil en el diagnóstico y evaluación de la memoria de trabajo. Si tienes alguna pregunta o problema, no dudes en ponerte en contacto con nosotros.
-
 
