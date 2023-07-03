@@ -1,41 +1,70 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import Loaders from 'react-native-pure-loaders';
+/**
+ * Sample React Native App
+ * https://github.com/facebook/react-native
+ *
+ * @format
+ * @flow
+ */
 
-export default function Loader() {
-  return (
-    <View style={styles.container}>
-      <View style={styles.row}>
-        <View style={styles.loaderContainer}>
-          <Loaders.Ellipses color="#1F41BB" size={128}/>
-        </View>
+import React, {useState, useEffect} from 'react';
+import Spinner from 'react-native-loading-spinner-overlay';
+import { Component } from 'react';
+import { Platform, StyleSheet, Text, View } from 'react-native';
+
+const instructions = Platform.select({
+  ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
+  android:
+    'Double tap R on your keyboard to reload,\n' +
+    'Shake or press menu button for dev menu'
+});
+
+type Props = {};
+export default class Loader extends Component<Props> {
+  state = {
+    spinner: true
+  };
+
+  componentDidMount() {
+    setInterval(() => {
+      this.setState({
+        spinner: !this.state.spinner
+      });
+    }, 2000);
+  }
+
+  render() {
+    return (
+      <View style={styles.container}>
+        <Spinner
+          visible={this.state.spinner}
+          textStyle={styles.spinnerTextStyle}
+          color='#1F41BB'
+          overlayColor='transparent'
+          size="large"
+        />
       </View>
-    </View>
-  );
+    );
+  }
 }
 
 const styles = StyleSheet.create({
+  spinnerTextStyle: {
+    color: '#FFF'
+  },
   container: {
     flex: 1,
-    backgroundColor: 'transparent',
-    alignItems: 'center',
     justifyContent: 'center',
-  },
-  caption: {
-    color: 'white'
-  },
-  captionContainer: {
-    width: '100%',
-    justifyContent: 'center',
-    flexDirection: 'row'
-  },
-  row: {
-    flexDirection: 'row',
-    justifyContent: 'space-between'
-  },
-  loaderContainer: {
-    margin: 20,
     alignItems: 'center',
-    justifyContent: 'center'
+    backgroundColor: '#1F41BB'
+  },
+  welcome: {
+    fontSize: 20,
+    textAlign: 'center',
+    margin: 10
+  },
+  instructions: {
+    textAlign: 'center',
+    color: '#1F41BB',
+    marginBottom: 5
   }
 });
