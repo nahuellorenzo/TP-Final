@@ -18,6 +18,7 @@ Esta aplicación fue desarrollada como trabajo final para la materia de Aplicaci
 - Manuel de la Mano
 - Nahuel Lorenzo
 - Ulises Mijael Ben
+- Santiago Di Camillo
 
 ## Tecnologías Utilizadas
 
