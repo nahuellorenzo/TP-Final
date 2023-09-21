@@ -45,7 +45,7 @@ const CategoriesScreen: React.FC<Props> = ({ navigation: { navigate } }: Props) 
                             textAlign: "center",
                         }}
                     >
-                        El siguiente juego es para trabajar tu memoria a corto plazo, se te mostrarán imágenes cada 2 segundos y debés recordar cuál era, para marcar si la segunda imagen es igual a la primera
+                    Seleccione una categoría    
                     </Text>
 
                     <TouchableOpacity
