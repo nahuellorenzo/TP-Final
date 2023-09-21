@@ -53,7 +53,7 @@ import Toast from 'react-native-root-toast';
           >
 
         <TouchableOpacity
-          onPress={() => navigate("Categories")}
+          onPress={() => navigate("IntruccionesJuego1")}
             style={{
               padding: Spacing * 3,
               backgroundColor: Colors.primary,
