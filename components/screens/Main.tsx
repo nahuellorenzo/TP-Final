@@ -70,7 +70,7 @@ import Toast from 'react-native-root-toast';
           >
             <Text
               style={{
-                fontFamily: Fonts["poppins-bold"],
+                fontFamily: Fonts["Roboto-Bold"],
                 color: Colors.onPrimary,
                 textAlign: "center",
                 fontSize: FontSize.large,
@@ -108,7 +108,7 @@ import Toast from 'react-native-root-toast';
                 />
             <Text
               style={{
-                fontFamily: Fonts["poppins-bold"],
+                fontFamily: Fonts["Roboto-Bold"],
                 color: Colors.onPrimary,
                 textAlign: "center",
                 fontSize: FontSize.large,
@@ -147,7 +147,7 @@ import Toast from 'react-native-root-toast';
                 />
             <Text
               style={{
-                fontFamily: Fonts["poppins-bold"],
+                fontFamily: Fonts["Roboto-Bold"],
                 color: Colors.onPrimary,
                 textAlign: "center",
                 fontSize: FontSize.large,

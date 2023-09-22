@@ -20,7 +20,7 @@ import {
         placeholderTextColor={Colors.darkText}
         style={[
           {
-            fontFamily: Fonts["poppins-regular"],
+            fontFamily: Fonts["Roboto-Medium"],
             fontSize: FontSize.small,
             padding: Spacing * 2,
             backgroundColor: Colors.lightPrimary,

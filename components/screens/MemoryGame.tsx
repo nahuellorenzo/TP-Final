@@ -313,7 +313,7 @@ const MemoryGame: React.FC = ({ navigation: { navigate } }: Props) => {
                 style={{
                   fontSize: FontSize.xxLarge,
                   color: Colors.primary,
-                  fontFamily: Fonts["poppins-bold"],
+                  fontFamily: Fonts["Roboto-Bold"],
                   textAlign: "center",
                 }}
               >
@@ -342,7 +342,7 @@ const MemoryGame: React.FC = ({ navigation: { navigate } }: Props) => {
               style={{
                 fontSize: FontSize.xxLarge,
                 color: Colors.primary,
-                fontFamily: Fonts["poppins-bold"],
+                fontFamily: Fonts["Roboto-Bold"],
                 textAlign: "center",
               }}
             >
@@ -360,7 +360,7 @@ const MemoryGame: React.FC = ({ navigation: { navigate } }: Props) => {
               style={{
                 fontSize: FontSize.xxLarge,
                 color: Colors.primary,
-                fontFamily: Fonts["poppins-bold"],
+                fontFamily: Fonts["Roboto-Bold"],
                 textAlign: "center",
               }}
             >
@@ -388,7 +388,7 @@ const MemoryGame: React.FC = ({ navigation: { navigate } }: Props) => {
           style={{
             fontSize: FontSize.large,
             color: Colors.primary,
-            fontFamily: Fonts["poppins-bold"],
+            fontFamily: Fonts["Roboto-Bold"],
             textAlign: "center",
           }}
         >
@@ -422,7 +422,7 @@ const MemoryGame: React.FC = ({ navigation: { navigate } }: Props) => {
             >
               <Text
                 style={{
-                  fontFamily: Fonts["poppins-bold"],
+                  fontFamily: Fonts["Roboto-Bold"],
                   color: Colors.onPrimary,
                   fontSize: FontSize.large,
                   textAlign: "center",
@@ -449,7 +449,7 @@ const MemoryGame: React.FC = ({ navigation: { navigate } }: Props) => {
             >
               <Text
                 style={{
-                  fontFamily: Fonts["poppins-bold"],
+                  fontFamily: Fonts["Roboto-Bold"],
                   color: Colors.text,
                   fontSize: FontSize.large,
                   textAlign: "center",
