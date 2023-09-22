@@ -188,7 +188,7 @@ const CategoriesScreen: React.FC<Props> = ({ navigation: { navigate } }: Props) 
                     >
                         <Text
                             style={{
-                                fontFamily: Fonts["poppins-bold"],
+                                fontFamily: Fonts["Roboto-Bold"],
                                 color: Colors.onPrimary,
                                 textAlign: "center",
                                 fontSize: FontSize.large,
@@ -218,7 +218,7 @@ const CategoriesScreen: React.FC<Props> = ({ navigation: { navigate } }: Props) 
                     >
                         <Text
                             style={{
-                                fontFamily: Fonts["poppins-bold"],
+                                fontFamily: Fonts["Roboto-Bold"],
                                 color: Colors.onPrimary,
                                 textAlign: "center",
                                 fontSize: FontSize.large,

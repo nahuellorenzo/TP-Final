@@ -43,7 +43,7 @@ import {
                 textAlign: "center",
               }}
             >
-              Agiliza tu mente aqui
+              Agiliza tu mente aquí
             </Text>
   
             <Text
