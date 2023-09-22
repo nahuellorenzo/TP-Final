@@ -167,6 +167,66 @@ const CategoriesScreen: React.FC<Props> = ({ navigation: { navigate } }: Props) 
                             Peliculas
                         </Text>
                     </TouchableOpacity>
+
+                    <TouchableOpacity
+                        onPress={() =>
+                            {navigate("MemoryGame")
+                            bandera=5}}
+                        style={{
+                            padding: Spacing * 2,
+                            backgroundColor: Colors.primary,
+                            marginVertical: Spacing * 2,
+                            borderRadius: Spacing,
+                            shadowColor: Colors.primary,
+                            shadowOffset: {
+                                width: 0,
+                                height: Spacing,
+                            },
+                            shadowOpacity: 0.3,
+                            shadowRadius: Spacing,
+                        }}
+                    >
+                        <Text
+                            style={{
+                                fontFamily: Fonts["poppins-bold"],
+                                color: Colors.onPrimary,
+                                textAlign: "center",
+                                fontSize: FontSize.large,
+                            }}
+                        >
+                            Personas
+                        </Text>
+                    </TouchableOpacity>
+
+                    <TouchableOpacity
+                        onPress={() =>
+                            {navigate("MemoryGame")
+                            bandera=6}}
+                        style={{
+                            padding: Spacing * 2,
+                            backgroundColor: Colors.primary,
+                            marginVertical: Spacing * 2,
+                            borderRadius: Spacing,
+                            shadowColor: Colors.primary,
+                            shadowOffset: {
+                                width: 0,
+                                height: Spacing,
+                            },
+                            shadowOpacity: 0.3,
+                            shadowRadius: Spacing,
+                        }}
+                    >
+                        <Text
+                            style={{
+                                fontFamily: Fonts["poppins-bold"],
+                                color: Colors.onPrimary,
+                                textAlign: "center",
+                                fontSize: FontSize.large,
+                            }}
+                        >
+                            Camisetas de Futbol
+                        </Text>
+                    </TouchableOpacity>
                 </View>
             </View>
         </ScrollView>
