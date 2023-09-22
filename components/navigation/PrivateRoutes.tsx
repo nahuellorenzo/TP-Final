@@ -16,7 +16,7 @@ import MemoryGame from "../screens/MemoryGame";
 import Again from "../screens/Again";
 import CategoriesScreen from "../screens/Categories";
 import IntruccionesJuego1Screen from "../screens/IntruccionesJuego1";
-
+import IntruccionesJuego2Screen from "../screens/InstructionsGame2";
 
 /* const theme = {
   ...DefaultTheme,
@@ -95,6 +95,11 @@ function HomeStack() {
         name="IntruccionesJuego1"
         component={IntruccionesJuego1Screen}
         options={{ title: 'Intrucciones' }}
+      />
+      <Stack.Screen
+        name="InstruccionesJuego2"
+        component={IntruccionesJuego2Screen}
+        options={{ title: 'Instrucciones2' }}
       />
       <Stack.Screen
         name="MemoryGame"
