@@ -20,7 +20,7 @@ export type RootStackParamList = {
   MemoryGame: undefined;
   Again: undefined;
   Categories: undefined;
-  IntruccionesJuego1: undefined;
+  InstruccionesJuego1: undefined;
 };
 
 export type RootStackScreenProps<Screen extends keyof RootStackParamList> =
