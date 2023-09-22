@@ -38,7 +38,7 @@ function UserProfileScreen({ navigation: { navigate } }: Props) {
   const juegosPuntajes = [
     {
       title: 'Resultados Memory Game',
-      data: ['Correctas: ' + score.correct , 'Incorrectas: ' + score.incorrect, 'Precisión: ' + (score.correct / total)*100 + '%']
+      data: ['Correctas: ' + score.correct , 'Incorrectas: ' + score.incorrect, 'Precisión: ' + Math.trunc((score.correct / total)*100) + '%']
     }
   ];
   const renderItem = ({ item }) => (
@@ -92,7 +92,7 @@ function UserProfileScreen({ navigation: { navigate } }: Props) {
                     </View>
                     <View style={styles.item}>
                       <text>Precisión</text>
-                      <text>{(score.correct / total) * 100}%</text>
+                      <text>{Math.trunc((score.correct / total)*100)}%</text>
                     </View>
                   </View>
               </>
