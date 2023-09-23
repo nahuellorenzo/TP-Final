@@ -12,6 +12,7 @@ import Fonts from "../constants/Fonts";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../../types";
 import DropdownComponent from "./Dropdown";
+export var dropdownValue1: string;
 type Props = NativeStackScreenProps<RootStackParamList, "InstruccionesJuego1">;
 const InstruccionesJuego1Screen: React.FC<Props> = ({ navigation: { navigate } }: Props) => {
 
@@ -19,6 +20,7 @@ const InstruccionesJuego1Screen: React.FC<Props> = ({ navigation: { navigate } }
 
   const handleDropdownChange = (value: string | null) => {
     setDropdownValue(value);
+    dropdownValue1 = value;
   };
 
     return (

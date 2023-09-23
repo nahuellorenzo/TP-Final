@@ -1,6 +1,6 @@
 {
-    "facil": {
-      "entrenamiento": [
+    "Facil": {
+      "Entrenamiento": [
         {
           "imagen": "ruta/de/imagen1.jpg"
         },
@@ -11,7 +11,7 @@
           "imagen": "ruta/de/imagen3.jpg"
         }
       ],
-      "paisajes": [
+      "Paisajes": [
         {
           "imagen": "ruta/de/imagen4.jpg"
         },
@@ -20,8 +20,8 @@
         }
       ]
     },
-    "intermedio": {
-      "peliculas": [
+    "Intermedio": {
+      "Peliculas": [
         {
           "imagen": "ruta/de/imagen6.jpg"
         },
@@ -29,7 +29,7 @@
           "imagen": "ruta/de/imagen7.jpg"
         }
       ],
-      "camisetas de futbol": [
+      "Camisetas de futbol": [
         {
           "imagen": "ruta/de/imagen8.jpg"
         },
@@ -38,13 +38,13 @@
         }
       ]
     },
-    "dificil": {
-      "entrenamiento": [
+    "Dificil": {
+      "Entrenamiento": [
         {
           "imagen": "ruta/de/imagen10.jpg"
         }
       ],
-      "paisajes": [
+      "Paisajes": [
         {
           "imagen": "ruta/de/imagen11.jpg"
         },
@@ -52,7 +52,7 @@
           "imagen": "ruta/de/imagen12.jpg"
         }
       ],
-      "peliculas": [
+      "Peliculas": [
         {
           "imagen": "ruta/de/imagen13.jpg"
         }
