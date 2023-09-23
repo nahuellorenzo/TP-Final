@@ -110,7 +110,7 @@ const MemoryGame: React.FC = ({ navigation: { navigate } }: Props) => {
   useEffect(() => {
     setPreviousImage(null);
     setCurrentImage(null);
-    if (bandera == 1) {
+    if (bandera == "Entrenamiento") {
       setPreviousImage(null);
       const randomImageIndex = Math.floor(Math.random() * imagePaths1.length);
       const randomImagePath = imagePaths1[randomImageIndex];
@@ -137,7 +137,7 @@ const MemoryGame: React.FC = ({ navigation: { navigate } }: Props) => {
       clearTimeout(numero2)};
     }
 
-    else if (bandera == 2) {
+    else if (bandera == "Banderas") {
       setPreviousImage(null);
       const randomImageIndex = Math.floor(Math.random() * imagePaths2.length);
       const randomImagePath = imagePaths2[randomImageIndex];
@@ -162,7 +162,7 @@ const MemoryGame: React.FC = ({ navigation: { navigate } }: Props) => {
         clearTimeout(numero2)}
     }
 
-    else if (bandera == 3) {
+    else if (bandera == "Paisajes") {
       setPreviousImage(null);
       const randomImageIndex = Math.floor(Math.random() * imagePaths3.length);
       const randomImagePath = imagePaths3[randomImageIndex];
@@ -187,7 +187,7 @@ const MemoryGame: React.FC = ({ navigation: { navigate } }: Props) => {
         clearTimeout(numero2)}
     }
 
-    else if (bandera == 4) {
+    else if (bandera == "Peliculas") {
       setPreviousImage(null);
       const randomImageIndex = Math.floor(Math.random() * imagePaths4.length);
       const randomImagePath = imagePaths4[randomImageIndex];
@@ -213,7 +213,7 @@ const MemoryGame: React.FC = ({ navigation: { navigate } }: Props) => {
       clearTimeout(numero2)};
     }
 
-    else if (bandera == 5) {
+    else if (bandera == "Personas") {
       setPreviousImage(null);
       const randomImageIndex = Math.floor(Math.random() * imagePaths5.length);
       const randomImagePath = imagePaths5[randomImageIndex];
@@ -239,7 +239,7 @@ const MemoryGame: React.FC = ({ navigation: { navigate } }: Props) => {
       clearTimeout(numero2)};
     }
 
-    else if (bandera == 6) {
+    else if (bandera == "Camisetas de Futbol") {
       setPreviousImage(null);
       const randomImageIndex = Math.floor(Math.random() * imagePaths6.length);
       const randomImagePath = imagePaths6[randomImageIndex];
