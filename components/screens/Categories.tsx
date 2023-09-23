@@ -21,9 +21,11 @@ import { useIsFocused } from "@react-navigation/native";
 import { ScoreContext } from "../context/ScoreContext";
 const { height } = Dimensions.get("window");
 const { width } = Dimensions.get("window");
-export var bandera=0;
+export var bandera: string;
 type Props = NativeStackScreenProps<RootStackParamList, "Categories">;
 const CategoriesScreen: React.FC<Props> = ({ navigation: { navigate } }: Props) => {
+
+    const nombresCategorias: string[] = ["Entrenamiento", "Banderas", "Paisajes", "Peliculas", "Personas", "Camisetas de Futbol"];
     return (
         <ScrollView>
             <View
@@ -47,11 +49,12 @@ const CategoriesScreen: React.FC<Props> = ({ navigation: { navigate } }: Props) 
                     >
                     Seleccione una categoría    
                     </Text>
-
-                    <TouchableOpacity
+                    {
+                        nombresCategorias.length > 0 ? (nombresCategorias.map((nombreCategoria, index) => (
+                            <TouchableOpacity key={index}
                         onPress={() =>
                             {navigate("MemoryGame")
-                            bandera=1}}
+                            bandera=nombreCategoria}}
                         style={{
                             padding: Spacing * 2,
                             backgroundColor: Colors.primary,
@@ -74,159 +77,14 @@ const CategoriesScreen: React.FC<Props> = ({ navigation: { navigate } }: Props) 
                                 fontSize: FontSize.large,
                             }}
                         >
-                            Entrenamiento
+                            {nombreCategoria}
                         </Text>
                     </TouchableOpacity>
-
-                    <TouchableOpacity
-                        onPress={() =>
-                            {navigate("MemoryGame")
-                            bandera=2}}
-                        style={{
-                            padding: Spacing * 2,
-                            backgroundColor: Colors.primary,
-                            marginVertical: Spacing * 2,
-                            borderRadius: Spacing,
-                            shadowColor: Colors.primary,
-                            shadowOffset: {
-                                width: 0,
-                                height: Spacing,
-                            },
-                            shadowOpacity: 0.3,
-                            shadowRadius: Spacing,
-                        }}
-                    >
-                        <Text
-                            style={{
-                                fontFamily: Fonts["Roboto-Bold"],
-                                color: Colors.onPrimary,
-                                textAlign: "center",
-                                fontSize: FontSize.large,
-                            }}
-                        >
-                            Banderas
-                        </Text>
-                    </TouchableOpacity>
-
-                    <TouchableOpacity
-                        onPress={() =>
-                            {navigate("MemoryGame")
-                            bandera=3}}
-                        style={{
-                            padding: Spacing * 2,
-                            backgroundColor: Colors.primary,
-                            marginVertical: Spacing * 2,
-                            borderRadius: Spacing,
-                            shadowColor: Colors.primary,
-                            shadowOffset: {
-                                width: 0,
-                                height: Spacing,
-                            },
-                            shadowOpacity: 0.3,
-                            shadowRadius: Spacing,
-                        }}
-                    >
-                        <Text
-                            style={{
-                                fontFamily: Fonts["Roboto-Bold"],
-                                color: Colors.onPrimary,
-                                textAlign: "center",
-                                fontSize: FontSize.large,
-                            }}
-                        >
-                            Paisajes
-                        </Text>
-                    </TouchableOpacity>
-
-                    <TouchableOpacity
-                        onPress={() =>
-                            {navigate("MemoryGame")
-                            bandera=4}}
-                        style={{
-                            padding: Spacing * 2,
-                            backgroundColor: Colors.primary,
-                            marginVertical: Spacing * 2,
-                            borderRadius: Spacing,
-                            shadowColor: Colors.primary,
-                            shadowOffset: {
-                                width: 0,
-                                height: Spacing,
-                            },
-                            shadowOpacity: 0.3,
-                            shadowRadius: Spacing,
-                        }}
-                    >
-                        <Text
-                            style={{
-                                fontFamily: Fonts["Roboto-Bold"],
-                                color: Colors.onPrimary,
-                                textAlign: "center",
-                                fontSize: FontSize.large,
-                            }}
-                        >
-                            Peliculas
-                        </Text>
-                    </TouchableOpacity>
-
-                    <TouchableOpacity
-                        onPress={() =>
-                            {navigate("MemoryGame")
-                            bandera=5}}
-                        style={{
-                            padding: Spacing * 2,
-                            backgroundColor: Colors.primary,
-                            marginVertical: Spacing * 2,
-                            borderRadius: Spacing,
-                            shadowColor: Colors.primary,
-                            shadowOffset: {
-                                width: 0,
-                                height: Spacing,
-                            },
-                            shadowOpacity: 0.3,
-                            shadowRadius: Spacing,
-                        }}
-                    >
-                        <Text
-                            style={{
-                                fontFamily: Fonts["poppins-bold"],
-                                color: Colors.onPrimary,
-                                textAlign: "center",
-                                fontSize: FontSize.large,
-                            }}
-                        >
-                            Personas
-                        </Text>
-                    </TouchableOpacity>
-
-                    <TouchableOpacity
-                        onPress={() =>
-                            {navigate("MemoryGame")
-                            bandera=6}}
-                        style={{
-                            padding: Spacing * 2,
-                            backgroundColor: Colors.primary,
-                            marginVertical: Spacing * 2,
-                            borderRadius: Spacing,
-                            shadowColor: Colors.primary,
-                            shadowOffset: {
-                                width: 0,
-                                height: Spacing,
-                            },
-                            shadowOpacity: 0.3,
-                            shadowRadius: Spacing,
-                        }}
-                    >
-                        <Text
-                            style={{
-                                fontFamily: Fonts["poppins-bold"],
-                                color: Colors.onPrimary,
-                                textAlign: "center",
-                                fontSize: FontSize.large,
-                            }}
-                        >
-                            Camisetas de Futbol
-                        </Text>
-                    </TouchableOpacity>
+                            )))
+                           : (
+                            <Text>No hay nombres para mostrar.</Text>
+                          )
+                    }
                 </View>
             </View>
         </ScrollView>
