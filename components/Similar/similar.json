@@ -1,0 +1,61 @@
+{
+    "facil": {
+      "entrenamiento": [
+        {
+          "imagen": "ruta/de/imagen1.jpg"
+        },
+        {
+          "imagen": "ruta/de/imagen2.jpg"
+        },
+        {
+          "imagen": "ruta/de/imagen3.jpg"
+        }
+      ],
+      "paisajes": [
+        {
+          "imagen": "ruta/de/imagen4.jpg"
+        },
+        {
+          "imagen": "ruta/de/imagen5.jpg"
+        }
+      ]
+    },
+    "intermedio": {
+      "peliculas": [
+        {
+          "imagen": "ruta/de/imagen6.jpg"
+        },
+        {
+          "imagen": "ruta/de/imagen7.jpg"
+        }
+      ],
+      "camisetas de futbol": [
+        {
+          "imagen": "ruta/de/imagen8.jpg"
+        },
+        {
+          "imagen": "ruta/de/imagen9.jpg"
+        }
+      ]
+    },
+    "dificil": {
+      "entrenamiento": [
+        {
+          "imagen": "ruta/de/imagen10.jpg"
+        }
+      ],
+      "paisajes": [
+        {
+          "imagen": "ruta/de/imagen11.jpg"
+        },
+        {
+          "imagen": "ruta/de/imagen12.jpg"
+        }
+      ],
+      "peliculas": [
+        {
+          "imagen": "ruta/de/imagen13.jpg"
+        }
+      ]
+    }
+  }
