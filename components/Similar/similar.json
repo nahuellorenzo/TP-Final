@@ -2,25 +2,36 @@
     "Facil": {
       "Entrenamiento": [
         {
-          "imagen": "ruta/de/imagen1.jpg"
+          "imagen": "./../../assets/imagesGame/Entrenamiento/image1.png"
         },
         {
-          "imagen": "ruta/de/imagen2.jpg"
+          "imagen": "./../../assets/imagesGame/Entrenamiento/image2.png"
         },
         {
-          "imagen": "ruta/de/imagen3.jpg"
+          "imagen": "./../../assets/imagesGame/Entrenamiento/image3.png"
         }
       ],
       "Paisajes": [
         {
-          "imagen": "ruta/de/imagen4.jpg"
+          "imagen": "./../../assets/imagesGame/Paisajes/image1.png"
         },
         {
-          "imagen": "ruta/de/imagen5.jpg"
+          "imagen": "./../../assets/imagesGame/Paisajes/image2.png"
+        },
+        {
+          "imagen": "./../../assets/imagesGame/Paisajes/image3.png"
         }
       ]
     },
     "Intermedio": {
+      "Paisajes": [
+        {
+          "imagen": "./../../assets/imagesGame/Paisajes/image1.png"
+        },
+        {
+          "imagen": "./../../assets/imagesGame/Paisajes/image4.png"
+        }
+      ],
       "Peliculas": [
         {
           "imagen": "ruta/de/imagen6.jpg"
@@ -29,7 +40,7 @@
           "imagen": "ruta/de/imagen7.jpg"
         }
       ],
-      "Camisetas de futbol": [
+      "Camisetas de Futbol": [
         {
           "imagen": "ruta/de/imagen8.jpg"
         },
@@ -46,10 +57,10 @@
       ],
       "Paisajes": [
         {
-          "imagen": "ruta/de/imagen11.jpg"
+          "imagen": "./../../assets/imagesGame/Paisajes/image4.png"
         },
         {
-          "imagen": "ruta/de/imagen12.jpg"
+          "imagen": "./../../assets/imagesGame/Paisajes/image5.png"
         }
       ],
       "Peliculas": [
