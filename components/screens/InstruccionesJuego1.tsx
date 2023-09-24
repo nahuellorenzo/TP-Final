@@ -66,10 +66,10 @@ const InstruccionesJuego1Screen: React.FC<Props> = ({ navigation: { navigate } }
                         disabled={!dropdownValue}
                         style={{
                             padding: Spacing * 2,
-                            backgroundColor: Colors.primary,
+                            backgroundColor: !dropdownValue ? Colors.second_gray : Colors.primary,
                             marginVertical: Spacing * 2, 
                             borderRadius: Spacing,
-                            shadowColor: Colors.primary,
+                            shadowColor: !dropdownValue ? Colors.gray : Colors.primary,
                             shadowOffset: {
                                 width: 0,
                                 height: Spacing,
