@@ -9,6 +9,12 @@
         },
         {
           "imagen": "./../../assets/imagesGame/Entrenamiento/image3.png"
+        },
+        {
+          "imagen": "./../../assets/imagesGame/Entrenamiento/image4.png"
+        },
+        {
+          "imagen": "./../../assets/imagesGame/Entrenamiento/image5.png"
         }
       ],
       "Paisajes": [
@@ -21,6 +27,71 @@
         {
           "imagen": "./../../assets/imagesGame/Paisajes/image3.png"
         }
+      ],
+      "Banderas": [
+        {
+          "imagen": "./../../assets/imagesGame/Banderas/image1.png"
+        },
+        {
+          "imagen": "./../../assets/imagesGame/Banderas/image2.png"
+        },
+        {
+          "imagen": "./../../assets/imagesGame/Banderas/image3.png"
+        },
+        {
+          "imagen": "./../../assets/imagesGame/Banderas/image4.png"
+        },
+        {
+          "imagen": "./../../assets/imagesGame/Banderas/image5.png"
+        }
+      ],
+      "Camisetas de Futbol": [
+        {
+          "imagen": "./../../assets/imagesGame/Camisetas/image3.png"
+        },
+        {
+          "imagen": "./../../assets/imagesGame/Camisetas/image5.png"
+        },
+        {
+          "imagen": "./../../assets/imagesGame/Camisetas/image7.png"
+        }
+      ],
+      "Peliculas":[
+        {
+          "imagen":"./../../assets/imagesGame/Peliculas/image1.png"
+        },
+        {
+          "imagen":"./../../assets/imagesGame/Peliculas/image2.png"
+        },
+        {
+          "imagen":"./../../assets/imagesGame/Peliculas/image3.png"
+        },
+        {
+          "imagen":"./../../assets/imagesGame/Peliculas/image4.png"
+        },
+        {
+          "imagen":"./../../assets/imagesGame/Peliculas/image5.png"
+        }
+      ],
+      "Personas": [
+        {
+          "imagen": "./../../assets/imagesGame/Personas/image1.png"
+        },
+        {
+          "imagen": "./../../assets/imagesGame/Personas/image2.png"
+        },
+        {
+          "imagen": "./../../assets/imagesGame/Personas/image3.png"
+        },
+        {
+          "imagen": "./../../assets/imagesGame/Personas/image5.png"
+        },
+        {
+          "imagen": "./../../assets/imagesGame/Personas/image9.png"
+        },
+        {
+          "imagen": "./../../assets/imagesGame/Personas/image10.png"
+        }
       ]
     },
     "Intermedio": {
@@ -32,29 +103,42 @@
           "imagen": "./../../assets/imagesGame/Paisajes/image4.png"
         }
       ],
-      "Peliculas": [
-        {
-          "imagen": "ruta/de/imagen6.jpg"
-        },
-        {
-          "imagen": "ruta/de/imagen7.jpg"
-        }
-      ],
       "Camisetas de Futbol": [
         {
-          "imagen": "ruta/de/imagen8.jpg"
+          "imagen": "./../../assets/imagesGame/Camisetas/image1.png"
         },
         {
-          "imagen": "ruta/de/imagen9.jpg"
+          "imagen": "./../../assets/imagesGame/Camisetas/image8.png"
+        },
+        {
+          "imagen": "./../../assets/imagesGame/Camisetas/image3.png"
+        }
+      ],
+      "Personas":[
+        {
+          "imagen":"./../../assets/imagesGame/Personas/image1.png"
+        },
+        {
+          "imagen":"./../../assets/imagesGame/Personas/image4.png"
+        },
+        {
+          "imagen":"./../../assets/imagesGame/Personas/image7.png"
+        },
+        {
+          "imagen":"./../../assets/imagesGame/Personas/image2.png"
+        },
+        {
+          "imagen":"./../../assets/imagesGame/Personas/image8.png"
+        },
+        {
+          "imagen":"./../../assets/imagesGame/Personas/image12.png"
+        },
+        {
+          "imagen":"./../../assets/imagesGame/Personas/image2.png"
         }
       ]
     },
     "Dificil": {
-      "Entrenamiento": [
-        {
-          "imagen": "ruta/de/imagen10.jpg"
-        }
-      ],
       "Paisajes": [
         {
           "imagen": "./../../assets/imagesGame/Paisajes/image4.png"
@@ -63,9 +147,26 @@
           "imagen": "./../../assets/imagesGame/Paisajes/image5.png"
         }
       ],
-      "Peliculas": [
+      "Camisetas de Futbol": [
         {
-          "imagen": "ruta/de/imagen13.jpg"
+          "imagen": "./../../assets/imagesGame/Camisetas/image2.png"
+        },
+        {
+          "imagen": "./../../assets/imagesGame/Camisetas/image4.png"
+        },
+        {
+          "imagen": "./../../assets/imagesGame/Camisetas/image6.png"
+        },
+        {
+          "imagen": "./../../assets/imagesGame/Camisetas/image8.png"
+        }
+      ],
+      "Personas": [
+        {
+          "imagen": "./../../assets/imagesGame/Personas/image9.png"
+        },
+        {
+          "imagen": "./../../assets/imagesGame/Personas/image11.png"
         }
       ]
     }
