@@ -25,6 +25,8 @@ import { imagePaths1 } from "../constants/Images1";
 import { imagePaths2 } from "../constants/Images2";
 import { imagePaths3 } from "../constants/images3";
 import { imagePaths4 } from "../constants/images4";
+import { imagePaths5 } from "../constants/images5";
+import { imagePaths6 } from "../constants/images6";
 import { Button, StatusBar } from 'react-native';
 import Color from "../constants/Color";
 import { bandera } from "./Categories";
@@ -210,7 +212,61 @@ const MemoryGame: React.FC = ({ navigation: { navigate } }: Props) => {
       return () => {clearTimeout(numero1)
       clearTimeout(numero2)};
     }
+
+    else if (bandera == 5) {
+      setPreviousImage(null);
+      const randomImageIndex = Math.floor(Math.random() * imagePaths5.length);
+      const randomImagePath = imagePaths5[randomImageIndex];
+
+      setCurrentImage(randomImagePath);
+
+      const numero2 = setTimeout(() => {
+        setPreviousImage(null);
+        setCurrentImage(null);
+        console.log("Entre")
+        setLoader(true);
+      }, 4000);
+
+      const numero1 = setTimeout(() => {
+        const newrandomImageIndex = Math.floor(Math.random() * imagePaths5.length);
+        const newrandomImagePath = imagePaths5[newrandomImageIndex];
+
+        setPreviousImage(randomImagePath);
+        setCurrentImage(newrandomImagePath);
+        setLoader(false);
+      }, 6000);
+      return () => {clearTimeout(numero1)
+      clearTimeout(numero2)};
+    }
+
+    else if (bandera == 6) {
+      setPreviousImage(null);
+      const randomImageIndex = Math.floor(Math.random() * imagePaths6.length);
+      const randomImagePath = imagePaths6[randomImageIndex];
+
+      setCurrentImage(randomImagePath);
+
+      const numero2 = setTimeout(() => {
+        setPreviousImage(null);
+        setCurrentImage(null);
+        console.log("Entre")
+        setLoader(true);
+      }, 4000);
+
+      const numero1 = setTimeout(() => {
+        const newrandomImageIndex = Math.floor(Math.random() * imagePaths6.length);
+        const newrandomImagePath = imagePaths6[newrandomImageIndex];
+
+        setPreviousImage(randomImagePath);
+        setCurrentImage(newrandomImagePath);
+        setLoader(false);
+      }, 6000);
+      return () => {clearTimeout(numero1)
+      clearTimeout(numero2)};
+    }
   }, [isFocused]);
+
+  
 
   const handleOptionSelected = (isSameImage: boolean) => {
     if (isSameImage) {
@@ -257,7 +313,7 @@ const MemoryGame: React.FC = ({ navigation: { navigate } }: Props) => {
                 style={{
                   fontSize: FontSize.xxLarge,
                   color: Colors.primary,
-                  fontFamily: Fonts["poppins-bold"],
+                  fontFamily: Fonts["Roboto-Bold"],
                   textAlign: "center",
                 }}
               >
@@ -286,7 +342,7 @@ const MemoryGame: React.FC = ({ navigation: { navigate } }: Props) => {
               style={{
                 fontSize: FontSize.xxLarge,
                 color: Colors.primary,
-                fontFamily: Fonts["poppins-bold"],
+                fontFamily: Fonts["Roboto-Bold"],
                 textAlign: "center",
               }}
             >
@@ -304,7 +360,7 @@ const MemoryGame: React.FC = ({ navigation: { navigate } }: Props) => {
               style={{
                 fontSize: FontSize.xxLarge,
                 color: Colors.primary,
-                fontFamily: Fonts["poppins-bold"],
+                fontFamily: Fonts["Roboto-Bold"],
                 textAlign: "center",
               }}
             >
@@ -332,7 +388,7 @@ const MemoryGame: React.FC = ({ navigation: { navigate } }: Props) => {
           style={{
             fontSize: FontSize.large,
             color: Colors.primary,
-            fontFamily: Fonts["poppins-bold"],
+            fontFamily: Fonts["Roboto-Bold"],
             textAlign: "center",
           }}
         >
@@ -366,7 +422,7 @@ const MemoryGame: React.FC = ({ navigation: { navigate } }: Props) => {
             >
               <Text
                 style={{
-                  fontFamily: Fonts["poppins-bold"],
+                  fontFamily: Fonts["Roboto-Bold"],
                   color: Colors.onPrimary,
                   fontSize: FontSize.large,
                   textAlign: "center",
@@ -393,7 +449,7 @@ const MemoryGame: React.FC = ({ navigation: { navigate } }: Props) => {
             >
               <Text
                 style={{
-                  fontFamily: Fonts["poppins-bold"],
+                  fontFamily: Fonts["Roboto-Bold"],
                   color: Colors.text,
                   fontSize: FontSize.large,
                   textAlign: "center",

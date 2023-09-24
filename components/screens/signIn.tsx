@@ -58,7 +58,7 @@ import {
               style={{
                 fontSize: FontSize.xLarge,
                 color: Colors.primary,
-                fontFamily: Fonts["poppins-bold"],
+                fontFamily: Fonts["Roboto-Bold"],
                 marginVertical: Spacing * 3,
               }}
             >
@@ -66,7 +66,7 @@ import {
             </Text>
             <Text
               style={{
-                fontFamily: Fonts["poppins-semiBold"],
+                fontFamily: Fonts["Roboto-Light"],
                 fontSize: FontSize.large,
                 maxWidth: "60%",
                 textAlign: "center",
@@ -89,7 +89,7 @@ import {
               secureTextEntry
               value={values.password}
               onChangeText={(text) => handleInputChange("password", text)} />
-              {!logueo && <Text style={{ color: "red", fontFamily: Fonts["poppins-semiBold"], fontSize: FontSize.small, marginTop: 5 }}>
+              {!logueo && <Text style={{ color: "red", fontFamily: Fonts["Roboto-Light"], fontSize: FontSize.small, marginTop: 5 }}>
               Las credenciales no coinciden. Prueba de nuevo!
             </Text>}
           </View>
@@ -97,7 +97,7 @@ import {
           <View>
             <Text
               style={{
-                fontFamily: Fonts["poppins-semiBold"],
+                fontFamily: Fonts["Roboto-Light"],
                 fontSize: FontSize.small,
                 color: Colors.primary,
                 alignSelf: "flex-end",
@@ -125,7 +125,7 @@ import {
           >
             <Text
               style={{
-                fontFamily: Fonts["poppins-bold"],
+                fontFamily: Fonts["Roboto-Bold"],
                 color: Colors.onPrimary,
                 textAlign: "center",
                 fontSize: FontSize.large,
@@ -142,7 +142,7 @@ import {
           >
             <Text
               style={{
-                fontFamily: Fonts["poppins-semiBold"],
+                fontFamily: Fonts["Roboto-Light"],
                 color: Colors.text,
                 textAlign: "center",
                 fontSize: FontSize.small,
@@ -159,7 +159,7 @@ import {
           >
             <Text
               style={{
-                fontFamily: Fonts["poppins-semiBold"],
+                fontFamily: Fonts["Roboto-Light"],
                 color: Colors.primary,
                 textAlign: "center",
                 fontSize: FontSize.small,

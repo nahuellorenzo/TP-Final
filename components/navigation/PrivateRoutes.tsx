@@ -15,8 +15,8 @@ import { RootStackParamList } from "../../types";
 import MemoryGame from "../screens/MemoryGame";
 import Again from "../screens/Again";
 import CategoriesScreen from "../screens/Categories";
-import IntruccionesJuego1Screen from "../screens/IntruccionesJuego1";
 import IntruccionesJuego2Screen from "../screens/InstructionsGame2";
+import InstruccionesJuego1Screen from "../screens/InstruccionesJuego1";
 
 /* const theme = {
   ...DefaultTheme,
@@ -52,7 +52,7 @@ import IntruccionesJuego2Screen from "../screens/InstructionsGame2";
       <Stack.Screen name="MemoryGame" component={MemoryGame} />
       <Stack.Screen name="Again" component={Again} />
       <Stack.Screen name="Categories" component={CategoriesScreen} />
-      <Stack.Screen name="IntruccionesJuego1" component={IntruccionesJuego1Screen} />
+      <Stack.Screen name="InstruccionesJuego1" component={InstruccionesJuego1Screen} />
     </Stack.Navigator>
   );
 } */
@@ -92,9 +92,9 @@ function HomeStack() {
         options={{ title: 'Categorias' }}
       />
       <Stack.Screen
-        name="IntruccionesJuego1"
-        component={IntruccionesJuego1Screen}
-        options={{ title: 'Intrucciones' }}
+        name="InstruccionesJuego1"
+        component={InstruccionesJuego1Screen}
+        options={{ title: 'Instrucciones' }}
       />
       <Stack.Screen
         name="InstruccionesJuego2"

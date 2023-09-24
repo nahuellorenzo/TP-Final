@@ -11,8 +11,8 @@ import Colors from "../constants/Color";
 import Fonts from "../constants/Fonts";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../../types";
-type Props = NativeStackScreenProps<RootStackParamList, "IntruccionesJuego1">;
-const IntruccionesJuego1Screen: React.FC<Props> = ({ navigation: { navigate } }: Props) => {
+type Props = NativeStackScreenProps<RootStackParamList, "InstruccionesJuego1">;
+const InstruccionesJuego1Screen: React.FC<Props> = ({ navigation: { navigate } }: Props) => {
     return (
         <ScrollView>
             <View
@@ -71,4 +71,4 @@ const IntruccionesJuego1Screen: React.FC<Props> = ({ navigation: { navigate } }:
 };
 
 
-export default IntruccionesJuego1Screen;
+export default InstruccionesJuego1Screen;
