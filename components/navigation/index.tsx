@@ -15,6 +15,7 @@ import MainScreen from "../screens/Main";
 import UserProfileScreen from "../screens/UserProfile";
 import { RootStackParamList } from "../../types";
 import CategoriesScreen from "../screens/Categories";
+import InstruccionesJuego2Screen from "../screens/InstructionsGame2";
 import InstruccionesJuego1Screen from "../screens/InstruccionesJuego1";
 
 const theme = {
@@ -52,7 +53,9 @@ function RootNavigator() {
       <Stack.Screen name="Main" component={MainScreen} />
       <Stack.Screen name="UserProfile" component={UserProfileScreen} />
       <Stack.Screen name="Categories" component={CategoriesScreen} />
+      <Stack.Screen name="InstruccionesJuego2" component={InstruccionesJuego2Screen} />
       <Stack.Screen name="InstruccionesJuego1" component={InstruccionesJuego1Screen} />
+      
     </Stack.Navigator>
   );
 }
