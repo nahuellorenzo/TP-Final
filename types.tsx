@@ -20,6 +20,7 @@ export type RootStackParamList = {
   MemoryGame: undefined;
   Again: undefined;
   Categories: undefined;
+  InstruccionesJuego2: undefined;
   InstruccionesJuego1: undefined;
 };
 
