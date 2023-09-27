@@ -81,7 +81,7 @@ import Toast from 'react-native-root-toast';
           </TouchableOpacity>
 
           <TouchableOpacity
-          onPress={() => showToast1()}
+          onPress={() => navigate("InstruccionesJuego2")}
             style={{
               padding: Spacing * 3,
               backgroundColor: Colors.second_gray,
