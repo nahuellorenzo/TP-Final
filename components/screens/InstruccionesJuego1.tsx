@@ -40,7 +40,7 @@ const InstruccionesJuego1Screen: React.FC<Props> = ({ navigation: { navigate } }
                         style={{
                             fontSize: FontSize.large,
                             color: Colors.primary,
-                            fontFamily: Fonts["poppins-bold"],
+                            fontFamily: Fonts["Roboto-Bold"],
                             textAlign: "center",
                         }}
                     >
@@ -80,7 +80,7 @@ const InstruccionesJuego1Screen: React.FC<Props> = ({ navigation: { navigate } }
                     >
                         <Text
                             style={{
-                                fontFamily: Fonts["poppins-bold"],
+                                fontFamily: Fonts["Roboto-Bold"],
                                 color: Colors.onPrimary,
                                 textAlign: "center",
                                 fontSize: FontSize.large,

@@ -55,7 +55,7 @@ function UserProfileScreen({ navigation: { navigate } }: Props) {
       <View style={styles.content}>
         <Text
           style={{
-            fontFamily: Fonts["poppins-semiBold"],
+            fontFamily: Fonts["Roboto-Light"],
             color: Colors.darkText,
             textAlign: "center",
             fontSize: FontSize.large,
@@ -213,7 +213,7 @@ const styles = StyleSheet.create({
     marginBottom: 15,
     textAlign: "center",
     color: "white",
-    fontWeight: "bold"
+    fontFamily: "Roboto-Bold"
   },
   container: {
     flex: 1,
@@ -234,7 +234,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     padding: 16,
     marginVertical: 8,
-    fontFamily: Fonts["poppins-bold"],
+    fontFamily: Fonts["Roboto-Bold"],
     fontSize: 12,
     textAlign: 'center',
     flex: 1,
@@ -242,7 +242,7 @@ const styles = StyleSheet.create({
   header: {
     fontSize: 18,
     backgroundColor: Color.primary,
-    fontFamily: Fonts["poppins-bold"],
+    fontFamily: Fonts["Roboto-Bold"],
     color: Colors.onPrimary,
     borderRadius: Spacing,
     textAlign: "center",

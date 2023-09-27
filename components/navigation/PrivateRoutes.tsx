@@ -74,7 +74,7 @@ function HomeStack() {
       screenOptions={{
         headerStyle: { backgroundColor: '#1F41BB' },
         headerTintColor: '#fff',
-        headerTitleStyle: { fontWeight: 'bold' },
+        headerTitleStyle: { fontFamily: 'Roboto-Bold' },
       }}>
       <Stack.Screen
         name="Main"
@@ -122,7 +122,7 @@ function SettingsStack() {
       screenOptions={{
         headerStyle: { backgroundColor: '#1F41BB' },
         headerTintColor: '#fff',
-        headerTitleStyle: { fontWeight: 'bold' },
+        headerTitleStyle: { fontFamily: 'Roboto-Bold' },
       }}>
       <Stack.Screen
         name="UserProfile"
