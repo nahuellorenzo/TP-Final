@@ -176,7 +176,7 @@ import {
               }}
             >
               <TouchableOpacity
-              onPress={googleLogin}
+              onPress={() => googleLogin()}
                 style={{
                   padding: Spacing,
                   backgroundColor: Colors.gray,

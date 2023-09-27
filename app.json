@@ -2,6 +2,7 @@
   "expo": {
     "name": "TpFinal",
     "slug": "TpFinal",
+    "plugins": ["@react-native-google-signin/google-signin"],
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
@@ -31,6 +32,7 @@
       "eas": {
         "projectId": "1b3a52f1-2fd7-4d18-94b8-36a80b8d4c23"
       }
-    }
+    },
+    "scheme": "TpFinal"
   }
 }
