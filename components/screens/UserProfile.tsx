@@ -227,18 +227,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     flexDirection: 'row',
   },
-  container: {
-    flex: 1,
-  },
-  content: {
-    paddingHorizontal: Spacing * 4,
-    justifyContent: 'center',
-    flex: 1,
-  },
-  itemContainer: {
-    justifyContent: 'center',
-    flexDirection: 'row',
-  },
   item: {
     justifyContent: 'center',
     backgroundColor: Color.gray,
