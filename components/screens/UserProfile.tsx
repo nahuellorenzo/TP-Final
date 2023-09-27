@@ -11,8 +11,6 @@ import {
   Modal,
   Pressable,
   ScrollView,
-  SectionList,
-  FlatList
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
@@ -32,144 +30,111 @@ type Props = NativeStackScreenProps<RootStackParamList, "UserProfile">;
 
 function UserProfileScreen({ navigation: { navigate } }: Props) {
   const { logout, user } = useContext(LoginContext);
-  const { score } = useContext(ScoreContext)
+  const { score } = useContext(ScoreContext);
   const [modalVisible, setModalVisible] = useState(false);
   const total = score.correct + score.incorrect;
   const juegosPuntajes = [
     {
       title: 'Resultados Memory Game',
-      data: ['Correctas: ' + score.correct , 'Incorrectas: ' + score.incorrect, 'Precisión: ' + Math.trunc((score.correct / total)*100) + '%']
+      data: ['Correctas: ' + score.correct, 'Incorrectas: ' + score.incorrect, 'Precisión: ' + Math.trunc((score.correct / total) * 100) + '%']
     }
   ];
-  const renderItem = ({ item }) => (
-    <View style={styles.item}>
-      <Text style={styles.title}>{item}</Text>
-    </View>
-  );
   
-  const renderSectionHeader = ({ section: { title } }) => (
-    <Text style={styles.header}>{title}</Text>
-  );
   return (
-    <ScrollView>
+    <SafeAreaView style={styles.container}>
       <ImageBackground
         style={{
           height: height / 5,
           marginVertical: Spacing * 2.3,
+          marginBottom: Spacing
         }}
         resizeMode="contain"
         source={require("./../../assets/images/user.png")}
       />
 
-      <View style={{ paddingHorizontal: Spacing * 4, justifyContent:'center'}}>
-
+      <View style={styles.content}>
         <Text
           style={{
             fontFamily: Fonts["Roboto-Light"],
             color: Colors.darkText,
             textAlign: "center",
             fontSize: FontSize.large,
+            marginTop: Spacing,
           }}
         >
           {user.email}
         </Text>
-        
-        <View style={{marginTop: Spacing * 2}}>
-          <FlatList
-            data={juegosPuntajes}
-            keyExtractor={(item, index) => item.title + index}
-            renderItem={({ item }) => (
-              <>
-                <Text style={styles.header}>{item.title}</Text>
-                  <View style={{justifyContent: 'center', display: 'flex', flexDirection: 'row'}}>
-                    <View style={styles.item}>
-                      <text>Correctas</text>
-                      <text>{score.correct}</text>
-                    </View>
-                    <View style={styles.item}>
-                      <text>Incorrectas</text>
-                      <text>{score.incorrect}</text>
-                    </View>
-                    <View style={styles.item}>
-                      <text>Precisión</text>
-                      <text>{Math.trunc((score.correct / total)*100)}%</text>
-                    </View>
-                  </View>
-              </>
-            )}
-          />
-        </View>
 
-        <View
-          style={{
-            marginTop: Spacing,
-            flexDirection: "row",
-            justifyContent: "flex-end",
-            alignItems: "flex-end",
-          }}
-        >
-          <TouchableOpacity
-            onPress={() => setModalVisible(true)}
-            style={{
-              marginVertical: Spacing * 2,
-              padding: Spacing,
-              backgroundColor: Colors.red,
-              borderRadius: Spacing / 2,
-              marginRight: 16,
-              marginBottom: 16,
-            }}
-          >
-            <Ionicons name="log-out" color={Colors.text} size={Spacing * 2}/>
-          </TouchableOpacity>
-        </View>
-
-        <View style={styles.centeredView}>
-  <Modal
-    animationType="fade"
-    transparent={true}
-    visible={modalVisible}
-    onRequestClose={() => {
-      Alert.alert("Modal has been closed.");
-      setModalVisible(!modalVisible);
-    }}
-  >
-    <View style={styles.modalBackdrop}>
-      <View style={styles.modalView}>
-        <View style={styles.modalContent}>
-          <Text style={styles.modalText}>¿Desea cerrar sesión?</Text>
-          <View style={styles.buttonContainer}>
-            <View style={styles.buttonWrapper}>
-              <Pressable
-                style={[styles.button, styles.buttonClose]}
-                onPress={logout}
-              >
-                <Text style={styles.textStyle}>Salir</Text>
-              </Pressable>
+        <View style={{ marginTop: Spacing * 2 }}>
+          <Text style={styles.header}>Resultados Memory Game</Text>
+          <View style={styles.itemContainer}>
+            <View style={styles.item}>
+              <Text>Acertadas</Text>
+              <Text>{score.correct}</Text>
             </View>
-            <View style={styles.buttonWrapper}>
-              <Pressable
-                style={[styles.button, styles.buttonOpen]}
-                onPress={() => setModalVisible(!modalVisible)}
-              >
-                <Text style={styles.textStyle}>Cancelar</Text>
-              </Pressable>
+            <View style={styles.item}>
+              <Text>Erradas</Text>
+              <Text>{score.incorrect}</Text>
+            </View>
+            <View style={styles.item}>
+              <Text>Precisión</Text>
+              <Text>{Math.trunc((score.correct / total) * 100)}%</Text>
             </View>
           </View>
         </View>
+
+        <View style={styles.buttonContainer}>
+          <TouchableOpacity
+            onPress={() => setModalVisible(true)}
+            style={styles.logoutButton}
+          >
+            <Ionicons name="log-out" color={Colors.text} size={Spacing * 2} />
+          </TouchableOpacity>
+        </View>
+
+        <Modal
+              animationType="fade"
+              transparent={true}
+              visible={modalVisible}
+              onRequestClose={() => {
+                Alert.alert("Modal has been closed.");
+                setModalVisible(!modalVisible);
+              }}
+            >
+              <View style={styles.modalBackdrop}>
+                <View style={styles.modalView}>
+                  <View style={styles.modalContent}>
+                    <Text style={styles.modalText}>¿Desea cerrar sesión?</Text>
+                    <View style={styles.buttonContainer}>
+                      <View style={styles.buttonWrapper}>
+                        <Pressable
+                          style={[styles.button, styles.buttonClose]}
+                          onPress={logout}
+                        >
+                          <Text style={styles.textStyle}>Salir</Text>
+                        </Pressable>
+                      </View>
+                      <View style={styles.buttonWrapper}>
+                        <Pressable
+                          style={[styles.button, styles.buttonOpen]}
+                          onPress={() => setModalVisible(!modalVisible)}
+                        >
+                          <Text style={styles.textStyle}>Cancelar</Text>
+                        </Pressable>
+                      </View>
+                    </View>
+                  </View>
+                </View>
+              </View>
+        </Modal>
       </View>
-    </View>
-  </Modal>
-</View>
-      </View>
-    </ScrollView>
+    </SafeAreaView>
   );
 }
 
-export default UserProfileScreen;
-
 const styles = StyleSheet.create({
   modalContent: {
-    backgroundColor: "grey", 
+    backgroundColor: "grey", // Cambia el color de fondo aquí
     borderRadius: 5,
     padding: 30,
     justifyContent: "center",
@@ -250,6 +215,18 @@ const styles = StyleSheet.create({
     color: "white",
     fontFamily: "Roboto-Bold"
   },
+  container: {
+    flex: 1,
+  },
+  content: {
+    paddingHorizontal: Spacing * 4,
+    justifyContent: 'center',
+    flex: 1,
+  },
+  itemContainer: {
+    justifyContent: 'center',
+    flexDirection: 'row',
+  },
   item: {
     justifyContent: 'center',
     backgroundColor: Color.gray,
@@ -260,6 +237,7 @@ const styles = StyleSheet.create({
     fontFamily: Fonts["Roboto-Bold"],
     fontSize: 12,
     textAlign: 'center',
+    flex: 1,
   },
   header: {
     fontSize: 18,
@@ -268,14 +246,23 @@ const styles = StyleSheet.create({
     color: Colors.onPrimary,
     borderRadius: Spacing,
     textAlign: "center",
-    padding: Spacing * 2,   
+    padding: Spacing * 2,
   },
+
   title: {
     fontSize: FontSize.large,
     backgroundColor: Color.primary,
     fontFamily: Fonts["Roboto-Bold"],
+
+  logoutButton: {
+    marginVertical: Spacing * 2,
+    padding: Spacing,
+    backgroundColor: Colors.red,
+    borderRadius: Spacing / 2,
+    marginRight: 16,
+    marginBottom: 16,
+
   },
-  list:{
-    justifyContent: 'center',
-  }
 });
+
+export default UserProfileScreen;
