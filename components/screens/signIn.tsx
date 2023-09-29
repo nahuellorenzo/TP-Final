@@ -62,7 +62,7 @@ import {
                 marginVertical: Spacing * 3,
               }}
             >
-              Login here
+             Ingrese aqui 
             </Text>
             <Text
               style={{
@@ -83,9 +83,9 @@ import {
             <AppTextInput
               value={values.email}
               onChangeText={(text) => handleInputChange("email", text)} 
-              placeholder="Email" />
+              placeholder="Correo electronico" />
             <AppTextInput 
-              placeholder="Password"
+              placeholder="Clave"
               secureTextEntry
               value={values.password}
               onChangeText={(text) => handleInputChange("password", text)} />
@@ -131,7 +131,7 @@ import {
                 fontSize: FontSize.large,
               }}
             >
-              Sign in
+              ingresar
             </Text>
           </TouchableOpacity>
           <TouchableOpacity
@@ -148,7 +148,7 @@ import {
                 fontSize: FontSize.small,
               }}
             >
-              Create new account
+              Crear cuenta
             </Text>
           </TouchableOpacity>
   
@@ -165,7 +165,7 @@ import {
                 fontSize: FontSize.small,
               }}
             >
-              Or continue with
+              Continuar
             </Text>
   
             <View

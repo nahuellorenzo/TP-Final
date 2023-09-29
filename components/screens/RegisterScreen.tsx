@@ -23,19 +23,19 @@ import * as yup from 'yup';
 const validationSchema = yup.object().shape({
   email: yup
     .string()
-    .email("Please enter a valid email")
-    .required('Email is required'),
+    .email("Por favor ingresar correo valido")
+    .required('Se requiere correo electronico'),
   password: yup
     .string()
-    .matches(/\w*[a-z]\w*/, "Password must have a lowercase letter")
-    .matches(/\w*[A-Z]\w*/, "Password must have an uppercase letter")
-    .matches(/\d/, "Password must have a number")
-    .min(8, ({ min }) => `Password must be at least ${min} characters`)
-    .required('Password is required'),
+    .matches(/\w*[a-z]\w*/, "La clave necesita al menos una minuscula")
+    .matches(/\w*[A-Z]\w*/, "La clave necesita al menos una mayuscula")
+    .matches(/\d/, "La clave necesita al menos un numero")
+    .min(8, ({ min }) => `La clave necesita al menos ${min} caracteres`)
+    .required('Clave es requerida'),
   confirmPassword: yup
     .string()
-    .oneOf([yup.ref('password')], 'Passwords do not match')
-    .required('Confirm password is required'),
+    .oneOf([yup.ref('password')], 'Las claves no coinciden')
+    .required('Confirmar clave'),
 });
 
 type Props = NativeStackScreenProps<RootStackParamList, "Register">;
@@ -137,14 +137,14 @@ const RegisterScreen: React.FC<Props> = ({ navigation: { navigate } }) => {
           <AppTextInput
             value={values.email}
             onChangeText={(text) => handleInputChange("email", text)}
-            placeholder="Email"
+            placeholder="Correo electronico"
           />
 
           {errors.email.length > 0 && <Text style={{ color: "red", fontFamily: Fonts["poppins-semiBold"], fontSize: FontSize.small, marginTop: 5 }}>{errors.email}</Text>}
 
 
           <AppTextInput
-            placeholder="Password"
+            placeholder="Clave"
             secureTextEntry
             value={values.password}
             onChangeText={(text) => handleInputChange("password", text)}
@@ -152,7 +152,7 @@ const RegisterScreen: React.FC<Props> = ({ navigation: { navigate } }) => {
           {errors.password.length > 0 && <Text style={{ color: "red", fontFamily: Fonts["poppins-semiBold"], fontSize: FontSize.small, marginTop: 5 }}>{errors.password}</Text>}
 
           <AppTextInput
-            placeholder="Confirm Password"
+            placeholder="Confirmar clave"
             secureTextEntry
             value={values.confirmPassword}
             onChangeText={(text) => handleInputChange("confirmPassword", text)}
@@ -186,7 +186,7 @@ const RegisterScreen: React.FC<Props> = ({ navigation: { navigate } }) => {
               fontSize: FontSize.large,
             }}
           >
-            Sign up
+            Registrarse
           </Text>
         </TouchableOpacity>
         <TouchableOpacity
@@ -220,7 +220,7 @@ const RegisterScreen: React.FC<Props> = ({ navigation: { navigate } }) => {
               fontSize: FontSize.small,
             }}
           >
-            Or continue with
+            Continuar
           </Text>
 
           <View

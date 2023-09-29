@@ -79,12 +79,12 @@ function HomeStack() {
       <Stack.Screen
         name="Main"
         component={MainScreen}
-        options={{ title: 'Home Page' }}
+        options={{ title: 'Inicio' }}
       />
       <Stack.Screen
         name="UserProfile"
         component={UserProfileScreen}
-        options={{ title: 'User Profile' }}
+        options={{ title: 'Perfil de usuario' }}
       />
       <Stack.Screen
         name="Categories"
@@ -99,12 +99,12 @@ function HomeStack() {
       <Stack.Screen
         name="InstruccionesJuego2"
         component={IntruccionesJuego2Screen}
-        options={{ title: 'Instrucciones2' }}
+        options={{ title: 'Mas instrucciones' }}
       />
       <Stack.Screen
         name="MemoryGame"
         component={MemoryGame}
-        options={{ title: 'Memory Game' }}
+        options={{ title: 'Juego de memoria' }}
       />
       <Stack.Screen
         name="Again"
