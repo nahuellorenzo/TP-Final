@@ -65,7 +65,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
 
 const Stack = createStackNavigator();
-const Tab = createBottomTabNavigator();
+const Tab = createBottomTabNavigator();git btranch
 
 function HomeStack() {
   return (
@@ -79,12 +79,12 @@ function HomeStack() {
       <Stack.Screen
         name="Main"
         component={MainScreen}
-        options={{ title: 'Home Page' }}
+        options={{ title: 'Inicio' }}
       />
       <Stack.Screen
         name="UserProfile"
         component={UserProfileScreen}
-        options={{ title: 'User Profile' }}
+        options={{ title: 'Perfil de usuario' }}
       />
       <Stack.Screen
         name="Categories"
@@ -99,12 +99,12 @@ function HomeStack() {
       <Stack.Screen
         name="InstruccionesJuego2"
         component={IntruccionesJuego2Screen}
-        options={{ title: 'Instrucciones2' }}
+        options={{ title: 'Mas instrucciones' }}
       />
       <Stack.Screen
         name="MemoryGame"
         component={MemoryGame}
-        options={{ title: 'Memory Game' }}
+        options={{ title: 'Juego de memoria' }}
       />
       <Stack.Screen
         name="Again"
@@ -127,7 +127,7 @@ function SettingsStack() {
       <Stack.Screen
         name="UserProfile"
         component={UserProfileScreen}
-        options={{ title: 'User Page' }}
+        options={{ title: 'Pagina usuario' }}
       />
     </Stack.Navigator>
   );
@@ -145,9 +145,9 @@ function RootNavigatorPrivate() {
           name="Hola"
           component={HomeStack}
           options={{
-            tabBarLabel: 'Home',
+            tabBarLabel: 'Inicio',
             tabBarIcon: ({ color, size }) => (
-              <MaterialCommunityIcons name="home" color={color} size={size} />
+              <MaterialCommunityIcons name="Inicio" color={color} size={size} />
             ),
             headerShown: false,
           }}
@@ -156,7 +156,7 @@ function RootNavigatorPrivate() {
           name="SettingsStack"
           component={SettingsStack}
           options={{
-            tabBarLabel: 'Profile',
+            tabBarLabel: 'Perfil',
             tabBarIcon: ({ color, size }) => (
               <FontAwesome name="user" size={24} color={color} />
             ),

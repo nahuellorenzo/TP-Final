@@ -90,7 +90,7 @@ import {
                   textAlign: "center",
                 }}
               >
-                Login
+                Logueo
               </Text>
             </TouchableOpacity>
             <TouchableOpacity
@@ -110,7 +110,7 @@ import {
                   textAlign: "center",
                 }}
               >
-                Register
+                Registrar
               </Text>
             </TouchableOpacity>
           </View>

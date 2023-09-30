@@ -35,7 +35,7 @@ function UserProfileScreen({ navigation: { navigate } }: Props) {
   const total = score.correct + score.incorrect;
   const juegosPuntajes = [
     {
-      title: 'Resultados Memory Game',
+      title: 'Tus resultados',
       data: ['Correctas: ' + score.correct, 'Incorrectas: ' + score.incorrect, 'Precisión: ' + Math.trunc((score.correct / total) * 100) + '%']
     }
   ];

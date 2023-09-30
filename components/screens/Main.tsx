@@ -76,7 +76,7 @@ import Toast from 'react-native-root-toast';
                 fontSize: FontSize.large,
               }}
             >
-              Memory Game 
+              Juego de memoria 
             </Text>
           </TouchableOpacity>
 
