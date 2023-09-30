@@ -65,7 +65,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
 
 const Stack = createStackNavigator();
-const Tab = createBottomTabNavigator();git btranch
+const Tab = createBottomTabNavigator();
 
 function HomeStack() {
   return (
