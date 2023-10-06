@@ -1,4 +1,18 @@
-import React, { useEffect, useState, useContext } from "react";
+import {Dimensions} from "react-native";
+import Spacing from "../constants/Spacing";
+import FontSize from "../constants/FontSize";
+import Colors from "../constants/Color";
+import Fonts from "../constants/Fonts";
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
+import { RootStackParamList } from "../../types";
+import { useIsFocused } from "@react-navigation/native";
+import { ScoreContext } from "../context/ScoreContext";
+const { height } = Dimensions.get("window");
+const { width } = Dimensions.get("window");
+export var bandera: string;
+import { dropdownValue1 } from "./InstruccionesJuego1";
+import nivelesCat from "./../Similar/similar.json";
+import React, { useState } from "react";
 import {
   Text,
   TouchableOpacity,
@@ -9,69 +23,63 @@ import {
   TextInput,
   ToastAndroid,
 } from "react-native";
-import Spacing from "../constants/Spacing";
-import FontSize from "../constants/FontSize";
-import Colors from "../constants/Color";
-import Fonts from "../constants/Fonts";
-import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { RootStackParamList } from "../../types";
-import AppTextInput from "../AppTextInput";
-type Props = NativeStackScreenProps<RootStackParamList, "ForgotPassword">;
-const ForgotPasswordScreen: React.FC<Props> = ({ navigation: { navigate } }: Props) => {
-    return (
-        <ScrollView>
-            <View
-                style={{
-                    padding: Spacing * 2,
-                }}
-            >
-                <View
-                    style={{
-                        marginVertical: Spacing * 3,
-                    }}
-                >
+import { sendPasswordResetEmail } from "firebase/auth";
+import { auth } from "../firebase/config";
 
-<View
-            style={{
-              marginVertical: Spacing * 3,
-            }}
-          >
-            <AppTextInput
-              placeholder="Email de su cuenta" />
-          </View>
+const ForgotPasswordScreen = () => {
+  const [email, setEmail] = useState("");
 
-                    <TouchableOpacity
-                        //onPress={() => navigate("")}
-                        style={{
-                            padding: Spacing * 2,
-                            backgroundColor: Colors.primary,
-                            marginVertical: Spacing * 2, 
-                            borderRadius: Spacing,
-                            shadowColor: Colors.primary,
-                            shadowOffset: {
-                                width: 0,
-                                height: Spacing,
-                            },
-                            shadowOpacity: 0.3,
-                            shadowRadius: Spacing,
-                        }}
-                    >
-                        <Text
-                            style={{
-                                fontFamily: Fonts["poppins-bold"],
-                                color: Colors.onPrimary,
-                                textAlign: "center",
-                                fontSize: FontSize.large,
-                            }}
-                        >
-                            Recuperar Contraseña
-                        </Text>
-                    </TouchableOpacity>
-                </View>
-            </View>
-        </ScrollView>
-    );
+  const changePassword = () => {
+    if (email.trim() === "") {
+      alert();
+      return;
+    }
+
+    sendPasswordResetEmail(auth, email)
+      .then(() => {
+        alert();
+      })
+      .catch((error) => {
+        alert();
+        console.error(error);
+      });
+  };
+
+  return (
+    <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
+      <View style={{ padding: 20 }}>
+        <View style={{ marginVertical: 20 }}>
+          <TextInput
+            placeholder="Email de su cuenta"
+            value={email}
+            onChangeText={(text) => setEmail(text)}
+          />
+        </View>
+
+        <TouchableOpacity
+          onPress={changePassword}
+          style={{
+            padding: Spacing * 2,
+            backgroundColor: Colors.primary,
+            marginVertical: Spacing * 2,
+            borderRadius: Spacing,
+            shadowColor: Colors.primary,
+            shadowOffset: {
+                width: 0,
+                height: Spacing,
+            },
+            shadowOpacity: 0.3,
+            shadowRadius: Spacing,
+        }}
+        >
+          <Text style={{ color: "white", textAlign: "center" }}>
+            Recuperar Contraseña
+          </Text>
+        </TouchableOpacity>
+      </View>
+    </ScrollView>
+  );
 };
 
-
 export default ForgotPasswordScreen;
+const styles = StyleSheet.create({});
