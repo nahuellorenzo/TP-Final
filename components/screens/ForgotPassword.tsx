@@ -26,6 +26,8 @@ import {
 import { sendPasswordResetEmail } from "firebase/auth";
 import { auth } from "../firebase/config";
 import AppTextInput from "../AppTextInput";
+import Toast from 'react-native-root-toast';
+import Color from "../constants/Color";
 type Props = NativeStackScreenProps<RootStackParamList, "ForgotPassword">;
 
 const ForgotPasswordScreen: React.FC<Props> = ({ navigation: { navigate } }) => {
@@ -46,6 +48,37 @@ const ForgotPasswordScreen: React.FC<Props> = ({ navigation: { navigate } }) => 
       });
   };
   
+  const showToast1 = () => {
+    try{
+      Toast.show('Ingrese un Email Valido', {
+        duration: Toast.durations.LONG,
+        animation: true,
+        backgroundColor: Color.primary,
+        textColor: Color.onPrimary,
+        hideOnPress: true,
+        shadow: true,
+      });
+    }
+    catch(error){
+      console.log(error)
+    }
+  }
+
+  const showToast2 = () => {
+    try{
+      Toast.show('Email enviado exitosamente', {
+        duration: Toast.durations.LONG,
+        animation: true,
+        backgroundColor: Color.primary,
+        textColor: Color.onPrimary,
+        hideOnPress: true,
+        shadow: true,
+      });
+    }
+    catch(error){
+      console.log(error)
+    }
+  }
 
   return (
     <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
@@ -74,13 +107,16 @@ const ForgotPasswordScreen: React.FC<Props> = ({ navigation: { navigate } }) => 
             changePassword()
             .then((result) => {
               if (result === 0) {
+                showToast1()
                 console.log("No se manda el correo");
               } else {
                 console.log("Correo enviado correctamente");
+                showToast2()
                 navigate("Login");
               }
             })
             .catch((error) => {
+              showToast1()
               console.error("Error al cambiar la contraseña:", error);
             });
           }
