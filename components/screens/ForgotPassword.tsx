@@ -26,24 +26,26 @@ import {
 import { sendPasswordResetEmail } from "firebase/auth";
 import { auth } from "../firebase/config";
 import AppTextInput from "../AppTextInput";
-
 type Props = NativeStackScreenProps<RootStackParamList, "ForgotPassword">;
 
 const ForgotPasswordScreen: React.FC<Props> = ({ navigation: { navigate } }) => {
+  var Bandera: Number;
+  Bandera = 1; 
+  console.log(Bandera)
   const [email, setEmail] = useState("");
 
   const changePassword = () => {
-    if (email.trim() === "") {
-      alert();
-      return;
-    }
-
-    sendPasswordResetEmail(auth, email)
+    return sendPasswordResetEmail(auth, email)
       .then(() => {
+        console.log("Se envió correctamente");
+        return 1; // Retornar 1 para indicar que se envió correctamente
       })
       .catch((error) => {
+        console.log("No existe una cuenta con ese Email asociado");
+        return 0; // Retornar 0 para indicar que no se encontró la cuenta
       });
   };
+  
 
   return (
     <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
@@ -69,9 +71,20 @@ const ForgotPasswordScreen: React.FC<Props> = ({ navigation: { navigate } }) => 
 
         <TouchableOpacity
           onPress={() => {
-            navigate("Login")
-            changePassword
-        }}
+            changePassword()
+            .then((result) => {
+              if (result === 0) {
+                console.log("No se manda el correo");
+              } else {
+                console.log("Correo enviado correctamente");
+                navigate("Login");
+              }
+            })
+            .catch((error) => {
+              console.error("Error al cambiar la contraseña:", error);
+            });
+          }
+          }
           style={{
             padding: Spacing * 2,
             backgroundColor: Colors.primary,
