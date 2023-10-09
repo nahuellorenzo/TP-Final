@@ -17,6 +17,7 @@ import { RootStackParamList } from "../../types";
 import CategoriesScreen from "../screens/Categories";
 import InstruccionesJuego2Screen from "../screens/InstructionsGame2";
 import InstruccionesJuego1Screen from "../screens/InstruccionesJuego1";
+import ForgotPasswordScreen from "../screens/ForgotPassword";
 
 const theme = {
   ...DefaultTheme,
@@ -55,7 +56,7 @@ function RootNavigator() {
       <Stack.Screen name="Categories" component={CategoriesScreen} />
       <Stack.Screen name="InstruccionesJuego2" component={InstruccionesJuego2Screen} />
       <Stack.Screen name="InstruccionesJuego1" component={InstruccionesJuego1Screen} />
-      
+      <Stack.Screen name="ForgotPassword" component={ForgotPasswordScreen} />
     </Stack.Navigator>
   );
 }

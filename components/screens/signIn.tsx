@@ -102,6 +102,7 @@ import {
                 color: Colors.primary,
                 alignSelf: "flex-end",
               }}
+              onPress={() => navigate("ForgotPassword")}
             >
               Olvidaste tu contraseña?
             </Text>

@@ -17,6 +17,7 @@ import Again from "../screens/Again";
 import CategoriesScreen from "../screens/Categories";
 import IntruccionesJuego2Screen from "../screens/InstructionsGame2";
 import InstruccionesJuego1Screen from "../screens/InstruccionesJuego1";
+import ForgotPasswordScreen from "../screens/ForgotPassword";
 
 /* const theme = {
   ...DefaultTheme,
@@ -63,6 +64,7 @@ import { FontAwesome } from '@expo/vector-icons';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
+import ForgotPassword from "../screens/ForgotPassword";
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -110,6 +112,11 @@ function HomeStack() {
         name="Again"
         component={Again}
         options={{ title: 'Adivina!' }}
+      />
+      <Stack.Screen
+        name="ForgotPassword"
+        component={ForgotPasswordScreen}
+        options={{ title: 'Recuperar Contraseña' }}
       />
     </Stack.Navigator>
   );
