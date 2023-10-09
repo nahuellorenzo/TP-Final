@@ -118,6 +118,7 @@ const MemoryGame: React.FC = ({ navigation: { navigate } }: Props) => {
     setPreviousImage(null);
     setCurrentImage(null);
     if (bandera == "Entrenamiento") {
+      console.log(dropdownTimeValue1);
       setPreviousImage(null);
       const randomImageIndex = Math.floor(Math.random() * nivelesCat[dropdownValue1].Entrenamiento.length);
       const randomImagePathJson = nivelesCat[dropdownValue1].Entrenamiento[randomImageIndex].imagen;

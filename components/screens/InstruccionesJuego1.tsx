@@ -27,6 +27,7 @@ const InstruccionesJuego1Screen: React.FC<Props> = ({ navigation: { navigate } }
 
     //Dropdown Time
     const [dropdownTimeValue, setDropdownTimeValue] = useState(2000);
+    dropdownTimeValue1 = dropdownTimeValue; //para podeer almacenar el valor por defecto
     const handleDropdownTimeChange = (value: number) => {
         setDropdownTimeValue(value);
         dropdownTimeValue1 = value;
