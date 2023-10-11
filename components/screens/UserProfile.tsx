@@ -83,6 +83,15 @@ function UserProfileScreen({ navigation: { navigate } }: Props) {
           </View>
         </View>
 
+          <View  
+            style={{
+            marginTop: Spacing,
+          }}>
+            <Text>
+              Juega desde {`- ${user.creacion.substring(user.creacion.indexOf(",") + 2, user.creacion.lastIndexOf("GMT") - 9)}`}
+            </Text>
+          </View>
+        
         <View style={styles.buttonContainer}>
           <TouchableOpacity
             onPress={() => setModalVisible(true)}
