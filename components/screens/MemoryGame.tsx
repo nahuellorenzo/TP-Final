@@ -27,6 +27,10 @@ import { imagePaths3 } from "../constants/images3";
 import { imagePaths4 } from "../constants/images4";
 import { imagePaths5 } from "../constants/images5";
 import { imagePaths6 } from "../constants/images6";
+import { imagePaths7 } from "../constants/images7";
+import { imagePaths8 } from "../constants/images8";
+import { imagePaths9 } from "../constants/images9";
+import { imagePaths10 } from "../constants/images10";
 import { Button, StatusBar } from 'react-native';
 import Color from "../constants/Color";
 import { bandera } from "./Categories";
@@ -115,11 +119,10 @@ const MemoryGame: React.FC = ({ navigation: { navigate } }: Props) => {
     if (bandera == "Entrenamiento") {
       setPreviousImage(null);
       const randomImageIndex = Math.floor(Math.random() * nivelesCat[dropdownValue1].Entrenamiento.length);
-      const randomImagePathJson = nivelesCat[dropdownValue1].Entrenamiento[randomImageIndex].imagen;
+      const numrandom = Math.floor(Math.random() * nivelesCat[dropdownValue1].Entrenamiento[randomImageIndex].imagen.length);
+      const randomImagePathJson = nivelesCat[dropdownValue1].Entrenamiento[randomImageIndex].imagen[numrandom];
       const randomImagePath = imagePaths1[parseInt(randomImagePathJson.replace(/[^\d]/g, ''))-1]
-      const newrandomImageIndex = Math.floor(Math.random() * nivelesCat[dropdownValue1].Entrenamiento.length);
-      const newrandomImagePathJson = nivelesCat[dropdownValue1].Entrenamiento[newrandomImageIndex].imagen;
-      const newrandomImagePath = imagePaths1[parseInt(newrandomImagePathJson.replace(/[^\d]/g, ''))-1]
+
       setCurrentImage(randomImagePath);
 
         const numero2 = setTimeout(() => {
@@ -131,7 +134,10 @@ const MemoryGame: React.FC = ({ navigation: { navigate } }: Props) => {
 
       
       const numero1 = setTimeout(() => {
-        console.log(newrandomImagePath)
+        const newnumrandom = Math.floor(Math.random() * nivelesCat[dropdownValue1].Entrenamiento[randomImageIndex].imagen.length);
+        const newrandomImagePathJson = nivelesCat[dropdownValue1].Entrenamiento[randomImageIndex].imagen[newnumrandom];
+        const newrandomImagePath = imagePaths1[parseInt(newrandomImagePathJson.replace(/[^\d]/g, ''))-1]
+
         setPreviousImage(randomImagePath);
         setCurrentImage(newrandomImagePath);
         setLoader(false);
@@ -143,8 +149,10 @@ const MemoryGame: React.FC = ({ navigation: { navigate } }: Props) => {
     else if (bandera == "Banderas") {
       setPreviousImage(null);
       const randomImageIndex = Math.floor(Math.random() * nivelesCat[dropdownValue1].Banderas.length);
-      const randomImagePathJson = nivelesCat[dropdownValue1].Banderas[randomImageIndex].imagen;
+      const numrandom = Math.floor(Math.random() * nivelesCat[dropdownValue1].Banderas[randomImageIndex].imagen.length);
+      const randomImagePathJson = nivelesCat[dropdownValue1].Banderas[randomImageIndex].imagen[numrandom];
       const randomImagePath = imagePaths2[parseInt(randomImagePathJson.replace(/[^\d]/g, ''))-1]
+
       setCurrentImage(randomImagePath);
 
       const numero2 = setTimeout(() => {
@@ -155,12 +163,12 @@ const MemoryGame: React.FC = ({ navigation: { navigate } }: Props) => {
       }, 4000);
 
       const numero1 = setTimeout(() => {
-        const newRandomImageIndex = Math.floor(Math.random() * nivelesCat[dropdownValue1].Banderas.length);
-        const newrandomImagePathJson = nivelesCat[dropdownValue1].Banderas[newRandomImageIndex].imagen;
-        const newRandomImagePath = imagePaths2[parseInt(newrandomImagePathJson.replace(/[^\d]/g, ''))-1]
+        const newnumrandom = Math.floor(Math.random() * nivelesCat[dropdownValue1].Banderas[randomImageIndex].imagen.length);
+        const newrandomImagePathJson = nivelesCat[dropdownValue1].Banderas[randomImageIndex].imagen[newnumrandom];
+        const newrandomImagePath = imagePaths2[parseInt(newrandomImagePathJson.replace(/[^\d]/g, ''))-1]
 
         setPreviousImage(randomImagePath);
-        setCurrentImage(newRandomImagePath);
+        setCurrentImage(newrandomImagePath);
         setLoader(false);
       }, 6000);
       return () => {clearTimeout(numero1);
@@ -170,10 +178,9 @@ const MemoryGame: React.FC = ({ navigation: { navigate } }: Props) => {
     else if (bandera == "Paisajes") {
       setPreviousImage(null);
       const randomImageIndex = Math.floor(Math.random() * nivelesCat[dropdownValue1].Paisajes.length);
-      const randomImagePathJson = nivelesCat[dropdownValue1].Paisajes[randomImageIndex].imagen;
+      const numrandom = Math.floor(Math.random() * nivelesCat[dropdownValue1].Paisajes[randomImageIndex].imagen.length);
+      const randomImagePathJson = nivelesCat[dropdownValue1].Paisajes[randomImageIndex].imagen[numrandom];
       const randomImagePath = imagePaths3[parseInt(randomImagePathJson.replace(/[^\d]/g, ''))-1]
-      setCurrentImage(randomImagePath);
-      console.log(randomImagePath)
 
       setCurrentImage(randomImagePath);
 
@@ -183,10 +190,12 @@ const MemoryGame: React.FC = ({ navigation: { navigate } }: Props) => {
         console.log("Entre")
         setLoader(true);
       }, 4000);
+
       const numero1 = setTimeout(() => {
-        const newrandomImageIndex = Math.floor(Math.random() * nivelesCat[dropdownValue1].Paisajes.length);
-        const newrandomImagePathJson = nivelesCat[dropdownValue1].Paisajes[newrandomImageIndex].imagen;
+        const newnumrandom = Math.floor(Math.random() * nivelesCat[dropdownValue1].Paisajes[randomImageIndex].imagen.length);
+        const newrandomImagePathJson = nivelesCat[dropdownValue1].Paisajes[randomImageIndex].imagen[newnumrandom];
         const newrandomImagePath = imagePaths3[parseInt(newrandomImagePathJson.replace(/[^\d]/g, ''))-1]
+
         setPreviousImage(randomImagePath);
         setCurrentImage(newrandomImagePath);
         setLoader(false);
@@ -198,7 +207,8 @@ const MemoryGame: React.FC = ({ navigation: { navigate } }: Props) => {
     else if (bandera == "Peliculas") {
       setPreviousImage(null);
       const randomImageIndex = Math.floor(Math.random() * nivelesCat[dropdownValue1].Peliculas.length);
-      const randomImagePathJson = nivelesCat[dropdownValue1].Peliculas[randomImageIndex].imagen;
+      const numrandom = Math.floor(Math.random() * nivelesCat[dropdownValue1].Peliculas[randomImageIndex].imagen.length);
+      const randomImagePathJson = nivelesCat[dropdownValue1].Peliculas[randomImageIndex].imagen[numrandom];
       const randomImagePath = imagePaths4[parseInt(randomImagePathJson.replace(/[^\d]/g, ''))-1]
 
       setCurrentImage(randomImagePath);
@@ -211,8 +221,8 @@ const MemoryGame: React.FC = ({ navigation: { navigate } }: Props) => {
       }, 4000);
 
       const numero1 = setTimeout(() => {
-        const newrandomImageIndex = Math.floor(Math.random() * nivelesCat[dropdownValue1].Peliculas.length);
-        const newrandomImagePathJson = nivelesCat[dropdownValue1].Peliculas[newrandomImageIndex].imagen;
+        const newnumrandom = Math.floor(Math.random() * nivelesCat[dropdownValue1].Peliculas[randomImageIndex].imagen.length);
+        const newrandomImagePathJson = nivelesCat[dropdownValue1].Peliculas[randomImageIndex].imagen[newnumrandom];
         const newrandomImagePath = imagePaths4[parseInt(newrandomImagePathJson.replace(/[^\d]/g, ''))-1]
 
         setPreviousImage(randomImagePath);
@@ -226,7 +236,8 @@ const MemoryGame: React.FC = ({ navigation: { navigate } }: Props) => {
     else if (bandera == "Personas") {
       setPreviousImage(null);
       const randomImageIndex = Math.floor(Math.random() * nivelesCat[dropdownValue1].Personas.length);
-      const randomImagePathJson = nivelesCat[dropdownValue1].Personas[randomImageIndex].imagen;
+      const numrandom = Math.floor(Math.random() * nivelesCat[dropdownValue1].Personas[randomImageIndex].imagen.length);
+      const randomImagePathJson = nivelesCat[dropdownValue1].Personas[randomImageIndex].imagen[numrandom];
       const randomImagePath = imagePaths5[parseInt(randomImagePathJson.replace(/[^\d]/g, ''))-1]
 
       setCurrentImage(randomImagePath);
@@ -239,8 +250,8 @@ const MemoryGame: React.FC = ({ navigation: { navigate } }: Props) => {
       }, 4000);
 
       const numero1 = setTimeout(() => {
-        const newrandomImageIndex = Math.floor(Math.random() * nivelesCat[dropdownValue1].Personas.length);
-        const newrandomImagePathJson = nivelesCat[dropdownValue1].Personas[newrandomImageIndex].imagen;
+        const newnumrandom = Math.floor(Math.random() * nivelesCat[dropdownValue1].Personas[randomImageIndex].imagen.length);
+        const newrandomImagePathJson = nivelesCat[dropdownValue1].Personas[randomImageIndex].imagen[newnumrandom];
         const newrandomImagePath = imagePaths5[parseInt(newrandomImagePathJson.replace(/[^\d]/g, ''))-1]
 
         setPreviousImage(randomImagePath);
@@ -254,7 +265,8 @@ const MemoryGame: React.FC = ({ navigation: { navigate } }: Props) => {
     else if (bandera == "Camisetas de Futbol") {
       setPreviousImage(null);
       const randomImageIndex = Math.floor(Math.random() * nivelesCat[dropdownValue1]["Camisetas de Futbol"].length);
-      const randomImagePathJson = nivelesCat[dropdownValue1]["Camisetas de Futbol"][randomImageIndex].imagen;
+      const numrandom = Math.floor(Math.random() * nivelesCat[dropdownValue1]["Camisetas de Futbol"][randomImageIndex].imagen.length);
+      const randomImagePathJson = nivelesCat[dropdownValue1]["Camisetas de Futbol"][randomImageIndex].imagen[numrandom];
       const randomImagePath = imagePaths6[parseInt(randomImagePathJson.replace(/[^\d]/g, ''))-1]
 
       setCurrentImage(randomImagePath);
@@ -267,8 +279,8 @@ const MemoryGame: React.FC = ({ navigation: { navigate } }: Props) => {
       }, 4000);
 
       const numero1 = setTimeout(() => {
-        const newrandomImageIndex = Math.floor(Math.random() * nivelesCat[dropdownValue1]["Camisetas de Futbol"].length);
-        const newrandomImagePathJson = nivelesCat[dropdownValue1]["Camisetas de Futbol"][newrandomImageIndex].imagen;
+        const newnumrandom = Math.floor(Math.random() * nivelesCat[dropdownValue1]["Camisetas de Futbol"][randomImageIndex].imagen.length);
+        const newrandomImagePathJson = nivelesCat[dropdownValue1]["Camisetas de Futbol"][randomImageIndex].imagen[newnumrandom];
         const newrandomImagePath = imagePaths6[parseInt(newrandomImagePathJson.replace(/[^\d]/g, ''))-1]
 
         setPreviousImage(randomImagePath);
@@ -278,6 +290,123 @@ const MemoryGame: React.FC = ({ navigation: { navigate } }: Props) => {
       return () => {clearTimeout(numero1)
       clearTimeout(numero2)};
     }
+
+    else if (bandera == "Oficios") {
+      setPreviousImage(null);
+      const randomImageIndex = Math.floor(Math.random() * nivelesCat[dropdownValue1].Oficios.length);
+      const numrandom = Math.floor(Math.random() * nivelesCat[dropdownValue1].Oficios[randomImageIndex].imagen.length);
+      const randomImagePathJson = nivelesCat[dropdownValue1].Oficios[randomImageIndex].imagen[numrandom];
+      const randomImagePath = imagePaths7[parseInt(randomImagePathJson.replace(/[^\d]/g, ''))-1]
+
+      setCurrentImage(randomImagePath);
+
+      const numero2 = setTimeout(() => {
+        setPreviousImage(null);
+        setCurrentImage(null);
+        console.log("Entre")
+        setLoader(true);
+      }, 4000);
+
+      const numero1 = setTimeout(() => {
+        const newnumrandom = Math.floor(Math.random() * nivelesCat[dropdownValue1].Oficios[randomImageIndex].imagen.length);
+        const newrandomImagePathJson = nivelesCat[dropdownValue1].Oficios[randomImageIndex].imagen[newnumrandom];
+        const newrandomImagePath = imagePaths7[parseInt(newrandomImagePathJson.replace(/[^\d]/g, ''))-1]
+
+        setPreviousImage(randomImagePath);
+        setCurrentImage(newrandomImagePath);
+        setLoader(false);
+      }, 6000);
+      return () => {clearTimeout(numero1)
+      clearTimeout(numero2)};
+    }
+
+    else if (bandera == "Figuras Geométricas") {
+      setPreviousImage(null);
+      const randomImageIndex = Math.floor(Math.random() * nivelesCat[dropdownValue1]["Figuras Geométricas"].length);
+      const numrandom = Math.floor(Math.random() * nivelesCat[dropdownValue1]["Figuras Geométricas"][randomImageIndex].imagen.length);
+      const randomImagePathJson = nivelesCat[dropdownValue1]["Figuras Geométricas"][randomImageIndex].imagen[numrandom];
+      const randomImagePath = imagePaths8[parseInt(randomImagePathJson.replace(/[^\d]/g, ''))-1]
+
+      setCurrentImage(randomImagePath);
+
+      const numero2 = setTimeout(() => {
+        setPreviousImage(null);
+        setCurrentImage(null);
+        console.log("Entre")
+        setLoader(true);
+      }, 4000);
+
+      const numero1 = setTimeout(() => {
+        const newnumrandom = Math.floor(Math.random() * nivelesCat[dropdownValue1]["Figuras Geométricas"][randomImageIndex].imagen.length);
+        const newrandomImagePathJson = nivelesCat[dropdownValue1]["Figuras Geométricas"][randomImageIndex].imagen[newnumrandom];
+        const newrandomImagePath = imagePaths8[parseInt(newrandomImagePathJson.replace(/[^\d]/g, ''))-1]
+
+        setPreviousImage(randomImagePath);
+        setCurrentImage(newrandomImagePath);
+        setLoader(false);
+      }, 6000);
+      return () => {clearTimeout(numero1)
+      clearTimeout(numero2)};
+    }
+
+    else if (bandera == "Lugares") {
+      setPreviousImage(null);
+      const randomImageIndex = Math.floor(Math.random() * nivelesCat[dropdownValue1].Lugares.length);
+      const numrandom = Math.floor(Math.random() * nivelesCat[dropdownValue1].Lugares[randomImageIndex].imagen.length);
+      const randomImagePathJson = nivelesCat[dropdownValue1].Lugares[randomImageIndex].imagen[numrandom];
+      const randomImagePath = imagePaths9[parseInt(randomImagePathJson.replace(/[^\d]/g, ''))-1]
+
+      setCurrentImage(randomImagePath);
+
+      const numero2 = setTimeout(() => {
+        setPreviousImage(null);
+        setCurrentImage(null);
+        console.log("Entre")
+        setLoader(true);
+      }, 4000);
+
+      const numero1 = setTimeout(() => {
+        const newnumrandom = Math.floor(Math.random() * nivelesCat[dropdownValue1].Lugares[randomImageIndex].imagen.length);
+        const newrandomImagePathJson = nivelesCat[dropdownValue1].Lugares[randomImageIndex].imagen[newnumrandom];
+        const newrandomImagePath = imagePaths9[parseInt(newrandomImagePathJson.replace(/[^\d]/g, ''))-1]
+
+        setPreviousImage(randomImagePath);
+        setCurrentImage(newrandomImagePath);
+        setLoader(false);
+      }, 6000);
+      return () => {clearTimeout(numero1)
+      clearTimeout(numero2)};
+    }
+
+    else if (bandera == "Frutas") {
+      setPreviousImage(null);
+      const randomImageIndex = Math.floor(Math.random() * nivelesCat[dropdownValue1].Frutas.length);
+      const numrandom = Math.floor(Math.random() * nivelesCat[dropdownValue1].Frutas[randomImageIndex].imagen.length);
+      const randomImagePathJson = nivelesCat[dropdownValue1].Frutas[randomImageIndex].imagen[numrandom];
+      const randomImagePath = imagePaths10[parseInt(randomImagePathJson.replace(/[^\d]/g, ''))-1]
+
+      setCurrentImage(randomImagePath);
+
+      const numero2 = setTimeout(() => {
+        setPreviousImage(null);
+        setCurrentImage(null);
+        console.log("Entre")
+        setLoader(true);
+      }, 4000);
+
+      const numero1 = setTimeout(() => {
+        const newnumrandom = Math.floor(Math.random() * nivelesCat[dropdownValue1].Frutas[randomImageIndex].imagen.length);
+        const newrandomImagePathJson = nivelesCat[dropdownValue1].Frutas[randomImageIndex].imagen[newnumrandom];
+        const newrandomImagePath = imagePaths10[parseInt(newrandomImagePathJson.replace(/[^\d]/g, ''))-1]
+
+        setPreviousImage(randomImagePath);
+        setCurrentImage(newrandomImagePath);
+        setLoader(false);
+      }, 6000);
+      return () => {clearTimeout(numero1)
+      clearTimeout(numero2)};
+    }
+
   }, [isFocused]);
 
   
