@@ -37,6 +37,7 @@ const { height } = Dimensions.get("window");
 const { width } = Dimensions.get("window");
 import nivelesCat from "./../Similar/similar.json";
 import { dropdownValue1 } from "./InstruccionesJuego1";
+import { dropdownTimeValue1 } from "./InstruccionesJuego1";
 
 type Props = NativeStackScreenProps<RootStackParamList, "MemoryGame">;
 const Separator = () => {
@@ -109,10 +110,15 @@ const MemoryGame: React.FC = ({ navigation: { navigate } }: Props) => {
     3 * ONE_SECOND_IN_MS,
   ];
 
+  //Manejo del tiempo de mostrar imagenes
+  const tiempoPrimerImagen= 4000;
+  const tiempoTotal = tiempoPrimerImagen + dropdownTimeValue1;
+
   useEffect(() => {
     setPreviousImage(null);
     setCurrentImage(null);
     if (bandera == "Entrenamiento") {
+      console.log(dropdownTimeValue1);
       setPreviousImage(null);
       const randomImageIndex = Math.floor(Math.random() * nivelesCat[dropdownValue1].Entrenamiento.length);
       const randomImagePathJson = nivelesCat[dropdownValue1].Entrenamiento[randomImageIndex].imagen;
@@ -127,7 +133,7 @@ const MemoryGame: React.FC = ({ navigation: { navigate } }: Props) => {
           setCurrentImage(null);
           console.log("Entre")
           setLoader(true);
-        }, 4000);
+        }, tiempoPrimerImagen);
 
       
       const numero1 = setTimeout(() => {
@@ -135,7 +141,7 @@ const MemoryGame: React.FC = ({ navigation: { navigate } }: Props) => {
         setPreviousImage(randomImagePath);
         setCurrentImage(newrandomImagePath);
         setLoader(false);
-      }, 6000);
+      }, tiempoTotal);
       return () => {clearTimeout(numero1)
       clearTimeout(numero2)};
     }
@@ -152,7 +158,7 @@ const MemoryGame: React.FC = ({ navigation: { navigate } }: Props) => {
         setCurrentImage(null);
         console.log("Entre")
         setLoader(true);
-      }, 4000);
+      }, tiempoPrimerImagen);
 
       const numero1 = setTimeout(() => {
         const newRandomImageIndex = Math.floor(Math.random() * nivelesCat[dropdownValue1].Banderas.length);
@@ -162,7 +168,7 @@ const MemoryGame: React.FC = ({ navigation: { navigate } }: Props) => {
         setPreviousImage(randomImagePath);
         setCurrentImage(newRandomImagePath);
         setLoader(false);
-      }, 6000);
+      }, tiempoTotal);
       return () => {clearTimeout(numero1);
         clearTimeout(numero2)}
     }
@@ -182,7 +188,7 @@ const MemoryGame: React.FC = ({ navigation: { navigate } }: Props) => {
         setCurrentImage(null);
         console.log("Entre")
         setLoader(true);
-      }, 4000);
+      }, tiempoPrimerImagen);
       const numero1 = setTimeout(() => {
         const newrandomImageIndex = Math.floor(Math.random() * nivelesCat[dropdownValue1].Paisajes.length);
         const newrandomImagePathJson = nivelesCat[dropdownValue1].Paisajes[newrandomImageIndex].imagen;
@@ -190,7 +196,7 @@ const MemoryGame: React.FC = ({ navigation: { navigate } }: Props) => {
         setPreviousImage(randomImagePath);
         setCurrentImage(newrandomImagePath);
         setLoader(false);
-      }, 6000);
+      }, tiempoTotal);
       return () => {clearTimeout(numero1);
         clearTimeout(numero2)}
     }
@@ -208,7 +214,7 @@ const MemoryGame: React.FC = ({ navigation: { navigate } }: Props) => {
         setCurrentImage(null);
         console.log("Entre")
         setLoader(true);
-      }, 4000);
+      }, tiempoPrimerImagen);
 
       const numero1 = setTimeout(() => {
         const newrandomImageIndex = Math.floor(Math.random() * nivelesCat[dropdownValue1].Peliculas.length);
@@ -218,7 +224,7 @@ const MemoryGame: React.FC = ({ navigation: { navigate } }: Props) => {
         setPreviousImage(randomImagePath);
         setCurrentImage(newrandomImagePath);
         setLoader(false);
-      }, 6000);
+      }, tiempoTotal);
       return () => {clearTimeout(numero1)
       clearTimeout(numero2)};
     }
@@ -236,7 +242,7 @@ const MemoryGame: React.FC = ({ navigation: { navigate } }: Props) => {
         setCurrentImage(null);
         console.log("Entre")
         setLoader(true);
-      }, 4000);
+      }, tiempoPrimerImagen);
 
       const numero1 = setTimeout(() => {
         const newrandomImageIndex = Math.floor(Math.random() * nivelesCat[dropdownValue1].Personas.length);
@@ -246,7 +252,7 @@ const MemoryGame: React.FC = ({ navigation: { navigate } }: Props) => {
         setPreviousImage(randomImagePath);
         setCurrentImage(newrandomImagePath);
         setLoader(false);
-      }, 6000);
+      }, tiempoTotal);
       return () => {clearTimeout(numero1)
       clearTimeout(numero2)};
     }
@@ -264,7 +270,7 @@ const MemoryGame: React.FC = ({ navigation: { navigate } }: Props) => {
         setCurrentImage(null);
         console.log("Entre")
         setLoader(true);
-      }, 4000);
+      }, tiempoPrimerImagen);
 
       const numero1 = setTimeout(() => {
         const newrandomImageIndex = Math.floor(Math.random() * nivelesCat[dropdownValue1]["Camisetas de Futbol"].length);
@@ -274,7 +280,7 @@ const MemoryGame: React.FC = ({ navigation: { navigate } }: Props) => {
         setPreviousImage(randomImagePath);
         setCurrentImage(newrandomImagePath);
         setLoader(false);
-      }, 6000);
+      }, tiempoTotal);
       return () => {clearTimeout(numero1)
       clearTimeout(numero2)};
     }
