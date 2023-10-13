@@ -41,7 +41,7 @@ export const imagePaths10 = [
     require("./../../assets/imagesGame/Frutas/imageP38.png"),
     require("./../../assets/imagesGame/Frutas/imageP39.png"),
     require("./../../assets/imagesGame/Frutas/imageP40.png"),
-    require("./../../assets/imagesGame/Frutas/im
+    require("./../../assets/imagesGame/Frutas/imageP41.png"),
     require("./../../assets/imagesGame/Frutas/imageP42.png"),
     require("./../../assets/imagesGame/Frutas/imageP43.png"),
 
