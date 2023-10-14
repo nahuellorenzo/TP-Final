@@ -120,9 +120,9 @@ function HomeStack() {
         options={{ title: 'Recuperar Contraseña' }}
       />
       <Stack.Screen
-        name="ForgotPassword"
-        component={ForgotPasswordScreen}
-        options={{ title: 'Recuperar Contraseña' }}
+        name="NumberGame"
+        component={NumberGame}
+        options={{ title: 'Numerium' }}
       />
     </Stack.Navigator>
   );
