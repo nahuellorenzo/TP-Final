@@ -7,7 +7,6 @@ import {
   Dimensions,
 } from "react-native";
 import AppTextInput from "../AppTextInput";
-import { useIsFocused } from "@react-navigation/native";
 import Spacing from "../constants/Spacing";
 import FontSize from "../constants/FontSize";
 import Colors from "../constants/Color";
@@ -15,6 +14,7 @@ import Fonts from "../constants/Fonts";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../../types";
 import Loader from "./Loader";
+import Toast from 'react-native-root-toast';
 const { height } = Dimensions.get("window");
 const { width } = Dimensions.get("window");
 type Props = NativeStackScreenProps<RootStackParamList, "NumberGame">;
@@ -35,18 +35,15 @@ const NumberGame: React.FC<Props> = ({ navigation: { navigate } }: Props) => {
     let randomNumber = Math.floor(Math.random() * 10);
     setNumber(randomNumber);
     arregloNumeros.push(randomNumber);
-    console.log("pase")
     const numero1 = setTimeout(() => {
       setLoader(true);
       randomNumber = Math.floor(Math.random() * 10);
       setNumber(randomNumber);
       arregloNumeros.push(randomNumber);
-      console.log("pase")
     }, 200);
 
     const numero2 = setTimeout(() => {
       setLoader(false);
-      console.log("numero2")
     }, 500);
 
     const numero3 = setTimeout(() => {
@@ -54,13 +51,10 @@ const NumberGame: React.FC<Props> = ({ navigation: { navigate } }: Props) => {
       randomNumber = Math.floor(Math.random() * 10);
       setNumber(randomNumber);
       arregloNumeros.push(randomNumber);
-      console.log("numero3")
-      console.log("pase")
     }, 1000);
 
     const numero4 = setTimeout(() => {
       setLoader(false);
-      console.log("numero4")
     }, 1500);
 
     const numero5 = setTimeout(() => {
@@ -68,23 +62,17 @@ const NumberGame: React.FC<Props> = ({ navigation: { navigate } }: Props) => {
       randomNumber = Math.floor(Math.random() * 10);
       setNumber(randomNumber);
       arregloNumeros.push(randomNumber);
-      console.log("pase")
     }, 2000);
 
     const numero6 = setTimeout(() => {
       setLoader(false);
-      console.log("numero6")
-      console.log("pase")
     }, 2500);
 
     const numero7 = setTimeout(() => {
       setUltimo(true);
       setMiArreglo([...arregloNumeros]);
       console.log(arregloNumeros)
-      console.log("pase")
     }, 3000);
-
-    console.log("ultimo")
 
     return () => {
       clearTimeout(numero1);
@@ -101,13 +89,46 @@ const NumberGame: React.FC<Props> = ({ navigation: { navigate } }: Props) => {
     setNumber2(parseInt(text));
   };
 
+  const showToastCorrect = () => {
+    try{
+      Toast.show('Respuesta correcta!', {
+        duration: Toast.durations.LONG,
+        animation: true,
+        backgroundColor: Colors.primary,
+        textColor: Colors.onPrimary,
+        hideOnPress: true,
+        shadow: true,
+      });
+    }
+    catch(error){
+      console.log(error)
+    }
+  }
+
+  const showToastInCorrect = () => {
+    try{
+      Toast.show('Respuesta incorrecta, Vuelve a intentarlo!', {
+        duration: Toast.durations.LONG,
+        animation: true,
+        backgroundColor: Colors.primary,
+        textColor: Colors.onPrimary,
+        hideOnPress: true,
+        shadow: true,
+      });
+    }
+    catch(error){
+      console.log(error)
+    }
+  }
+
   const handleProbar = () => {
     const concatenatedNumber = miArreglo.map(String).join("");
     if (number2 === parseInt(concatenatedNumber, 10)) {
       setResultado(true);
-      console.log("entre")
+      showToastCorrect();
     } else {
       setResultado(false);
+      showToastInCorrect();
       setContadorFallidos(contadorFalldios + 1)
     }
   };
@@ -122,7 +143,6 @@ const NumberGame: React.FC<Props> = ({ navigation: { navigate } }: Props) => {
     setFinalNumber(0);
     setResultado(false);
     setValor(valor+1);
-    console.log("LLegue al final")
   };
 
   function NumberDisplay({ numbers }) {
