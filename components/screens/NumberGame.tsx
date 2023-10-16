@@ -14,6 +14,7 @@ import Fonts from "../constants/Fonts";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../../types";
 import Loader from "./Loader";
+import { ScoreContext } from "../context/ScoreContext";
 import Toast from 'react-native-root-toast';
 const { height } = Dimensions.get("window");
 const { width } = Dimensions.get("window");
@@ -30,6 +31,7 @@ const NumberGame: React.FC<Props> = ({ navigation: { navigate } }: Props) => {
   const [finalNumber, setFinalNumber] = useState(0);
   const [resultado, setResultado] = useState(false);
   const [valor, setValor] = useState(0);
+  const { score, updateScore, setScore } = useContext(ScoreContext)
 
   useEffect(() => {
     let randomNumber = Math.floor(Math.random() * 10);
@@ -126,11 +128,20 @@ const NumberGame: React.FC<Props> = ({ navigation: { navigate } }: Props) => {
     if (number2 === parseInt(concatenatedNumber, 10)) {
       setResultado(true);
       showToastCorrect();
+      setScore({
+        correct: score.correct + 1,
+        incorrect: score.incorrect,
+      });
     } else {
       setResultado(false);
       showToastInCorrect();
+      setScore({
+        correct: score.correct,
+        incorrect: score.incorrect + 1,
+      });
       setContadorFallidos(contadorFalldios + 1)
     }
+    console.log("actualice")
   };
 
   const reiniciarComponente = () => {
@@ -166,6 +177,7 @@ const NumberGame: React.FC<Props> = ({ navigation: { navigate } }: Props) => {
   }
 
   function JugarDenuevo() {
+    updateScore(score.correct, score.incorrect);
     return(
       <View>
         <View
@@ -293,12 +305,13 @@ const NumberGame: React.FC<Props> = ({ navigation: { navigate } }: Props) => {
                     </Text>
                     <View
                       style={{
-
+                        paddingHorizontal: Spacing * 4,
+                        paddingTop: Spacing,
                       }}>
                       <Text
                         style={{
-                          height: height / 2.5,
-                          width: width / 1.5,
+                          color: Colors.primary,
+                          fontSize: FontSize.xxLarge*5,
                           marginTop: Spacing * 4,
                           alignSelf: "center",
                         }}
@@ -335,6 +348,22 @@ const NumberGame: React.FC<Props> = ({ navigation: { navigate } }: Props) => {
                         placeholder="Numero"
                         keyboardType="numeric"
                         onChangeText={(text) => handleInputChange(text)}
+                        style={{
+                          borderRadius: Spacing,
+                          borderColor: Colors.primary,
+                          padding: Spacing * 2,
+                          marginVertical: Spacing * 2,
+                          shadowColor: Colors.primary,
+                          shadowOffset: {
+                            width: 0,
+                            height: Spacing,
+                          },
+                          color: Colors.primary,
+                          shadowOpacity: 0.3,
+                          shadowRadius: Spacing,
+                          fontSize: FontSize.large,
+                          textAlign: "center",
+                        }}
                       />
                       <TouchableOpacity 
                         onPress={handleProbar}
