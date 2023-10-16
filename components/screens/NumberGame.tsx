@@ -24,11 +24,9 @@ const NumberGame: React.FC<Props> = ({ navigation: { navigate } }: Props) => {
   let arregloNumeros: number[] = [];
   const [miArreglo, setMiArreglo] = useState([]);
   const [number2, setNumber2] = useState<Number>(0);
-  const [number3, setNumber3] = useState(0);
-  const [number4, setNumber4] = useState(0);
+  const [contadorFalldios, setContadorFallidos] = useState(0);
   const [loader, setLoader] = useState(false);
   const [ultimo, setUltimo] = useState(false);
-  const isFocused = useIsFocused();
   const [finalNumber, setFinalNumber] = useState(0);
   const [resultado, setResultado] = useState(false);
   const [valor, setValor] = useState(0);
@@ -37,11 +35,13 @@ const NumberGame: React.FC<Props> = ({ navigation: { navigate } }: Props) => {
     let randomNumber = Math.floor(Math.random() * 10);
     setNumber(randomNumber);
     arregloNumeros.push(randomNumber);
+    console.log("pase")
     const numero1 = setTimeout(() => {
       setLoader(true);
       randomNumber = Math.floor(Math.random() * 10);
       setNumber(randomNumber);
       arregloNumeros.push(randomNumber);
+      console.log("pase")
     }, 200);
 
     const numero2 = setTimeout(() => {
@@ -55,6 +55,7 @@ const NumberGame: React.FC<Props> = ({ navigation: { navigate } }: Props) => {
       setNumber(randomNumber);
       arregloNumeros.push(randomNumber);
       console.log("numero3")
+      console.log("pase")
     }, 1000);
 
     const numero4 = setTimeout(() => {
@@ -67,18 +68,23 @@ const NumberGame: React.FC<Props> = ({ navigation: { navigate } }: Props) => {
       randomNumber = Math.floor(Math.random() * 10);
       setNumber(randomNumber);
       arregloNumeros.push(randomNumber);
+      console.log("pase")
     }, 2000);
 
     const numero6 = setTimeout(() => {
       setLoader(false);
       console.log("numero6")
+      console.log("pase")
     }, 2500);
 
     const numero7 = setTimeout(() => {
       setUltimo(true);
       setMiArreglo([...arregloNumeros]);
       console.log(arregloNumeros)
+      console.log("pase")
     }, 3000);
+
+    console.log("ultimo")
 
     return () => {
       clearTimeout(numero1);
@@ -95,14 +101,14 @@ const NumberGame: React.FC<Props> = ({ navigation: { navigate } }: Props) => {
     setNumber2(parseInt(text));
   };
 
-  const handleProbar = () => { // Reemplaza con el número correcto
+  const handleProbar = () => {
     const concatenatedNumber = miArreglo.map(String).join("");
     if (number2 === parseInt(concatenatedNumber, 10)) {
       setResultado(true);
       console.log("entre")
     } else {
       setResultado(false);
-      console.log("entre")
+      setContadorFallidos(contadorFalldios + 1)
     }
   };
 
@@ -110,13 +116,13 @@ const NumberGame: React.FC<Props> = ({ navigation: { navigate } }: Props) => {
     setNumber(0);
     setMiArreglo([]);
     setNumber2(0);
-    setNumber3(0);
-    setNumber4(0);
+    setContadorFallidos(0);
     setLoader(false);
     setUltimo(false);
     setFinalNumber(0);
     setResultado(false);
-    setValor(0);
+    setValor(valor+1);
+    console.log("LLegue al final")
   };
 
   function NumberDisplay({ numbers }) {
@@ -144,8 +150,7 @@ const NumberGame: React.FC<Props> = ({ navigation: { navigate } }: Props) => {
       <View>
         <View
             style={{
-              paddingHorizontal: Spacing * 2,
-              paddingTop: Spacing * 6,
+            
               flexDirection: "row",
               justifyContent: "space-between",
             }}
@@ -183,10 +188,7 @@ const NumberGame: React.FC<Props> = ({ navigation: { navigate } }: Props) => {
 
             <TouchableOpacity
               onPress={() => {
-                setLoader(false);
-                setUltimo(false);
-                setResultado(false);
-                window.location.reload();
+                navigate("Main");
               }}
               style={{
                 paddingVertical: Spacing * 1.5,
@@ -199,6 +201,8 @@ const NumberGame: React.FC<Props> = ({ navigation: { navigate } }: Props) => {
                 },
                 shadowOpacity: 0.3,
                 shadowRadius: Spacing,
+                justifyContent: "center", 
+                alignItems: "center",
               }}
             >
               <Text
@@ -236,7 +240,7 @@ const NumberGame: React.FC<Props> = ({ navigation: { navigate } }: Props) => {
                   textAlign: "center",
                 }}
               >
-                No te olvides la imagen!
+                No te olvides el numero!
               </Text>
             </View>
             <View
@@ -307,6 +311,7 @@ const NumberGame: React.FC<Props> = ({ navigation: { navigate } }: Props) => {
                       }}
                     >
                       <AppTextInput
+                        editable={!resultado}
                         placeholder="Numero"
                         keyboardType="numeric"
                         onChangeText={(text) => handleInputChange(text)}
@@ -316,7 +321,7 @@ const NumberGame: React.FC<Props> = ({ navigation: { navigate } }: Props) => {
                         disabled={resultado}
                         style={{
                           padding: Spacing * 2,
-                          backgroundColor: Colors.primary,
+                          backgroundColor: resultado ? Colors.second_gray : Colors.primary,
                           marginVertical: Spacing * 3,
                           borderRadius: Spacing,
                           shadowColor: resultado ? Colors.gray : Colors.primary,
@@ -339,6 +344,36 @@ const NumberGame: React.FC<Props> = ({ navigation: { navigate } }: Props) => {
                           Probar
                         </Text>
                       </TouchableOpacity>
+                      {contadorFalldios > 4 &&(
+                        <TouchableOpacity 
+                        onPress={reiniciarComponente}
+                        disabled={resultado}
+                        style={{
+                          padding: Spacing * 2,
+                          backgroundColor: resultado ? Colors.second_gray : Colors.primary,
+                          marginVertical: Spacing * 2,
+                          borderRadius: Spacing,
+                          shadowColor: resultado ? Colors.gray : Colors.primary,
+                          shadowOffset: {
+                            width: 0,
+                            height: Spacing,
+                          },
+                          shadowOpacity: 0.3,
+                          shadowRadius: Spacing,
+                        }}
+                      >
+                        <Text
+                          style={{
+                            fontFamily: Fonts["poppins-bold"],
+                            color: Colors.onPrimary,
+                            textAlign: "center",
+                            fontSize: FontSize.large,
+                          }}
+                        >
+                          Probar con otro numero
+                        </Text>
+                      </TouchableOpacity>
+                      )}
                     </View>
                     {resultado && (
                       <JugarDenuevo />)}
