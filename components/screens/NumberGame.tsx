@@ -345,28 +345,13 @@ const NumberGame: React.FC<Props> = ({ navigation: { navigate } }: Props) => {
                         marginVertical: Spacing * 3,
                       }}
                     >
+                      {!resultado && (
                       <AppTextInput
                         editable={!resultado}
                         placeholder="Numero"
                         keyboardType="numeric"
                         onChangeText={(text) => handleInputChange(text)}
-                        style={{
-                          borderRadius: Spacing,
-                          borderColor: Colors.primary,
-                          padding: Spacing * 2,
-                          marginVertical: Spacing * 2,
-                          shadowColor: Colors.primary,
-                          shadowOffset: {
-                            width: 0,
-                            height: Spacing,
-                          },
-                          color: Colors.primary,
-                          shadowOpacity: 0.3,
-                          shadowRadius: Spacing,
-                          fontSize: FontSize.large,
-                          textAlign: "center",
-                        }}
-                      />
+                      />)}
                       <TouchableOpacity 
                         onPress={handleProbar}
                         disabled={resultado}
