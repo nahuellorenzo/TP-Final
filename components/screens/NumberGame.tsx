@@ -42,39 +42,39 @@ const NumberGame: React.FC<Props> = ({ navigation: { navigate } }: Props) => {
       randomNumber = Math.floor(Math.random() * 10);
       setNumber(randomNumber);
       arregloNumeros.push(randomNumber);
-    }, 200);
+    }, 500);
 
     const numero2 = setTimeout(() => {
       setLoader(false);
-    }, 500);
+    }, 1000);
 
     const numero3 = setTimeout(() => {
       setLoader(true);
       randomNumber = Math.floor(Math.random() * 10);
       setNumber(randomNumber);
       arregloNumeros.push(randomNumber);
-    }, 1000);
+    }, 1500);
 
     const numero4 = setTimeout(() => {
       setLoader(false);
-    }, 1500);
+    }, 2000);
 
     const numero5 = setTimeout(() => {
       setLoader(true);
       randomNumber = Math.floor(Math.random() * 10);
       setNumber(randomNumber);
       arregloNumeros.push(randomNumber);
-    }, 2000);
+    }, 2500);
 
     const numero6 = setTimeout(() => {
       setLoader(false);
-    }, 2500);
+    }, 3000);
 
     const numero7 = setTimeout(() => {
       setUltimo(true);
       setMiArreglo([...arregloNumeros]);
       console.log(arregloNumeros)
-    }, 3000);
+    }, 3500);
 
     return () => {
       clearTimeout(numero1);
@@ -179,10 +179,12 @@ const NumberGame: React.FC<Props> = ({ navigation: { navigate } }: Props) => {
   function JugarDenuevo() {
     updateScore(score.correct, score.incorrect);
     return(
-      <View>
+      <View
+        style={{
+          marginTop: Spacing*-2,
+        }}>
         <View
             style={{
-            
               flexDirection: "row",
               justifyContent: "space-between",
             }}
@@ -280,7 +282,7 @@ const NumberGame: React.FC<Props> = ({ navigation: { navigate } }: Props) => {
                 paddingHorizontal: Spacing * 4,
                 paddingTop: Spacing * 10,
               }}>
-
+                <Loader/>
             </View>
           </View>
           ) :
