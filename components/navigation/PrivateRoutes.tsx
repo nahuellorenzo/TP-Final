@@ -18,6 +18,7 @@ import CategoriesScreen from "../screens/Categories";
 import IntruccionesJuego2Screen from "../screens/InstructionsGame2";
 import InstruccionesJuego1Screen from "../screens/InstruccionesJuego1";
 import EstadisticasJuego1Screen from "../screens/StatisticsGame1";
+import ForgotPasswordScreen from "../screens/ForgotPassword";
 
 /* const theme = {
   ...DefaultTheme,
@@ -64,6 +65,7 @@ import { FontAwesome } from '@expo/vector-icons';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
+import ForgotPassword from "../screens/ForgotPassword";
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -116,7 +118,12 @@ function HomeStack() {
       name="EstadisticasJuego1"
       component={EstadisticasJuego1Screen}
       options={{ title: 'Resultado!' }}
-    />
+      />
+      <Stack.Screen
+        name="ForgotPassword"
+        component={ForgotPasswordScreen}
+        options={{ title: 'Recuperar Contraseña' }}
+      />
     </Stack.Navigator>
   );
 }

@@ -10,6 +10,7 @@ import React, {useState, useEffect} from 'react';
 import Spinner from 'react-native-loading-spinner-overlay';
 import { Component } from 'react';
 import { Platform, StyleSheet, Text, View } from 'react-native';
+import { dropdownTimeValue1 } from './InstruccionesJuego1';
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
@@ -29,7 +30,7 @@ export default class Loader extends Component<Props> {
       this.setState({
         spinner: !this.state.spinner
       });
-    }, 2000);
+    }, dropdownTimeValue1);
   }
 
   render() {

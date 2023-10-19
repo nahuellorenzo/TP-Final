@@ -38,7 +38,7 @@ const CategoriesScreen: React.FC<Props> = ({ navigation: { navigate } }: Props) 
         var nombresCatTotales: string [] = Object.keys(nivelesCat.Dificil)
     }
 
-    const nombresCategorias: string[] = ["Entrenamiento", "Banderas", "Paisajes", "Peliculas", "Personas", "Camisetas de Futbol"];
+    const nombresCategorias: string[] = ["Entrenamiento", "Banderas", "Paisajes", "Peliculas", "Personas", "Camisetas de Futbol", "Oficios", "Figuras Geométricas", "Lugares", "Frutas"];
     
     return (
         <ScrollView>

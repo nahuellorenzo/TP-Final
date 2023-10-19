@@ -1,172 +1,807 @@
 {
     "Facil": {
-      "Entrenamiento": [
+      "Entrenamiento": 
+      [
         {
-          "imagen": "./../../assets/imagesGame/Entrenamiento/image1.png"
-        },
-        {
-          "imagen": "./../../assets/imagesGame/Entrenamiento/image2.png"
-        },
-        {
-          "imagen": "./../../assets/imagesGame/Entrenamiento/image3.png"
-        },
-        {
-          "imagen": "./../../assets/imagesGame/Entrenamiento/image4.png"
-        },
-        {
-          "imagen": "./../../assets/imagesGame/Entrenamiento/image5.png"
+          "imagen":[
+            "./../../assets/imagesGame/Entrenamiento/image1.png",
+            "./../../assets/imagesGame/Entrenamiento/image2.png",
+            "./../../assets/imagesGame/Entrenamiento/image3.png",
+            "./../../assets/imagesGame/Entrenamiento/image4.png",
+            "./../../assets/imagesGame/Entrenamiento/image5.png"
+          ] 
         }
       ],
-      "Paisajes": [
+
+      "Paisajes": 
+      [
         {
-          "imagen": "./../../assets/imagesGame/Paisajes/image1.png"
-        },
-        {
-          "imagen": "./../../assets/imagesGame/Paisajes/image2.png"
-        },
-        {
-          "imagen": "./../../assets/imagesGame/Paisajes/image3.png"
+          "imagen":[ 
+            "./../../assets/imagesGame/Paisajes/image1.png",
+            "./../../assets/imagesGame/Paisajes/image2.png",
+            "./../../assets/imagesGame/Paisajes/image3.png"
+          ]
         }
       ],
-      "Banderas": [
+
+      "Banderas": 
+      [
         {
-          "imagen": "./../../assets/imagesGame/Banderas/image1.png"
-        },
-        {
-          "imagen": "./../../assets/imagesGame/Banderas/image2.png"
-        },
-        {
-          "imagen": "./../../assets/imagesGame/Banderas/image3.png"
-        },
-        {
-          "imagen": "./../../assets/imagesGame/Banderas/image4.png"
-        },
-        {
-          "imagen": "./../../assets/imagesGame/Banderas/image5.png"
+          "imagen":[
+            "./../../assets/imagesGame/Banderas/image1.png",
+            "./../../assets/imagesGame/Banderas/image2.png",
+            "./../../assets/imagesGame/Banderas/image3.png",
+            "./../../assets/imagesGame/Banderas/image4.png",
+            "./../../assets/imagesGame/Banderas/image5.png"
+          ]
         }
       ],
-      "Camisetas de Futbol": [
+
+      "Camisetas de Futbol": 
+      [
         {
-          "imagen": "./../../assets/imagesGame/Camisetas/image3.png"
-        },
-        {
-          "imagen": "./../../assets/imagesGame/Camisetas/image5.png"
-        },
-        {
-          "imagen": "./../../assets/imagesGame/Camisetas/image7.png"
+          "imagen":[
+            "./../../assets/imagesGame/Camisetas/image3.png",
+            "./../../assets/imagesGame/Camisetas/image5.png",
+            "./../../assets/imagesGame/Camisetas/image7.png"
+          ]
         }
       ],
-      "Peliculas":[
+
+      "Peliculas":
+      [
         {
-          "imagen":"./../../assets/imagesGame/Peliculas/image1.png"
-        },
-        {
-          "imagen":"./../../assets/imagesGame/Peliculas/image2.png"
-        },
-        {
-          "imagen":"./../../assets/imagesGame/Peliculas/image3.png"
-        },
-        {
-          "imagen":"./../../assets/imagesGame/Peliculas/image4.png"
-        },
-        {
-          "imagen":"./../../assets/imagesGame/Peliculas/image5.png"
+          "imagen":[
+            "./../../assets/imagesGame/Peliculas/image1.png",
+            "./../../assets/imagesGame/Peliculas/image2.png",
+            "./../../assets/imagesGame/Peliculas/image3.png",
+            "./../../assets/imagesGame/Peliculas/image4.png",
+            "./../../assets/imagesGame/Peliculas/image5.png"
+          ]
         }
       ],
-      "Personas": [
+      "Personas": 
+      [
         {
-          "imagen": "./../../assets/imagesGame/Personas/image1.png"
+          "imagen":[
+            "./../../assets/imagesGame/Personas/image1.png",
+            "./../../assets/imagesGame/Personas/image2.png",
+            "./../../assets/imagesGame/Personas/image3.png",
+            "./../../assets/imagesGame/Personas/image5.png",
+            "./../../assets/imagesGame/Personas/image9.png",
+            "./../../assets/imagesGame/Personas/image10.png"
+          ]
         },
         {
-          "imagen": "./../../assets/imagesGame/Personas/image2.png"
-        },
+          "imagen":[
+            "./../../assets/imagesGame/Personas/image13.png",
+            "./../../assets/imagesGame/Personas/image14.png",
+            "./../../assets/imagesGame/Personas/image15.png",
+            "./../../assets/imagesGame/Personas/image16.png",
+            "./../../assets/imagesGame/Personas/image17.png",
+            "./../../assets/imagesGame/Personas/image18.png",
+            "./../../assets/imagesGame/Personas/image19.png",
+            "./../../assets/imagesGame/Personas/image20.png",
+            "./../../assets/imagesGame/Personas/image21.png",
+            "./../../assets/imagesGame/Personas/image22.png",
+            "./../../assets/imagesGame/Personas/image23.png",
+            "./../../assets/imagesGame/Personas/image24.png"
+            ]
+        }
+      ],
+      
+      "Oficios":
+      [
         {
-          "imagen": "./../../assets/imagesGame/Personas/image3.png"
-        },
+          "imagen":[
+            "./../../assets/imagesGame/Oficios/image1.png",
+            "./../../assets/imagesGame/Oficios/image5.png",
+            "./../../assets/imagesGame/Oficios/image7.png",
+            "./../../assets/imagesGame/Oficios/image9.png",
+            "./../../assets/imagesGame/Oficios/image11.png",
+            "./../../assets/imagesGame/Oficios/image13.png",
+            "./../../assets/imagesGame/Oficios/image17.png",
+            "./../../assets/imagesGame/Oficios/image18.png",
+            "./../../assets/imagesGame/Oficios/image21.png",
+            "./../../assets/imagesGame/Oficios/image24.png",
+            "./../../assets/imagesGame/Oficios/image25.png"
+          ]
+        }
+      ],
+
+      "Lugares":
+      [
         {
-          "imagen": "./../../assets/imagesGame/Personas/image5.png"
-        },
+          "imagen":[
+            "./../../assets/imagesGame/Lugares/image1.png",
+            "./../../assets/imagesGame/Lugares/image3.png",
+            "./../../assets/imagesGame/Lugares/image5.png",
+            "./../../assets/imagesGame/Lugares/image7.png",
+            "./../../assets/imagesGame/Lugares/image9.png",
+            "./../../assets/imagesGame/Lugares/image11.png",
+            "./../../assets/imagesGame/Lugares/image13.png",
+            "./../../assets/imagesGame/Lugares/image15.png",
+            "./../../assets/imagesGame/Lugares/image17.png",
+            "./../../assets/imagesGame/Lugares/image19.png",
+            "./../../assets/imagesGame/Lugares/image21.png",
+            "./../../assets/imagesGame/Lugares/image23.png",
+            "./../../assets/imagesGame/Lugares/image25.png",
+            "./../../assets/imagesGame/Lugares/image27.png",
+            "./../../assets/imagesGame/Lugares/image29.png",
+            "./../../assets/imagesGame/Lugares/image31.png"
+          ]
+        }
+      ],
+
+      "Figuras Geométricas":
+      [
         {
-          "imagen": "./../../assets/imagesGame/Personas/image9.png"
-        },
+          "imagen":[
+            "./../../assets/imagesGame/FigurasGeo/image1.png",
+            "./../../assets/imagesGame/FigurasGeo/image5.png",
+            "./../../assets/imagesGame/FigurasGeo/image9.png",
+            "./../../assets/imagesGame/FigurasGeo/image13.png",
+            "./../../assets/imagesGame/FigurasGeo/image17.png",
+            "./../../assets/imagesGame/FigurasGeo/image21.png"
+          ]
+        }
+      ],
+      
+      "Frutas":
+      [
         {
-          "imagen": "./../../assets/imagesGame/Personas/image10.png"
+          "imagen":[
+            "./../../assets/imagesGame/Frutas/imageG1.png",
+            "./../../assets/imagesGame/Frutas/imageG3.png",
+            "./../../assets/imagesGame/Frutas/imageG4.png",
+            "./../../assets/imagesGame/Frutas/imageG5.png",
+            "./../../assets/imagesGame/Frutas/imageG7.png",
+            "./../../assets/imagesGame/Frutas/imageG8.png",
+            "./../../assets/imagesGame/Frutas/imageG9.png",
+            "./../../assets/imagesGame/Frutas/imageG10.png",
+            "./../../assets/imagesGame/Frutas/imageG11.png",
+            "./../../assets/imagesGame/Frutas/imageG12.png",
+            "./../../assets/imagesGame/Frutas/imageG13.png",
+            "./../../assets/imagesGame/Frutas/imageG14.png",
+            "./../../assets/imagesGame/Frutas/imageG15.png",
+            "./../../assets/imagesGame/Frutas/imageG16.png",
+            "./../../assets/imagesGame/Frutas/imageG17.png",
+            "./../../assets/imagesGame/Frutas/imageG18.png",
+
+            "./../../assets/imagesGame/Frutas/imageP34.png",
+            "./../../assets/imagesGame/Frutas/imageP38.png",
+            "./../../assets/imagesGame/Frutas/imageP43.png",
+
+            "./../../assets/imagesGame/Frutas/imageB18.png",
+            "./../../assets/imagesGame/Frutas/imageB25.png",
+            "./../../assets/imagesGame/Frutas/imageB33.png",
+
+            "./../../assets/imagesGame/Frutas/imageV53.png",
+            "./../../assets/imagesGame/Frutas/imageV56.png",
+            "./../../assets/imagesGame/Frutas/imageV60.png",
+            "./../../assets/imagesGame/Frutas/imageV64.png"
+          ]
         }
       ]
+
     },
+
     "Intermedio": {
-      "Paisajes": [
+      "Paisajes": 
+      [
         {
-          "imagen": "./../../assets/imagesGame/Paisajes/image1.png"
-        },
-        {
-          "imagen": "./../../assets/imagesGame/Paisajes/image4.png"
+          "imagen":[
+            "./../../assets/imagesGame/Paisajes/image1.png",
+            "./../../assets/imagesGame/Paisajes/image4.png"
+          ]
         }
       ],
-      "Camisetas de Futbol": [
+
+      "Camisetas de Futbol": 
+      [
         {
-          "imagen": "./../../assets/imagesGame/Camisetas/image1.png"
-        },
-        {
-          "imagen": "./../../assets/imagesGame/Camisetas/image8.png"
-        },
-        {
-          "imagen": "./../../assets/imagesGame/Camisetas/image3.png"
+          "imagen":[
+            "./../../assets/imagesGame/Camisetas/image1.png",
+            "./../../assets/imagesGame/Camisetas/image8.png",
+            "./../../assets/imagesGame/Camisetas/image3.png"
+          ]
         }
       ],
-      "Personas":[
+
+      "Personas":
+      [
         {
-          "imagen":"./../../assets/imagesGame/Personas/image1.png"
+          "imagen":[
+            "./../../assets/imagesGame/Personas/image1.png",
+            "./../../assets/imagesGame/Personas/image4.png",
+            "./../../assets/imagesGame/Personas/image7.png",
+            "./../../assets/imagesGame/Personas/image2.png",
+            "./../../assets/imagesGame/Personas/image8.png",
+            "./../../assets/imagesGame/Personas/image12.png"
+          ]
         },
         {
-          "imagen":"./../../assets/imagesGame/Personas/image4.png"
+          "imagen":[
+            "./../../assets/imagesGame/Personas/image25.png",
+            "./../../assets/imagesGame/Personas/image28.png"
+            ]
         },
         {
-          "imagen":"./../../assets/imagesGame/Personas/image7.png"
+          "imagen":[
+            "./../../assets/imagesGame/Personas/image26.png",
+            "./../../assets/imagesGame/Personas/image27.png"
+            ]
         },
         {
-          "imagen":"./../../assets/imagesGame/Personas/image2.png"
+          "imagen":[
+            "./../../assets/imagesGame/Personas/image29.png",
+            "./../../assets/imagesGame/Personas/image30.png",
+            "./../../assets/imagesGame/Personas/image31.png"
+            ]
+        }
+      ],
+
+      "Oficios":
+      [
+        {
+          "imagen":[
+            "./../../assets/imagesGame/Oficios/image3.png",
+            "./../../assets/imagesGame/Oficios/image5.png"
+          ]
         },
         {
-          "imagen":"./../../assets/imagesGame/Personas/image8.png"
+          "imagen":[
+            "./../../assets/imagesGame/Oficios/image9.png",
+            "./../../assets/imagesGame/Oficios/image10.png"
+            ]
         },
         {
-          "imagen":"./../../assets/imagesGame/Personas/image12.png"
+          "imagen":[
+            "./../../assets/imagesGame/Oficios/image13.png",
+            "./../../assets/imagesGame/Oficios/image14.png"
+            ]
         },
         {
-          "imagen":"./../../assets/imagesGame/Personas/image2.png"
+          "imagen":[
+            "./../../assets/imagesGame/Oficios/image15.png",
+            "./../../assets/imagesGame/Oficios/image16.png"
+            ]
+        },
+        {
+          "imagen":[
+            "./../../assets/imagesGame/Oficios/image19.png",
+            "./../../assets/imagesGame/Oficios/image20.png"
+            ]
+        },
+        {
+          "imagen":[
+            "./../../assets/imagesGame/Oficios/image22.png",
+            "./../../assets/imagesGame/Oficios/image23.png"
+            ]
+        }
+      ],
+
+      "Figuras Geométricas":
+      [
+        {
+          "imagen":[
+            "./../../assets/imagesGame/FigurasGeo/image2.png",
+            "./../../assets/imagesGame/FigurasGeo/image4.png"
+          ]
+        },
+        {
+          "imagen":[
+            "./../../assets/imagesGame/FigurasGeo/image5.png",
+            "./../../assets/imagesGame/FigurasGeo/image7.png"
+            ]
+        },
+        {
+          "imagen":[
+            "./../../assets/imagesGame/FigurasGeo/image11.png",
+            "./../../assets/imagesGame/FigurasGeo/image12.png"
+            ]
+        },
+        {
+          "imagen":[
+            "./../../assets/imagesGame/FigurasGeo/image13.png",
+            "./../../assets/imagesGame/FigurasGeo/image14.png"
+            ]
+        },
+        {
+          "imagen":[
+            "./../../assets/imagesGame/FigurasGeo/image17.png",
+            "./../../assets/imagesGame/FigurasGeo/image19.png"
+            ]
+        }
+      ],
+
+      "Frutas":
+      [
+        {
+          "imagen":[
+             "./../../assets/imagesGame/Frutas/imageG2.png",
+             "./../../assets/imagesGame/Frutas/imageG3.png"
+           ]
+         },
+        {
+          "imagen":[
+            "./../../assets/imagesGame/Frutas/imageG5.png",
+            "./../../assets/imagesGame/Frutas/imageG6.png"
+          ]
+        },
+        {
+          "imagen":[
+            "./../../assets/imagesGame/Frutas/imageP34.png",
+            "./../../assets/imagesGame/Frutas/imageP35.png"
+           ]
+        },
+        {
+          "imagen":[
+            "./../../assets/imagesGame/Frutas/imageP35.png",
+            "./../../assets/imagesGame/Frutas/imageP36.png"
+          ]
+        },
+        {
+          "imagen":[
+            "./../../assets/imagesGame/Frutas/imageP36.png",
+            "./../../assets/imagesGame/Frutas/imageP37.png",
+            "./../../assets/imagesGame/Frutas/imageP38.png",
+            "./../../assets/imagesGame/Frutas/imageP39.png"
+          ]
+        },
+        {
+          "imagen":[
+            "./../../assets/imagesGame/Frutas/imageP40.png",
+            "./../../assets/imagesGame/Frutas/imageP41.png",
+            "./../../assets/imagesGame/Frutas/imageP42.png",
+            "./../../assets/imagesGame/Frutas/imageP43.png"
+           ]
+        },
+        {
+          "imagen":[
+            "./../../assets/imagesGame/Frutas/imageB18.png",
+            "./../../assets/imagesGame/Frutas/imageB22.png"
+          ]
+        },
+        {
+          "imagen":[
+            "./../../assets/imagesGame/Frutas/imageB22.png",
+            "./../../assets/imagesGame/Frutas/imageB26.png"
+          ]
+        },
+        {
+          "imagen":[
+            "./../../assets/imagesGame/Frutas/imageB26.png",
+            "./../../assets/imagesGame/Frutas/imageB30.png"
+           ]
+        },
+        {
+          "imagen":[
+            "./../../assets/imagesGame/Frutas/imageB30.png",
+            "./../../assets/imagesGame/Frutas/imageB33.png"
+          ]
+        },
+        {
+          "imagen":[
+            "./../../assets/imagesGame/Frutas/imageV53.png",
+            "./../../assets/imagesGame/Frutas/imageV55.png"
+          ]
+        },
+        {
+          "imagen":[
+            "./../../assets/imagesGame/Frutas/imageV55.png",
+            "./../../assets/imagesGame/Frutas/imageV58.png"
+           ]
+        },
+        {
+          "imagen":[
+            "./../../assets/imagesGame/Frutas/imageV58.png",
+            "./../../assets/imagesGame/Frutas/imageV60.png"
+          ]
+        },
+        {
+          "imagen":[
+            "./../../assets/imagesGame/Frutas/imageV60.png",
+            "./../../assets/imagesGame/Frutas/imageV62.png"
+          ]
+        },
+        {
+          "imagen":[
+            "./../../assets/imagesGame/Frutas/imageV62.png",
+            "./../../assets/imagesGame/Frutas/imageV64.png"
+          ]
         }
       ]
     },
+
     "Dificil": {
-      "Paisajes": [
+      "Paisajes": 
+      [
         {
-          "imagen": "./../../assets/imagesGame/Paisajes/image4.png"
-        },
-        {
-          "imagen": "./../../assets/imagesGame/Paisajes/image5.png"
+          "imagen":[
+            "./../../assets/imagesGame/Paisajes/image4.png",
+            "./../../assets/imagesGame/Paisajes/image5.png"
+          ]
         }
       ],
-      "Camisetas de Futbol": [
+
+      "Camisetas de Futbol": 
+      [
         {
-          "imagen": "./../../assets/imagesGame/Camisetas/image2.png"
-        },
-        {
-          "imagen": "./../../assets/imagesGame/Camisetas/image4.png"
-        },
-        {
-          "imagen": "./../../assets/imagesGame/Camisetas/image6.png"
-        },
-        {
-          "imagen": "./../../assets/imagesGame/Camisetas/image8.png"
+          "imagen":[
+            "./../../assets/imagesGame/Camisetas/image2.png",
+            "./../../assets/imagesGame/Camisetas/image4.png",
+            "./../../assets/imagesGame/Camisetas/image6.png",
+            "./../../assets/imagesGame/Camisetas/image8.png"
+          ]
         }
       ],
-      "Personas": [
+
+      "Personas": 
+      [
         {
-          "imagen": "./../../assets/imagesGame/Personas/image9.png"
+          "imagen":[ 
+            "./../../assets/imagesGame/Personas/image9.png",
+            "./../../assets/imagesGame/Personas/image11.png"
+          ]
+        }
+      ],
+
+      "Oficios":
+      [
+        {
+          "imagen":[
+            "./../../assets/imagesGame/Oficios/image1.png",
+            "./../../assets/imagesGame/Oficios/image2.png"
+          ]
         },
         {
-          "imagen": "./../../assets/imagesGame/Personas/image11.png"
+          "imagen":[
+            "./../../assets/imagesGame/Oficios/image4.png",
+            "./../../assets/imagesGame/Oficios/image6.png"
+            ]
+        },
+        {
+          "imagen":[
+            "./../../assets/imagesGame/Oficios/image7.png",
+            "./../../assets/imagesGame/Oficios/image8.png"
+            ]
+        },
+        {
+          "imagen":[
+            "./../../assets/imagesGame/Oficios/image11.png",
+            "./../../assets/imagesGame/Oficios/image12.png"
+            ]
+        }
+      ],
+
+      "Lugares":
+      [
+        {
+          "imagen":[
+            "./../../assets/imagesGame/Lugares/image1.png",
+            "./../../assets/imagesGame/Lugares/image2.png"
+          ]
+        },
+        {
+          "imagen":[
+            "./../../assets/imagesGame/Lugares/image3.png",
+            "./../../assets/imagesGame/Lugares/image4.png"
+            ]
+        },
+        {
+          "imagen":[
+            "./../../assets/imagesGame/Lugares/image5.png",
+            "./../../assets/imagesGame/Lugares/image6.png"
+            ]
+        },
+        {
+          "imagen":[
+            "./../../assets/imagesGame/Lugares/image7.png",
+            "./../../assets/imagesGame/Lugares/image8.png"
+            ]
+        },
+        {
+          "imagen":[
+            "./../../assets/imagesGame/Lugares/image9.png",
+            "./../../assets/imagesGame/Lugares/image10.png"
+            ]
+        },
+        {
+          "imagen":[
+            "./../../assets/imagesGame/Lugares/image11.png",
+            "./../../assets/imagesGame/Lugares/image12.png"
+            ]
+        },
+        {
+          "imagen":[
+            "./../../assets/imagesGame/Lugares/image13.png",
+            "./../../assets/imagesGame/Lugares/image14.png"
+            ]
+        },
+        {
+          "imagen":[
+            "./../../assets/imagesGame/Lugares/image15.png",
+            "./../../assets/imagesGame/Lugares/image16.png"
+            ]
+        },
+        {
+          "imagen":[
+            "./../../assets/imagesGame/Lugares/image17.png",
+            "./../../assets/imagesGame/Lugares/image18.png"
+            ]
+        },
+        {
+          "imagen":[
+            "./../../assets/imagesGame/Lugares/image19.png",
+            "./../../assets/imagesGame/Lugares/image20.png"
+            ]
+        },
+        {
+          "imagen":[
+            "./../../assets/imagesGame/Lugares/image21.png",
+            "./../../assets/imagesGame/Lugares/image22.png"
+            ]
+        },
+        {
+          "imagen":[
+            "./../../assets/imagesGame/Lugares/image23.png",
+            "./../../assets/imagesGame/Lugares/image24.png"
+            ]
+        },
+        {
+          "imagen":[
+            "./../../assets/imagesGame/Lugares/image25.png",
+            "./../../assets/imagesGame/Lugares/image26.png"
+            ]
+        },
+        {
+          "imagen":[
+            "./../../assets/imagesGame/Lugares/image27.png",
+            "./../../assets/imagesGame/Lugares/image28.png"
+            ]
+        },
+        {
+          "imagen":[
+            "./../../assets/imagesGame/Lugares/image29.png",
+            "./../../assets/imagesGame/Lugares/image30.png"
+            ]
+        },
+        {
+          "imagen":[
+            "./../../assets/imagesGame/Lugares/image31.png",
+            "./../../assets/imagesGame/Lugares/image32.png"
+            ]
+        }
+      ],
+
+      "Figuras Geométricas":
+      [
+        {
+          "imagen":[
+            "./../../assets/imagesGame/FigurasGeo/image1.png",
+            "./../../assets/imagesGame/FigurasGeo/image3.png",
+            "./../../assets/imagesGame/FigurasGeo/image4.png"
+          ]
+        },
+        {
+          "imagen":[
+            "./../../assets/imagesGame/FigurasGeo/image5.png",
+            "./../../assets/imagesGame/FigurasGeo/image6.png",
+            "./../../assets/imagesGame/FigurasGeo/image8.png"
+            ]
+        },
+        {
+          "imagen":[
+            "./../../assets/imagesGame/FigurasGeo/image9.png",
+            "./../../assets/imagesGame/FigurasGeo/image10.png",
+            "./../../assets/imagesGame/FigurasGeo/image11.png"
+            ]
+        },
+        {
+          "imagen":[
+            "./../../assets/imagesGame/FigurasGeo/image14.png",
+            "./../../assets/imagesGame/FigurasGeo/image15.png",
+            "./../../assets/imagesGame/FigurasGeo/image16.png"
+            ]
+        },
+        {
+          "imagen":[
+            "./../../assets/imagesGame/FigurasGeo/image18.png",
+            "./../../assets/imagesGame/FigurasGeo/image19.png",
+            "./../../assets/imagesGame/FigurasGeo/image20.png"
+            ]
+        },
+        {
+          "imagen":[
+            "./../../assets/imagesGame/FigurasGeo/image21.png",
+            "./../../assets/imagesGame/FigurasGeo/image22.png",
+            "./../../assets/imagesGame/FigurasGeo/image23.png",
+            "./../../assets/imagesGame/FigurasGeo/image24.png"
+            ]
+        }
+      ],
+
+      "Frutas":
+      [
+        {
+          "imagen":[
+            "./../../assets/imagesGame/Frutas/imageB18.png",
+            "./../../assets/imagesGame/Frutas/imageB20.png"
+          ]
+        },
+        {
+          "imagen":[
+            "./../../assets/imagesGame/Frutas/imageB20.png",
+            "./../../assets/imagesGame/Frutas/imageB22.png"
+          ]
+        },
+        {
+          "imagen":[
+            "./../../assets/imagesGame/Frutas/imageB22.png",
+            "./../../assets/imagesGame/Frutas/imageB24.png"
+           ]
+        },
+        {
+          "imagen":[
+            "./../../assets/imagesGame/Frutas/imageB24.png",
+            "./../../assets/imagesGame/Frutas/imageB26.png"
+          ]
+        },
+        {
+          "imagen":[
+            "./../../assets/imagesGame/Frutas/imageB26.png",
+            "./../../assets/imagesGame/Frutas/imageB28.png"
+          ]
+        },
+        {
+          "imagen":[
+            "./../../assets/imagesGame/Frutas/imageB28.png",
+            "./../../assets/imagesGame/Frutas/imageB30.png"
+          ]
+        },
+        {
+          "imagen":[
+            "./../../assets/imagesGame/Frutas/imageB30.png",
+            "./../../assets/imagesGame/Frutas/imageB32.png"
+           ]
+        },
+        {
+          "imagen":[
+            "./../../assets/imagesGame/Frutas/imageB19.png",
+            "./../../assets/imagesGame/Frutas/imageB21.png"
+          ]
+        },
+        {
+          "imagen":[
+            "./../../assets/imagesGame/Frutas/imageB21.png",
+            "./../../assets/imagesGame/Frutas/imageB23.png"
+          ]
+        },
+        {
+          "imagen":[
+            "./../../assets/imagesGame/Frutas/imageB23.png",
+            "./../../assets/imagesGame/Frutas/imageB25.png"
+           ]
+        },
+        {
+          "imagen":[
+            "./../../assets/imagesGame/Frutas/imageB25.png",
+            "./../../assets/imagesGame/Frutas/imageB27.png"
+          ]
+        },
+        {
+          "imagen":[
+            "./../../assets/imagesGame/Frutas/imageB27.png",
+            "./../../assets/imagesGame/Frutas/imageB29.png"
+          ]
+        },
+        {
+          "imagen":[
+            "./../../assets/imagesGame/Frutas/imageB29.png",
+            "./../../assets/imagesGame/Frutas/imageB31.png"
+          ]
+        },
+        {
+          "imagen":[
+            "./../../assets/imagesGame/Frutas/imageB31.png",
+            "./../../assets/imagesGame/Frutas/imageB33.png"
+           ]
+        },
+        {
+          "imagen":[
+            "./../../assets/imagesGame/Frutas/imageV53.png",
+            "./../../assets/imagesGame/Frutas/imageV54.png"
+          ]
+        },
+        {
+          "imagen":[
+            "./../../assets/imagesGame/Frutas/imageV54.png",
+            "./../../assets/imagesGame/Frutas/imageV55.png"
+           ]
+        },
+        {
+          "imagen":[
+            "./../../assets/imagesGame/Frutas/imageV55.png",
+            "./../../assets/imagesGame/Frutas/imageV56.png"
+          ]
+        },
+        {
+          "imagen":[
+            "./../../assets/imagesGame/Frutas/imageV56.png",
+            "./../../assets/imagesGame/Frutas/imageV57.png"
+          ]
+        },
+        {
+          "imagen":[
+            "./../../assets/imagesGame/Frutas/imageV57.png",
+            "./../../assets/imagesGame/Frutas/imageV58.png"
+          ]
+        },
+        {
+          "imagen":[
+            "./../../assets/imagesGame/Frutas/imageV58.png",
+            "./../../assets/imagesGame/Frutas/imageV59.png"
+          ]
+        },
+        {
+          "imagen":[
+            "./../../assets/imagesGame/Frutas/imageV59.png",
+            "./../../assets/imagesGame/Frutas/imageV60.png"
+           ]
+        },
+        {
+          "imagen":[
+            "./../../assets/imagesGame/Frutas/imageV60.png",
+            "./../../assets/imagesGame/Frutas/imageV61.png"
+          ]
+        },
+        {
+          "imagen":[
+            "./../../assets/imagesGame/Frutas/imageV61.png",
+            "./../../assets/imagesGame/Frutas/imageV62.png"
+          ]
+        },
+        {
+          "imagen":[
+            "./../../assets/imagesGame/Frutas/imageV62.png",
+            "./../../assets/imagesGame/Frutas/imageV63.png"
+          ]
+        },
+        {
+          "imagen":[
+            "./../../assets/imagesGame/Frutas/imageV63.png",
+            "./../../assets/imagesGame/Frutas/imageV64.png"
+          ]
+        },
+        {
+          "imagen":[
+            "./../../assets/imagesGame/Frutas/imageR44.png",
+            "./../../assets/imagesGame/Frutas/imageR46.png",
+            "./../../assets/imagesGame/Frutas/imageR47.png",
+            "./../../assets/imagesGame/Frutas/imageR48.png",
+            "./../../assets/imagesGame/Frutas/imageR49.png",
+            "./../../assets/imagesGame/Frutas/imageR50.png",
+            "./../../assets/imagesGame/Frutas/imageR51.png"
+          ]
+        },
+        {
+          "imagen":[
+            "./../../assets/imagesGame/Frutas/imageR45.png",
+            "./../../assets/imagesGame/Frutas/imageR51.png"
+          ]
+        },
+        {
+          "imagen":[
+            "./../../assets/imagesGame/Frutas/imageR46.png",
+            "./../../assets/imagesGame/Frutas/imageR47.png"
+          ]
+        },
+        {
+          "imagen":[
+            "./../../assets/imagesGame/Frutas/imageR51.png",
+            "./../../assets/imagesGame/Frutas/imageR52.png"
+          ]
         }
       ]
     }
