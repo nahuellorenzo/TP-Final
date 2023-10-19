@@ -20,7 +20,7 @@ import {
 type Props = NativeStackScreenProps<RootStackParamList, "EstadisticasJuego1">;
 const EstadisticasJuego1Screen: React.FC<Props> = ({ navigation: { navigate } }: Props) => {
 
-  const { score } = useContext(ScoreContext);
+  const { score, currentScore, setCurrentScore } = useContext(ScoreContext);
 
   const labels = score.correctAnswers ? Array.from({ length: score.correctAnswers.length }, (_, i) => (i + 1).toString()) : [];
 
@@ -34,7 +34,7 @@ const EstadisticasJuego1Screen: React.FC<Props> = ({ navigation: { navigate } }:
               labels: [],
               datasets: [
                 {
-                  data: [0,1,1,2,3,4,4,5,5,5,5,6,7,7,8,9,10],
+                  data: currentScore,
                 }
               ]
             }}
@@ -52,7 +52,6 @@ const EstadisticasJuego1Screen: React.FC<Props> = ({ navigation: { navigate } }:
                 borderRadius: 16
               },
               propsForDots: {
-                r: "6",
                 strokeWidth: "2",
                 stroke: "#ffa726"
               }
@@ -65,7 +64,9 @@ const EstadisticasJuego1Screen: React.FC<Props> = ({ navigation: { navigate } }:
           />
         </View>
         <TouchableOpacity
-          onPress={() => navigate("MemoryGame")}
+          onPress={() => {
+            navigate("Main");
+            setCurrentScore([]);}}
           style={{
             backgroundColor: Colors.primary,
             paddingVertical: Spacing * 1.5,

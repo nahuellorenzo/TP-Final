@@ -12,6 +12,8 @@ export const ScoreProvider = ({ children }) => {
     incorrect: 0,
   });
 
+  const [currentScore, setCurrentScore] = useState([0]);
+
   const { user } = useContext(LoginContext)
 
 
@@ -62,6 +64,8 @@ export const ScoreProvider = ({ children }) => {
         score,
         setScore,
         updateScore,
+        currentScore,
+        setCurrentScore,
       }}
     >
       {children}
