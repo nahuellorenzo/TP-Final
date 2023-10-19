@@ -3,7 +3,7 @@ import {
   Text,
   TouchableOpacity,
   View,
-  ScrollView
+  Dimensions
 } from "react-native";
 import Spacing from "../constants/Spacing";
 import FontSize from "../constants/FontSize";
@@ -12,17 +12,58 @@ import Fonts from "../constants/Fonts";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../../types";
 import { ScoreContext } from "../context/ScoreContext";
+import {
+  LineChart,
+} from "react-native-chart-kit";
+
 
 type Props = NativeStackScreenProps<RootStackParamList, "EstadisticasJuego1">;
 const EstadisticasJuego1Screen: React.FC<Props> = ({ navigation: { navigate } }: Props) => {
 
   const { score } = useContext(ScoreContext);
 
+  const labels = score.correctAnswers ? Array.from({ length: score.correctAnswers.length }, (_, i) => (i + 1).toString()) : [];
 
   return (
     <View>
-      <Text>
         {score.correct}
+        {score.correctAnswers}
+        <View>
+          <LineChart
+            data={{
+              labels: [],
+              datasets: [
+                {
+                  data: [0,1,1,2,3,4,4,5,5,5,5,6,7,7,8,9,10],
+                }
+              ]
+            }}
+            width={Dimensions.get("window").width} // from react-native
+            height={220}
+            yAxisInterval={1} // optional, defaults to 1
+            chartConfig={{
+              backgroundColor: "#e26a00",
+              backgroundGradientFrom: "#fb8c00",
+              backgroundGradientTo: "#ffa726",
+              decimalPlaces: 0,
+              color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
+              labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
+              style: {
+                borderRadius: 16
+              },
+              propsForDots: {
+                r: "6",
+                strokeWidth: "2",
+                stroke: "#ffa726"
+              }
+            }}
+            bezier
+            style={{
+              marginVertical: 8,
+              borderRadius: 16
+            }}
+          />
+        </View>
         <TouchableOpacity
           onPress={() => navigate("MemoryGame")}
           style={{
@@ -50,7 +91,6 @@ const EstadisticasJuego1Screen: React.FC<Props> = ({ navigation: { navigate } }:
             Volver al Menu Principal
           </Text>
         </TouchableOpacity>
-      </Text>
     </View>
   );
 };
