@@ -38,7 +38,7 @@ const InstruccionesJuego2Screen: React.FC<Props> = ({ navigation: { navigate } }
                     </Text>
 
                     <TouchableOpacity
-                        onPress={() => navigate("Categories")}
+                        onPress={() => navigate("NumberGame")}
                         style={{
                             padding: Spacing * 2,
                             backgroundColor: Colors.primary,
