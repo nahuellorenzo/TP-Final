@@ -26,9 +26,22 @@ const EstadisticasJuego1Screen: React.FC<Props> = ({ navigation: { navigate } }:
 
   return (
     <View>
-        {score.correct}
-        {score.correctAnswers}
-        <View>
+      <Text
+        style={{
+          fontFamily: Fonts["Roboto-Bold"],
+          fontSize: FontSize.large,
+          textAlign: "center",
+          margin: Spacing * 2,
+          marginBottom: 0,
+        }}
+      >
+        Tus aciertos!
+      </Text>
+        <View
+          style={{
+            alignContent: "center",
+          }}
+        >
           <LineChart
             data={{
               labels: [],
@@ -38,13 +51,13 @@ const EstadisticasJuego1Screen: React.FC<Props> = ({ navigation: { navigate } }:
                 }
               ]
             }}
-            width={Dimensions.get("window").width} // from react-native
+            width={Dimensions.get("window").width - Spacing * 2} // from react-native
             height={220}
             yAxisInterval={1} // optional, defaults to 1
             chartConfig={{
-              backgroundColor: "#e26a00",
-              backgroundGradientFrom: "#fb8c00",
-              backgroundGradientTo: "#ffa726",
+              backgroundColor: "#1F41BB",
+              backgroundGradientFrom: "#1F41BB",
+              backgroundGradientTo: "#1F41BB",
               decimalPlaces: 0,
               color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
               labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
@@ -59,16 +72,20 @@ const EstadisticasJuego1Screen: React.FC<Props> = ({ navigation: { navigate } }:
             bezier
             style={{
               marginVertical: 8,
-              borderRadius: 16
+              marginBottom: 8,
+              borderRadius: 16,
+              padding: Spacing * 2,
+
             }}
           />
         </View>
         <TouchableOpacity
           onPress={() => {
             navigate("Main");
-            setCurrentScore([]);}}
+            setCurrentScore([0]);}}
           style={{
             backgroundColor: Colors.primary,
+            margin: Spacing * 2,
             paddingVertical: Spacing * 1.5,
             paddingHorizontal: Spacing * 2,
             borderRadius: Spacing,
