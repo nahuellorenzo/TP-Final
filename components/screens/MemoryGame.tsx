@@ -436,7 +436,6 @@ const MemoryGame: React.FC = ({ navigation: { navigate } }: Props) => {
         correct: score.correct,
         incorrect: score.incorrect + 1,
       });
-      playSound("incorrecta");
       showToastInCorrect();
     }
     navigate("Again");
