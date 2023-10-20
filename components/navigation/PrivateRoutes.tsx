@@ -18,6 +18,7 @@ import CategoriesScreen from "../screens/Categories";
 import IntruccionesJuego2Screen from "../screens/InstructionsGame2";
 import InstruccionesJuego1Screen from "../screens/InstruccionesJuego1";
 import ForgotPasswordScreen from "../screens/ForgotPassword";
+import NumberGame from "../screens/NumberGame";
 
 /* const theme = {
   ...DefaultTheme,
@@ -117,6 +118,11 @@ function HomeStack() {
         name="ForgotPassword"
         component={ForgotPasswordScreen}
         options={{ title: 'Recuperar Contraseña' }}
+      />
+      <Stack.Screen
+        name="NumberGame"
+        component={NumberGame}
+        options={{ title: 'Numerium' }}
       />
     </Stack.Navigator>
   );
