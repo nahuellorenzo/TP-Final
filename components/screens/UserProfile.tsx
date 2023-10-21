@@ -33,6 +33,7 @@ function UserProfileScreen({ navigation: { navigate } }: Props) {
   const { score } = useContext(ScoreContext);
   const [modalVisible, setModalVisible] = useState(false);
   const total = score.correct + score.incorrect;
+  console.log(score)
   const juegosPuntajes = [
     {
       title: 'Resultados Memory Game',
@@ -92,6 +93,16 @@ function UserProfileScreen({ navigation: { navigate } }: Props) {
             </Text>
           </View>
         
+          <View  
+            style={{
+            marginTop: Spacing,
+          }}>
+            <Text>
+              Racha de dias Jugados: {score.racha}
+            </Text>
+          </View>
+        
+
         <View style={styles.buttonContainer}>
           <TouchableOpacity
             onPress={() => setModalVisible(true)}
