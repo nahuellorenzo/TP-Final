@@ -15,6 +15,8 @@ export const ScoreProvider = ({ children }) => {
   });
   console.log(score)
 
+  const [currentScore, setCurrentScore] = useState([0]);
+
   const { user } = useContext(LoginContext)
 
   useEffect(() => {
@@ -122,6 +124,8 @@ export const ScoreProvider = ({ children }) => {
         score,
         setScore,
         updateScore,
+        currentScore,
+        setCurrentScore,
       }}
     >
       {children}

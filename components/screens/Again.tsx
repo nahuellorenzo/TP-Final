@@ -89,7 +89,7 @@ const Again: React.FC = ({ navigation: { navigate } }: Props) => {
           <TouchableOpacity
             onPress={() =>{ 
               updateScore(score.correct, score.incorrect)
-              navigate("Main")}}
+              navigate("EstadisticasJuego1")}}
             style={{
               paddingVertical: Spacing * 1.5,
               paddingHorizontal: Spacing * 2,

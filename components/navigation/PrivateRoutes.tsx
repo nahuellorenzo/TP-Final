@@ -17,6 +17,7 @@ import Again from "../screens/Again";
 import CategoriesScreen from "../screens/Categories";
 import IntruccionesJuego2Screen from "../screens/InstructionsGame2";
 import InstruccionesJuego1Screen from "../screens/InstruccionesJuego1";
+import EstadisticasJuego1Screen from "../screens/StatisticsGame1";
 import ForgotPasswordScreen from "../screens/ForgotPassword";
 import NumberGame from "../screens/NumberGame";
 
@@ -113,6 +114,11 @@ function HomeStack() {
         name="Again"
         component={Again}
         options={{ title: 'Adivina!' }}
+      />
+      <Stack.Screen
+      name="EstadisticasJuego1"
+      component={EstadisticasJuego1Screen}
+      options={{ title: 'Resultado!' }}
       />
       <Stack.Screen
         name="ForgotPassword"

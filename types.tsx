@@ -22,6 +22,7 @@ export type RootStackParamList = {
   Categories: undefined;
   InstruccionesJuego2: undefined;
   InstruccionesJuego1: undefined;
+  EstadisticasJuego1: undefined;
   ForgotPassword: undefined;
   NumberGame:undefined;
 };

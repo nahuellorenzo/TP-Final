@@ -106,7 +106,7 @@ const MemoryGame: React.FC = ({ navigation: { navigate } }: Props) => {
   const [previousImage, setPreviousImage] = useState(null);
   const isFocused = useIsFocused();
   const [loader, setLoader] = useState(false);
-  const { score, setScore } = useContext(ScoreContext);
+  const { score, setScore, setCurrentScore} = useContext(ScoreContext);
   const ONE_SECOND_IN_MS = 1000;
   const PATTERN = [
     1 * ONE_SECOND_IN_MS,
@@ -425,6 +425,10 @@ const MemoryGame: React.FC = ({ navigation: { navigate } }: Props) => {
         correct: score.correct + 1,
         incorrect: score.incorrect,
       });
+      // agregar a variableArray un 1 si está vacío, o el último numero cargado más 1 si tiene datos
+      setCurrentScore(prevArray => {
+        return [...prevArray, prevArray[prevArray.length - 1] + 1];
+      });
       playSound("correcta");
       showToastCorrect();
 
@@ -435,6 +439,10 @@ const MemoryGame: React.FC = ({ navigation: { navigate } }: Props) => {
       setScore({
         correct: score.correct,
         incorrect: score.incorrect + 1,
+      });
+      // agregar a variableArray un 0 si está vacío, o el último numero cargado
+      setCurrentScore(prevArray => {
+        return [...prevArray, prevArray[prevArray.length - 1]];
       });
       showToastInCorrect();
     }
