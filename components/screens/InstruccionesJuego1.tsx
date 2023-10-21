@@ -12,16 +12,26 @@ import Fonts from "../constants/Fonts";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../../types";
 import DropdownComponent from "./Dropdown";
+import DropdownTime from "./DropdownTime";
 export var dropdownValue1: string;
+export var dropdownTimeValue1: number;
 type Props = NativeStackScreenProps<RootStackParamList, "InstruccionesJuego1">;
 const InstruccionesJuego1Screen: React.FC<Props> = ({ navigation: { navigate } }: Props) => {
 
+    //Dropdown Categories
     const [dropdownValue, setDropdownValue] = useState<string | null>(null);
+    const handleDropdownChange = (value: string | null) => {
+        setDropdownValue(value);
+        dropdownValue1 = value;
+    };
 
-  const handleDropdownChange = (value: string | null) => {
-    setDropdownValue(value);
-    dropdownValue1 = value;
-  };
+    //Dropdown Time
+    const [dropdownTimeValue, setDropdownTimeValue] = useState(2000);
+    dropdownTimeValue1 = dropdownTimeValue; //para podeer almacenar el valor por defecto
+    const handleDropdownTimeChange = (value: number) => {
+        setDropdownTimeValue(value);
+        dropdownTimeValue1 = value;
+    };
 
     return (
         <ScrollView>
@@ -60,6 +70,20 @@ const InstruccionesJuego1Screen: React.FC<Props> = ({ navigation: { navigate } }
                     </Text>
 
                     <DropdownComponent onValueChange={handleDropdownChange} />
+
+                    <Text
+                        style={{
+                        fontSize: FontSize.large,
+                        color: Colors.primary,
+                        fontFamily: Fonts["poppins-bold"],
+                        textAlign: "center",
+                        paddingTop: Spacing * 2.5,
+                        }}
+                    >
+                        Selecciona el tiempo entre imágenes
+                    </Text>
+
+                    <DropdownTime onValueChange={handleDropdownTimeChange} />
 
                     <TouchableOpacity
                         onPress={() => navigate("Categories")}

@@ -24,8 +24,7 @@ import { LoginContext } from "../context/LoginContext";
 import { ScoreContext } from "../context/ScoreContext";
 import Color from "../constants/Color";
 
-const { height } = Dimensions.get("window");
-
+const { height, width } = Dimensions.get("window");
 type Props = NativeStackScreenProps<RootStackParamList, "UserProfile">;
 
 function UserProfileScreen({ navigation: { navigate } }: Props) {
@@ -103,7 +102,7 @@ function UserProfileScreen({ navigation: { navigate } }: Props) {
           </View>
         
 
-        <View style={styles.buttonContainer}>
+        <View style={styles.buttonContainer_Boton}>
           <TouchableOpacity
             onPress={() => setModalVisible(true)}
             style={styles.logoutButton}
@@ -111,21 +110,18 @@ function UserProfileScreen({ navigation: { navigate } }: Props) {
             <Ionicons name="log-out" color={Colors.text} size={Spacing * 2} />
           </TouchableOpacity>
         </View>
-
+        <View style={styles.centeredView}>
         <Modal
               animationType="fade"
               transparent={true}
               visible={modalVisible}
               onRequestClose={() => {
-                Alert.alert("Modal has been closed.");
-                setModalVisible(!modalVisible);
               }}
             >
-              <View style={styles.modalBackdrop}>
+               <View style={styles.centeredView}>
                 <View style={styles.modalView}>
-                  <View style={styles.modalContent}>
-                    <Text style={styles.modalText}>¿Desea cerrar sesión?</Text>
-                    <View style={styles.buttonContainer}>
+                    <Text style={styles.modalText}>¿Desea cerrar la sesión actual?</Text>
+                    <View style={styles.buttonContainer_Modal}>
                       <View style={styles.buttonWrapper}>
                         <Pressable
                           style={[styles.button, styles.buttonClose]}
@@ -139,54 +135,35 @@ function UserProfileScreen({ navigation: { navigate } }: Props) {
                           style={[styles.button, styles.buttonOpen]}
                           onPress={() => setModalVisible(!modalVisible)}
                         >
-                          <Text style={styles.textStyle}>Cancelar</Text>
+                          <Text style={styles.textStyle_2}>Cancelar</Text>
                         </Pressable>
                       </View>
                     </View>
                   </View>
-                </View>
-              </View>
+                  </View>
         </Modal>
+      </View>
       </View>
     </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  modalContent: {
-    backgroundColor: "grey", // Cambia el color de fondo aquí
-    borderRadius: 5,
-    padding: 30,
-    justifyContent: "center",
-    alignItems: "center",
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 4,
-    elevation: 5,
-  },
-
-  modalBackdrop: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    padding: 10,
-    height: "50%"
-  },
   centeredView: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    marginTop: 50,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 22,
+  },
+  modalContent: {
+    backgroundColor: Color.onPrimary, 
+    borderRadius: 5,
+    width: width - Spacing*10,
   },
   modalView: {
-    margin: 20,
-    backgroundColor: "rgba(255, 255, 255, 0.9)",
-    borderRadius: 5,
-    padding: 50,
+    backgroundColor: Color.onPrimary,
+    borderRadius: 7,
+    padding: 30,
     alignItems: "center",
     shadowColor: "#000",
     shadowOffset: {
@@ -195,18 +172,27 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.25,
     shadowRadius: 4,
-    elevation: 5,
   },
-  buttonContainer: {
+  buttonContainer_Modal: {
     flexDirection: "row",
-    width: "100%",
-    justifyContent: "space-around",
+    width: "80%",
+    justifyContent: "center",
     alignItems: "center",
     marginTop: 20,
   },
+  buttonContainer_Boton: {
+    flexDirection: "column",
+    alignItems: "center",
+    marginTop: 20,
+  },  
   buttonWrapper: {
     flex: 1,
-    marginHorizontal: 10,
+    alignContent: "center",
+    alignItems: "center",
+    justifyContent: "center",
+    display: "flex",
+    flexWrap: "wrap",
+    marginHorizontal: Spacing * 2
   },
   button: {
     borderRadius: 10,
@@ -216,23 +202,28 @@ const styles = StyleSheet.create({
     alignSelf: "stretch",
     flexDirection: "row",
     justifyContent: "center",
-    alignItems: "center"
+    alignItems: "center",
   },
   buttonOpen: {
-    backgroundColor: "#1F41BB",
+    backgroundColor: Color.second_gray,
   },
   buttonClose: {
     backgroundColor: "#FF0000",
   },
   textStyle: {
     color: "white",
-    fontWeight: "bold",
+    fontFamily: "Roboto-Bold",
+    textAlign: "center",
+  },
+  textStyle_2: {
+    color: Color.text,
+    fontFamily: "Roboto-Bold",
     textAlign: "center",
   },
   modalText: {
     marginBottom: 15,
     textAlign: "center",
-    color: "white",
+    color: Color.primary,
     fontFamily: "Roboto-Bold"
   },
   container: {
@@ -273,8 +264,9 @@ const styles = StyleSheet.create({
     padding: Spacing,
     backgroundColor: Colors.red,
     borderRadius: Spacing / 2,
-    marginRight: 16,
-    marginBottom: 16,
+    flexDirection: "column",
+    alignItems: "center",
+    marginTop: 25,
   },
 });
 
