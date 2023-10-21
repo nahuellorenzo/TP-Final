@@ -444,7 +444,6 @@ const MemoryGame: React.FC = ({ navigation: { navigate } }: Props) => {
       setCurrentScore(prevArray => {
         return [...prevArray, prevArray[prevArray.length - 1]];
       });
-      playSound("incorrecta");
       showToastInCorrect();
     }
     navigate("Again");

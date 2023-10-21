@@ -32,6 +32,7 @@ function UserProfileScreen({ navigation: { navigate } }: Props) {
   const { score } = useContext(ScoreContext);
   const [modalVisible, setModalVisible] = useState(false);
   const total = score.correct + score.incorrect;
+  console.log(score)
   const juegosPuntajes = [
     {
       title: 'Resultados Memory Game',
@@ -81,6 +82,25 @@ function UserProfileScreen({ navigation: { navigate } }: Props) {
             </View>
           </View>
         </View>
+
+          <View  
+            style={{
+            marginTop: Spacing,
+          }}>
+            <Text>
+              Juega desde {`- ${user.creacion.substring(user.creacion.indexOf(",") + 2, user.creacion.lastIndexOf("GMT") - 9)}`}
+            </Text>
+          </View>
+        
+          <View  
+            style={{
+            marginTop: Spacing,
+          }}>
+            <Text>
+              Racha de dias Jugados: {score.racha}
+            </Text>
+          </View>
+        
 
         <View style={styles.buttonContainer_Boton}>
           <TouchableOpacity
