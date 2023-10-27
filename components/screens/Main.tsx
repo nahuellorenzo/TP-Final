@@ -17,6 +17,7 @@ import {
   import { NativeStackScreenProps } from "@react-navigation/native-stack";
   import { RootStackParamList } from "../../types";
   import AppTextInput from "../AppTextInput";
+  import { Entypo } from '@expo/vector-icons'; 
 import Color from "../constants/Color";
 import Toast from 'react-native-root-toast';
 
@@ -150,6 +151,13 @@ import Toast from 'react-native-root-toast';
               Juego 3
             </Text>
           </TouchableOpacity>
+          <View style={styles.buttonContainer_Boton}>
+          <TouchableOpacity
+            onPress={() => navigate("Information")}
+          >
+            <Entypo name="info-with-circle" size={24} color="grey" />
+          </TouchableOpacity>
+        </View>
           </View>
         </View>
       </ScrollView>
@@ -158,6 +166,108 @@ import Toast from 'react-native-root-toast';
   
   
   export default MainScreen;
-  
-  const styles = StyleSheet.create({});
+
+  const styles = StyleSheet.create({
+    centeredView: {
+      flex: 1,
+      justifyContent: 'center',
+      alignItems: 'center',
+      marginTop: 22,
+    },
+    buttonContainer_Modal: {
+      flexDirection: "row",
+      width: "80%",
+      justifyContent: "center",
+      alignItems: "center",
+      marginTop: 20,
+    },
+    buttonContainer_Boton: {
+      flexDirection: "column",
+      alignItems: "flex-end",
+      marginTop: 20,
+    },
+    buttonWrapper: {
+      flex: 1,
+      alignContent: "center",
+      alignItems: "center",
+      justifyContent: "center",
+      display: "flex",
+      flexWrap: "wrap",
+      marginHorizontal: Spacing * 2
+    },
+    button: {
+      borderRadius: 10,
+      padding: 10,
+      elevation: 2,
+      width: 90,
+      alignSelf: "stretch",
+      flexDirection: "row",
+      justifyContent: "center",
+      alignItems: "center",
+    },
+    buttonOpen: {
+      backgroundColor: Color.second_gray,
+    },
+    buttonClose: {
+      backgroundColor: "#FF0000",
+    },
+    textStyle: {
+      color: "white",
+      fontFamily: "Roboto-Bold",
+      textAlign: "center",
+    },
+    textStyle_2: {
+      color: Color.text,
+      fontFamily: "Roboto-Bold",
+      textAlign: "center",
+    },
+    modalText: {
+      marginBottom: 15,
+      textAlign: "center",
+      color: Color.primary,
+      fontFamily: "Roboto-Bold"
+    },
+    container: {
+      flex: 1,
+    },
+    content: {
+      paddingHorizontal: Spacing * 4,
+      justifyContent: 'center',
+      flex: 1,
+    },
+    itemContainer: {
+      justifyContent: 'center',
+      flexDirection: 'row',
+    },
+    item: {
+      justifyContent: 'center',
+      backgroundColor: Color.gray,
+      borderWidth: 1,
+      borderRadius: 10,
+      padding: 16,
+      marginVertical: 8,
+      fontFamily: Fonts["Roboto-Bold"],
+      fontSize: 12,
+      textAlign: 'center',
+      flex: 1,
+    },
+    header: {
+      fontSize: 18,
+      backgroundColor: Color.primary,
+      fontFamily: Fonts["Roboto-Bold"],
+      color: Colors.onPrimary,
+      borderRadius: Spacing,
+      textAlign: "center",
+      padding: Spacing * 2,
+    },
+    logoutButton: {
+      marginVertical: Spacing * 2,
+      padding: Spacing,
+      backgroundColor: Colors.red,
+      borderRadius: Spacing / 2,
+      flexDirection: "column",
+      alignItems: "center",
+      marginTop: 25,
+    },
+  });
 
