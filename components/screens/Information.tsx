@@ -33,7 +33,7 @@ const InformationScreen: React.FC<Props> = ({ navigation: { navigate } }: Props)
                         style={{
                             fontSize: FontSize.large,
                             color: Colors.primary,
-                            fontFamily: Fonts["Roboto-Bold"],
+                            fontFamily: Fonts["poppins-bold"],
                             textAlign: "center",
                         }}
                     >
@@ -41,13 +41,38 @@ const InformationScreen: React.FC<Props> = ({ navigation: { navigate } }: Props)
                     </Text>
                     <Text
                         style={{
-                            fontSize: FontSize.medium,
+                            fontSize: FontSize.large,
                             color: Colors.primary,
-                            fontFamily: Fonts["Roboto-Bold"],
+                            fontFamily: Fonts["Roboto-light"],
+                            textAlign: "left",
+                        }}
+                    >
+                        Es la capacidad del cerebro de almacenar y manipular temporalmente información para el desempeño de tareas complejas. Funciona como una almacén temporal que mantiene información para actividades como resolver problemas, tomar decisiones o comprender situaciones complejas.
+                    </Text>
+                    <br></br>
+                    <Text
+                        style={{
+                            fontSize: FontSize.large,
+                            color: Colors.primary,
+                            fontFamily: Fonts["poppins-bold"],
                             textAlign: "center",
                         }}
                     >
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem fuga id quae nostrum dicta, assumenda consectetur odit beatae ex modi neque esse, adipisci, quisquam laudantium cumque veritatis quas itaque laboriosam.
+                        ¿Por qué importa la memoria del trabajo?
+                    </Text>
+                    <Text
+                        style={{
+                            fontSize: FontSize.large,
+                            color: Colors.primary,
+                            fontFamily: Fonts["Roboto-light"],
+                            textAlign: "left",
+                        }}
+                    >
+                        Porque gracias a ella, podemos desarrollar tareas como: <br></br>
+                        - Seguir el hilo de una conversación <br></br>
+                        - Nos permite aprender algo y asociarlo con lo que ya sabemos <br></br>
+                        - Mantener en la mente cierta información necesaria para el desarrollo de una tarea <br></br>
+                        La memoria del trabajo es esencial en tareas como seguir los pasos de una receta o recordar lo que tenemos que comprar en el supermercado
                     </Text>
                 </View>
             </View>
