@@ -44,7 +44,7 @@ const Again: React.FC<Props> = ({ navigation: { navigate }, route }) =>{
         >
           <Text
             style={{
-              marginTop: Spacing * 10,
+              marginTop: Spacing*-4,
               fontSize: FontSize.xxLarge,
               color: Colors.primary,
               fontFamily: Fonts["Roboto-Bold"],
@@ -57,7 +57,7 @@ const Again: React.FC<Props> = ({ navigation: { navigate }, route }) =>{
         <View
           style={{
             paddingHorizontal: Spacing * 2,
-            paddingTop: Spacing * 6,
+            paddingTop: Spacing * 4,
             flexDirection: "row",
             justifyContent: "space-between", // Agrega esta línea
           }}
@@ -130,6 +130,7 @@ const Again: React.FC<Props> = ({ navigation: { navigate }, route }) =>{
             fontFamily: Fonts["Roboto-Bold"],
             textAlign: "center",
             paddingTop: Spacing,
+            paddingBottom: Spacing * 4,
           }}
         >
           Puntaje actual: {score.correct}

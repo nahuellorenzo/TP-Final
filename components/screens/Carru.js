@@ -1,5 +1,5 @@
 import { StatusBar } from "expo-status-bar";
-import React from "react";
+import React, { useState } from "react";
 import {
   StyleSheet,
   Text,
@@ -11,6 +11,7 @@ import {
 } from "react-native";
 
 import { LinearGradient } from "expo-linear-gradient";
+import { PinchGestureHandler, State } from "react-native-gesture-handler";
 
 const imagenes = [
   "https://images.unsplash.com/photo-1559494007-9f5847c49d94?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80",
@@ -58,6 +59,7 @@ function Backdrop({ scrollX, param1, param2}) {
           outputRange: [0, 1, 0],
         });
         return (
+          <View key={index}>
           <Animated.Image
             key={index}
             source={ imagen }
@@ -66,6 +68,8 @@ function Backdrop({ scrollX, param1, param2}) {
               StyleSheet.absoluteFillObject,
             ]}
           />
+          <Text style={styles.imageText}>Tus imagenes!</Text>
+          </View>
         );
       })}
       <LinearGradient
@@ -84,11 +88,28 @@ function Backdrop({ scrollX, param1, param2}) {
 export default function Carru(props) {
     const {param1, param2} = props;
     const myArray = [param1, param2];
-    console.log("Entre por essgundos vez" + param1 + " " + param2);
+    
+    const scale = new Animated.Value(1);
+    console.log(scale)
+
+    const onZoomEvent = Animated.event(
+      [{
+        nativeEvent: { scale: scale }
+      }],
+      { useNativeDriver: true }
+    )
+
+    const onZoomStateChangeFunction=(event) => {
+      if (event.nativeEvent.oldState === State.ACTIVE) {
+        Animated.spring(
+          scale,
+          { toValue: 1, useNativeDriver: true }
+        ).start()
+      }
+    }
   const scrollX = React.useRef(new Animated.Value(0)).current;
   return (
     <SafeAreaView style={styles.container}>
-      
       <Backdrop scrollX={scrollX} param1={param1} param2={param2} />
       <Animated.FlatList
         onScroll={Animated.event(
@@ -127,14 +148,18 @@ export default function Carru(props) {
                   borderRadius: 34,
                   backgroundColor: "#fff",
                   alignItems: "center",
-                  transform: [{ translateY: scrollY }],
+                  transform: [{ translateY: scrollY}],
                 }}
               >
-                <Image source={item } style={styles.posterImage} />
-                <Text style={{ fontWeight: "bold" }}>
-                  {" "}
-                  Título
-                </Text>
+                <PinchGestureHandler
+                onGestureEvent={onZoomEvent}
+                onHandlerStateChange={onZoomStateChangeFunction}>
+                  <Animated.Image 
+                  source={item }
+                  style={[styles.posterImage, { transform: [{ scale: scale }] }]}
+                  resizeMode = {'contain'}
+                  />
+                </PinchGestureHandler>
               </Animated.View>
             </View>
           );
@@ -156,6 +181,14 @@ const styles = StyleSheet.create({
     resizeMode: "cover",
     borderRadius: 24,
     margin: 0,
-    marginBottom: 10,
+    marginBottom: 1,
+  },
+  imageText: {
+    fontSize: 16,
+    fontWeight: "bold",
+    color: "white", // Cambia el color del texto según tus necesidades
+    position: "absolute",
+    top: 10, // Ajusta la posición del texto según tus necesidades
+    left: 10, // Ajusta la posición del texto según tus necesidades
   },
 });
