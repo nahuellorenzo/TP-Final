@@ -9,6 +9,10 @@ import {
   SafeAreaView,
   Animated,
 } from "react-native";
+import FontSize from "../constants/FontSize";
+import Colors from "../constants/Color";
+import Fonts from "../constants/Fonts";
+import Spacing from "../constants/Spacing";
 
 import { LinearGradient } from "expo-linear-gradient";
 import { PinchGestureHandler, State } from "react-native-gesture-handler";
@@ -61,14 +65,22 @@ function Backdrop({ scrollX, param1, param2}) {
         return (
           <View key={index}>
           <Animated.Image
+
             key={index}
             source={ imagen }
             style={[
-              { width: width, height: ALTURA_BACKDROP, opacity },
+              { width: width, height: ALTURA_BACKDROP ,opacity },
               StyleSheet.absoluteFillObject,
             ]}
           />
-          <Text style={styles.imageText}>Tus imagenes!</Text>
+          <View 
+          style={{
+            flexDirection: "row",
+            justifyContent: "center",
+            alignItems: "center",
+          }}>
+            <Text style={styles.imageText}>Tus imagenes!</Text>
+          </View>
           </View>
         );
       })}
@@ -186,9 +198,11 @@ const styles = StyleSheet.create({
   imageText: {
     fontSize: 16,
     fontWeight: "bold",
-    color: "white", // Cambia el color del texto según tus necesidades
     position: "absolute",
-    top: 10, // Ajusta la posición del texto según tus necesidades
-    left: 10, // Ajusta la posición del texto según tus necesidades
+    paddingTop: Spacing*4,
+    textAlign:"center",
+    fontSize: FontSize.large,
+    color: Colors.primary,
+    fontFamily: Fonts["Roboto-Bold"],
   },
 });
