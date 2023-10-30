@@ -18,16 +18,23 @@ import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../../types";
 import { LoginContext } from "../context/LoginContext";
 import { ScoreContext } from "../context/ScoreContext";
+import Carru from "./Carru";
+import { ScrollView } from "react-native-gesture-handler";
 const { height } = Dimensions.get("window");
 
 const { width } = Dimensions.get("window");
 type Props = NativeStackScreenProps<RootStackParamList, "Again">;
 
-const Again: React.FC = ({ navigation: { navigate } }: Props) => {
+const Again: React.FC<Props> = ({ navigation: { navigate }, route }) =>{
   const { logout, user } = useContext(LoginContext);
   const { score, updateScore } = useContext(ScoreContext)
+  const { param1, param2 } = route.params;
+  console.log(param1, param2);
   return (
-    <SafeAreaView>
+    <ScrollView>
+      <View>
+        <Carru param1={param1} param2={param2} />
+      </View>
       <View>
         <View
           style={{
@@ -128,7 +135,7 @@ const Again: React.FC = ({ navigation: { navigate } }: Props) => {
           Puntaje actual: {score.correct}
         </Text>
       </View>
-    </SafeAreaView>
+    </ScrollView>
   );
 };
 
