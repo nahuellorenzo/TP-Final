@@ -55,8 +55,8 @@ const Again: React.FC = ({ navigation: { navigate } }: Props) => {
         >
           {shoot && (
             <ConfettiCannon
-              count={300}
-              origin={{ x: window.innerWidth / 2, y: 0 }}
+              count={200}
+              origin={{ x:width/2, y: 0 }}
               explosionSpeed={1000}
               fallSpeed={2000}
               fadeOut={true}
