@@ -18,6 +18,8 @@ import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../../types";
 import { LoginContext } from "../context/LoginContext";
 import { ScoreContext } from "../context/ScoreContext";
+import { confetti } from "./MemoryGame";
+import ConfettiCannon from "react-native-confetti-cannon";
 const { height } = Dimensions.get("window");
 
 const { width } = Dimensions.get("window");
@@ -25,10 +27,42 @@ type Props = NativeStackScreenProps<RootStackParamList, "Again">;
 
 const Again: React.FC = ({ navigation: { navigate } }: Props) => {
   const { logout, user } = useContext(LoginContext);
-  const { score, updateScore } = useContext(ScoreContext)
+  const { score, updateScore } = useContext(ScoreContext);
+
+  const [shoot, setShoot] = useState(false);
+
+  useEffect(() => {
+    // Disparar el cañón cuando la variable sea true
+    if (confetti) {
+      setShoot(true); // Enciende el cañón
+      setTimeout(() => {
+        setShoot(false); // Apaga el cañón después de un tiempo (opcional)
+      }, 5000); // El cañón se apaga después de 5 segundos (ajusta este valor según tus necesidades)
+    }
+  }, [confetti]); // Ejecutar el efecto cada vez que la variable cambie
+
+
   return (
     <SafeAreaView>
       <View>
+        <View
+        style={{
+          position: "absolute",
+          height: height,
+          top: 0,
+          left: 0,
+        }}
+        >
+          {shoot && (
+            <ConfettiCannon
+              count={300}
+              origin={{ x: window.innerWidth / 2, y: 0 }}
+              explosionSpeed={1000}
+              fallSpeed={2000}
+              fadeOut={true}
+            />
+          )}
+        </View>
         <View
           style={{
             paddingHorizontal: Spacing * 4,
