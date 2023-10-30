@@ -115,11 +115,11 @@ const InformationScreen: React.FC<Props> = ({ navigation: { navigate } }: Props)
                             textAlign: "left",
                         }}
                     >
-                        Porque gracias a ella, podemos desarrollar tareas como:
-                        - Seguir el hilo de una conversación
-                        - Nos permite aprender algo y asociarlo con lo que ya sabemos
-                        - Mantener en la mente cierta información necesaria para el desarrollo de una tarea
-                        La memoria del trabajo es esencial en tareas como seguir los pasos de una receta o recordar lo que tenemos que comprar en el supermercado
+                        {'Porque gracias a ella, podemos desarrollar tareas como:\n'}
+                        {'- Seguir el hilo de una conversación\n'}
+                        {'- Nos permite aprender algo y asociarlo con lo que ya sabemos\n'}
+                        {'- Mantener en la mente cierta información necesaria para el desarrollo de una tarea\n'}
+                        {'La memoria del trabajo es esencial en tareas como seguir los pasos de una receta o recordar lo que tenemos que comprar en el supermercado'}
                     </Text>
                     <TouchableOpacity
                         onPress={() => openPaper()}
