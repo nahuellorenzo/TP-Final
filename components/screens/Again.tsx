@@ -54,7 +54,7 @@ const Again: React.FC<Props> = ({ navigation: { navigate }, route }) =>{
         <View
         style={{
           position: "absolute",
-          height: height,
+          height: "100%",
           top: 0,
           left: 0,
         }}
