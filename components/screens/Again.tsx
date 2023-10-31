@@ -35,7 +35,7 @@ const Again: React.FC<Props> = ({ navigation: { navigate }, route }) =>{
       <View>
         <Carru param1={param1} param2={param2} />
       </View>
-      <View>
+      <View style={{backgroundColor:"white"}}>
         <View
           style={{
             paddingHorizontal: Spacing * 4,
