@@ -42,6 +42,7 @@ const { width } = Dimensions.get("window");
 import nivelesCat from "./../Similar/similar.json";
 import { dropdownValue1 } from "./InstruccionesJuego1";
 import { dropdownTimeValue1 } from "./InstruccionesJuego1";
+export var confetti : boolean;
 
 type Props = NativeStackScreenProps<RootStackParamList, "MemoryGame">;
 const Separator = () => {
@@ -430,6 +431,7 @@ const MemoryGame: React.FC = ({ navigation: { navigate } }: Props) => {
         return [...prevArray, prevArray[prevArray.length - 1] + 1];
       });
       playSound("correcta");
+      confetti = true;
       showToastCorrect();
 
     } else {
@@ -444,6 +446,7 @@ const MemoryGame: React.FC = ({ navigation: { navigate } }: Props) => {
       setCurrentScore(prevArray => {
         return [...prevArray, prevArray[prevArray.length - 1]];
       });
+      confetti = false;
       showToastInCorrect();
     }
     navigate("Again");
