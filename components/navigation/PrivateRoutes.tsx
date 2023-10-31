@@ -20,6 +20,8 @@ import InstruccionesJuego1Screen from "../screens/InstruccionesJuego1";
 import EstadisticasJuego1Screen from "../screens/StatisticsGame1";
 import ForgotPasswordScreen from "../screens/ForgotPassword";
 import NumberGame from "../screens/NumberGame";
+import InformationScreen from "../screens/Information";
+
 
 /* const theme = {
   ...DefaultTheme,
@@ -129,6 +131,11 @@ function HomeStack() {
         name="NumberGame"
         component={NumberGame}
         options={{ title: 'Numerium' }}
+      />
+      <Stack.Screen
+        name="Information"
+        component={InformationScreen}
+        options={{ title: 'Information' }}
       />
     </Stack.Navigator>
   );

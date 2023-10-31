@@ -20,6 +20,9 @@ import { LoginContext } from "../context/LoginContext";
 import { ScoreContext } from "../context/ScoreContext";
 import Carru from "./Carru";
 import { ScrollView } from "react-native-gesture-handler";
+import { confetti } from "./MemoryGame";
+import ConfettiCannon from "react-native-confetti-cannon";
+
 const { height } = Dimensions.get("window");
 
 const { width } = Dimensions.get("window");
@@ -29,13 +32,43 @@ const Again: React.FC<Props> = ({ navigation: { navigate }, route }) =>{
   const { logout, user } = useContext(LoginContext);
   const { score, updateScore } = useContext(ScoreContext)
   const { param1, param2 } = route.params;
-  console.log(param1, param2);
+
+  const [shoot, setShoot] = useState(false);
+  
+  useEffect(() => {
+    // Disparar el cañón cuando la variable sea true
+    if (confetti) {
+      setShoot(true); // Enciende el cañón
+      setTimeout(() => {
+        setShoot(false); // Apaga el cañón después de un tiempo (opcional)
+      }, 5000); // El cañón se apaga después de 5 segundos (ajusta este valor según tus necesidades)
+    }
+  }, [confetti]); // Ejecutar el efecto cada vez que la variable cambie
+
   return (
     <ScrollView>
       <View>
         <Carru param1={param1} param2={param2} />
       </View>
       <View style={{backgroundColor:"white"}}>
+        <View
+        style={{
+          position: "absolute",
+          height: height,
+          top: 0,
+          left: 0,
+        }}
+        >
+          {shoot && (
+            <ConfettiCannon
+              count={200}
+              origin={{ x:width/2, y: 0 }}
+              explosionSpeed={1000}
+              fallSpeed={2000}
+              fadeOut={true}
+            />
+          )}
+        </View>
         <View
           style={{
             paddingHorizontal: Spacing * 4,
