@@ -41,7 +41,8 @@ const { height } = Dimensions.get("window");
 const { width } = Dimensions.get("window");
 import nivelesCat from "./../Similar/similar.json";
 import { dropdownValue1 } from "./InstruccionesJuego1";
-import { dropdownTimeValue1 } from "./InstruccionesJuego1";
+import { dropdownTimeValue1 } from "./ModalOpcionesMemorium";
+import { dropdownTimeInicialValue1 } from "./ModalOpcionesMemorium";
 export var confetti : boolean;
 
 type Props = NativeStackScreenProps<RootStackParamList, "MemoryGame">;
@@ -117,7 +118,7 @@ const MemoryGame: React.FC = ({ navigation: { navigate } }: Props) => {
   ];
 
   //manejo del tiempo de mostrar imagenes
-  const tiempoPrimerImagen= 4000;
+  const tiempoPrimerImagen= dropdownTimeInicialValue1;
   const tiempoTotal = tiempoPrimerImagen + dropdownTimeValue1;
 
   //mapeo de las categorías y sus imagenes
