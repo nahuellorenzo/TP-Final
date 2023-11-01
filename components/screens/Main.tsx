@@ -20,6 +20,7 @@ import {
   import { Entypo } from '@expo/vector-icons'; 
 import Color from "../constants/Color";
 import Toast from 'react-native-root-toast';
+import PencilLoader from "./Pencil";
 
   type Props = NativeStackScreenProps<RootStackParamList, "Main">;
 
@@ -159,6 +160,9 @@ import Toast from 'react-native-root-toast';
           </TouchableOpacity>
         </View>
           </View>
+        </View>
+        <View>
+          <PencilLoader/>
         </View>
       </ScrollView>
     );
