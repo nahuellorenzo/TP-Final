@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   View,
   ImageBackground,
+  Image,
   Dimensions,
   Alert,
   Modal,
@@ -33,13 +34,14 @@ function UserProfileScreen({ navigation: { navigate } }: Props) {
   const [modalVisible, setModalVisible] = useState(false);
   const total = score.correct + score.incorrect;
   console.log(score)
+  const logros = ['adaptive-icon.png', 'icon.png', 'logo.png', 'splash.png', 'user.png', 'welcome-img.png'];
   const juegosPuntajes = [
     {
       title: 'Resultados Memory Game',
       data: ['Correctas: ' + score.correct, 'Incorrectas: ' + score.incorrect, 'Precisión: ' + Math.trunc((score.correct / total) * 100) + '%']
     }
   ];
-  
+
   return (
     <SafeAreaView style={styles.container}>
       <ImageBackground
@@ -83,24 +85,44 @@ function UserProfileScreen({ navigation: { navigate } }: Props) {
           </View>
         </View>
 
-          <View  
-            style={{
+        <View
+          style={{
             marginTop: Spacing,
           }}>
-            <Text>
-              Juega desde {`- ${user.creacion.substring(user.creacion.indexOf(",") + 2, user.creacion.lastIndexOf("GMT") - 9)}`}
-            </Text>
-          </View>
-        
-          <View  
-            style={{
+          <Text>
+            Juega desde {`- ${user.creacion.substring(user.creacion.indexOf(",") + 2, user.creacion.lastIndexOf("GMT") - 9)}`}
+          </Text>
+        </View>
+
+        <View
+          style={{
             marginTop: Spacing,
           }}>
-            <Text>
-              Racha de dias Jugados: {score.racha}
-            </Text>
-          </View>
-        
+          <Text>
+            Racha de dias Jugados: {score.racha}
+          </Text>
+        </View>
+
+
+        <View style={{
+          flexDirection: 'row',
+          flexWrap: 'wrap',
+          justifyContent: 'space-around',
+        }}>
+          {
+            logros.map((logo, index) => (
+              <View key={index} style={{
+                marginBottom: 10,
+              }}>
+                <Image style={{
+                  width: '100px',
+                  height: '100px',
+                }} source={require(`./../../assets/images/${logo}`)} />
+              </View>
+            ))
+          }
+        </View >
+
 
         <View style={styles.buttonContainer_Boton}>
           <TouchableOpacity
@@ -111,38 +133,38 @@ function UserProfileScreen({ navigation: { navigate } }: Props) {
           </TouchableOpacity>
         </View>
         <View style={styles.centeredView}>
-        <Modal
-              animationType="fade"
-              transparent={true}
-              visible={modalVisible}
-              onRequestClose={() => {
-              }}
-            >
-               <View style={styles.centeredView}>
-                <View style={styles.modalView}>
-                    <Text style={styles.modalText}>¿Desea cerrar la sesión actual?</Text>
-                    <View style={styles.buttonContainer_Modal}>
-                      <View style={styles.buttonWrapper}>
-                        <Pressable
-                          style={[styles.button, styles.buttonClose]}
-                          onPress={logout}
-                        >
-                          <Text style={styles.textStyle}>Salir</Text>
-                        </Pressable>
-                      </View>
-                      <View style={styles.buttonWrapper}>
-                        <Pressable
-                          style={[styles.button, styles.buttonOpen]}
-                          onPress={() => setModalVisible(!modalVisible)}
-                        >
-                          <Text style={styles.textStyle_2}>Cancelar</Text>
-                        </Pressable>
-                      </View>
-                    </View>
+          <Modal
+            animationType="fade"
+            transparent={true}
+            visible={modalVisible}
+            onRequestClose={() => {
+            }}
+          >
+            <View style={styles.centeredView}>
+              <View style={styles.modalView}>
+                <Text style={styles.modalText}>¿Desea cerrar la sesión actual?</Text>
+                <View style={styles.buttonContainer_Modal}>
+                  <View style={styles.buttonWrapper}>
+                    <Pressable
+                      style={[styles.button, styles.buttonClose]}
+                      onPress={logout}
+                    >
+                      <Text style={styles.textStyle}>Salir</Text>
+                    </Pressable>
                   </View>
+                  <View style={styles.buttonWrapper}>
+                    <Pressable
+                      style={[styles.button, styles.buttonOpen]}
+                      onPress={() => setModalVisible(!modalVisible)}
+                    >
+                      <Text style={styles.textStyle_2}>Cancelar</Text>
+                    </Pressable>
                   </View>
-        </Modal>
-      </View>
+                </View>
+              </View>
+            </View>
+          </Modal>
+        </View>
       </View>
     </SafeAreaView>
   );
@@ -156,9 +178,9 @@ const styles = StyleSheet.create({
     marginTop: 22,
   },
   modalContent: {
-    backgroundColor: Color.onPrimary, 
+    backgroundColor: Color.onPrimary,
     borderRadius: 5,
-    width: width - Spacing*10,
+    width: width - Spacing * 10,
   },
   modalView: {
     backgroundColor: Color.onPrimary,
@@ -184,7 +206,7 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     alignItems: "center",
     marginTop: 20,
-  },  
+  },
   buttonWrapper: {
     flex: 1,
     alignContent: "center",
