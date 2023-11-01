@@ -583,8 +583,21 @@ const MemoryGame: React.FC = ({ navigation: { navigate } }: Props) => {
         style={{
           
         }}>
-          <GestureHandlerRootView>
-        <GestureDetector gesture={pinchazoPantalla}>
+          {
+            Platform.OS == 'web' ?(<Image
+              style={{
+                height: height / 2.5,
+                width: width / 1.5,
+                marginTop: Spacing * 4,
+                borderRadius:  Math.min(height, width)/5,
+                alignSelf: "center",
+              }}
+              resizeMode="contain"
+              source={currentImage}
+            />) :
+            (
+              <GestureHandlerRootView>
+        <GestureDetector gesture={pinchazoPantalla} userSelect="none">
         <Animated.Image
           style={[estiloAnimado,{
             height: height / 2.5,
@@ -598,6 +611,8 @@ const MemoryGame: React.FC = ({ navigation: { navigate } }: Props) => {
         />
         </GestureDetector>
       </GestureHandlerRootView>
+            )
+          }
         </View>
         <Text
           style={{
