@@ -1,9 +1,9 @@
 import React, { useEffect, useState, useContext } from "react";
 import {
-  Text,
-  TouchableOpacity,
-  View,
-  ScrollView
+    Text,
+    TouchableOpacity,
+    View,
+    ScrollView
 } from "react-native";
 import Spacing from "../constants/Spacing";
 import FontSize from "../constants/FontSize";
@@ -57,6 +57,34 @@ const InstruccionesJuego1Screen: React.FC<Props> = ({ navigation: { navigate } }
                         El siguiente juego es para trabajar tu memoria a corto plazo, se te mostrarán imágenes cada 2 segundos y debés recordar cuál era, para marcar si la segunda imagen es igual a la primera
                     </Text>
 
+                    <TouchableOpacity
+                        onPress={() => navigate("TutorialGame1")}
+                        style={{
+                            padding: Spacing/2,
+                            backgroundColor: Colors.primary,
+                            marginVertical: Spacing,
+                            borderRadius: Spacing,
+                            shadowColor: Colors.primary,
+                            shadowOffset: {
+                                width: 0,
+                                height: Spacing,
+                            },
+                            shadowOpacity: 0.3,
+                            shadowRadius: Spacing,
+                        }}
+                    >
+                        <Text
+                            style={{
+                                fontFamily: Fonts["Roboto-Bold"],
+                                color: Colors.onPrimary,
+                                textAlign: "center",
+                                fontSize: FontSize.medium,
+                            }}
+                        >
+                            Más Información
+                        </Text>
+                    </TouchableOpacity>
+
                     <Text
                         style={{
                             fontSize: FontSize.large,
@@ -73,11 +101,11 @@ const InstruccionesJuego1Screen: React.FC<Props> = ({ navigation: { navigate } }
 
                     <Text
                         style={{
-                        fontSize: FontSize.large,
-                        color: Colors.primary,
-                        fontFamily: Fonts["poppins-bold"],
-                        textAlign: "center",
-                        paddingTop: Spacing * 2.5,
+                            fontSize: FontSize.large,
+                            color: Colors.primary,
+                            fontFamily: Fonts["poppins-bold"],
+                            textAlign: "center",
+                            paddingTop: Spacing * 2.5,
                         }}
                     >
                         Selecciona el tiempo entre imágenes
@@ -91,7 +119,7 @@ const InstruccionesJuego1Screen: React.FC<Props> = ({ navigation: { navigate } }
                         style={{
                             padding: Spacing * 2,
                             backgroundColor: !dropdownValue ? Colors.second_gray : Colors.primary,
-                            marginVertical: Spacing * 2, 
+                            marginVertical: Spacing * 2,
                             borderRadius: Spacing,
                             shadowColor: !dropdownValue ? Colors.gray : Colors.primary,
                             shadowOffset: {
