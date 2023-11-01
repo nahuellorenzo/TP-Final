@@ -3,7 +3,8 @@ import {
   Text,
   TouchableOpacity,
   View,
-  ScrollView
+  ScrollView,
+  Modal
 } from "react-native";
 import Spacing from "../constants/Spacing";
 import FontSize from "../constants/FontSize";
@@ -14,7 +15,8 @@ import { RootStackParamList } from "../../types";
 import DropdownComponent from "./Dropdown";
 import DropdownTime from "./DropdownTime";
 export var dropdownValue1: string;
-export var dropdownTimeValue1: number;
+import ModalOpcionesMemorium from "./ModalOpcionesMemorium";
+
 type Props = NativeStackScreenProps<RootStackParamList, "InstruccionesJuego1">;
 const InstruccionesJuego1Screen: React.FC<Props> = ({ navigation: { navigate } }: Props) => {
 
@@ -25,12 +27,10 @@ const InstruccionesJuego1Screen: React.FC<Props> = ({ navigation: { navigate } }
         dropdownValue1 = value;
     };
 
-    //Dropdown Time
-    const [dropdownTimeValue, setDropdownTimeValue] = useState(2000);
-    dropdownTimeValue1 = dropdownTimeValue; //para podeer almacenar el valor por defecto
-    const handleDropdownTimeChange = (value: number) => {
-        setDropdownTimeValue(value);
-        dropdownTimeValue1 = value;
+    //Modal opciones avanzadas
+    const [modalVisible, setModalVisible] = useState(false);
+    const handleModalVisible = () => {
+        setModalVisible(!modalVisible);
     };
 
     return (
@@ -71,19 +71,33 @@ const InstruccionesJuego1Screen: React.FC<Props> = ({ navigation: { navigate } }
 
                     <DropdownComponent onValueChange={handleDropdownChange} />
 
-                    <Text
-                        style={{
-                        fontSize: FontSize.large,
-                        color: Colors.primary,
-                        fontFamily: Fonts["poppins-bold"],
-                        textAlign: "center",
-                        paddingTop: Spacing * 2.5,
-                        }}
-                    >
-                        Selecciona el tiempo entre imágenes
-                    </Text>
-
-                    <DropdownTime onValueChange={handleDropdownTimeChange} />
+                    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+                        <TouchableOpacity
+                            onPress={handleModalVisible}
+                            style={{
+                                paddingTop: Spacing * 2.5
+                              }}
+                            >
+                            <Text
+                            style={{
+                                fontSize: FontSize.large,
+                                color: Colors.primary,
+                                fontFamily: Fonts["poppins-bold"],
+                                textAlign: "center",
+                            }}
+                            >
+                                Opciones avanzadas
+                            </Text>
+                        </TouchableOpacity>
+                        <Modal
+                            animationType="fade"
+                            transparent={true}
+                            visible={modalVisible}
+                            onRequestClose={handleModalVisible}
+                        >
+                            <ModalOpcionesMemorium isVisible={modalVisible} closeModal={handleModalVisible} />
+                        </Modal>
+                    </View>
 
                     <TouchableOpacity
                         onPress={() => navigate("Categories")}
@@ -101,7 +115,7 @@ const InstruccionesJuego1Screen: React.FC<Props> = ({ navigation: { navigate } }
                             shadowOpacity: 0.3,
                             shadowRadius: Spacing,
                         }}
-                    >
+                    >   
                         <Text
                             style={{
                                 fontFamily: Fonts["Roboto-Bold"],
