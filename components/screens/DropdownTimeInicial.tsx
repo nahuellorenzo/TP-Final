@@ -12,12 +12,13 @@ import React, { useState } from 'react';
     { label: '10 segundos', value: 10000 },
   ];
 
-  interface DropdownProps {
-    onValueChange: (value: number) => void; // Prop que acepta la función de devolución de llamada
-  }
-
-  const DropdownTimeInicialComponent = ({ onValueChange }) => {
-    const [value, setValue] = useState(4000);
+  type DropdownTimeInicialProps = {
+    value: any; // replace 'any' with the actual type of 'value'
+    onValueChange: (value: any) => void; // replace 'any' with the actual type of 'value'
+  };
+  
+  const DropdownTimeInicialComponent: React.FC<DropdownTimeInicialProps> = ({ value:propValue, onValueChange }) => {
+    const [value, setValue] = useState(propValue || 4000);
 
     const renderItem = item => {
       return (

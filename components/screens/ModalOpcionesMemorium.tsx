@@ -9,23 +9,8 @@ import DropdownTimeInicial from './DropdownTimeInicial';
 export var dropdownTimeValue1: number;
 export var dropdownTimeInicialValue1: number;
 
-const ModalOpcionesMemorium = ({ isVisible, closeModal }) => {
-    //Dropdown Time
-    const [dropdownTimeValue, setDropdownTimeValue] = useState(2000);
-    dropdownTimeValue1 = dropdownTimeValue; //para podeer almacenar el valor por defecto
-    const handleDropdownTimeChange = (value: number) => {
-        setDropdownTimeValue(value);
-        dropdownTimeValue1 = value;
-    };
-
-    //Dropdown Time
-    const [dropdownTimeInicialValue, setDropdownTimeInicialValue] = useState(4000);
-    dropdownTimeInicialValue1 = dropdownTimeInicialValue; //para podeer almacenar el valor por defecto
-    const handleDropdownTimeInicialChange = (value: number) => {
-        setDropdownTimeInicialValue(value);
-        dropdownTimeInicialValue1 = value;
-    };
-
+const ModalOpcionesMemorium = ({ isVisible, closeModal, dropdownTimeValue, dropdownTimeInicialValue, onDropdownTimeChange, onDropdownTimeInicialChange,}) => {
+  
   return (
     <Modal visible={isVisible} animationType="fade" transparent>
       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: 'rgba(0, 0, 0, 0.5)' }}>
@@ -43,7 +28,7 @@ const ModalOpcionesMemorium = ({ isVisible, closeModal }) => {
             >
                 Selecciona el tiempo de la primer imagen
             </Text>
-            <DropdownTimeInicial onValueChange={handleDropdownTimeInicialChange} />
+            <DropdownTimeInicial value={dropdownTimeInicialValue} onValueChange={onDropdownTimeInicialChange} />
 
             <Text
                 style={{
@@ -56,7 +41,7 @@ const ModalOpcionesMemorium = ({ isVisible, closeModal }) => {
             >
                 Selecciona el tiempo entre imágenes
             </Text>
-             <DropdownTime onValueChange={handleDropdownTimeChange} />
+             <DropdownTime value={dropdownTimeValue} onValueChange={onDropdownTimeChange} />
 
           
           <TouchableOpacity onPress={closeModal}>

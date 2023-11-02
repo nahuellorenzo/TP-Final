@@ -13,7 +13,6 @@ import Fonts from "../constants/Fonts";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../../types";
 import DropdownComponent from "./Dropdown";
-import DropdownTime from "./DropdownTime";
 export var dropdownValue1: string;
 import ModalOpcionesMemorium from "./ModalOpcionesMemorium";
 
@@ -25,6 +24,22 @@ const InstruccionesJuego1Screen: React.FC<Props> = ({ navigation: { navigate } }
     const handleDropdownChange = (value: string | null) => {
         setDropdownValue(value);
         dropdownValue1 = value;
+    };
+
+    //Dropdown Time
+    const [dropdownTimeValue, setDropdownTimeValue] = useState(2000);
+    //dropdownTimeValue1 = dropdownTimeValue; //para poder almacenar el valor por defecto
+    const handleDropdownTimeChange = (value: number) => {
+        setDropdownTimeValue(value);
+        //dropdownTimeValue1 = value;
+    };
+
+    //Dropdown Time
+    const [dropdownTimeInicialValue, setDropdownTimeInicialValue] = useState(4000);
+    //dropdownTimeInicialValue1 = dropdownTimeInicialValue; //para poder almacenar el valor por defecto
+    const handleDropdownTimeInicialChange = (value: number) => {
+        setDropdownTimeInicialValue(value);
+        //dropdownTimeInicialValue1 = value;
     };
 
     //Modal opciones avanzadas
@@ -89,14 +104,16 @@ const InstruccionesJuego1Screen: React.FC<Props> = ({ navigation: { navigate } }
                                 Opciones avanzadas
                             </Text>
                         </TouchableOpacity>
-                        <Modal
-                            animationType="fade"
-                            transparent={true}
-                            visible={modalVisible}
-                            onRequestClose={handleModalVisible}
-                        >
-                            <ModalOpcionesMemorium isVisible={modalVisible} closeModal={handleModalVisible} />
-                        </Modal>
+                        
+                            <ModalOpcionesMemorium
+                                isVisible={modalVisible}
+                                closeModal={handleModalVisible}
+                                dropdownTimeValue={dropdownTimeValue}
+                                dropdownTimeInicialValue={dropdownTimeInicialValue}
+                                onDropdownTimeChange={handleDropdownTimeChange}
+                                onDropdownTimeInicialChange={handleDropdownTimeInicialChange}
+                            />
+                        
                     </View>
 
                     <TouchableOpacity
