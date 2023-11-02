@@ -13,8 +13,8 @@ import React, { useState } from 'react';
   ];
 
   type DropdownTimeInicialProps = {
-    value: any; // replace 'any' with the actual type of 'value'
-    onValueChange: (value: any) => void; // replace 'any' with the actual type of 'value'
+    value: number;
+    onValueChange: (value: number) => void;
   };
   
   const DropdownTimeInicialComponent: React.FC<DropdownTimeInicialProps> = ({ value:propValue, onValueChange }) => {
