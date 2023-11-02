@@ -18,7 +18,6 @@ import { ScoreContext } from "../context/ScoreContext";
 import Toast from 'react-native-root-toast';
 const { height } = Dimensions.get("window");
 const { width } = Dimensions.get("window");
-import DogLoader from "./Pencil";
 type Props = NativeStackScreenProps<RootStackParamList, "NumberGame">;
 const NumberGame: React.FC<Props> = ({ navigation: { navigate } }: Props) => {
 
@@ -283,7 +282,7 @@ const NumberGame: React.FC<Props> = ({ navigation: { navigate } }: Props) => {
                 paddingHorizontal: Spacing * 4,
                 paddingTop: Spacing * 10,
               }}>
-              <DogLoader />
+              <Loader />
             </View>
           </View>
           ) :
