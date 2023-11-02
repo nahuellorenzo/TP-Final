@@ -201,7 +201,7 @@ const MemoryGame: React.FC = ({ navigation: { navigate } }: Props) => {
       confetti = false;
       showToastInCorrect();
     }
-    navigate("Again");
+    navigate("Again", { param1: previousImage, param2: currentImage });
   };
 
   const PATTERN_DESC =

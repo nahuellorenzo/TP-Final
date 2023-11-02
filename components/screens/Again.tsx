@@ -18,19 +18,23 @@ import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../../types";
 import { LoginContext } from "../context/LoginContext";
 import { ScoreContext } from "../context/ScoreContext";
+import Carru from "./Carru";
+import { ScrollView } from "react-native-gesture-handler";
 import { confetti } from "./MemoryGame";
 import ConfettiCannon from "react-native-confetti-cannon";
+
 const { height } = Dimensions.get("window");
 
 const { width } = Dimensions.get("window");
 type Props = NativeStackScreenProps<RootStackParamList, "Again">;
 
-const Again: React.FC = ({ navigation: { navigate } }: Props) => {
+const Again: React.FC<Props> = ({ navigation: { navigate }, route }) =>{
   const { logout, user } = useContext(LoginContext);
-  const { score, updateScore } = useContext(ScoreContext);
+  const { score, updateScore } = useContext(ScoreContext)
+  const { param1, param2 } = route.params;
 
   const [shoot, setShoot] = useState(false);
-
+  
   useEffect(() => {
     // Disparar el cañón cuando la variable sea true
     if (confetti) {
@@ -41,14 +45,16 @@ const Again: React.FC = ({ navigation: { navigate } }: Props) => {
     }
   }, [confetti]); // Ejecutar el efecto cada vez que la variable cambie
 
-
   return (
-    <SafeAreaView>
+    <ScrollView>
       <View>
+        <Carru param1={param1} param2={param2} />
+      </View>
+      <View style={{backgroundColor:"white"}}>
         <View
         style={{
           position: "absolute",
-          height: height,
+          height: "100%",
           top: 0,
           left: 0,
         }}
@@ -71,7 +77,7 @@ const Again: React.FC = ({ navigation: { navigate } }: Props) => {
         >
           <Text
             style={{
-              marginTop: Spacing * 10,
+              marginTop: Spacing*-4,
               fontSize: FontSize.xxLarge,
               color: Colors.primary,
               fontFamily: Fonts["Roboto-Bold"],
@@ -84,7 +90,7 @@ const Again: React.FC = ({ navigation: { navigate } }: Props) => {
         <View
           style={{
             paddingHorizontal: Spacing * 2,
-            paddingTop: Spacing * 6,
+            paddingTop: Spacing * 4,
             flexDirection: "row",
             justifyContent: "space-between", // Agrega esta línea
           }}
@@ -157,12 +163,13 @@ const Again: React.FC = ({ navigation: { navigate } }: Props) => {
             fontFamily: Fonts["Roboto-Bold"],
             textAlign: "center",
             paddingTop: Spacing,
+            paddingBottom: Spacing * 4,
           }}
         >
           Puntaje actual: {score.correct}
         </Text>
       </View>
-    </SafeAreaView>
+    </ScrollView>
   );
 };
 
