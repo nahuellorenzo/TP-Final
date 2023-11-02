@@ -1,6 +1,9 @@
 import React from "react";
 import { View, Text, StyleSheet, FlatList, Image, useWindowDimensions } from "react-native";
-
+import Spacing from "../components/constants/FontSize.ts";
+import FontSize from "../components/constants/FontSize";
+import Colors from "../components/constants/Color";
+import Fonts from "../components/constants/Fonts";
 let OnboardingItem;
 export default OnboardingItem = ({ item }) => {
     const { width } = useWindowDimensions();
@@ -24,11 +27,20 @@ const styles = StyleSheet.create({
         alignItems: "center"
     },
     image: {
-        flex: 0.7,
-        justifyContent: 'center'
+        width: 500, 
+        height: 500, 
+        resizeMode: 'contain',
     },
     title: {
+        fontSize: FontSize.large,
+        color: Colors.primary,
+        fontFamily: Fonts["Roboto-Bold"],
+        textAlign: "center",
     },
     description: {
+        fontSize: FontSize.large,
+        color: Colors.primary,
+        fontFamily: Fonts["Roboto-Bold"],
+        textAlign: "center",
     }
 })

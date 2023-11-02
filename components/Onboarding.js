@@ -1,39 +1,50 @@
-import React, {useState, useRef} from "react";
-import { View, Text, StyleSheet, FlatList, Animated } from "react-native";
+import React, { useState, useRef } from "react";
+import { View, Text, StyleSheet, FlatList, Animated, useWindowDimensions } from "react-native";
 import slides from "../slides";
 import OnboardingItem from "./OnboardingItem";
 
-let Onboarding;
-export default Onboarding = () => {
-    const [currentIndex, setCurrentIndex] = useState(0)
+const Onboarding = () => {
+    const [currentIndex, setCurrentIndex] = useState(0);
     const scrollX = useRef(new Animated.Value(0)).current;
+    const slidesRef = useRef(null);
+    const viewConfig = useRef({ viewAreaCoveragePercentThreshold: 50 }).current;
+    const width = useWindowDimensions().width;
 
-    const viewableItemsChanged = useRef(({viewableItems}) => {
-        setCurrentIndex(viewableItems[0].index);
+    const viewableItemsChanged = useRef(({ viewableItems }) => {
+        if (viewableItems && viewableItems.length > 0) {
+            setCurrentIndex(viewableItems[0].index);
+        }
     }).current;
 
-    const viewConfig = useRef({viewAreCoveragePercentThreshould: 50}).current;
+    const scrollToIndex = (index) => {
+        if (slidesRef.current) {
+            slidesRef.current.scrollToIndex({ index, animated: true });
+        }
+    };
 
     return (
         <View style={styles.container}>
-            <View style={{flex: 3}}>
-            <FlatList data={slides} renderItem={({ item }) => <OnboardingItem item={item} />}
+            <FlatList
+                data={slides}
+                renderItem={({ item }) => <OnboardingItem item={item} />}
                 horizontal
-                showsHorizontalScrollIndicator
+                showsHorizontalScrollIndicator={false}
                 pagingEnabled
                 bounces={false}
                 keyExtractor={(item) => item.id}
-                onScroll={Animated.event([{nativeEvent: {contentOffset: {x: scrollX}}}],{
-                    useNativeDriver: false,
-                })}
-                scrollEventThrottle={32}
+                onScroll={Animated.event(
+                    [{ nativeEvent: { contentOffset: { x: scrollX } } }],
+                    { useNativeDriver: false }
+                )}
+                scrollEventThrottle={40} 
                 onViewableItemsChanged={viewableItemsChanged}
                 viewabilityConfig={viewConfig}
+                ref={slidesRef}
+                snapToInterval={width} 
             />
-            </View>
         </View>
-    )
-}
+    );
+};
 
 const styles = StyleSheet.create({
     container: {
@@ -41,4 +52,6 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         alignItems: "center"
     }
-})
+});
+
+export default Onboarding;
