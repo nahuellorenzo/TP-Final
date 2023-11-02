@@ -15,7 +15,6 @@ const ModalOpcionesMemorium = ({ isVisible, closeModal, dropdownTimeValue, dropd
     <Modal visible={isVisible} animationType="fade" transparent>
       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: 'rgba(0, 0, 0, 0.5)' }}>
         <View style={{ backgroundColor: 'white', padding: 20, borderRadius: 10, width: '80%' }}>
-          <Text>Opciones Avanzadas</Text>
           
             <Text
                 style={{
@@ -44,8 +43,31 @@ const ModalOpcionesMemorium = ({ isVisible, closeModal, dropdownTimeValue, dropd
              <DropdownTime value={dropdownTimeValue} onValueChange={onDropdownTimeChange} />
 
           
-          <TouchableOpacity onPress={closeModal}>
-            <Text>Cerrar</Text>
+          <TouchableOpacity 
+            style={{
+              padding: Spacing,
+              backgroundColor: Colors.primary,
+              marginVertical: Spacing, 
+              borderRadius: Spacing,
+              shadowColor: Colors.primary,
+              shadowOffset: {
+                  width: 0,
+                  height: Spacing,
+              },
+              shadowOpacity: 0.3,
+              shadowRadius: Spacing,
+              alignSelf: 'flex-end'
+          }}
+            onPress={closeModal}
+          >
+            <Text
+              style={{
+                fontFamily: Fonts["Roboto-Bold"],
+                color: Colors.onPrimary,
+                
+                fontSize: FontSize.medium,
+            }}
+            >Cerrar</Text>
           </TouchableOpacity>
         </View>
       </View>

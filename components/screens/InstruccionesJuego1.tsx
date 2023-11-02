@@ -97,7 +97,7 @@ const InstruccionesJuego1Screen: React.FC<Props> = ({ navigation: { navigate } }
                             >
                             <Text
                             style={{
-                                fontSize: FontSize.large,
+                                fontSize: FontSize.medium,
                                 color: Colors.primary,
                                 fontFamily: Fonts["poppins-bold"],
                                 textAlign: "center",
