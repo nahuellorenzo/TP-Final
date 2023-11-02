@@ -14,6 +14,7 @@ import { FontAwesome } from '@expo/vector-icons';
 import { Octicons } from '@expo/vector-icons';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../../types';
+import Onboarding from '../Onboarding';
 
 type Props = NativeStackScreenProps<RootStackParamList, "TutorialGame1">;
 const TutorialGame1Screen: React.FC<Props> = ({ navigation: { navigate } }: Props) => {
@@ -29,6 +30,7 @@ const TutorialGame1Screen: React.FC<Props> = ({ navigation: { navigate } }: Prop
                         marginVertical: Spacing * 2,
                     }}
                 >
+                    <Onboarding></Onboarding>
                 </View>
             </View>
         </ScrollView>
