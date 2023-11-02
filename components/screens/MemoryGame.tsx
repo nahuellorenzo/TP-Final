@@ -41,8 +41,8 @@ const { height } = Dimensions.get("window");
 const { width } = Dimensions.get("window");
 import nivelesCat from "./../Similar/similar.json";
 import { dropdownValue1 } from "./InstruccionesJuego1";
-import { dropdownTimeValue1 } from "./ModalOpcionesMemorium";
-import { dropdownTimeInicialValue1 } from "./ModalOpcionesMemorium";
+import { dropdownTimeValue1 } from "./InstruccionesJuego1";
+import { dropdownTimeInicialValue1 } from "./InstruccionesJuego1";
 export var confetti : boolean;
 
 type Props = NativeStackScreenProps<RootStackParamList, "MemoryGame">;
