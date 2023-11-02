@@ -14,6 +14,8 @@ import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../../types";
 import DropdownComponent from "./Dropdown";
 export var dropdownValue1: string;
+export var dropdownTimeValue1: number;
+export var dropdownTimeInicialValue1: number;
 import ModalOpcionesMemorium from "./ModalOpcionesMemorium";
 
 type Props = NativeStackScreenProps<RootStackParamList, "InstruccionesJuego1">;
@@ -26,20 +28,20 @@ const InstruccionesJuego1Screen: React.FC<Props> = ({ navigation: { navigate } }
         dropdownValue1 = value;
     };
 
-    //Dropdown Time
-    const [dropdownTimeValue, setDropdownTimeValue] = useState(2000);
-    //dropdownTimeValue1 = dropdownTimeValue; //para poder almacenar el valor por defecto
-    const handleDropdownTimeChange = (value: number) => {
-        setDropdownTimeValue(value);
-        //dropdownTimeValue1 = value;
-    };
-
-    //Dropdown Time
+    //Dropdown Time Inicial
     const [dropdownTimeInicialValue, setDropdownTimeInicialValue] = useState(4000);
-    //dropdownTimeInicialValue1 = dropdownTimeInicialValue; //para poder almacenar el valor por defecto
+    dropdownTimeInicialValue1 = dropdownTimeInicialValue; //para poder almacenar el valor por defecto
     const handleDropdownTimeInicialChange = (value: number) => {
         setDropdownTimeInicialValue(value);
-        //dropdownTimeInicialValue1 = value;
+        dropdownTimeInicialValue1 = value;
+    };
+
+    //Dropdown Time entre imagenes
+    const [dropdownTimeValue, setDropdownTimeValue] = useState(2000);
+    dropdownTimeValue1 = dropdownTimeValue; //para poder almacenar el valor por defecto
+    const handleDropdownTimeChange = (value: number) => {
+        setDropdownTimeValue(value);
+        dropdownTimeValue1 = value;
     };
 
     //Modal opciones avanzadas
