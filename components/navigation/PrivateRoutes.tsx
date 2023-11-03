@@ -21,6 +21,7 @@ import EstadisticasJuego1Screen from "../screens/StatisticsGame1";
 import ForgotPasswordScreen from "../screens/ForgotPassword";
 import NumberGame from "../screens/NumberGame";
 import InformationScreen from "../screens/Information";
+import Tutorial1Screen from "../screens/Tutorial1";
 
 
 /* const theme = {
@@ -136,6 +137,11 @@ function HomeStack() {
         name="Information"
         component={InformationScreen}
         options={{ title: 'Information' }}
+      />
+      <Stack.Screen
+        name="Tutorial1"
+        component={Tutorial1Screen}
+        options={{ title: 'Tutorial 1' }}
       />
     </Stack.Navigator>
   );
