@@ -6,6 +6,8 @@ import { RootStackParamList } from '../../types';
 import Colors from '../constants/Color';
 import { imagePathsTuto } from "../constants/imagesTuto";
 import Spacing from '../constants/Spacing';
+import FontSize from '../constants/FontSize';
+import Fonts from '../constants/Fonts';
 
 type Props = NativeStackScreenProps<RootStackParamList, "Tutorial1">;
 const Tutorial1Screen: React.FC<Props> = ({ navigation: { navigate } }: Props) => {
@@ -15,7 +17,7 @@ const Tutorial1Screen: React.FC<Props> = ({ navigation: { navigate } }: Props) =
                     {
                         backgroundColor: '#fff',
                         image: <Image source={imagePathsTuto[0]}
-                        style={{width: 350, height: 400}}/>,
+                        style={{width: 300, height: 350}}/>,
                         title: "Muestra del patrón de números",
                         subtitle: 'Primero vas a tener unos segundos para memorizar la secuencia de números',
                     },
@@ -36,7 +38,7 @@ const Tutorial1Screen: React.FC<Props> = ({ navigation: { navigate } }: Props) =
                     {
                         backgroundColor: '#fff',
                         image: <Image source={imagePathsTuto[3]}
-                        style={{width: 300, height: 400}} />,
+                        style={{width: 270, height: 380}} />,
                         title: 'Resultados',
                         subtitle: "Finalmente podrás ver cuál era la respuesta correcta. Si no lograste memorizar, no pasa nada. Intentá las veces que quieras!!",
                     },
@@ -50,7 +52,8 @@ const Tutorial1Screen: React.FC<Props> = ({ navigation: { navigate } }: Props) =
                 flatlistProps 
                 transitionAnimationDuration={200}
                 containerStyles={{marginTop: -100}}
-                titleStyles={{marginTop: -50}}
+                titleStyles={{marginTop: -50, fontSize: FontSize.xLarge, color: Colors.primary, fontFamily: Fonts["poppins-bold"], textAlign: "center"}}
+                subTitleStyles={{fontSize: FontSize.large, color: Colors.primary, fontFamily: Fonts["poppins-bold"], textAlign: "center"}}
             />
     );
 };
