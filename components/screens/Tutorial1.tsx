@@ -3,72 +3,55 @@ import { View, Image } from 'react-native';
 import Onboarding from 'react-native-onboarding-swiper';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../../types';
-import { Colors } from 'react-native/Libraries/NewAppScreen';
+import Colors from '../constants/Color';
+import { imagePathsTuto } from "../constants/imagesTuto";
+import Spacing from '../constants/Spacing';
 
 type Props = NativeStackScreenProps<RootStackParamList, "Tutorial1">;
 const Tutorial1Screen: React.FC<Props> = ({ navigation: { navigate } }: Props) => {
     return (
-        <View>
             <Onboarding
                 pages={[
                     {
                         backgroundColor: '#fff',
-                        image: <Image source={require('../../assets/imagesGame/Banderas/image1.png')} />,
-                        title: "Hola",
-                        subtitle: 'Done with React Native Onboarding Swiper',
+                        image: <Image source={imagePathsTuto[0]}
+                        style={{width: 350, height: 400}}/>,
+                        title: "Muestra del patrón de números",
+                        subtitle: 'Primero vas a tener unos segundos para memorizar la secuencia de números',
                     },
                     {
                         backgroundColor: '#fff',
-                        image: <Image source={require('../../assets/imagesGame/Banderas/image1.png')} />,
-                        title: 'The Title',
-                        subtitle: 'This is the subtitle that sumplements the title.',
+                        image: <Image source={imagePathsTuto[1]}
+                        style={{width: 350, height: 400}} />,
+                        title: 'Entre los números',
+                        subtitle: 'Entre número y número vas a tener unos segundos de espera para hacerlo más difícil',
                     },
                     {
                         backgroundColor: '#fff',
-                        image: <Image source={require('../../assets/imagesGame/Banderas/image1.png')} />,
-                        title: 'Triangle',
-                        subtitle: "Beautiful, isn't it?",
+                        image: <Image source={imagePathsTuto[2]}
+                        style={{width: 350, height: 400}} />,
+                        title: 'Respuesta',
+                        subtitle: "Ahora tendrás que ingresar el número que lograste memorizar, tenés 5 intentos",
+                    },
+                    {
+                        backgroundColor: '#fff',
+                        image: <Image source={imagePathsTuto[3]}
+                        style={{width: 300, height: 400}} />,
+                        title: 'Resultados',
+                        subtitle: "Finalmente podrás ver cuál era la respuesta correcta. Si no lograste memorizar, no pasa nada. Intentá las veces que quieras!!",
                     },
                 ]}
-                bottomBarHeight={60}
-                bottomBarColor={'#fff'}
-                bottomBarHighlight={true}
-                controlStatusBar={true}
+                bottomBarColor={Colors.onPrimary}
                 showPagination
                 skipLabel={'Omitir'}
-                onSkip={() => navigate('InstruccionesJuego1')}
-                skipToPage={2}
+                onSkip={() => navigate('InstruccionesJuego2')}
                 nextLabel={'Siguiente'}
-                onDone={() => navigate('InstruccionesJuego1')}
-                showDone
+                onDone={() => navigate('InstruccionesJuego2')}
                 flatlistProps 
-                allowFontScaling 
-                containerStyles={
-                    {
-                        paddingBottom: 20,
-                    }
-                }
-                imageContainerStyles={
-                    {
-                        padding: 20,
-                    }
-                }
-                transitionAnimationDuration={1000}
-                titleStyles={
-                    {
-                        fontSize: 30,
-                        color: Colors.primary,
-                        fontWeight: 'bold',
-                    }
-                }
-                subTitleStyles={
-                    {
-                        fontSize: 20,
-                        color: Colors.primary,
-                    }
-                }
+                transitionAnimationDuration={200}
+                containerStyles={{marginTop: -100}}
+                titleStyles={{marginTop: -50}}
             />
-        </View>
     );
 };
 
