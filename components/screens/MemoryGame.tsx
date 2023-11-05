@@ -42,6 +42,17 @@ const { width } = Dimensions.get("window");
 import nivelesCat from "./../Similar/similar.json";
 import { dropdownValue1 } from "./InstruccionesJuego1";
 import { dropdownTimeValue1 } from "./InstruccionesJuego1";
+import {
+  Gesture,
+  GestureDetector,
+  GestureHandlerRootView,
+} from "react-native-gesture-handler";
+import Animated, {
+  useSharedValue,
+  useAnimatedStyle,
+  withTiming,
+} from "react-native-reanimated";
+import { withSpring } from 'react-native-reanimated';
 export var confetti : boolean;
 
 type Props = NativeStackScreenProps<RootStackParamList, "MemoryGame">;
@@ -61,6 +72,44 @@ const MemoryGame: React.FC = ({ navigation: { navigate } }: Props) => {
     console.log('Playing Sound');
     await audioSound.playAsync();
   }
+
+  const ANCHO_IMAGEN = width;
+  const ALTO_IMAGEN = width;
+
+  const escalaImg = useSharedValue(1);
+  const focoX = useSharedValue(0);
+  const focoY = useSharedValue(0);
+
+  const pinchazoPantalla = Gesture.Pinch()
+    .onStart((e) => {
+      focoX.value = e.focalX;
+      focoY.value = e.focalY;
+    })
+    .onUpdate((e) => {
+      escalaImg.value = e.scale;
+    })
+    .onEnd(() => {
+      escalaImg.value = withTiming(1, { duration: 0 });
+    });
+
+  const centroImagen = {
+    x: ANCHO_IMAGEN / 2,
+    y: ALTO_IMAGEN / 2,
+  };
+
+  const estiloAnimado = useAnimatedStyle(() => ({
+    transform: [
+      { translateX: focoX.value },
+      { translateY: focoY.value },
+      { translateX: -centroImagen.x },
+      { translateY: -centroImagen.y },
+      { scale: escalaImg.value },
+      { translateX: -focoX.value },
+      { translateY: -focoY.value },
+      { translateX: centroImagen.x },
+      { translateY: centroImagen.y },
+    ],
+  }));
 
   useEffect(() => {
     return sound
@@ -119,6 +168,10 @@ const MemoryGame: React.FC = ({ navigation: { navigate } }: Props) => {
   const tiempoPrimerImagen= 4000;
   const tiempoTotal = tiempoPrimerImagen + dropdownTimeValue1;
 
+  useEffect(() => {
+    escalaImg.value = withSpring(1); // Restablece la escala a 1
+  }, [currentImage]);
+  
   useEffect(() => {
     setPreviousImage(null);
     setCurrentImage(null);
@@ -530,17 +583,36 @@ const MemoryGame: React.FC = ({ navigation: { navigate } }: Props) => {
         style={{
           
         }}>
-        <Image
-          style={{
+          {
+            Platform.OS == 'web' ?(<Image
+              style={{
+                height: height / 2.5,
+                width: width / 1.5,
+                marginTop: Spacing * 4,
+                borderRadius:  Math.min(height, width)/5,
+                alignSelf: "center",
+              }}
+              resizeMode="contain"
+              source={currentImage}
+            />) :
+            (
+              <GestureHandlerRootView>
+        <GestureDetector gesture={pinchazoPantalla} userSelect="none">
+        <Animated.Image
+          style={[estiloAnimado,{
             height: height / 2.5,
             width: width / 1.5,
             marginTop: Spacing * 4,
             borderRadius:  Math.min(height, width)/5,
             alignSelf: "center",
-          }}
+          }]}
           resizeMode="contain"
           source={currentImage}
         />
+        </GestureDetector>
+      </GestureHandlerRootView>
+            )
+          }
         </View>
         <Text
           style={{
