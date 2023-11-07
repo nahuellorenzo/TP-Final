@@ -30,11 +30,11 @@ type Props = NativeStackScreenProps<RootStackParamList, "UserProfile">;
 
 function UserProfileScreen({ navigation: { navigate } }: Props) {
   const { logout, user } = useContext(LoginContext);
-  const { score } = useContext(ScoreContext);
+  const { score, currentScore } = useContext(ScoreContext);
   const [modalVisible, setModalVisible] = useState(false);
   const total = score.correct + score.incorrect;
   console.log(score)
-  const logros = ['adaptive-icon.png', 'icon.png', 'logo.png', 'splash.png', 'user.png', 'welcome-img.png'];
+  const logros = ['1stToday', '10thToday', '25thToday', '50thToday'];
   const juegosPuntajes = [
     {
       title: 'Resultados Memory Game',
@@ -110,18 +110,18 @@ function UserProfileScreen({ navigation: { navigate } }: Props) {
           justifyContent: 'space-around',
         }}>
           {
-            logros.map((logo, index) => (
+            logros.map((logro, index) => (
               <View key={index} style={{
                 marginBottom: 10,
               }}>
                 <Image style={{
                   width: '100px',
                   height: '100px',
-                }} source={require(`./../../assets/images/${logo}`)} />
+                }} source={score.achievements.includes(logro) ? require(`./../../assets/achievements/${logro}.png`) : require(`./../../assets/achievements/placeHolder.png`)} />
               </View>
             ))
           }
-        </View >
+        </View>
 
 
         <View style={styles.buttonContainer_Boton}>

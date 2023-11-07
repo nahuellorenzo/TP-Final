@@ -156,7 +156,7 @@ const MemoryGame: React.FC = ({ navigation: { navigate } }: Props) => {
   const [previousImage, setPreviousImage] = useState(null);
   const isFocused = useIsFocused();
   const [loader, setLoader] = useState(false);
-  const { score, setScore, setCurrentScore} = useContext(ScoreContext);
+  const { score, currentScore, setScore, setCurrentScore} = useContext(ScoreContext);
   const ONE_SECOND_IN_MS = 1000;
   const PATTERN = [
     1 * ONE_SECOND_IN_MS,
@@ -475,14 +475,44 @@ const MemoryGame: React.FC = ({ navigation: { navigate } }: Props) => {
       console.log("Bien es lo correcto");
       // showToastCorrect();
       Vibration.vibrate(0.5 * ONE_SECOND_IN_MS)
-      setScore({
-        correct: score.correct + 1,
-        incorrect: score.incorrect,
+
+      setCurrentScore(prevState => {
+        const nextCorrect = prevState.correct + 1;
+        let achievement;
+        switch (nextCorrect) {
+          case 1:
+            achievement = '1stToday';
+            break;
+          case 10:
+            achievement = '10thToday';
+            break;
+          case 25:
+            achievement = '25thToday';
+            break;
+          case 50:
+            achievement = '50thToday';
+            break;
+          default:
+            break;
+        }
+        if (achievement && !score.achievements.includes(achievement)) {
+          setScore(scorePrevState => ({
+            ...scorePrevState,
+            achievements: [...scorePrevState.achievements, achievement],
+          }));
+        }
+        return {
+          ...prevState,
+          correct: nextCorrect,
+          graph: [...prevState.graph, nextCorrect],
+        };
       });
-      // agregar a variableArray un 1 si está vacío, o el último numero cargado más 1 si tiene datos
-      setCurrentScore(prevArray => {
-        return [...prevArray, prevArray[prevArray.length - 1] + 1];
-      });
+
+      setScore(prevState => ({
+        ...prevState,
+        correct: prevState.correct + 1,
+      }));
+
       playSound("correcta");
       confetti = true;
       showToastCorrect();
@@ -491,13 +521,15 @@ const MemoryGame: React.FC = ({ navigation: { navigate } }: Props) => {
       console.log("Te equivocaste, no es lo correcto");
       // showToastIncorrect();
       Vibration.vibrate(0.5 * ONE_SECOND_IN_MS)
-      setScore({
-        correct: score.correct,
-        incorrect: score.incorrect + 1,
-      });
-      // agregar a variableArray un 0 si está vacío, o el último numero cargado
-      setCurrentScore(prevArray => {
-        return [...prevArray, prevArray[prevArray.length - 1]];
+      setScore(prevState => ({
+        ...prevState,
+        incorrect: prevState.incorrect + 1,
+      }));
+      setCurrentScore(prevState => {
+        return {
+          ...prevState,
+          graph: [...prevState.graph, prevState.correct],
+        };
       });
       confetti = false;
       showToastInCorrect();

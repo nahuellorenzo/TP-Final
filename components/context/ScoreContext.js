@@ -12,10 +12,15 @@ export const ScoreProvider = ({ children }) => {
     incorrect: 0,
     fecha: '',
     racha: 0,
+    achievements: [],
   });
   console.log(score)
 
-  const [currentScore, setCurrentScore] = useState([0]);
+  const [currentScore, setCurrentScore] = useState({
+    graph: [0],
+    correct: 0,
+  });
+
 
   const { user } = useContext(LoginContext)
 
@@ -52,24 +57,39 @@ export const ScoreProvider = ({ children }) => {
           if ((data.fecha.toDate().getFullYear()!== score.fecha.getFullYear())||(data.fecha.toDate().getDate()!== score.fecha.getDate())||(data.fecha.toDate().getMonth()!== score.fecha.getMonth())){
             if(score.fecha.getDate()  ==data.fecha.toDate().getDate()+1){
               batch.update(doc.ref, { scorecorrect: correct, scoreincorrect: incorrect, fecha: fecha, racha: data.racha+1 });
-               setScore({ correct: correct, incorrect: incorrect, fecha: score.fecha, racha: data.racha+1 })
+              setScore(prevState => ({
+                ...prevState,
+                racha: data.racha + 1
+              }));
             } else {
               batch.update(doc.ref, { scorecorrect: correct, scoreincorrect: incorrect, fecha: score.fecha, racha: 0 });
-                setScore({ correct: correct, incorrect: incorrect, fecha: score.fecha, racha: 0 })
+                setScore(prevState => ({
+                  ...prevState,
+                  racha: 0 
+                }));
             } 
           }
           else {
-            setScore({ correct: correct, incorrect: incorrect, fecha: score.fecha, racha: 0 })
+            setScore(prevState => ({
+              ...prevState,
+              racha: 0 
+            }));
           }
         }
         else {
-          setScore({ correct: correct, incorrect: incorrect, fecha: score.fecha, racha: 0 })
+          setScore(prevState => ({
+            ...prevState,
+            racha: 0 
+          }));
           batch.update(doc.ref, { fecha: score.fecha, racha: 0 });
         }
         await batch.commit();
       }
       else {
-        setScore({ correct: correct, incorrect: incorrect, fecha: score.fecha, racha: 0 })
+        setScore(prevState => ({
+          ...prevState,
+          racha: 0 
+        }));
         const scoreDocRef = doc(scoreRef, user.uid);
         await setDoc(scoreDocRef,{ scorecorrect: correct, scoreincorrect: incorrect, email: user.email, fecha: score.fecha, racha: 0})
       }
@@ -100,7 +120,7 @@ export const ScoreProvider = ({ children }) => {
     fetchScores();
   }, [user.uid]);
 
-  const updateScore = async (correct, incorrect) => {
+  const updateScore = async (correct, incorrect, achievements) => {
     const scoreRef = collection(db, 'score');
     const itemsRef = query(scoreRef, where(documentId(), '==', user.uid));
     const response = await getDocs(itemsRef);
@@ -108,13 +128,13 @@ export const ScoreProvider = ({ children }) => {
       const doc = response.docs[0]
       const id = response.docs[0].id
       const batch = writeBatch(db);
-      batch.update(doc.ref, { scorecorrect: correct, scoreincorrect: incorrect });
+      batch.update(doc.ref, { scorecorrect: correct, scoreincorrect: incorrect, achievements: achievements });
       await batch.commit();
-      setScore({ correct: correct, incorrect: incorrect })
+      setScore({ correct: correct, incorrect: incorrect, achievements: achievements })
     }
     else {
       const scoreDocRef = doc(scoreRef, user.uid);
-      await setDoc(scoreDocRef,{ scorecorrect: correct, scoreincorrect: incorrect, email: user.email})
+      await setDoc(scoreDocRef,{ scorecorrect: correct, scoreincorrect: incorrect, achievements: achievements, email: user.email})
     }
   }
 

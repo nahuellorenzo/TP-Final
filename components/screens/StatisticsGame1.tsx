@@ -44,10 +44,10 @@ const EstadisticasJuego1Screen: React.FC<Props> = ({ navigation: { navigate } }:
         >
           <LineChart
             data={{
-              labels: [],
+              labels: labels,
               datasets: [
                 {
-                  data: currentScore,
+                  data: currentScore.graph,
                 }
               ]
             }}
@@ -82,7 +82,7 @@ const EstadisticasJuego1Screen: React.FC<Props> = ({ navigation: { navigate } }:
         <TouchableOpacity
           onPress={() => {
             navigate("Main");
-            setCurrentScore([0]);}}
+          }}
           style={{
             backgroundColor: Colors.primary,
             margin: Spacing * 2,
