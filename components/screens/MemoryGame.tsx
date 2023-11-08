@@ -42,6 +42,7 @@ const { width } = Dimensions.get("window");
 import nivelesCat from "./../Similar/similar.json";
 import { dropdownValue1 } from "./InstruccionesJuego1";
 import { dropdownTimeValue1 } from "./InstruccionesJuego1";
+import { dropdownTimeInicialValue1 } from "./InstruccionesJuego1";
 import {
   Gesture,
   GestureDetector,
@@ -152,6 +153,7 @@ const MemoryGame: React.FC = ({ navigation: { navigate } }: Props) => {
     }
   }
 
+  //parámetros para manejar las imagenes
   const [currentImage, setCurrentImage] = useState(null);
   const [previousImage, setPreviousImage] = useState(null);
   const isFocused = useIsFocused();
@@ -164,311 +166,61 @@ const MemoryGame: React.FC = ({ navigation: { navigate } }: Props) => {
     3 * ONE_SECOND_IN_MS,
   ];
 
-  //Manejo del tiempo de mostrar imagenes
-  const tiempoPrimerImagen= 4000;
+  //manejo del tiempo de mostrar imagenes
+  const tiempoPrimerImagen= dropdownTimeInicialValue1;
   const tiempoTotal = tiempoPrimerImagen + dropdownTimeValue1;
 
   useEffect(() => {
     escalaImg.value = withSpring(1); // Restablece la escala a 1
   }, [currentImage]);
   
+  //mapeo de las categorías y sus imagenes
+  const imagePaths = {
+    "Entrenamiento": imagePaths1,
+    "Banderas": imagePaths2,
+    "Paisajes": imagePaths3,
+    "Peliculas": imagePaths4,
+    "Personas": imagePaths5,
+    "Camisetas de Futbol": imagePaths6,
+    "Oficios": imagePaths7,
+    "Figuras Geométricas": imagePaths8,
+    "Lugares": imagePaths9,
+    "Frutas": imagePaths10,
+  };
+
   useEffect(() => {
+    console.log(bandera);
+    console.log(nivelesCat[dropdownValue1][bandera].length);
     setPreviousImage(null);
     setCurrentImage(null);
-    if (bandera == "Entrenamiento") {
-      console.log(dropdownTimeValue1);
+    const imagePathSet = imagePaths[bandera];
+    const randomImageIndex = Math.floor(Math.random() * nivelesCat[dropdownValue1][bandera].length);
+    const numrandom = Math.floor(Math.random() * nivelesCat[dropdownValue1][bandera][randomImageIndex].imagen.length);
+    const randomImagePathJson = nivelesCat[dropdownValue1][bandera][randomImageIndex].imagen[numrandom];
+    const randomImagePath = imagePathSet[parseInt(randomImagePathJson.replace(/[^\d]/g, ''))-1]
+
+    setCurrentImage(randomImagePath);
+
+    const numero2 = setTimeout(() => {
       setPreviousImage(null);
-      const randomImageIndex = Math.floor(Math.random() * nivelesCat[dropdownValue1].Entrenamiento.length);
-      const numrandom = Math.floor(Math.random() * nivelesCat[dropdownValue1].Entrenamiento[randomImageIndex].imagen.length);
-      const randomImagePathJson = nivelesCat[dropdownValue1].Entrenamiento[randomImageIndex].imagen[numrandom];
-      const randomImagePath = imagePaths1[parseInt(randomImagePathJson.replace(/[^\d]/g, ''))-1]
+      setCurrentImage(null);
+      console.log("Entre")
+      setLoader(true);
+    }, tiempoPrimerImagen);
+    
+    const numero1 = setTimeout(() => {
+      const newnumrandom = Math.floor(Math.random() * nivelesCat[dropdownValue1][bandera][randomImageIndex].imagen.length);
+      const newrandomImagePathJson = nivelesCat[dropdownValue1][bandera][randomImageIndex].imagen[newnumrandom];
+      const newrandomImagePath = imagePathSet[parseInt(newrandomImagePathJson.replace(/[^\d]/g, ''))-1]
 
-      setCurrentImage(randomImagePath);
+      setPreviousImage(randomImagePath);
+      setCurrentImage(newrandomImagePath);
+      setLoader(false);
+    }, tiempoTotal);
 
-        const numero2 = setTimeout(() => {
-          setPreviousImage(null);
-          setCurrentImage(null);
-          console.log("Entre")
-          setLoader(true);
-        }, tiempoPrimerImagen);
-
-      
-      const numero1 = setTimeout(() => {
-        const newnumrandom = Math.floor(Math.random() * nivelesCat[dropdownValue1].Entrenamiento[randomImageIndex].imagen.length);
-        const newrandomImagePathJson = nivelesCat[dropdownValue1].Entrenamiento[randomImageIndex].imagen[newnumrandom];
-        const newrandomImagePath = imagePaths1[parseInt(newrandomImagePathJson.replace(/[^\d]/g, ''))-1]
-
-        setPreviousImage(randomImagePath);
-        setCurrentImage(newrandomImagePath);
-        setLoader(false);
-      }, tiempoTotal);
-      return () => {clearTimeout(numero1)
-      clearTimeout(numero2)};
-    }
-
-    else if (bandera == "Banderas") {
-      setPreviousImage(null);
-      const randomImageIndex = Math.floor(Math.random() * nivelesCat[dropdownValue1].Banderas.length);
-      const numrandom = Math.floor(Math.random() * nivelesCat[dropdownValue1].Banderas[randomImageIndex].imagen.length);
-      const randomImagePathJson = nivelesCat[dropdownValue1].Banderas[randomImageIndex].imagen[numrandom];
-      const randomImagePath = imagePaths2[parseInt(randomImagePathJson.replace(/[^\d]/g, ''))-1]
-
-      setCurrentImage(randomImagePath);
-
-      const numero2 = setTimeout(() => {
-        setPreviousImage(null);
-        setCurrentImage(null);
-        console.log("Entre")
-        setLoader(true);
-      }, tiempoPrimerImagen);
-
-      const numero1 = setTimeout(() => {
-        const newnumrandom = Math.floor(Math.random() * nivelesCat[dropdownValue1].Banderas[randomImageIndex].imagen.length);
-        const newrandomImagePathJson = nivelesCat[dropdownValue1].Banderas[randomImageIndex].imagen[newnumrandom];
-        const newrandomImagePath = imagePaths2[parseInt(newrandomImagePathJson.replace(/[^\d]/g, ''))-1]
-
-        setPreviousImage(randomImagePath);
-        setCurrentImage(newrandomImagePath);
-        setLoader(false);
-      }, tiempoTotal);
-      return () => {clearTimeout(numero1);
-        clearTimeout(numero2)}
-    }
-
-    else if (bandera == "Paisajes") {
-      setPreviousImage(null);
-      const randomImageIndex = Math.floor(Math.random() * nivelesCat[dropdownValue1].Paisajes.length);
-      const numrandom = Math.floor(Math.random() * nivelesCat[dropdownValue1].Paisajes[randomImageIndex].imagen.length);
-      const randomImagePathJson = nivelesCat[dropdownValue1].Paisajes[randomImageIndex].imagen[numrandom];
-      const randomImagePath = imagePaths3[parseInt(randomImagePathJson.replace(/[^\d]/g, ''))-1]
-
-      setCurrentImage(randomImagePath);
-
-      const numero2 = setTimeout(() => {
-        setPreviousImage(null);
-        setCurrentImage(null);
-        console.log("Entre")
-        setLoader(true);
-      }, tiempoPrimerImagen);
-      const numero1 = setTimeout(() => {
-        const newnumrandom = Math.floor(Math.random() * nivelesCat[dropdownValue1].Paisajes[randomImageIndex].imagen.length);
-        const newrandomImagePathJson = nivelesCat[dropdownValue1].Paisajes[randomImageIndex].imagen[newnumrandom];
-        const newrandomImagePath = imagePaths3[parseInt(newrandomImagePathJson.replace(/[^\d]/g, ''))-1]
-
-        setPreviousImage(randomImagePath);
-        setCurrentImage(newrandomImagePath);
-        setLoader(false);
-      }, tiempoTotal);
-      return () => {clearTimeout(numero1);
-        clearTimeout(numero2)}
-    }
-
-    else if (bandera == "Peliculas") {
-      setPreviousImage(null);
-      const randomImageIndex = Math.floor(Math.random() * nivelesCat[dropdownValue1].Peliculas.length);
-      const numrandom = Math.floor(Math.random() * nivelesCat[dropdownValue1].Peliculas[randomImageIndex].imagen.length);
-      const randomImagePathJson = nivelesCat[dropdownValue1].Peliculas[randomImageIndex].imagen[numrandom];
-      const randomImagePath = imagePaths4[parseInt(randomImagePathJson.replace(/[^\d]/g, ''))-1]
-
-      setCurrentImage(randomImagePath);
-
-      const numero2 = setTimeout(() => {
-        setPreviousImage(null);
-        setCurrentImage(null);
-        console.log("Entre")
-        setLoader(true);
-      }, tiempoPrimerImagen);
-
-      const numero1 = setTimeout(() => {
-        const newnumrandom = Math.floor(Math.random() * nivelesCat[dropdownValue1].Peliculas[randomImageIndex].imagen.length);
-        const newrandomImagePathJson = nivelesCat[dropdownValue1].Peliculas[randomImageIndex].imagen[newnumrandom];
-        const newrandomImagePath = imagePaths4[parseInt(newrandomImagePathJson.replace(/[^\d]/g, ''))-1]
-
-        setPreviousImage(randomImagePath);
-        setCurrentImage(newrandomImagePath);
-        setLoader(false);
-      }, tiempoTotal);
-      return () => {clearTimeout(numero1)
-      clearTimeout(numero2)};
-    }
-
-    else if (bandera == "Personas") {
-      setPreviousImage(null);
-      const randomImageIndex = Math.floor(Math.random() * nivelesCat[dropdownValue1].Personas.length);
-      const numrandom = Math.floor(Math.random() * nivelesCat[dropdownValue1].Personas[randomImageIndex].imagen.length);
-      const randomImagePathJson = nivelesCat[dropdownValue1].Personas[randomImageIndex].imagen[numrandom];
-      const randomImagePath = imagePaths5[parseInt(randomImagePathJson.replace(/[^\d]/g, ''))-1]
-
-      setCurrentImage(randomImagePath);
-
-      const numero2 = setTimeout(() => {
-        setPreviousImage(null);
-        setCurrentImage(null);
-        console.log("Entre")
-        setLoader(true);
-      }, tiempoPrimerImagen);
-
-      const numero1 = setTimeout(() => {
-        const newnumrandom = Math.floor(Math.random() * nivelesCat[dropdownValue1].Personas[randomImageIndex].imagen.length);
-        const newrandomImagePathJson = nivelesCat[dropdownValue1].Personas[randomImageIndex].imagen[newnumrandom];
-        const newrandomImagePath = imagePaths5[parseInt(newrandomImagePathJson.replace(/[^\d]/g, ''))-1]
-
-        setPreviousImage(randomImagePath);
-        setCurrentImage(newrandomImagePath);
-        setLoader(false);
-      }, tiempoTotal);
-      return () => {clearTimeout(numero1)
-      clearTimeout(numero2)};
-    }
-
-    else if (bandera == "Camisetas de Futbol") {
-      setPreviousImage(null);
-      const randomImageIndex = Math.floor(Math.random() * nivelesCat[dropdownValue1]["Camisetas de Futbol"].length);
-      const numrandom = Math.floor(Math.random() * nivelesCat[dropdownValue1]["Camisetas de Futbol"][randomImageIndex].imagen.length);
-      const randomImagePathJson = nivelesCat[dropdownValue1]["Camisetas de Futbol"][randomImageIndex].imagen[numrandom];
-      const randomImagePath = imagePaths6[parseInt(randomImagePathJson.replace(/[^\d]/g, ''))-1]
-
-      setCurrentImage(randomImagePath);
-
-      const numero2 = setTimeout(() => {
-        setPreviousImage(null);
-        setCurrentImage(null);
-        console.log("Entre")
-        setLoader(true);
-      }, tiempoPrimerImagen);
-
-      const numero1 = setTimeout(() => {
-        const newnumrandom = Math.floor(Math.random() * nivelesCat[dropdownValue1]["Camisetas de Futbol"][randomImageIndex].imagen.length);
-        const newrandomImagePathJson = nivelesCat[dropdownValue1]["Camisetas de Futbol"][randomImageIndex].imagen[newnumrandom];
-        const newrandomImagePath = imagePaths6[parseInt(newrandomImagePathJson.replace(/[^\d]/g, ''))-1]
-
-        setPreviousImage(randomImagePath);
-        setCurrentImage(newrandomImagePath);
-        setLoader(false);
-      }, tiempoTotal);
-      return () => {clearTimeout(numero1)
-      clearTimeout(numero2)};
-    }
-
-    else if (bandera == "Oficios") {
-      setPreviousImage(null);
-      const randomImageIndex = Math.floor(Math.random() * nivelesCat[dropdownValue1].Oficios.length);
-      const numrandom = Math.floor(Math.random() * nivelesCat[dropdownValue1].Oficios[randomImageIndex].imagen.length);
-      const randomImagePathJson = nivelesCat[dropdownValue1].Oficios[randomImageIndex].imagen[numrandom];
-      const randomImagePath = imagePaths7[parseInt(randomImagePathJson.replace(/[^\d]/g, ''))-1]
-
-      setCurrentImage(randomImagePath);
-
-      const numero2 = setTimeout(() => {
-        setPreviousImage(null);
-        setCurrentImage(null);
-        console.log("Entre")
-        setLoader(true);
-      }, tiempoPrimerImagen);
-
-      const numero1 = setTimeout(() => {
-        const newnumrandom = Math.floor(Math.random() * nivelesCat[dropdownValue1].Oficios[randomImageIndex].imagen.length);
-        const newrandomImagePathJson = nivelesCat[dropdownValue1].Oficios[randomImageIndex].imagen[newnumrandom];
-        const newrandomImagePath = imagePaths7[parseInt(newrandomImagePathJson.replace(/[^\d]/g, ''))-1]
-
-        setPreviousImage(randomImagePath);
-        setCurrentImage(newrandomImagePath);
-        setLoader(false);
-      }, tiempoTotal);
-      return () => {clearTimeout(numero1)
-      clearTimeout(numero2)};
-    }
-
-    else if (bandera == "Figuras Geométricas") {
-      setPreviousImage(null);
-      const randomImageIndex = Math.floor(Math.random() * nivelesCat[dropdownValue1]["Figuras Geométricas"].length);
-      const numrandom = Math.floor(Math.random() * nivelesCat[dropdownValue1]["Figuras Geométricas"][randomImageIndex].imagen.length);
-      const randomImagePathJson = nivelesCat[dropdownValue1]["Figuras Geométricas"][randomImageIndex].imagen[numrandom];
-      const randomImagePath = imagePaths8[parseInt(randomImagePathJson.replace(/[^\d]/g, ''))-1]
-
-      setCurrentImage(randomImagePath);
-
-      const numero2 = setTimeout(() => {
-        setPreviousImage(null);
-        setCurrentImage(null);
-        console.log("Entre")
-        setLoader(true);
-      }, tiempoPrimerImagen);
-
-      const numero1 = setTimeout(() => {
-        const newnumrandom = Math.floor(Math.random() * nivelesCat[dropdownValue1]["Figuras Geométricas"][randomImageIndex].imagen.length);
-        const newrandomImagePathJson = nivelesCat[dropdownValue1]["Figuras Geométricas"][randomImageIndex].imagen[newnumrandom];
-        const newrandomImagePath = imagePaths8[parseInt(newrandomImagePathJson.replace(/[^\d]/g, ''))-1]
-
-        setPreviousImage(randomImagePath);
-        setCurrentImage(newrandomImagePath);
-        setLoader(false);
-      }, tiempoTotal);
-      return () => {clearTimeout(numero1)
-      clearTimeout(numero2)};
-    }
-
-    else if (bandera == "Lugares") {
-      setPreviousImage(null);
-      const randomImageIndex = Math.floor(Math.random() * nivelesCat[dropdownValue1].Lugares.length);
-      const numrandom = Math.floor(Math.random() * nivelesCat[dropdownValue1].Lugares[randomImageIndex].imagen.length);
-      const randomImagePathJson = nivelesCat[dropdownValue1].Lugares[randomImageIndex].imagen[numrandom];
-      const randomImagePath = imagePaths9[parseInt(randomImagePathJson.replace(/[^\d]/g, ''))-1]
-
-      setCurrentImage(randomImagePath);
-
-      const numero2 = setTimeout(() => {
-        setPreviousImage(null);
-        setCurrentImage(null);
-        console.log("Entre")
-        setLoader(true);
-      }, tiempoPrimerImagen);
-
-      const numero1 = setTimeout(() => {
-        const newnumrandom = Math.floor(Math.random() * nivelesCat[dropdownValue1].Lugares[randomImageIndex].imagen.length);
-        const newrandomImagePathJson = nivelesCat[dropdownValue1].Lugares[randomImageIndex].imagen[newnumrandom];
-        const newrandomImagePath = imagePaths9[parseInt(newrandomImagePathJson.replace(/[^\d]/g, ''))-1]
-
-        setPreviousImage(randomImagePath);
-        setCurrentImage(newrandomImagePath);
-        setLoader(false);
-      }, tiempoTotal);
-      return () => {clearTimeout(numero1)
-      clearTimeout(numero2)};
-    }
-
-    else if (bandera == "Frutas") {
-      setPreviousImage(null);
-      const randomImageIndex = Math.floor(Math.random() * nivelesCat[dropdownValue1].Frutas.length);
-      const numrandom = Math.floor(Math.random() * nivelesCat[dropdownValue1].Frutas[randomImageIndex].imagen.length);
-      const randomImagePathJson = nivelesCat[dropdownValue1].Frutas[randomImageIndex].imagen[numrandom];
-      const randomImagePath = imagePaths10[parseInt(randomImagePathJson.replace(/[^\d]/g, ''))-1]
-
-      setCurrentImage(randomImagePath);
-
-      const numero2 = setTimeout(() => {
-        setPreviousImage(null);
-        setCurrentImage(null);
-        console.log("Entre")
-        setLoader(true);
-      }, tiempoPrimerImagen);
-
-      const numero1 = setTimeout(() => {
-        const newnumrandom = Math.floor(Math.random() * nivelesCat[dropdownValue1].Frutas[randomImageIndex].imagen.length);
-        const newrandomImagePathJson = nivelesCat[dropdownValue1].Frutas[randomImageIndex].imagen[newnumrandom];
-        const newrandomImagePath = imagePaths10[parseInt(newrandomImagePathJson.replace(/[^\d]/g, ''))-1]
-
-        setPreviousImage(randomImagePath);
-        setCurrentImage(newrandomImagePath);
-        setLoader(false);
-      }, tiempoTotal);
-      return () => {clearTimeout(numero1)
-      clearTimeout(numero2)};
-    }
-
+    return () => {clearTimeout(numero1)
+    clearTimeout(numero2)};
   }, [isFocused]);
-
-  
 
   const handleOptionSelected = (isSameImage: boolean) => {
     if (isSameImage) {
