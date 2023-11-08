@@ -282,7 +282,7 @@ const NumberGame: React.FC<Props> = ({ navigation: { navigate } }: Props) => {
                 paddingHorizontal: Spacing * 4,
                 paddingTop: Spacing * 10,
               }}>
-                <Loader/>
+              <Loader />
             </View>
           </View>
           ) :

@@ -7,11 +7,14 @@ import { RootSiblingParent } from 'react-native-root-siblings';
 
 import AppRouter from "./components/navigation/AppRouter";
 import { ScoreProvider } from "./components/context/ScoreContext";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
+
 
 export default function App() {
   const [fontsLoaded] = useFonts(fonts);
 
   return !fontsLoaded ? null : (
+    <GestureHandlerRootView style={{ flex: 1 }}>
     <RootSiblingParent>
     <LoginProvider>
       <ScoreProvider>
@@ -22,5 +25,6 @@ export default function App() {
       </ScoreProvider>
     </LoginProvider>
     </RootSiblingParent>
+    </GestureHandlerRootView>
   );
 }

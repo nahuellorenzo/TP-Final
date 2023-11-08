@@ -9,15 +9,16 @@ import React, { useState } from 'react';
     { label: '4 segundos', value: 4000 },
     { label: '6 segundos', value: 6000 },
     { label: '8 segundos', value: 8000 },
+    { label: '10 segundos', value: 10000 },
   ];
 
-  type DropdownTimeProps = {
+  type DropdownTimeInicialProps = {
     value: number;
     onValueChange: (value: number) => void;
   };
   
-  const DropdownTimeComponent: React.FC<DropdownTimeProps> = ({ value:propValue, onValueChange }) => {
-    const [value, setValue] = useState(propValue || 2000);
+  const DropdownTimeInicialComponent: React.FC<DropdownTimeInicialProps> = ({ value:propValue, onValueChange }) => {
+    const [value, setValue] = useState(propValue || 4000);
 
     const renderItem = item => {
       return (
@@ -60,7 +61,7 @@ import React, { useState } from 'react';
     );
   };
 
-  export default DropdownTimeComponent;
+  export default DropdownTimeInicialComponent;
 
   const styles = StyleSheet.create({
     dropdown: {
