@@ -15,6 +15,7 @@ import { RootStackParamList } from "../../types";
 import DropdownComponent from "./Dropdown";
 export var dropdownValue1: string;
 export var dropdownTimeValue1: number;
+import Onboarding from 'react-native-onboarding-swiper';
 export var dropdownTimeInicialValue1: number;
 import ModalOpcionesMemorium from "./ModalOpcionesMemorium";
 
