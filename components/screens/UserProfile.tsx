@@ -11,6 +11,7 @@ import {
   Modal,
   Pressable,
   ScrollView,
+  Image,
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
@@ -26,6 +27,9 @@ import Color from "../constants/Color";
 
 const { height, width } = Dimensions.get("window");
 type Props = NativeStackScreenProps<RootStackParamList, "UserProfile">;
+
+const puntosDiarios = ["1stToday", "10thToday", "25thToday", "50thToday"];
+const puntosTotales = ["50Total", "150Total", "500Total", "1000Total"];
 
 function UserProfileScreen({ navigation: { navigate } }: Props) {
   const { logout, user } = useContext(LoginContext);
@@ -99,6 +103,46 @@ function UserProfileScreen({ navigation: { navigate } }: Props) {
           <Text>
             Racha de dias Jugados: {score.racha}
           </Text>
+        </View>
+
+        <View style={{
+          flexDirection: 'row',
+          flexWrap: 'wrap',
+          justifyContent: 'space-around',
+        }}>
+          {
+            puntosDiarios.map((logro, index) => (
+              <View key={index} style={{
+                marginBottom: 10,
+              }}>
+                <Image
+                  style={{
+                    width: 100,
+                    height: 100,
+                  }}
+                  source={score.achievements.indexOf(logro) !== -1 ? require(`./../../assets/images/achievements/puntosDiarios/${logro}.png`) : require(`./../../assets/images/achievements/placeHolder.png`)} /></View>
+            ))
+          }
+        </View>
+
+        <View style={{
+          flexDirection: 'row',
+          flexWrap: 'wrap',
+          justifyContent: 'space-around',
+        }}>
+          {
+            puntosTotales.map((logro, index) => (
+              <View key={index} style={{
+                marginBottom: 10,
+              }}>
+                <Image
+                  style={{
+                    width: 100,
+                    height: 100,
+                  }}
+                  source={score.achievements.indexOf(logro) !== -1 ? require(`./../../assets/images/achievements/puntosTotales/${logro}.png`) : require(`./../../assets/images/achievements/placeHolder.png`)} /></View>
+            ))
+          }
         </View>
 
 
