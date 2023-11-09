@@ -17,6 +17,7 @@ import Loader from "./Loader";
 import { ScoreContext } from "../context/ScoreContext";
 import Toast from 'react-native-root-toast';
 import DogLoader from "./Loader2";
+import NewLoader from "./Loader3";
 const { height } = Dimensions.get("window");
 const { width } = Dimensions.get("window");
 type Props = NativeStackScreenProps<RootStackParamList, "NumberGame">;
@@ -43,39 +44,39 @@ const NumberGame: React.FC<Props> = ({ navigation: { navigate } }: Props) => {
       randomNumber = Math.floor(Math.random() * 10);
       setNumber(randomNumber);
       arregloNumeros.push(randomNumber);
-    }, 500);
+    }, 1000);
 
     const numero2 = setTimeout(() => {
       setLoader(false);
-    }, 1000);
+    }, 2000);
 
     const numero3 = setTimeout(() => {
       setLoader(true);
       randomNumber = Math.floor(Math.random() * 10);
       setNumber(randomNumber);
       arregloNumeros.push(randomNumber);
-    }, 1500);
+    }, 3000);
 
     const numero4 = setTimeout(() => {
       setLoader(false);
-    }, 2000);
+    }, 4000);
 
     const numero5 = setTimeout(() => {
       setLoader(true);
       randomNumber = Math.floor(Math.random() * 10);
       setNumber(randomNumber);
       arregloNumeros.push(randomNumber);
-    }, 2500);
+    }, 5000);
 
     const numero6 = setTimeout(() => {
       setLoader(false);
-    }, 3000);
+    }, 6000);
 
     const numero7 = setTimeout(() => {
       setUltimo(true);
       setMiArreglo([...arregloNumeros]);
       console.log(arregloNumeros)
-    }, 3500);
+    }, 7000);
 
     return () => {
       clearTimeout(numero1);
@@ -281,9 +282,9 @@ const NumberGame: React.FC<Props> = ({ navigation: { navigate } }: Props) => {
             <View
               style={{
                 paddingHorizontal: Spacing * 4,
-                paddingTop: Spacing * 10,
+                paddingTop: Spacing * 5,
               }}>
-              <DogLoader/>
+              <NewLoader/>
             </View>
           </View>
           ) :
