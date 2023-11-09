@@ -128,17 +128,19 @@ const NumberGame: React.FC<Props> = ({ navigation: { navigate } }: Props) => {
     if (number2 === parseInt(concatenatedNumber, 10)) {
       setResultado(true);
       showToastCorrect();
-      setScore({
+      setScore(prevScore => ({
+        ...prevScore,
         correct: score.correct + 1,
         incorrect: score.incorrect,
-      });
+      }));
     } else {
       setResultado(false);
       showToastInCorrect();
-      setScore({
+      setScore(prevScore => ({
+        ...prevScore,
         correct: score.correct,
         incorrect: score.incorrect + 1,
-      });
+      }));
       setContadorFallidos(contadorFalldios + 1)
     }
     console.log("actualice")
