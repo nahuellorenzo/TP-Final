@@ -53,15 +53,15 @@ export const ScoreProvider = ({ children }) => {
           if (data.fecha) {
             if ((data.fecha.toDate().getFullYear() !== score.fecha.getFullYear()) || (data.fecha.toDate().getDate() !== score.fecha.getDate()) || (data.fecha.toDate().getMonth() !== score.fecha.getMonth())) {
               if (score.fecha.getDate() == data.fecha.toDate().getDate() + 1) {
-                batch.update(doc.ref, { fecha: fecha, racha: data.racha + 1 });
+                batch.update(doc.ref, { fecha: fecha, racha: data.racha + 1, scoreToday: 0 });
                 setScore(prevScore => ({
-                  ...prevScore, fecha: score.fecha, racha: data.racha + 1
+                  ...prevScore, fecha: score.fecha, racha: data.racha + 1, scoreToday: 0
                 }))
                 console.log("Entraste ayer, tu racha sube en 1")
               } else {
-                batch.update(doc.ref, { fecha: fecha, racha: 0 });
+                batch.update(doc.ref, { fecha: fecha, racha: 0, scoreToday: 0 });
                 setScore(prevScore => ({
-                  ...prevScore, fecha: score.fecha, racha: 0
+                  ...prevScore, fecha: score.fecha, racha: 0, scoreToday: 0
                 }))
                 console.log("No entraste ayer, tu racha vuelve a 0")
               }

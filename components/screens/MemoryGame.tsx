@@ -248,251 +248,268 @@ const MemoryGame: React.FC = ({ navigation: { navigate } }: Props) => {
           break;
       }
 
-      setScore(prevScore => ({
-        ...prevScore,
-        correct: score.correct + 1,
-        incorrect: score.incorrect,
-      }));
-      // agregar a variableArray un 1 si está vacío, o el último numero cargado más 1 si tiene datos
-      setCurrentScore(prevArray => {
-        return [...prevArray, prevArray[prevArray.length - 1] + 1];
-      });
-      playSound("correcta");
-      confetti = true;
-      showToastCorrect();
+      switch (score.scoreToday + 1) {
+        case 1:
+          score.achievements.push("1stToday");
+          break;
+        case 10:
+          score.achievements.push("10thToday");
+          break;
+        case 25:
+          score.achievements.push("25thToday");
+          break;
+        case 50:
+          score.achievements.push("50thToday");
+          break;
+        default:
+          break;
+      }
+          setScore(prevScore => ({
+            ...prevScore,
+            correct: score.correct + 1,
+            scoreToday: score.scoreToday + 1,
+            incorrect: score.incorrect,
+          }));
+          // agregar a variableArray un 1 si está vacío, o el último numero cargado más 1 si tiene datos
+          setCurrentScore(prevArray => {
+            return [...prevArray, prevArray[prevArray.length - 1] + 1];
+          });
+          playSound("correcta");
+          confetti = true;
+          showToastCorrect();
 
-    } else {
-      console.log("Te equivocaste, no es lo correcto");
-      // showToastIncorrect();
-      Vibration.vibrate(0.5 * ONE_SECOND_IN_MS)
-      setScore(prevScore => ({
-        ...prevScore,
-        correct: score.correct,
-        incorrect: score.incorrect + 1,
-      }));
-      // agregar a variableArray un 0 si está vacío, o el último numero cargado
-      setCurrentScore(prevArray => {
-        return [...prevArray, prevArray[prevArray.length - 1]];
-      });
-      confetti = false;
-      showToastInCorrect();
-    }
-    navigate("Again", { param1: previousImage, param2: currentImage });
-  };
+      } else {
+        console.log("Te equivocaste, no es lo correcto");
+        // showToastIncorrect();
+        Vibration.vibrate(0.5 * ONE_SECOND_IN_MS)
+        setScore(prevScore => ({
+          ...prevScore,
+          correct: score.correct,
+          incorrect: score.incorrect + 1,
+        }));
+        // agregar a variableArray un 0 si está vacío, o el último numero cargado
+        setCurrentScore(prevArray => {
+          return [...prevArray, prevArray[prevArray.length - 1]];
+        });
+        confetti = false;
+        showToastInCorrect();
+      }
+      navigate("Again", { param1: previousImage, param2: currentImage });
+    };
 
-  const PATTERN_DESC =
-    Platform.OS === 'android'
-      ? 'wait 1s, vibrate 2s, wait 3s'
-      : 'wait 1s, vibrate, wait 2s, vibrate, wait 3s';
-  return (
-    <ScrollView>
-      <View>
-        {
-          loader === true ? (<View>
-            <View
-              style={{
-                paddingHorizontal: Spacing * 4,
-                paddingTop: Spacing * 4,
-              }}
-            >
-              <Text
+    const PATTERN_DESC =
+      Platform.OS === 'android'
+        ? 'wait 1s, vibrate 2s, wait 3s'
+        : 'wait 1s, vibrate, wait 2s, vibrate, wait 3s';
+    return (
+      <ScrollView>
+        <View>
+          {
+            loader === true ? (<View>
+              <View
                 style={{
-                  fontSize: FontSize.xxLarge,
-                  color: Colors.primary,
-                  fontFamily: Fonts["Roboto-Bold"],
-                  textAlign: "center",
+                  paddingHorizontal: Spacing * 4,
+                  paddingTop: Spacing * 4,
                 }}
               >
-                No te olvides la imagen!
-              </Text>
-            </View>
-            <View
-              style={{
-                paddingHorizontal: Spacing * 4,
-                paddingTop: Spacing * 6,
-              }}>
-              <DogLoader />
-            </View>
-          </View>
-          ) :
-            (
-              <View>
-                {previousImage === null ? (
-                  <View
-                    style={{
-                      paddingHorizontal: Spacing * 4,
-                      paddingTop: Spacing * 4,
-                    }}
-                  >
-                    <Text
-                      style={{
-                        fontSize: FontSize.xxLarge,
-                        color: Colors.primary,
-                        fontFamily: Fonts["Roboto-Bold"],
-                        textAlign: "center",
-                      }}
-                    >
-                      Recuerda esta imagen!
-                    </Text>
-                  </View>
-                ) : (
-                  <View
-                    style={{
-                      paddingHorizontal: Spacing * 4,
-                      paddingTop: Spacing * 4,
-                    }}
-                  >
-                    <Text
-                      style={{
-                        fontSize: FontSize.xxLarge,
-                        color: Colors.primary,
-                        fontFamily: Fonts["Roboto-Bold"],
-                        textAlign: "center",
-                      }}
-                    >
-                      ¿Es la misma imagen?
-                    </Text>
-                  </View>
-                )}
-                <View
-                  style={{
-
-                  }}>
-                  {
-                    Platform.OS == 'web' ? (<Image
-                      style={{
-                        height: height / 2.5,
-                        width: width / 1.5,
-                        marginTop: Spacing * 4,
-                        borderRadius: Math.min(height, width) / 5,
-                        alignSelf: "center",
-                      }}
-                      resizeMode="contain"
-                      source={currentImage}
-                    />) :
-                      (
-                        <GestureHandlerRootView>
-                          <GestureDetector gesture={pinchazoPantalla} userSelect="none">
-                            <Animated.Image
-                              style={[estiloAnimado, {
-                                height: height / 2.5,
-                                width: width / 1.5,
-                                marginTop: Spacing * 4,
-                                borderRadius: Math.min(height, width) / 5,
-                                alignSelf: "center",
-                              }]}
-                              resizeMode="contain"
-                              source={currentImage}
-                            />
-                          </GestureDetector>
-                        </GestureHandlerRootView>
-                      )
-                  }
-                </View>
                 <Text
                   style={{
-                    fontSize: FontSize.large,
+                    fontSize: FontSize.xxLarge,
                     color: Colors.primary,
                     fontFamily: Fonts["Roboto-Bold"],
                     textAlign: "center",
                   }}
                 >
-                  Puntaje actual: {score.correct}
+                  No te olvides la imagen!
                 </Text>
-                {previousImage !== null && (
+              </View>
+              <View
+                style={{
+                  paddingHorizontal: Spacing * 4,
+                  paddingTop: Spacing * 6,
+                }}>
+                <DogLoader />
+              </View>
+            </View>
+            ) :
+              (
+                <View>
+                  {previousImage === null ? (
+                    <View
+                      style={{
+                        paddingHorizontal: Spacing * 4,
+                        paddingTop: Spacing * 4,
+                      }}
+                    >
+                      <Text
+                        style={{
+                          fontSize: FontSize.xxLarge,
+                          color: Colors.primary,
+                          fontFamily: Fonts["Roboto-Bold"],
+                          textAlign: "center",
+                        }}
+                      >
+                        Recuerda esta imagen!
+                      </Text>
+                    </View>
+                  ) : (
+                    <View
+                      style={{
+                        paddingHorizontal: Spacing * 4,
+                        paddingTop: Spacing * 4,
+                      }}
+                    >
+                      <Text
+                        style={{
+                          fontSize: FontSize.xxLarge,
+                          color: Colors.primary,
+                          fontFamily: Fonts["Roboto-Bold"],
+                          textAlign: "center",
+                        }}
+                      >
+                        ¿Es la misma imagen?
+                      </Text>
+                    </View>
+                  )}
                   <View
                     style={{
-                      paddingHorizontal: Spacing * 2,
-                      paddingTop: Spacing * 6,
-                      flexDirection: "row",
-                      justifyContent: "space-between",
+
+                    }}>
+                    {
+                      Platform.OS == 'web' ? (<Image
+                        style={{
+                          height: height / 2.5,
+                          width: width / 1.5,
+                          marginTop: Spacing * 4,
+                          borderRadius: Math.min(height, width) / 5,
+                          alignSelf: "center",
+                        }}
+                        resizeMode="contain"
+                        source={currentImage}
+                      />) :
+                        (
+                          <GestureHandlerRootView>
+                            <GestureDetector gesture={pinchazoPantalla} userSelect="none">
+                              <Animated.Image
+                                style={[estiloAnimado, {
+                                  height: height / 2.5,
+                                  width: width / 1.5,
+                                  marginTop: Spacing * 4,
+                                  borderRadius: Math.min(height, width) / 5,
+                                  alignSelf: "center",
+                                }]}
+                                resizeMode="contain"
+                                source={currentImage}
+                              />
+                            </GestureDetector>
+                          </GestureHandlerRootView>
+                        )
+                    }
+                  </View>
+                  <Text
+                    style={{
+                      fontSize: FontSize.large,
+                      color: Colors.primary,
+                      fontFamily: Fonts["Roboto-Bold"],
+                      textAlign: "center",
                     }}
                   >
-                    <TouchableOpacity
-                      onPress={() => handleOptionSelected(currentImage === previousImage)}
+                    Puntaje actual: {score.correct}
+                  </Text>
+                  {previousImage !== null && (
+                    <View
                       style={{
-                        backgroundColor: Colors.primary,
-                        paddingVertical: Spacing * 1.5,
                         paddingHorizontal: Spacing * 2,
-                        width: "48%",
-                        borderRadius: Spacing,
-                        shadowColor: Colors.primary,
-                        shadowOffset: {
-                          width: 0,
-                          height: Spacing,
-                        },
-                        shadowOpacity: 0.3,
-                        shadowRadius: Spacing,
+                        paddingTop: Spacing * 6,
+                        flexDirection: "row",
+                        justifyContent: "space-between",
                       }}
                     >
-                      <Text
+                      <TouchableOpacity
+                        onPress={() => handleOptionSelected(currentImage === previousImage)}
                         style={{
-                          fontFamily: Fonts["Roboto-Bold"],
-                          color: Colors.onPrimary,
-                          fontSize: FontSize.large,
-                          textAlign: "center",
+                          backgroundColor: Colors.primary,
+                          paddingVertical: Spacing * 1.5,
+                          paddingHorizontal: Spacing * 2,
+                          width: "48%",
+                          borderRadius: Spacing,
+                          shadowColor: Colors.primary,
+                          shadowOffset: {
+                            width: 0,
+                            height: Spacing,
+                          },
+                          shadowOpacity: 0.3,
+                          shadowRadius: Spacing,
                         }}
                       >
-                        Es la misma
-                      </Text>
-                    </TouchableOpacity>
+                        <Text
+                          style={{
+                            fontFamily: Fonts["Roboto-Bold"],
+                            color: Colors.onPrimary,
+                            fontSize: FontSize.large,
+                            textAlign: "center",
+                          }}
+                        >
+                          Es la misma
+                        </Text>
+                      </TouchableOpacity>
 
-                    <TouchableOpacity
-                      onPress={() => handleOptionSelected(currentImage !== previousImage)}
-                      style={{
-                        paddingVertical: Spacing * 1.5,
-                        paddingHorizontal: Spacing * 2,
-                        width: "48%",
-                        borderRadius: Spacing,
-                        shadowOffset: {
-                          width: 0,
-                          height: Spacing,
-                        },
-                        shadowOpacity: 0.3,
-                        shadowRadius: Spacing,
-                      }}
-                    >
-                      <Text
+                      <TouchableOpacity
+                        onPress={() => handleOptionSelected(currentImage !== previousImage)}
                         style={{
-                          fontFamily: Fonts["Roboto-Bold"],
-                          color: Colors.text,
-                          fontSize: FontSize.large,
-                          textAlign: "center",
+                          paddingVertical: Spacing * 1.5,
+                          paddingHorizontal: Spacing * 2,
+                          width: "48%",
+                          borderRadius: Spacing,
+                          shadowOffset: {
+                            width: 0,
+                            height: Spacing,
+                          },
+                          shadowOpacity: 0.3,
+                          shadowRadius: Spacing,
                         }}
                       >
-                        Es diferente
-                      </Text>
-                    </TouchableOpacity>
-                  </View>
-                )}
-              </View>)}
-      </View>
-    </ScrollView >
-  );
-};
+                        <Text
+                          style={{
+                            fontFamily: Fonts["Roboto-Bold"],
+                            color: Colors.text,
+                            fontSize: FontSize.large,
+                            textAlign: "center",
+                          }}
+                        >
+                          Es diferente
+                        </Text>
+                      </TouchableOpacity>
+                    </View>
+                  )}
+                </View>)}
+        </View>
+      </ScrollView >
+    );
+  };
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    paddingTop: StatusBar.currentHeight,
-    backgroundColor: '#888888',
-    padding: 8,
-  },
-  header: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    textAlign: 'center',
-  },
-  paragraph: {
-    margin: 24,
-    textAlign: 'center',
-  },
-  separator: {
-    marginVertical: 8,
-    borderBottomColor: '#737373',
-    borderBottomWidth: StyleSheet.hairlineWidth,
-  },
-});
+  const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+      justifyContent: 'center',
+      paddingTop: StatusBar.currentHeight,
+      backgroundColor: '#888888',
+      padding: 8,
+    },
+    header: {
+      fontSize: 18,
+      fontWeight: 'bold',
+      textAlign: 'center',
+    },
+    paragraph: {
+      margin: 24,
+      textAlign: 'center',
+    },
+    separator: {
+      marginVertical: 8,
+      borderBottomColor: '#737373',
+      borderBottomWidth: StyleSheet.hairlineWidth,
+    },
+  });
 
-export default MemoryGame;
+  export default MemoryGame;
