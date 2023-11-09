@@ -34,7 +34,8 @@ function UserProfileScreen({ navigation: { navigate } }: Props) {
   const [modalVisible, setModalVisible] = useState(false);
   const total = score.correct + score.incorrect;
   console.log(score)
-  const logros = ['1stToday', '10thToday', '25thToday', '50thToday'];
+  const puntosDiarios = ['1stToday', '10thToday', '25thToday', '50thToday'];
+  const puntosTotales = ['50Total', '150Total', '500Total', '1000Total'];
   const juegosPuntajes = [
     {
       title: 'Resultados Memory Game',
@@ -110,7 +111,25 @@ function UserProfileScreen({ navigation: { navigate } }: Props) {
           justifyContent: 'space-around',
         }}>
           {
-            logros.map((logro, index) => (
+            puntosDiarios.map((logro, index) => (
+              <View key={index} style={{
+                marginBottom: 10,
+              }}>
+                <Image style={{
+                  width: '100px',
+                  height: '100px',
+                }} source={score.achievements.includes(logro) ? require(`./../../assets/achievements/${logro}.png`) : require(`./../../assets/achievements/placeHolder.png`)} />
+              </View>
+            ))
+          }
+        </View>
+        <View style={{
+          flexDirection: 'row',
+          flexWrap: 'wrap',
+          justifyContent: 'space-around',
+        }}>
+          {
+            puntosTotales.map((logro, index) => (
               <View key={index} style={{
                 marginBottom: 10,
               }}>

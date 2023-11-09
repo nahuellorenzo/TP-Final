@@ -53,7 +53,7 @@ import Animated, {
   withTiming,
 } from "react-native-reanimated";
 import { withSpring } from 'react-native-reanimated';
-export var confetti : boolean;
+export var confetti: boolean;
 
 type Props = NativeStackScreenProps<RootStackParamList, "MemoryGame">;
 const Separator = () => {
@@ -121,7 +121,7 @@ const MemoryGame: React.FC = ({ navigation: { navigate } }: Props) => {
   }, [sound]);
 
   const showToastCorrect = () => {
-    try{
+    try {
       Toast.show('Respuesta correcta!', {
         duration: Toast.durations.LONG,
         animation: true,
@@ -131,13 +131,13 @@ const MemoryGame: React.FC = ({ navigation: { navigate } }: Props) => {
         shadow: true,
       });
     }
-    catch(error){
+    catch (error) {
       console.log(error)
     }
   }
 
   const showToastInCorrect = () => {
-    try{
+    try {
       Toast.show('Respuesta incorrecta, Vuelve a intentarlo!', {
         duration: Toast.durations.LONG,
         animation: true,
@@ -147,7 +147,7 @@ const MemoryGame: React.FC = ({ navigation: { navigate } }: Props) => {
         shadow: true,
       });
     }
-    catch(error){
+    catch (error) {
       console.log(error)
     }
   }
@@ -156,7 +156,7 @@ const MemoryGame: React.FC = ({ navigation: { navigate } }: Props) => {
   const [previousImage, setPreviousImage] = useState(null);
   const isFocused = useIsFocused();
   const [loader, setLoader] = useState(false);
-  const { score, currentScore, setScore, setCurrentScore} = useContext(ScoreContext);
+  const { score, currentScore, setScore, setCurrentScore } = useContext(ScoreContext);
   const ONE_SECOND_IN_MS = 1000;
   const PATTERN = [
     1 * ONE_SECOND_IN_MS,
@@ -165,13 +165,13 @@ const MemoryGame: React.FC = ({ navigation: { navigate } }: Props) => {
   ];
 
   //Manejo del tiempo de mostrar imagenes
-  const tiempoPrimerImagen= 4000;
+  const tiempoPrimerImagen = 4000;
   const tiempoTotal = tiempoPrimerImagen + dropdownTimeValue1;
 
   useEffect(() => {
     escalaImg.value = withSpring(1); // Restablece la escala a 1
   }, [currentImage]);
-  
+
   useEffect(() => {
     setPreviousImage(null);
     setCurrentImage(null);
@@ -181,29 +181,31 @@ const MemoryGame: React.FC = ({ navigation: { navigate } }: Props) => {
       const randomImageIndex = Math.floor(Math.random() * nivelesCat[dropdownValue1].Entrenamiento.length);
       const numrandom = Math.floor(Math.random() * nivelesCat[dropdownValue1].Entrenamiento[randomImageIndex].imagen.length);
       const randomImagePathJson = nivelesCat[dropdownValue1].Entrenamiento[randomImageIndex].imagen[numrandom];
-      const randomImagePath = imagePaths1[parseInt(randomImagePathJson.replace(/[^\d]/g, ''))-1]
+      const randomImagePath = imagePaths1[parseInt(randomImagePathJson.replace(/[^\d]/g, '')) - 1]
 
       setCurrentImage(randomImagePath);
 
-        const numero2 = setTimeout(() => {
-          setPreviousImage(null);
-          setCurrentImage(null);
-          console.log("Entre")
-          setLoader(true);
-        }, tiempoPrimerImagen);
+      const numero2 = setTimeout(() => {
+        setPreviousImage(null);
+        setCurrentImage(null);
+        console.log("Entre")
+        setLoader(true);
+      }, tiempoPrimerImagen);
 
-      
+
       const numero1 = setTimeout(() => {
         const newnumrandom = Math.floor(Math.random() * nivelesCat[dropdownValue1].Entrenamiento[randomImageIndex].imagen.length);
         const newrandomImagePathJson = nivelesCat[dropdownValue1].Entrenamiento[randomImageIndex].imagen[newnumrandom];
-        const newrandomImagePath = imagePaths1[parseInt(newrandomImagePathJson.replace(/[^\d]/g, ''))-1]
+        const newrandomImagePath = imagePaths1[parseInt(newrandomImagePathJson.replace(/[^\d]/g, '')) - 1]
 
         setPreviousImage(randomImagePath);
         setCurrentImage(newrandomImagePath);
         setLoader(false);
       }, tiempoTotal);
-      return () => {clearTimeout(numero1)
-      clearTimeout(numero2)};
+      return () => {
+        clearTimeout(numero1)
+        clearTimeout(numero2)
+      };
     }
 
     else if (bandera == "Banderas") {
@@ -211,7 +213,7 @@ const MemoryGame: React.FC = ({ navigation: { navigate } }: Props) => {
       const randomImageIndex = Math.floor(Math.random() * nivelesCat[dropdownValue1].Banderas.length);
       const numrandom = Math.floor(Math.random() * nivelesCat[dropdownValue1].Banderas[randomImageIndex].imagen.length);
       const randomImagePathJson = nivelesCat[dropdownValue1].Banderas[randomImageIndex].imagen[numrandom];
-      const randomImagePath = imagePaths2[parseInt(randomImagePathJson.replace(/[^\d]/g, ''))-1]
+      const randomImagePath = imagePaths2[parseInt(randomImagePathJson.replace(/[^\d]/g, '')) - 1]
 
       setCurrentImage(randomImagePath);
 
@@ -225,14 +227,16 @@ const MemoryGame: React.FC = ({ navigation: { navigate } }: Props) => {
       const numero1 = setTimeout(() => {
         const newnumrandom = Math.floor(Math.random() * nivelesCat[dropdownValue1].Banderas[randomImageIndex].imagen.length);
         const newrandomImagePathJson = nivelesCat[dropdownValue1].Banderas[randomImageIndex].imagen[newnumrandom];
-        const newrandomImagePath = imagePaths2[parseInt(newrandomImagePathJson.replace(/[^\d]/g, ''))-1]
+        const newrandomImagePath = imagePaths2[parseInt(newrandomImagePathJson.replace(/[^\d]/g, '')) - 1]
 
         setPreviousImage(randomImagePath);
         setCurrentImage(newrandomImagePath);
         setLoader(false);
       }, tiempoTotal);
-      return () => {clearTimeout(numero1);
-        clearTimeout(numero2)}
+      return () => {
+        clearTimeout(numero1);
+        clearTimeout(numero2)
+      }
     }
 
     else if (bandera == "Paisajes") {
@@ -240,7 +244,7 @@ const MemoryGame: React.FC = ({ navigation: { navigate } }: Props) => {
       const randomImageIndex = Math.floor(Math.random() * nivelesCat[dropdownValue1].Paisajes.length);
       const numrandom = Math.floor(Math.random() * nivelesCat[dropdownValue1].Paisajes[randomImageIndex].imagen.length);
       const randomImagePathJson = nivelesCat[dropdownValue1].Paisajes[randomImageIndex].imagen[numrandom];
-      const randomImagePath = imagePaths3[parseInt(randomImagePathJson.replace(/[^\d]/g, ''))-1]
+      const randomImagePath = imagePaths3[parseInt(randomImagePathJson.replace(/[^\d]/g, '')) - 1]
 
       setCurrentImage(randomImagePath);
 
@@ -253,14 +257,16 @@ const MemoryGame: React.FC = ({ navigation: { navigate } }: Props) => {
       const numero1 = setTimeout(() => {
         const newnumrandom = Math.floor(Math.random() * nivelesCat[dropdownValue1].Paisajes[randomImageIndex].imagen.length);
         const newrandomImagePathJson = nivelesCat[dropdownValue1].Paisajes[randomImageIndex].imagen[newnumrandom];
-        const newrandomImagePath = imagePaths3[parseInt(newrandomImagePathJson.replace(/[^\d]/g, ''))-1]
+        const newrandomImagePath = imagePaths3[parseInt(newrandomImagePathJson.replace(/[^\d]/g, '')) - 1]
 
         setPreviousImage(randomImagePath);
         setCurrentImage(newrandomImagePath);
         setLoader(false);
       }, tiempoTotal);
-      return () => {clearTimeout(numero1);
-        clearTimeout(numero2)}
+      return () => {
+        clearTimeout(numero1);
+        clearTimeout(numero2)
+      }
     }
 
     else if (bandera == "Peliculas") {
@@ -268,7 +274,7 @@ const MemoryGame: React.FC = ({ navigation: { navigate } }: Props) => {
       const randomImageIndex = Math.floor(Math.random() * nivelesCat[dropdownValue1].Peliculas.length);
       const numrandom = Math.floor(Math.random() * nivelesCat[dropdownValue1].Peliculas[randomImageIndex].imagen.length);
       const randomImagePathJson = nivelesCat[dropdownValue1].Peliculas[randomImageIndex].imagen[numrandom];
-      const randomImagePath = imagePaths4[parseInt(randomImagePathJson.replace(/[^\d]/g, ''))-1]
+      const randomImagePath = imagePaths4[parseInt(randomImagePathJson.replace(/[^\d]/g, '')) - 1]
 
       setCurrentImage(randomImagePath);
 
@@ -282,14 +288,16 @@ const MemoryGame: React.FC = ({ navigation: { navigate } }: Props) => {
       const numero1 = setTimeout(() => {
         const newnumrandom = Math.floor(Math.random() * nivelesCat[dropdownValue1].Peliculas[randomImageIndex].imagen.length);
         const newrandomImagePathJson = nivelesCat[dropdownValue1].Peliculas[randomImageIndex].imagen[newnumrandom];
-        const newrandomImagePath = imagePaths4[parseInt(newrandomImagePathJson.replace(/[^\d]/g, ''))-1]
+        const newrandomImagePath = imagePaths4[parseInt(newrandomImagePathJson.replace(/[^\d]/g, '')) - 1]
 
         setPreviousImage(randomImagePath);
         setCurrentImage(newrandomImagePath);
         setLoader(false);
       }, tiempoTotal);
-      return () => {clearTimeout(numero1)
-      clearTimeout(numero2)};
+      return () => {
+        clearTimeout(numero1)
+        clearTimeout(numero2)
+      };
     }
 
     else if (bandera == "Personas") {
@@ -297,7 +305,7 @@ const MemoryGame: React.FC = ({ navigation: { navigate } }: Props) => {
       const randomImageIndex = Math.floor(Math.random() * nivelesCat[dropdownValue1].Personas.length);
       const numrandom = Math.floor(Math.random() * nivelesCat[dropdownValue1].Personas[randomImageIndex].imagen.length);
       const randomImagePathJson = nivelesCat[dropdownValue1].Personas[randomImageIndex].imagen[numrandom];
-      const randomImagePath = imagePaths5[parseInt(randomImagePathJson.replace(/[^\d]/g, ''))-1]
+      const randomImagePath = imagePaths5[parseInt(randomImagePathJson.replace(/[^\d]/g, '')) - 1]
 
       setCurrentImage(randomImagePath);
 
@@ -311,14 +319,16 @@ const MemoryGame: React.FC = ({ navigation: { navigate } }: Props) => {
       const numero1 = setTimeout(() => {
         const newnumrandom = Math.floor(Math.random() * nivelesCat[dropdownValue1].Personas[randomImageIndex].imagen.length);
         const newrandomImagePathJson = nivelesCat[dropdownValue1].Personas[randomImageIndex].imagen[newnumrandom];
-        const newrandomImagePath = imagePaths5[parseInt(newrandomImagePathJson.replace(/[^\d]/g, ''))-1]
+        const newrandomImagePath = imagePaths5[parseInt(newrandomImagePathJson.replace(/[^\d]/g, '')) - 1]
 
         setPreviousImage(randomImagePath);
         setCurrentImage(newrandomImagePath);
         setLoader(false);
       }, tiempoTotal);
-      return () => {clearTimeout(numero1)
-      clearTimeout(numero2)};
+      return () => {
+        clearTimeout(numero1)
+        clearTimeout(numero2)
+      };
     }
 
     else if (bandera == "Camisetas de Futbol") {
@@ -326,7 +336,7 @@ const MemoryGame: React.FC = ({ navigation: { navigate } }: Props) => {
       const randomImageIndex = Math.floor(Math.random() * nivelesCat[dropdownValue1]["Camisetas de Futbol"].length);
       const numrandom = Math.floor(Math.random() * nivelesCat[dropdownValue1]["Camisetas de Futbol"][randomImageIndex].imagen.length);
       const randomImagePathJson = nivelesCat[dropdownValue1]["Camisetas de Futbol"][randomImageIndex].imagen[numrandom];
-      const randomImagePath = imagePaths6[parseInt(randomImagePathJson.replace(/[^\d]/g, ''))-1]
+      const randomImagePath = imagePaths6[parseInt(randomImagePathJson.replace(/[^\d]/g, '')) - 1]
 
       setCurrentImage(randomImagePath);
 
@@ -340,14 +350,16 @@ const MemoryGame: React.FC = ({ navigation: { navigate } }: Props) => {
       const numero1 = setTimeout(() => {
         const newnumrandom = Math.floor(Math.random() * nivelesCat[dropdownValue1]["Camisetas de Futbol"][randomImageIndex].imagen.length);
         const newrandomImagePathJson = nivelesCat[dropdownValue1]["Camisetas de Futbol"][randomImageIndex].imagen[newnumrandom];
-        const newrandomImagePath = imagePaths6[parseInt(newrandomImagePathJson.replace(/[^\d]/g, ''))-1]
+        const newrandomImagePath = imagePaths6[parseInt(newrandomImagePathJson.replace(/[^\d]/g, '')) - 1]
 
         setPreviousImage(randomImagePath);
         setCurrentImage(newrandomImagePath);
         setLoader(false);
       }, tiempoTotal);
-      return () => {clearTimeout(numero1)
-      clearTimeout(numero2)};
+      return () => {
+        clearTimeout(numero1)
+        clearTimeout(numero2)
+      };
     }
 
     else if (bandera == "Oficios") {
@@ -355,7 +367,7 @@ const MemoryGame: React.FC = ({ navigation: { navigate } }: Props) => {
       const randomImageIndex = Math.floor(Math.random() * nivelesCat[dropdownValue1].Oficios.length);
       const numrandom = Math.floor(Math.random() * nivelesCat[dropdownValue1].Oficios[randomImageIndex].imagen.length);
       const randomImagePathJson = nivelesCat[dropdownValue1].Oficios[randomImageIndex].imagen[numrandom];
-      const randomImagePath = imagePaths7[parseInt(randomImagePathJson.replace(/[^\d]/g, ''))-1]
+      const randomImagePath = imagePaths7[parseInt(randomImagePathJson.replace(/[^\d]/g, '')) - 1]
 
       setCurrentImage(randomImagePath);
 
@@ -369,14 +381,16 @@ const MemoryGame: React.FC = ({ navigation: { navigate } }: Props) => {
       const numero1 = setTimeout(() => {
         const newnumrandom = Math.floor(Math.random() * nivelesCat[dropdownValue1].Oficios[randomImageIndex].imagen.length);
         const newrandomImagePathJson = nivelesCat[dropdownValue1].Oficios[randomImageIndex].imagen[newnumrandom];
-        const newrandomImagePath = imagePaths7[parseInt(newrandomImagePathJson.replace(/[^\d]/g, ''))-1]
+        const newrandomImagePath = imagePaths7[parseInt(newrandomImagePathJson.replace(/[^\d]/g, '')) - 1]
 
         setPreviousImage(randomImagePath);
         setCurrentImage(newrandomImagePath);
         setLoader(false);
       }, tiempoTotal);
-      return () => {clearTimeout(numero1)
-      clearTimeout(numero2)};
+      return () => {
+        clearTimeout(numero1)
+        clearTimeout(numero2)
+      };
     }
 
     else if (bandera == "Figuras Geométricas") {
@@ -384,7 +398,7 @@ const MemoryGame: React.FC = ({ navigation: { navigate } }: Props) => {
       const randomImageIndex = Math.floor(Math.random() * nivelesCat[dropdownValue1]["Figuras Geométricas"].length);
       const numrandom = Math.floor(Math.random() * nivelesCat[dropdownValue1]["Figuras Geométricas"][randomImageIndex].imagen.length);
       const randomImagePathJson = nivelesCat[dropdownValue1]["Figuras Geométricas"][randomImageIndex].imagen[numrandom];
-      const randomImagePath = imagePaths8[parseInt(randomImagePathJson.replace(/[^\d]/g, ''))-1]
+      const randomImagePath = imagePaths8[parseInt(randomImagePathJson.replace(/[^\d]/g, '')) - 1]
 
       setCurrentImage(randomImagePath);
 
@@ -398,14 +412,16 @@ const MemoryGame: React.FC = ({ navigation: { navigate } }: Props) => {
       const numero1 = setTimeout(() => {
         const newnumrandom = Math.floor(Math.random() * nivelesCat[dropdownValue1]["Figuras Geométricas"][randomImageIndex].imagen.length);
         const newrandomImagePathJson = nivelesCat[dropdownValue1]["Figuras Geométricas"][randomImageIndex].imagen[newnumrandom];
-        const newrandomImagePath = imagePaths8[parseInt(newrandomImagePathJson.replace(/[^\d]/g, ''))-1]
+        const newrandomImagePath = imagePaths8[parseInt(newrandomImagePathJson.replace(/[^\d]/g, '')) - 1]
 
         setPreviousImage(randomImagePath);
         setCurrentImage(newrandomImagePath);
         setLoader(false);
       }, tiempoTotal);
-      return () => {clearTimeout(numero1)
-      clearTimeout(numero2)};
+      return () => {
+        clearTimeout(numero1)
+        clearTimeout(numero2)
+      };
     }
 
     else if (bandera == "Lugares") {
@@ -413,7 +429,7 @@ const MemoryGame: React.FC = ({ navigation: { navigate } }: Props) => {
       const randomImageIndex = Math.floor(Math.random() * nivelesCat[dropdownValue1].Lugares.length);
       const numrandom = Math.floor(Math.random() * nivelesCat[dropdownValue1].Lugares[randomImageIndex].imagen.length);
       const randomImagePathJson = nivelesCat[dropdownValue1].Lugares[randomImageIndex].imagen[numrandom];
-      const randomImagePath = imagePaths9[parseInt(randomImagePathJson.replace(/[^\d]/g, ''))-1]
+      const randomImagePath = imagePaths9[parseInt(randomImagePathJson.replace(/[^\d]/g, '')) - 1]
 
       setCurrentImage(randomImagePath);
 
@@ -427,14 +443,16 @@ const MemoryGame: React.FC = ({ navigation: { navigate } }: Props) => {
       const numero1 = setTimeout(() => {
         const newnumrandom = Math.floor(Math.random() * nivelesCat[dropdownValue1].Lugares[randomImageIndex].imagen.length);
         const newrandomImagePathJson = nivelesCat[dropdownValue1].Lugares[randomImageIndex].imagen[newnumrandom];
-        const newrandomImagePath = imagePaths9[parseInt(newrandomImagePathJson.replace(/[^\d]/g, ''))-1]
+        const newrandomImagePath = imagePaths9[parseInt(newrandomImagePathJson.replace(/[^\d]/g, '')) - 1]
 
         setPreviousImage(randomImagePath);
         setCurrentImage(newrandomImagePath);
         setLoader(false);
       }, tiempoTotal);
-      return () => {clearTimeout(numero1)
-      clearTimeout(numero2)};
+      return () => {
+        clearTimeout(numero1)
+        clearTimeout(numero2)
+      };
     }
 
     else if (bandera == "Frutas") {
@@ -442,7 +460,7 @@ const MemoryGame: React.FC = ({ navigation: { navigate } }: Props) => {
       const randomImageIndex = Math.floor(Math.random() * nivelesCat[dropdownValue1].Frutas.length);
       const numrandom = Math.floor(Math.random() * nivelesCat[dropdownValue1].Frutas[randomImageIndex].imagen.length);
       const randomImagePathJson = nivelesCat[dropdownValue1].Frutas[randomImageIndex].imagen[numrandom];
-      const randomImagePath = imagePaths10[parseInt(randomImagePathJson.replace(/[^\d]/g, ''))-1]
+      const randomImagePath = imagePaths10[parseInt(randomImagePathJson.replace(/[^\d]/g, '')) - 1]
 
       setCurrentImage(randomImagePath);
 
@@ -456,19 +474,21 @@ const MemoryGame: React.FC = ({ navigation: { navigate } }: Props) => {
       const numero1 = setTimeout(() => {
         const newnumrandom = Math.floor(Math.random() * nivelesCat[dropdownValue1].Frutas[randomImageIndex].imagen.length);
         const newrandomImagePathJson = nivelesCat[dropdownValue1].Frutas[randomImageIndex].imagen[newnumrandom];
-        const newrandomImagePath = imagePaths10[parseInt(newrandomImagePathJson.replace(/[^\d]/g, ''))-1]
+        const newrandomImagePath = imagePaths10[parseInt(newrandomImagePathJson.replace(/[^\d]/g, '')) - 1]
 
         setPreviousImage(randomImagePath);
         setCurrentImage(newrandomImagePath);
         setLoader(false);
       }, tiempoTotal);
-      return () => {clearTimeout(numero1)
-      clearTimeout(numero2)};
+      return () => {
+        clearTimeout(numero1)
+        clearTimeout(numero2)
+      };
     }
 
   }, [isFocused]);
 
-  
+
 
   const handleOptionSelected = (isSameImage: boolean) => {
     if (isSameImage) {
@@ -478,29 +498,43 @@ const MemoryGame: React.FC = ({ navigation: { navigate } }: Props) => {
 
       setCurrentScore(prevState => {
         const nextCorrect = prevState.correct + 1;
-        let achievement;
+        let achievements = [];
         switch (nextCorrect) {
           case 1:
-            achievement = '1stToday';
+            achievements.push('1stToday');
             break;
           case 10:
-            achievement = '10thToday';
+            achievements.push('10thToday');
             break;
           case 25:
-            achievement = '25thToday';
+            achievements.push('25thToday');
             break;
           case 50:
-            achievement = '50thToday';
+            achievements.push('50thToday');
             break;
           default:
             break;
         }
-        if (achievement && !score.achievements.includes(achievement)) {
-          setScore(scorePrevState => ({
-            ...scorePrevState,
-            achievements: [...scorePrevState.achievements, achievement],
-          }));
+        switch (nextCorrect) {
+          case 50:
+            achievements.push('50Total');
+            break;
+          case 150:
+            achievements.push('150Total');
+            break;
+          case 500:
+            achievements.push('500Total');
+            break;
+          case 1000:
+            achievements.push('1000Total');
+            break;
+          default:
+            break;
         }
+        setScore(scorePrevState => ({
+          ...scorePrevState,
+          achievements: [...scorePrevState.achievements, ...achievements],
+        }));
         return {
           ...prevState,
           correct: nextCorrect,
@@ -572,158 +606,158 @@ const MemoryGame: React.FC = ({ navigation: { navigate } }: Props) => {
             </View>
           </View>
           ) :
-      (
-      <View>
-        {previousImage === null ? (
-          <View
-            style={{
-              paddingHorizontal: Spacing * 4,
-              paddingTop: Spacing * 4,
-            }}
-          >
-            <Text
-              style={{
-                fontSize: FontSize.xxLarge,
-                color: Colors.primary,
-                fontFamily: Fonts["Roboto-Bold"],
-                textAlign: "center",
-              }}
-            >
-              Recuerda esta imagen!
-            </Text>
-          </View>
-        ) : (
-          <View
-            style={{
-              paddingHorizontal: Spacing * 4,
-              paddingTop: Spacing * 4,
-            }}
-          >
-            <Text
-              style={{
-                fontSize: FontSize.xxLarge,
-                color: Colors.primary,
-                fontFamily: Fonts["Roboto-Bold"],
-                textAlign: "center",
-              }}
-            >
-              ¿Es la misma imagen?
-            </Text>
-          </View>
-        )}
-        <View
-        style={{
-          
-        }}>
-          {
-            Platform.OS == 'web' ?(<Image
-              style={{
-                height: height / 2.5,
-                width: width / 1.5,
-                marginTop: Spacing * 4,
-                borderRadius:  Math.min(height, width)/5,
-                alignSelf: "center",
-              }}
-              resizeMode="contain"
-              source={currentImage}
-            />) :
             (
-              <GestureHandlerRootView>
-        <GestureDetector gesture={pinchazoPantalla} userSelect="none">
-        <Animated.Image
-          style={[estiloAnimado,{
-            height: height / 2.5,
-            width: width / 1.5,
-            marginTop: Spacing * 4,
-            borderRadius:  Math.min(height, width)/5,
-            alignSelf: "center",
-          }]}
-          resizeMode="contain"
-          source={currentImage}
-        />
-        </GestureDetector>
-      </GestureHandlerRootView>
-            )
-          }
-        </View>
-        <Text
-          style={{
-            fontSize: FontSize.large,
-            color: Colors.primary,
-            fontFamily: Fonts["Roboto-Bold"],
-            textAlign: "center",
-          }}
-        >
-          Puntaje actual: {score.correct}
-        </Text>
-        {previousImage !== null && (
-          <View
-            style={{
-              paddingHorizontal: Spacing * 2,
-              paddingTop: Spacing * 6,
-              flexDirection: "row",
-              justifyContent: "space-between",
-            }}
-          >
-            <TouchableOpacity
-              onPress={() => handleOptionSelected(currentImage === previousImage)}
-              style={{
-                backgroundColor: Colors.primary,
-                paddingVertical: Spacing * 1.5,
-                paddingHorizontal: Spacing * 2,
-                width: "48%",
-                borderRadius: Spacing,
-                shadowColor: Colors.primary,
-                shadowOffset: {
-                  width: 0,
-                  height: Spacing,
-                },
-                shadowOpacity: 0.3,
-                shadowRadius: Spacing,
-              }}
-            >
-              <Text
-                style={{
-                  fontFamily: Fonts["Roboto-Bold"],
-                  color: Colors.onPrimary,
-                  fontSize: FontSize.large,
-                  textAlign: "center",
-                }}
-              >
-                Es la misma
-              </Text>
-            </TouchableOpacity>
+              <View>
+                {previousImage === null ? (
+                  <View
+                    style={{
+                      paddingHorizontal: Spacing * 4,
+                      paddingTop: Spacing * 4,
+                    }}
+                  >
+                    <Text
+                      style={{
+                        fontSize: FontSize.xxLarge,
+                        color: Colors.primary,
+                        fontFamily: Fonts["Roboto-Bold"],
+                        textAlign: "center",
+                      }}
+                    >
+                      Recuerda esta imagen!
+                    </Text>
+                  </View>
+                ) : (
+                  <View
+                    style={{
+                      paddingHorizontal: Spacing * 4,
+                      paddingTop: Spacing * 4,
+                    }}
+                  >
+                    <Text
+                      style={{
+                        fontSize: FontSize.xxLarge,
+                        color: Colors.primary,
+                        fontFamily: Fonts["Roboto-Bold"],
+                        textAlign: "center",
+                      }}
+                    >
+                      ¿Es la misma imagen?
+                    </Text>
+                  </View>
+                )}
+                <View
+                  style={{
 
-            <TouchableOpacity
-              onPress={() => handleOptionSelected(currentImage !== previousImage)}
-              style={{
-                paddingVertical: Spacing * 1.5,
-                paddingHorizontal: Spacing * 2,
-                width: "48%",
-                borderRadius: Spacing,
-                shadowOffset: {
-                  width: 0,
-                  height: Spacing,
-                },
-                shadowOpacity: 0.3,
-                shadowRadius: Spacing,
-              }}
-            >
-              <Text
-                style={{
-                  fontFamily: Fonts["Roboto-Bold"],
-                  color: Colors.text,
-                  fontSize: FontSize.large,
-                  textAlign: "center",
-                }}
-              >
-                Es diferente
-              </Text>
-            </TouchableOpacity>
-          </View>
-        )}
-      </View>)}
-    </View>
+                  }}>
+                  {
+                    Platform.OS == 'web' ? (<Image
+                      style={{
+                        height: height / 2.5,
+                        width: width / 1.5,
+                        marginTop: Spacing * 4,
+                        borderRadius: Math.min(height, width) / 5,
+                        alignSelf: "center",
+                      }}
+                      resizeMode="contain"
+                      source={currentImage}
+                    />) :
+                      (
+                        <GestureHandlerRootView>
+                          <GestureDetector gesture={pinchazoPantalla} userSelect="none">
+                            <Animated.Image
+                              style={[estiloAnimado, {
+                                height: height / 2.5,
+                                width: width / 1.5,
+                                marginTop: Spacing * 4,
+                                borderRadius: Math.min(height, width) / 5,
+                                alignSelf: "center",
+                              }]}
+                              resizeMode="contain"
+                              source={currentImage}
+                            />
+                          </GestureDetector>
+                        </GestureHandlerRootView>
+                      )
+                  }
+                </View>
+                <Text
+                  style={{
+                    fontSize: FontSize.large,
+                    color: Colors.primary,
+                    fontFamily: Fonts["Roboto-Bold"],
+                    textAlign: "center",
+                  }}
+                >
+                  Puntaje actual: {score.correct}
+                </Text>
+                {previousImage !== null && (
+                  <View
+                    style={{
+                      paddingHorizontal: Spacing * 2,
+                      paddingTop: Spacing * 6,
+                      flexDirection: "row",
+                      justifyContent: "space-between",
+                    }}
+                  >
+                    <TouchableOpacity
+                      onPress={() => handleOptionSelected(currentImage === previousImage)}
+                      style={{
+                        backgroundColor: Colors.primary,
+                        paddingVertical: Spacing * 1.5,
+                        paddingHorizontal: Spacing * 2,
+                        width: "48%",
+                        borderRadius: Spacing,
+                        shadowColor: Colors.primary,
+                        shadowOffset: {
+                          width: 0,
+                          height: Spacing,
+                        },
+                        shadowOpacity: 0.3,
+                        shadowRadius: Spacing,
+                      }}
+                    >
+                      <Text
+                        style={{
+                          fontFamily: Fonts["Roboto-Bold"],
+                          color: Colors.onPrimary,
+                          fontSize: FontSize.large,
+                          textAlign: "center",
+                        }}
+                      >
+                        Es la misma
+                      </Text>
+                    </TouchableOpacity>
+
+                    <TouchableOpacity
+                      onPress={() => handleOptionSelected(currentImage !== previousImage)}
+                      style={{
+                        paddingVertical: Spacing * 1.5,
+                        paddingHorizontal: Spacing * 2,
+                        width: "48%",
+                        borderRadius: Spacing,
+                        shadowOffset: {
+                          width: 0,
+                          height: Spacing,
+                        },
+                        shadowOpacity: 0.3,
+                        shadowRadius: Spacing,
+                      }}
+                    >
+                      <Text
+                        style={{
+                          fontFamily: Fonts["Roboto-Bold"],
+                          color: Colors.text,
+                          fontSize: FontSize.large,
+                          textAlign: "center",
+                        }}
+                      >
+                        Es diferente
+                      </Text>
+                    </TouchableOpacity>
+                  </View>
+                )}
+              </View>)}
+      </View>
     </ScrollView >
   );
 };
