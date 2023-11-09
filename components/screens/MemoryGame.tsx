@@ -54,6 +54,7 @@ import Animated, {
   withTiming,
 } from "react-native-reanimated";
 import { withSpring } from 'react-native-reanimated';
+import DogLoader from "./Loader2";
 export var confetti : boolean;
 
 type Props = NativeStackScreenProps<RootStackParamList, "MemoryGame">;
@@ -286,9 +287,9 @@ const MemoryGame: React.FC = ({ navigation: { navigate } }: Props) => {
             <View
               style={{
                 paddingHorizontal: Spacing * 4,
-                paddingTop: Spacing * 10,
+                paddingTop: Spacing * 6,
               }}>
-              <Loader />
+              <DogLoader />
             </View>
           </View>
           ) :
