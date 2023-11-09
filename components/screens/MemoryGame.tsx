@@ -231,285 +231,297 @@ const MemoryGame: React.FC = ({ navigation: { navigate } }: Props) => {
       // showToastCorrect();
       Vibration.vibrate(0.5 * ONE_SECOND_IN_MS)
 
-      switch (score.correct + 1) {
-        case 50:
+      if (score.correct + 1 >= 50) {
+        if (score.achievements.indexOf("50Total") === -1) {
           score.achievements.push("50Total");
-          break;
-        case 150:
-          score.achievements.push("150Total");
-          break;
-        case 500:
-          score.achievements.push("500Total");
-          break;
-        case 1000:
-          score.achievements.push("1000Total");
-          break;
-        default:
-          break;
+        }
+        if (score.correct + 1 >= 150){
+          if (score.achievements.indexOf("150Total") === -1) {
+            score.achievements.push("150Total");
+          }
+          if (score.correct + 1 >= 500){
+            if (score.achievements.indexOf("500Total") === -1) {
+              score.achievements.push("500Total");
+            }
+            if (score.correct + 1 >= 1000){
+              if (score.achievements.indexOf("1000Total") === -1) {
+                score.achievements.push("1000Total");
+              }
+            }
+          }
+        }
       }
 
       switch (score.scoreToday + 1) {
         case 1:
-          score.achievements.push("1stToday");
+          if (score.achievements.indexOf("1stToday") === -1) {
+            score.achievements.push("1stToday");
+          }
           break;
         case 10:
-          score.achievements.push("10thToday");
+          if (score.achievements.indexOf("10thToday") === -1) {
+            score.achievements.push("10thToday");
+          }
           break;
         case 25:
-          score.achievements.push("25thToday");
+          if (score.achievements.indexOf("25thToday") === -1) {
+            score.achievements.push("25thToday");
+          }
           break;
         case 50:
-          score.achievements.push("50thToday");
+          if (score.achievements.indexOf("50thToday") === -1) {
+            score.achievements.push("50thToday");
+          }
           break;
         default:
           break;
       }
-          setScore(prevScore => ({
-            ...prevScore,
-            correct: score.correct + 1,
-            scoreToday: score.scoreToday + 1,
-            incorrect: score.incorrect,
-          }));
-          // agregar a variableArray un 1 si está vacío, o el último numero cargado más 1 si tiene datos
-          setCurrentScore(prevArray => {
-            return [...prevArray, prevArray[prevArray.length - 1] + 1];
-          });
-          playSound("correcta");
-          confetti = true;
-          showToastCorrect();
+      setScore(prevScore => ({
+        ...prevScore,
+        correct: score.correct + 1,
+        scoreToday: score.scoreToday + 1,
+        incorrect: score.incorrect,
+      }));
+      // agregar a variableArray un 1 si está vacío, o el último numero cargado más 1 si tiene datos
+      setCurrentScore(prevArray => {
+        return [...prevArray, prevArray[prevArray.length - 1] + 1];
+      });
+      playSound("correcta");
+      confetti = true;
+      showToastCorrect();
 
-      } else {
-        console.log("Te equivocaste, no es lo correcto");
-        // showToastIncorrect();
-        Vibration.vibrate(0.5 * ONE_SECOND_IN_MS)
-        setScore(prevScore => ({
-          ...prevScore,
-          correct: score.correct,
-          incorrect: score.incorrect + 1,
-        }));
-        // agregar a variableArray un 0 si está vacío, o el último numero cargado
-        setCurrentScore(prevArray => {
-          return [...prevArray, prevArray[prevArray.length - 1]];
-        });
-        confetti = false;
-        showToastInCorrect();
-      }
-      navigate("Again", { param1: previousImage, param2: currentImage });
-    };
+    } else {
+      console.log("Te equivocaste, no es lo correcto");
+      // showToastIncorrect();
+      Vibration.vibrate(0.5 * ONE_SECOND_IN_MS)
+      setScore(prevScore => ({
+        ...prevScore,
+        correct: score.correct,
+        incorrect: score.incorrect + 1,
+      }));
+      // agregar a variableArray un 0 si está vacío, o el último numero cargado
+      setCurrentScore(prevArray => {
+        return [...prevArray, prevArray[prevArray.length - 1]];
+      });
+      confetti = false;
+      showToastInCorrect();
+    }
+    navigate("Again", { param1: previousImage, param2: currentImage });
+  };
 
-    const PATTERN_DESC =
-      Platform.OS === 'android'
-        ? 'wait 1s, vibrate 2s, wait 3s'
-        : 'wait 1s, vibrate, wait 2s, vibrate, wait 3s';
-    return (
-      <ScrollView>
-        <View>
-          {
-            loader === true ? (<View>
-              <View
+  const PATTERN_DESC =
+    Platform.OS === 'android'
+      ? 'wait 1s, vibrate 2s, wait 3s'
+      : 'wait 1s, vibrate, wait 2s, vibrate, wait 3s';
+  return (
+    <ScrollView>
+      <View>
+        {
+          loader === true ? (<View>
+            <View
+              style={{
+                paddingHorizontal: Spacing * 4,
+                paddingTop: Spacing * 4,
+              }}
+            >
+              <Text
                 style={{
-                  paddingHorizontal: Spacing * 4,
-                  paddingTop: Spacing * 4,
+                  fontSize: FontSize.xxLarge,
+                  color: Colors.primary,
+                  fontFamily: Fonts["Roboto-Bold"],
+                  textAlign: "center",
                 }}
               >
+                No te olvides la imagen!
+              </Text>
+            </View>
+            <View
+              style={{
+                paddingHorizontal: Spacing * 4,
+                paddingTop: Spacing * 6,
+              }}>
+              <DogLoader />
+            </View>
+          </View>
+          ) :
+            (
+              <View>
+                {previousImage === null ? (
+                  <View
+                    style={{
+                      paddingHorizontal: Spacing * 4,
+                      paddingTop: Spacing * 4,
+                    }}
+                  >
+                    <Text
+                      style={{
+                        fontSize: FontSize.xxLarge,
+                        color: Colors.primary,
+                        fontFamily: Fonts["Roboto-Bold"],
+                        textAlign: "center",
+                      }}
+                    >
+                      Recuerda esta imagen!
+                    </Text>
+                  </View>
+                ) : (
+                  <View
+                    style={{
+                      paddingHorizontal: Spacing * 4,
+                      paddingTop: Spacing * 4,
+                    }}
+                  >
+                    <Text
+                      style={{
+                        fontSize: FontSize.xxLarge,
+                        color: Colors.primary,
+                        fontFamily: Fonts["Roboto-Bold"],
+                        textAlign: "center",
+                      }}
+                    >
+                      ¿Es la misma imagen?
+                    </Text>
+                  </View>
+                )}
+                <View
+                  style={{
+
+                  }}>
+                  {
+                    Platform.OS == 'web' ? (<Image
+                      style={{
+                        height: height / 2.5,
+                        width: width / 1.5,
+                        marginTop: Spacing * 4,
+                        borderRadius: Math.min(height, width) / 5,
+                        alignSelf: "center",
+                      }}
+                      resizeMode="contain"
+                      source={currentImage}
+                    />) :
+                      (
+                        <GestureHandlerRootView>
+                          <GestureDetector gesture={pinchazoPantalla} userSelect="none">
+                            <Animated.Image
+                              style={[estiloAnimado, {
+                                height: height / 2.5,
+                                width: width / 1.5,
+                                marginTop: Spacing * 4,
+                                borderRadius: Math.min(height, width) / 5,
+                                alignSelf: "center",
+                              }]}
+                              resizeMode="contain"
+                              source={currentImage}
+                            />
+                          </GestureDetector>
+                        </GestureHandlerRootView>
+                      )
+                  }
+                </View>
                 <Text
                   style={{
-                    fontSize: FontSize.xxLarge,
+                    fontSize: FontSize.large,
                     color: Colors.primary,
                     fontFamily: Fonts["Roboto-Bold"],
                     textAlign: "center",
                   }}
                 >
-                  No te olvides la imagen!
+                  Puntaje actual: {score.correct}
                 </Text>
-              </View>
-              <View
-                style={{
-                  paddingHorizontal: Spacing * 4,
-                  paddingTop: Spacing * 6,
-                }}>
-                <DogLoader />
-              </View>
-            </View>
-            ) :
-              (
-                <View>
-                  {previousImage === null ? (
-                    <View
-                      style={{
-                        paddingHorizontal: Spacing * 4,
-                        paddingTop: Spacing * 4,
-                      }}
-                    >
-                      <Text
-                        style={{
-                          fontSize: FontSize.xxLarge,
-                          color: Colors.primary,
-                          fontFamily: Fonts["Roboto-Bold"],
-                          textAlign: "center",
-                        }}
-                      >
-                        Recuerda esta imagen!
-                      </Text>
-                    </View>
-                  ) : (
-                    <View
-                      style={{
-                        paddingHorizontal: Spacing * 4,
-                        paddingTop: Spacing * 4,
-                      }}
-                    >
-                      <Text
-                        style={{
-                          fontSize: FontSize.xxLarge,
-                          color: Colors.primary,
-                          fontFamily: Fonts["Roboto-Bold"],
-                          textAlign: "center",
-                        }}
-                      >
-                        ¿Es la misma imagen?
-                      </Text>
-                    </View>
-                  )}
+                {previousImage !== null && (
                   <View
                     style={{
-
-                    }}>
-                    {
-                      Platform.OS == 'web' ? (<Image
-                        style={{
-                          height: height / 2.5,
-                          width: width / 1.5,
-                          marginTop: Spacing * 4,
-                          borderRadius: Math.min(height, width) / 5,
-                          alignSelf: "center",
-                        }}
-                        resizeMode="contain"
-                        source={currentImage}
-                      />) :
-                        (
-                          <GestureHandlerRootView>
-                            <GestureDetector gesture={pinchazoPantalla} userSelect="none">
-                              <Animated.Image
-                                style={[estiloAnimado, {
-                                  height: height / 2.5,
-                                  width: width / 1.5,
-                                  marginTop: Spacing * 4,
-                                  borderRadius: Math.min(height, width) / 5,
-                                  alignSelf: "center",
-                                }]}
-                                resizeMode="contain"
-                                source={currentImage}
-                              />
-                            </GestureDetector>
-                          </GestureHandlerRootView>
-                        )
-                    }
-                  </View>
-                  <Text
-                    style={{
-                      fontSize: FontSize.large,
-                      color: Colors.primary,
-                      fontFamily: Fonts["Roboto-Bold"],
-                      textAlign: "center",
+                      paddingHorizontal: Spacing * 2,
+                      paddingTop: Spacing * 6,
+                      flexDirection: "row",
+                      justifyContent: "space-between",
                     }}
                   >
-                    Puntaje actual: {score.correct}
-                  </Text>
-                  {previousImage !== null && (
-                    <View
+                    <TouchableOpacity
+                      onPress={() => handleOptionSelected(currentImage === previousImage)}
                       style={{
+                        backgroundColor: Colors.primary,
+                        paddingVertical: Spacing * 1.5,
                         paddingHorizontal: Spacing * 2,
-                        paddingTop: Spacing * 6,
-                        flexDirection: "row",
-                        justifyContent: "space-between",
+                        width: "48%",
+                        borderRadius: Spacing,
+                        shadowColor: Colors.primary,
+                        shadowOffset: {
+                          width: 0,
+                          height: Spacing,
+                        },
+                        shadowOpacity: 0.3,
+                        shadowRadius: Spacing,
                       }}
                     >
-                      <TouchableOpacity
-                        onPress={() => handleOptionSelected(currentImage === previousImage)}
+                      <Text
                         style={{
-                          backgroundColor: Colors.primary,
-                          paddingVertical: Spacing * 1.5,
-                          paddingHorizontal: Spacing * 2,
-                          width: "48%",
-                          borderRadius: Spacing,
-                          shadowColor: Colors.primary,
-                          shadowOffset: {
-                            width: 0,
-                            height: Spacing,
-                          },
-                          shadowOpacity: 0.3,
-                          shadowRadius: Spacing,
+                          fontFamily: Fonts["Roboto-Bold"],
+                          color: Colors.onPrimary,
+                          fontSize: FontSize.large,
+                          textAlign: "center",
                         }}
                       >
-                        <Text
-                          style={{
-                            fontFamily: Fonts["Roboto-Bold"],
-                            color: Colors.onPrimary,
-                            fontSize: FontSize.large,
-                            textAlign: "center",
-                          }}
-                        >
-                          Es la misma
-                        </Text>
-                      </TouchableOpacity>
+                        Es la misma
+                      </Text>
+                    </TouchableOpacity>
 
-                      <TouchableOpacity
-                        onPress={() => handleOptionSelected(currentImage !== previousImage)}
+                    <TouchableOpacity
+                      onPress={() => handleOptionSelected(currentImage !== previousImage)}
+                      style={{
+                        paddingVertical: Spacing * 1.5,
+                        paddingHorizontal: Spacing * 2,
+                        width: "48%",
+                        borderRadius: Spacing,
+                        shadowOffset: {
+                          width: 0,
+                          height: Spacing,
+                        },
+                        shadowOpacity: 0.3,
+                        shadowRadius: Spacing,
+                      }}
+                    >
+                      <Text
                         style={{
-                          paddingVertical: Spacing * 1.5,
-                          paddingHorizontal: Spacing * 2,
-                          width: "48%",
-                          borderRadius: Spacing,
-                          shadowOffset: {
-                            width: 0,
-                            height: Spacing,
-                          },
-                          shadowOpacity: 0.3,
-                          shadowRadius: Spacing,
+                          fontFamily: Fonts["Roboto-Bold"],
+                          color: Colors.text,
+                          fontSize: FontSize.large,
+                          textAlign: "center",
                         }}
                       >
-                        <Text
-                          style={{
-                            fontFamily: Fonts["Roboto-Bold"],
-                            color: Colors.text,
-                            fontSize: FontSize.large,
-                            textAlign: "center",
-                          }}
-                        >
-                          Es diferente
-                        </Text>
-                      </TouchableOpacity>
-                    </View>
-                  )}
-                </View>)}
-        </View>
-      </ScrollView >
-    );
-  };
+                        Es diferente
+                      </Text>
+                    </TouchableOpacity>
+                  </View>
+                )}
+              </View>)}
+      </View>
+    </ScrollView >
+  );
+};
 
-  const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      justifyContent: 'center',
-      paddingTop: StatusBar.currentHeight,
-      backgroundColor: '#888888',
-      padding: 8,
-    },
-    header: {
-      fontSize: 18,
-      fontWeight: 'bold',
-      textAlign: 'center',
-    },
-    paragraph: {
-      margin: 24,
-      textAlign: 'center',
-    },
-    separator: {
-      marginVertical: 8,
-      borderBottomColor: '#737373',
-      borderBottomWidth: StyleSheet.hairlineWidth,
-    },
-  });
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    paddingTop: StatusBar.currentHeight,
+    backgroundColor: '#888888',
+    padding: 8,
+  },
+  header: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    textAlign: 'center',
+  },
+  paragraph: {
+    margin: 24,
+    textAlign: 'center',
+  },
+  separator: {
+    marginVertical: 8,
+    borderBottomColor: '#737373',
+    borderBottomWidth: StyleSheet.hairlineWidth,
+  },
+});
 
-  export default MemoryGame;
+export default MemoryGame;
