@@ -228,10 +228,11 @@ const MemoryGame: React.FC = ({ navigation: { navigate } }: Props) => {
       console.log("Bien es lo correcto");
       // showToastCorrect();
       Vibration.vibrate(0.5 * ONE_SECOND_IN_MS)
-      setScore({
+      setScore(prevScore => ({
+        ...prevScore,
         correct: score.correct + 1,
         incorrect: score.incorrect,
-      });
+      }));
       // agregar a variableArray un 1 si está vacío, o el último numero cargado más 1 si tiene datos
       setCurrentScore(prevArray => {
         return [...prevArray, prevArray[prevArray.length - 1] + 1];
@@ -244,10 +245,11 @@ const MemoryGame: React.FC = ({ navigation: { navigate } }: Props) => {
       console.log("Te equivocaste, no es lo correcto");
       // showToastIncorrect();
       Vibration.vibrate(0.5 * ONE_SECOND_IN_MS)
-      setScore({
+      setScore(prevScore => ({
+        ...prevScore,
         correct: score.correct,
         incorrect: score.incorrect + 1,
-      });
+      }));
       // agregar a variableArray un 0 si está vacío, o el último numero cargado
       setCurrentScore(prevArray => {
         return [...prevArray, prevArray[prevArray.length - 1]];
