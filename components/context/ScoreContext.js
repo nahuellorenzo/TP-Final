@@ -12,6 +12,7 @@ export const ScoreProvider = ({ children }) => {
     incorrect: 0,
     fecha: '',
     racha: 0,
+    achievements: [],
   });
   console.log(score)
 
@@ -45,7 +46,7 @@ export const ScoreProvider = ({ children }) => {
           const batch = writeBatch(db);
           console.log(data.scorecorrect)
           setScore(prevScore => ({
-            ...prevScore, correct: data.scorecorrect, incorrect: data.scoreincorrect}))
+            ...prevScore, correct: data.scorecorrect, incorrect: data.scoreincorrect, achievements: data.achievements}))
           if (data.fecha){
             if ((data.fecha.toDate().getFullYear()!== score.fecha.getFullYear())||(data.fecha.toDate().getDate()!== score.fecha.getDate())||(data.fecha.toDate().getMonth()!== score.fecha.getMonth())){
               if(score.fecha.getDate()  ==data.fecha.toDate().getDate()+1){
@@ -87,7 +88,7 @@ export const ScoreProvider = ({ children }) => {
     fetchScores(fechaActual);
   }, [user.uid]);
 
-  const updateScore = async (correct, incorrect) => {
+  const updateScore = async (correct, incorrect, achievements) => {
     const scoreRef = collection(db, 'score');
     const itemsRef = query(scoreRef, where(documentId(), '==', user.uid));
     const response = await getDocs(itemsRef);
@@ -95,7 +96,7 @@ export const ScoreProvider = ({ children }) => {
       const doc = response.docs[0]
       const id = response.docs[0].id
       const batch = writeBatch(db);
-      batch.update(doc.ref, { scorecorrect: correct, scoreincorrect: incorrect });
+      batch.update(doc.ref, { scorecorrect: correct, scoreincorrect: incorrect, achievements: achievements });
       await batch.commit();
       setScore(prevScore => ({
         ...prevScore, correct: correct, incorrect: incorrect }))

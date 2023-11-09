@@ -128,7 +128,7 @@ const Again: React.FC<Props> = ({ navigation: { navigate }, route }) =>{
           {/* Botón "No" */}
           <TouchableOpacity
             onPress={() =>{ 
-              updateScore(score.correct, score.incorrect)
+              updateScore(score.correct, score.incorrect, ['aghgh'])
               navigate("EstadisticasJuego1")}}
             style={{
               paddingVertical: Spacing * 1.5,
