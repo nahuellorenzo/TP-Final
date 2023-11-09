@@ -20,6 +20,7 @@ import InstruccionesJuego1Screen from "../screens/InstruccionesJuego1";
 import EstadisticasJuego1Screen from "../screens/StatisticsGame1";
 import ForgotPasswordScreen from "../screens/ForgotPassword";
 import InformationScreen from "../screens/Information";
+import Tutorial1Screen from "../screens/Tutorial1";
 
 const theme = {
   ...DefaultTheme,
@@ -61,6 +62,7 @@ function RootNavigator() {
       <Stack.Screen name="EstadisticasJuego1" component={EstadisticasJuego1Screen} />
       <Stack.Screen name="ForgotPassword" component={ForgotPasswordScreen} />
       <Stack.Screen name="Information" component={InformationScreen} />
+      <Stack.Screen name="Tutorial1" component={Tutorial1Screen} />
     </Stack.Navigator>
   );
 }
