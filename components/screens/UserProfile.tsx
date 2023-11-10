@@ -77,12 +77,12 @@ function UserProfileScreen({ navigation: { navigate } }: Props) {
               <Text>{score.correct}</Text>
             </View>
             <View style={styles.item}>
-              <Text>Erradas</Text>
-              <Text>{score.incorrect}</Text>
+              <Text>Racha de dias Jugados:</Text>
+              <Text>{score.racha}</Text>
             </View>
             <View style={styles.item}>
-              <Text>Precisión</Text>
-              <Text>{Math.trunc((score.correct / total) * 100)}%</Text>
+              <Text>Juega desde:</Text>
+              <Text>{`${user.creacion.substring(user.creacion.indexOf(",") + 2, user.creacion.lastIndexOf("GMT") - 9)}`}</Text>
             </View>
           </View>
         </View>
