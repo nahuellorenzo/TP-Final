@@ -11,6 +11,7 @@ import {
   Modal,
   Pressable,
   ScrollView,
+  Image,
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
@@ -23,6 +24,15 @@ import AppTextInput from "../AppTextInput";
 import { LoginContext } from "../context/LoginContext";
 import { ScoreContext } from "../context/ScoreContext";
 import Color from "../constants/Color";
+import image1 from "./../../assets/images/achievements/puntosDiarios/1stToday.png";
+import image2 from "./../../assets/images/achievements/puntosDiarios/10thToday.png";
+import image3 from "./../../assets/images/achievements/puntosDiarios/25thToday.png";
+import image4 from "./../../assets/images/achievements/puntosDiarios/50thToday.png";
+import image5 from "./../../assets/images/achievements/puntosTotales/50Total.png";
+import image6 from "./../../assets/images/achievements/puntosTotales/150Total.png";
+import image7 from "./../../assets/images/achievements/puntosTotales/500Total.png";
+import image8 from "./../../assets/images/achievements/puntosTotales/1000Total.png";
+import placeHolder from "./../../assets/images/achievements/placeHolder.png";
 
 const { height, width } = Dimensions.get("window");
 type Props = NativeStackScreenProps<RootStackParamList, "UserProfile">;
@@ -39,93 +49,135 @@ function UserProfileScreen({ navigation: { navigate } }: Props) {
       data: ['Correctas: ' + score.correct, 'Incorrectas: ' + score.incorrect, 'Precisión: ' + Math.trunc((score.correct / total) * 100) + '%']
     }
   ];
-  
+
   return (
     <SafeAreaView style={styles.container}>
-      <ImageBackground
-        style={{
-          height: height / 5,
-          marginVertical: Spacing * 2.3,
-          marginBottom: Spacing
-        }}
-        resizeMode="contain"
-        source={require("./../../assets/images/user.png")}
-      />
-
-      <View style={styles.content}>
-        <Text
+      <ScrollView>
+        <ImageBackground
           style={{
-            fontFamily: Fonts["Roboto-Light"],
-            color: Colors.darkText,
-            textAlign: "center",
-            fontSize: FontSize.large,
-            marginTop: Spacing,
+            height: height / 5,
+            marginVertical: Spacing * 2.3,
+            marginBottom: Spacing
           }}
-        >
-          {user.email}
-        </Text>
+          resizeMode="contain"
+          source={require("./../../assets/images/user.png")}
+        />
 
-        <View style={{ marginTop: Spacing * 2 }}>
-          <Text style={styles.header}>Resultados Memory Game</Text>
-          <View style={styles.itemContainer}>
-            <View style={styles.item}>
-              <Text>Acertadas</Text>
-              <Text>{score.correct}</Text>
-            </View>
-            <View style={styles.item}>
-              <Text>Racha de dias Jugados:</Text>
-              <Text>{score.racha}</Text>
-            </View>
-            <View style={styles.item}>
-              <Text>Juega desde:</Text>
-              <Text>{`${user.creacion.substring(user.creacion.indexOf(",") + 2, user.creacion.lastIndexOf("GMT") - 9)}`}</Text>
+        <View style={styles.content}>
+          <Text
+            style={{
+              fontFamily: Fonts["Roboto-Light"],
+              color: Colors.darkText,
+              textAlign: "center",
+              fontSize: FontSize.large,
+              marginTop: Spacing,
+            }}
+          >
+            {user.email}
+          </Text>
+
+          <View style={{ marginTop: Spacing * 2 }}>
+            <Text style={styles.header}>Resultados Memory Game</Text>
+            <View style={styles.itemContainer}>
+              <View style={styles.item}>
+                <Text>Acertadas</Text>
+                <Text>{score.correct}</Text>
+              </View>
+              <View style={styles.item}>
+                <Text>Racha de dias Jugados:</Text>
+                <Text>{score.racha}</Text>
+              </View>
+              <View style={styles.item}>
+                <Text>Juega desde:</Text>
+                <Text>{`${user.creacion.substring(user.creacion.indexOf(",") + 2, user.creacion.lastIndexOf("GMT") - 9)}`}</Text>
+              </View>
             </View>
           </View>
-        </View> 
 
-        <View style={styles.buttonContainer_Boton}>
-          <TouchableOpacity
-            onPress={() => setModalVisible(true)}
-            style={styles.logoutButton}
-          >
-            <Ionicons name="log-out" color={Colors.text} size={Spacing * 2} />
-          </TouchableOpacity>
-        </View>
-        <View style={styles.centeredView}>
-        <Modal
+          <View
+            style={{
+              marginTop: Spacing,
+            }}>
+            <Text>
+              Juega desde {`- ${user.creacion.substring(user.creacion.indexOf(",") + 2, user.creacion.lastIndexOf("GMT") - 9)}`}
+            </Text>
+          </View>
+
+          <View
+            style={{
+              marginTop: Spacing,
+            }}>
+            <Text>
+              Racha de dias Jugados: {score.racha}
+            </Text>
+          </View>
+          <Text style={styles.logrosTitulo}>
+            Tus Logros
+          </Text>
+          <Text style={styles.logrosSubtitulo}>
+            Puntos Diarios
+          </Text>
+          <View style={styles.logrosContainer}>
+            <Image style={{ width: 100, height: 100, }} source={score.achievements.indexOf("1stToday") !== -1 ? image1 : placeHolder} />
+            <Image style={{ width: 100, height: 100, }} source={score.achievements.indexOf("10thToday") !== -1 ? image2 : placeHolder} />
+            <Image style={{ width: 100, height: 100, }} source={score.achievements.indexOf("25thToday") !== -1 ? image3 : placeHolder} />
+            <Image style={{ width: 100, height: 100, }} source={score.achievements.indexOf("50thToday") !== -1 ? image4 : placeHolder} />
+          </View>
+          <Text style={styles.logrosSubtitulo}>
+            Puntos Totales
+          </Text>
+          <View style={styles.logrosContainer}>
+            <Image style={{ width: 100, height: 100, }} source={score.achievements.indexOf("50Total") !== -1 ? image5 : placeHolder} />
+            <Image style={{ width: 100, height: 100, }} source={score.achievements.indexOf("150Total") !== -1 ? image6 : placeHolder} />
+            <Image style={{ width: 100, height: 100, }} source={score.achievements.indexOf("500Total") !== -1 ? image7 : placeHolder} />
+            <Image style={{ width: 100, height: 100, }} source={score.achievements.indexOf("1000Total") !== -1 ? image8 : placeHolder} />
+          </View>
+
+
+          <View style={styles.buttonContainer_Boton}>
+            <TouchableOpacity
+              onPress={() => setModalVisible(true)}
+              style={styles.logoutButton}
+            >
+              <Ionicons name="log-out" color={Colors.text} size={Spacing * 2} />
+            </TouchableOpacity>
+          </View>
+          <View style={styles.centeredView}>
+            <Modal
               animationType="fade"
               transparent={true}
               visible={modalVisible}
               onRequestClose={() => {
               }}
             >
-               <View style={styles.centeredView}>
+              <View style={styles.centeredView}>
                 <View style={styles.modalView}>
-                    <Text style={styles.modalText}>¿Desea cerrar la sesión actual?</Text>
-                    <View style={styles.buttonContainer_Modal}>
-                      <View style={styles.buttonWrapper}>
-                        <Pressable
-                          style={[styles.button, styles.buttonClose]}
-                          onPress={logout}
-                        >
-                          <Text style={styles.textStyle}>Salir</Text>
-                        </Pressable>
-                      </View>
-                      <View style={styles.buttonWrapper}>
-                        <Pressable
-                          style={[styles.button, styles.buttonOpen]}
-                          onPress={() => setModalVisible(!modalVisible)}
-                        >
-                          <Text style={styles.textStyle_2}>Cancelar</Text>
-                        </Pressable>
-                      </View>
+                  <Text style={styles.modalText}>¿Desea cerrar la sesión actual?</Text>
+                  <View style={styles.buttonContainer_Modal}>
+                    <View style={styles.buttonWrapper}>
+                      <Pressable
+                        style={[styles.button, styles.buttonClose]}
+                        onPress={logout}
+                      >
+                        <Text style={styles.textStyle}>Salir</Text>
+                      </Pressable>
+                    </View>
+                    <View style={styles.buttonWrapper}>
+                      <Pressable
+                        style={[styles.button, styles.buttonOpen]}
+                        onPress={() => setModalVisible(!modalVisible)}
+                      >
+                        <Text style={styles.textStyle_2}>Cancelar</Text>
+                      </Pressable>
                     </View>
                   </View>
-                  </View>
-        </Modal>
-      </View>
-      </View>
-    </SafeAreaView>
+                </View>
+              </View>
+            </Modal>
+          </View>
+        </View>
+      </ScrollView>
+    </SafeAreaView >
   );
 }
 
@@ -137,9 +189,9 @@ const styles = StyleSheet.create({
     marginTop: 22,
   },
   modalContent: {
-    backgroundColor: Color.onPrimary, 
+    backgroundColor: Color.onPrimary,
     borderRadius: 5,
-    width: width - Spacing*10,
+    width: width - Spacing * 10,
   },
   modalView: {
     backgroundColor: Color.onPrimary,
@@ -165,7 +217,7 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     alignItems: "center",
     marginTop: 20,
-  },  
+  },
   buttonWrapper: {
     flex: 1,
     alignContent: "center",
@@ -212,7 +264,6 @@ const styles = StyleSheet.create({
   },
   content: {
     paddingHorizontal: Spacing * 4,
-    justifyContent: 'center',
     flex: 1,
   },
   itemContainer: {
@@ -248,6 +299,25 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     alignItems: "center",
     marginTop: 25,
+  },
+  logrosTitulo: {
+    textAlign: 'center',
+    marginVertical: Spacing * 3,
+    textDecorationLine: 'underline',
+    fontFamily: Fonts["Roboto-Bold"],
+    fontSize: 20,
+  },
+  logrosSubtitulo: {
+    marginVertical: Spacing,
+    fontFamily: Fonts["Roboto-Bold"]
+  },
+  logrosContainer: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'space-around',
+    borderWidth: 3,
+    borderColor: Color.primary,
+    borderRadius: 10,
   },
 });
 
