@@ -94,23 +94,6 @@ function UserProfileScreen({ navigation: { navigate } }: Props) {
             </View>
           </View>
 
-          <View
-            style={{
-              marginTop: Spacing,
-            }}>
-            <Text>
-              Juega desde {`- ${user.creacion.substring(user.creacion.indexOf(",") + 2, user.creacion.lastIndexOf("GMT") - 9)}`}
-            </Text>
-          </View>
-
-          <View
-            style={{
-              marginTop: Spacing,
-            }}>
-            <Text>
-              Racha de dias Jugados: {score.racha}
-            </Text>
-          </View>
           <Text style={styles.logrosTitulo}>
             Tus Logros
           </Text>
