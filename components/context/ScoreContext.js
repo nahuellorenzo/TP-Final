@@ -13,9 +13,8 @@ export const ScoreProvider = ({ children }) => {
     scoreToday: 0,
     fecha: '',
     racha: 0,
-    achievements: [],
+    achievements: [''],
   });
-  console.log(score)
 
   const [currentScore, setCurrentScore] = useState([0]);
 
@@ -75,9 +74,9 @@ export const ScoreProvider = ({ children }) => {
             }
           }
           else {
-            console.log("Sos un usuario nuevo, tu racha comienza en 0")
+            console.log("Sos un usuario antiguo, tu racha comienza en 0")
             setScore(prevScore => ({
-              ...prevScore, fecha: score.fecha, racha: 0
+              ...prevScore, fecha: score.fecha, racha: 0, achievements: []
             }))
             batch.update(doc.ref, { fecha: fecha, racha: 0 });
           }
@@ -85,9 +84,10 @@ export const ScoreProvider = ({ children }) => {
 
         }
         else {
+          console.log("Sos un usuario nuevo, tus datos se inicializan en 0")
           setScore({ correct: 0, incorrect: 0, fecha: new Date(), racha: 0, achievements: [], scoreToday: 0 })
           const scoreDocRef = doc(scoreRef, user.uid);
-          await setDoc(scoreDocRef, { fecha: score.fecha, racha: 0, email: user.email })
+          await setDoc(scoreDocRef, { scorecorrect: 0, scoreincorrect: 0, scoreToday, fecha: score.fecha, racha: 0, email: user.email, achievements: [] })
         }
       }
     };
