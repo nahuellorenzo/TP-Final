@@ -27,7 +27,7 @@ import {
               height: height / 2.5,
             }}
             resizeMode="contain"
-            source={require("./../../assets/images/welcome-img.png")}
+            source={require("./../../assets/images/log-PhotoRoom.png-PhotoRoom.png")}
           />
           <View
             style={{
