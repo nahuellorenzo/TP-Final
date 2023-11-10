@@ -24,12 +24,18 @@ import AppTextInput from "../AppTextInput";
 import { LoginContext } from "../context/LoginContext";
 import { ScoreContext } from "../context/ScoreContext";
 import Color from "../constants/Color";
+import image1 from "./../../assets/images/achievements/puntosDiarios/1stToday.png";
+import image2 from "./../../assets/images/achievements/puntosDiarios/10thToday.png";
+import image3 from "./../../assets/images/achievements/puntosDiarios/25thToday.png";
+import image4 from "./../../assets/images/achievements/puntosDiarios/50thToday.png";
+import image5 from "./../../assets/images/achievements/puntosTotales/50Total.png";
+import image6 from "./../../assets/images/achievements/puntosTotales/150Total.png";
+import image7 from "./../../assets/images/achievements/puntosTotales/500Total.png";
+import image8 from "./../../assets/images/achievements/puntosTotales/1000Total.png";
+import placeHolder from "./../../assets/images/achievements/placeHolder.png";
 
 const { height, width } = Dimensions.get("window");
 type Props = NativeStackScreenProps<RootStackParamList, "UserProfile">;
-
-const puntosDiarios = ["1stToday", "10thToday", "25thToday", "50thToday"];
-const puntosTotales = ["50Total", "150Total", "500Total", "1000Total"];
 
 function UserProfileScreen({ navigation: { navigate } }: Props) {
   const { logout, user } = useContext(LoginContext);
@@ -112,37 +118,19 @@ function UserProfileScreen({ navigation: { navigate } }: Props) {
             Puntos Diarios
           </Text>
           <View style={styles.logrosContainer}>
-            {
-              puntosDiarios.map((logro, index) => (
-                <View key={index} style={{
-                  marginBottom: 10,
-                }}>
-                  <Image
-                    style={{
-                      width: 100,
-                      height: 100,
-                    }}
-                    source={score.achievements.indexOf(logro) !== -1 ? require(`./../../assets/images/achievements/puntosDiarios/${logro}.png`) : require(`./../../assets/images/achievements/placeHolder.png`)} /></View>
-              ))
-            }
+            <Image style={{ width: 100, height: 100, }} source={score.achievements.indexOf("1stToday") !== -1 ? image1 : placeHolder} />
+            <Image style={{ width: 100, height: 100, }} source={score.achievements.indexOf("10thToday") !== -1 ? image2 : placeHolder} />
+            <Image style={{ width: 100, height: 100, }} source={score.achievements.indexOf("25thToday") !== -1 ? image3 : placeHolder} />
+            <Image style={{ width: 100, height: 100, }} source={score.achievements.indexOf("50thToday") !== -1 ? image4 : placeHolder} />
           </View>
           <Text style={styles.logrosSubtitulo}>
             Puntos Totales
           </Text>
           <View style={styles.logrosContainer}>
-            {
-              puntosTotales.map((logro, index) => (
-                <View key={index} style={{
-                  marginBottom: 10,
-                }}>
-                  <Image
-                    style={{
-                      width: 100,
-                      height: 100,
-                    }}
-                    source={score.achievements.indexOf(logro) !== -1 ? require(`./../../assets/images/achievements/puntosTotales/${logro}.png`) : require(`./../../assets/images/achievements/placeHolder.png`)} /></View>
-              ))
-            }
+            <Image style={{ width: 100, height: 100, }} source={score.achievements.indexOf("50Total") !== -1 ? image5 : placeHolder} />
+            <Image style={{ width: 100, height: 100, }} source={score.achievements.indexOf("150Total") !== -1 ? image6 : placeHolder} />
+            <Image style={{ width: 100, height: 100, }} source={score.achievements.indexOf("500Total") !== -1 ? image7 : placeHolder} />
+            <Image style={{ width: 100, height: 100, }} source={score.achievements.indexOf("1000Total") !== -1 ? image8 : placeHolder} />
           </View>
 
 
@@ -319,7 +307,7 @@ const styles = StyleSheet.create({
     fontFamily: Fonts["Roboto-Bold"],
     fontSize: 20,
   },
-  logrosSubtitulo:{
+  logrosSubtitulo: {
     marginVertical: Spacing,
     fontFamily: Fonts["Roboto-Bold"]
   },
