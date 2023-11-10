@@ -87,7 +87,7 @@ export const ScoreProvider = ({ children }) => {
           console.log("Sos un usuario nuevo, tus datos se inicializan en 0")
           setScore({ correct: 0, incorrect: 0, fecha: new Date(), racha: 0, achievements: [], scoreToday: 0 })
           const scoreDocRef = doc(scoreRef, user.uid);
-          await setDoc(scoreDocRef, { scorecorrect: 0, scoreincorrect: 0, scoreToday, fecha: score.fecha, racha: 0, email: user.email, achievements: [] })
+          await setDoc(scoreDocRef, { scorecorrect: 0, scoreincorrect: 0, scoreToday: 0, fecha: score.fecha, racha: 0, email: user.email, achievements: [] })
         }
       }
     };
