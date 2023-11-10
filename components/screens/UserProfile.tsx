@@ -24,12 +24,10 @@ import AppTextInput from "../AppTextInput";
 import { LoginContext } from "../context/LoginContext";
 import { ScoreContext } from "../context/ScoreContext";
 import Color from "../constants/Color";
+import { achievements, placeHolder } from "../constants/achievements";
 
 const { height, width } = Dimensions.get("window");
 type Props = NativeStackScreenProps<RootStackParamList, "UserProfile">;
-
-const puntosDiarios = ["1stToday", "10thToday", "25thToday", "50thToday"];
-const puntosTotales = ["50Total", "150Total", "500Total", "1000Total"];
 
 function UserProfileScreen({ navigation: { navigate } }: Props) {
   const { logout, user } = useContext(LoginContext);
@@ -112,37 +110,19 @@ function UserProfileScreen({ navigation: { navigate } }: Props) {
             Puntos Diarios
           </Text>
           <View style={styles.logrosContainer}>
-            {
-              puntosDiarios.map((logro, index) => (
-                <View key={index} style={{
-                  marginBottom: 10,
-                }}>
-                  <Image
-                    style={{
-                      width: 100,
-                      height: 100,
-                    }}
-                    source={score.achievements.indexOf(logro) !== -1 ? require(`./../../assets/images/achievements/puntosDiarios/${logro}.png`) : require(`./../../assets/images/achievements/placeHolder.png`)} /></View>
-              ))
-            }
+            <Image style={{ width: 100, height: 100, }} source={score.achievements.indexOf("1stToday") !== -1 ? achievements[0] : placeHolder} />
+            <Image style={{ width: 100, height: 100, }} source={score.achievements.indexOf("10thToday") !== -1 ? achievements[1] : placeHolder} />
+            <Image style={{ width: 100, height: 100, }} source={score.achievements.indexOf("25thToday") !== -1 ? achievements[2] : placeHolder} />
+            <Image style={{ width: 100, height: 100, }} source={score.achievements.indexOf("50thToday") !== -1 ? achievements[3] : placeHolder} />
           </View>
           <Text style={styles.logrosSubtitulo}>
             Puntos Totales
           </Text>
           <View style={styles.logrosContainer}>
-            {
-              puntosTotales.map((logro, index) => (
-                <View key={index} style={{
-                  marginBottom: 10,
-                }}>
-                  <Image
-                    style={{
-                      width: 100,
-                      height: 100,
-                    }}
-                    source={score.achievements.indexOf(logro) !== -1 ? require(`./../../assets/images/achievements/puntosTotales/${logro}.png`) : require(`./../../assets/images/achievements/placeHolder.png`)} /></View>
-              ))
-            }
+            <Image style={{ width: 100, height: 100, }} source={score.achievements.indexOf("50Total") !== -1 ? achievements[4] : placeHolder} />
+            <Image style={{ width: 100, height: 100, }} source={score.achievements.indexOf("150Total") !== -1 ? achievements[5] : placeHolder} />
+            <Image style={{ width: 100, height: 100, }} source={score.achievements.indexOf("500Total") !== -1 ? achievements[6] : placeHolder} />
+            <Image style={{ width: 100, height: 100, }} source={score.achievements.indexOf("1000Total") !== -1 ? achievements[7] : placeHolder} />
           </View>
 
 
@@ -319,7 +299,7 @@ const styles = StyleSheet.create({
     fontFamily: Fonts["Roboto-Bold"],
     fontSize: 20,
   },
-  logrosSubtitulo:{
+  logrosSubtitulo: {
     marginVertical: Spacing,
     fontFamily: Fonts["Roboto-Bold"]
   },
