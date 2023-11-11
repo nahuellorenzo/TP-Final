@@ -19,6 +19,8 @@ Esta aplicación fue desarrollada como trabajo final para la materia de Aplicaci
 - Nahuel Lorenzo
 - Ulises Mijael Ben
 - Santiago Di Camillo
+- Hajime Shiroma
+- Gaspar Salomon
 
 ## Tecnologías Utilizadas
 
