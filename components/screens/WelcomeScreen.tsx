@@ -27,7 +27,7 @@ import {
               height: height / 2.5,
             }}
             resizeMode="contain"
-            source={require("./../../assets/images/welcome-img.png")}
+            source={require("./../../assets/images/log-PhotoRoom.png-PhotoRoom.png")}
           />
           <View
             style={{
@@ -39,18 +39,18 @@ import {
               style={{
                 fontSize: FontSize.xxLarge,
                 color: Colors.primary,
-                fontFamily: Fonts["poppins-bold"],
+                fontFamily: Fonts["Roboto-Bold"],
                 textAlign: "center",
               }}
             >
-              Agiliza tu mente aqui
+              Agiliza tu mente aquí
             </Text>
   
             <Text
               style={{
                 fontSize: FontSize.small,
                 color: Colors.text,
-                fontFamily: Fonts["poppins-regular"],
+                fontFamily: Fonts["Roboto-Medium"],
                 textAlign: "center",
                 marginTop: Spacing * 2,
               }}
@@ -84,7 +84,7 @@ import {
             >
               <Text
                 style={{
-                  fontFamily: Fonts["poppins-bold"],
+                  fontFamily: Fonts["Roboto-Bold"],
                   color: Colors.onPrimary,
                   fontSize: FontSize.large,
                   textAlign: "center",
@@ -104,7 +104,7 @@ import {
             >
               <Text
                 style={{
-                  fontFamily: Fonts["poppins-bold"],
+                  fontFamily: Fonts["Roboto-Bold"],
                   color: Colors.text,
                   fontSize: FontSize.large,
                   textAlign: "center",

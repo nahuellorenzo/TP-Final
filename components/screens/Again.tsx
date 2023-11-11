@@ -18,17 +18,57 @@ import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../../types";
 import { LoginContext } from "../context/LoginContext";
 import { ScoreContext } from "../context/ScoreContext";
+import Carru from "./Carru";
+import { ScrollView } from "react-native-gesture-handler";
+import { confetti } from "./MemoryGame";
+import ConfettiCannon from "react-native-confetti-cannon";
+
 const { height } = Dimensions.get("window");
 
 const { width } = Dimensions.get("window");
 type Props = NativeStackScreenProps<RootStackParamList, "Again">;
 
-const Again: React.FC = ({ navigation: { navigate } }: Props) => {
+const Again: React.FC<Props> = ({ navigation: { navigate }, route }) =>{
   const { logout, user } = useContext(LoginContext);
   const { score, updateScore } = useContext(ScoreContext)
+  const { param1, param2 } = route.params;
+
+  const [shoot, setShoot] = useState(false);
+  
+  useEffect(() => {
+    // Disparar el cañón cuando la variable sea true
+    if (confetti) {
+      setShoot(true); // Enciende el cañón
+      setTimeout(() => {
+        setShoot(false); // Apaga el cañón después de un tiempo (opcional)
+      }, 5000); // El cañón se apaga después de 5 segundos (ajusta este valor según tus necesidades)
+    }
+  }, [confetti]); // Ejecutar el efecto cada vez que la variable cambie
+
   return (
-    <SafeAreaView>
+    <ScrollView>
       <View>
+        <Carru param1={param1} param2={param2} />
+      </View>
+      <View style={{backgroundColor:"white"}}>
+        <View
+        style={{
+          position: "absolute",
+          height: "100%",
+          top: 0,
+          left: 0,
+        }}
+        >
+          {shoot && (
+            <ConfettiCannon
+              count={200}
+              origin={{ x:width/2, y: 0 }}
+              explosionSpeed={1000}
+              fallSpeed={2000}
+              fadeOut={true}
+            />
+          )}
+        </View>
         <View
           style={{
             paddingHorizontal: Spacing * 4,
@@ -37,10 +77,10 @@ const Again: React.FC = ({ navigation: { navigate } }: Props) => {
         >
           <Text
             style={{
-              marginTop: Spacing * 10,
+              marginTop: Spacing*-4,
               fontSize: FontSize.xxLarge,
               color: Colors.primary,
-              fontFamily: Fonts["poppins-bold"],
+              fontFamily: Fonts["Roboto-Bold"],
               textAlign: "center",
             }}
           >
@@ -50,7 +90,7 @@ const Again: React.FC = ({ navigation: { navigate } }: Props) => {
         <View
           style={{
             paddingHorizontal: Spacing * 2,
-            paddingTop: Spacing * 6,
+            paddingTop: Spacing * 4,
             flexDirection: "row",
             justifyContent: "space-between", // Agrega esta línea
           }}
@@ -75,7 +115,7 @@ const Again: React.FC = ({ navigation: { navigate } }: Props) => {
           >
             <Text
               style={{
-                fontFamily: Fonts["poppins-bold"],
+                fontFamily: Fonts["Roboto-Bold"],
                 color: Colors.onPrimary,
                 fontSize: FontSize.large,
                 textAlign: "center",
@@ -88,8 +128,8 @@ const Again: React.FC = ({ navigation: { navigate } }: Props) => {
           {/* Botón "No" */}
           <TouchableOpacity
             onPress={() =>{ 
-              updateScore(score.correct, score.incorrect)
-              navigate("Main")}}
+              updateScore(score.correct, score.incorrect, score.achievements, score.scoreToday)
+              navigate("EstadisticasJuego1")}}
             style={{
               paddingVertical: Spacing * 1.5,
               paddingHorizontal: Spacing * 2,
@@ -105,7 +145,7 @@ const Again: React.FC = ({ navigation: { navigate } }: Props) => {
           >
             <Text
               style={{
-                fontFamily: Fonts["poppins-bold"],
+                fontFamily: Fonts["Roboto-Bold"],
                 color: Colors.text,
                 fontSize: FontSize.large,
                 textAlign: "center",
@@ -120,15 +160,16 @@ const Again: React.FC = ({ navigation: { navigate } }: Props) => {
           style={{
             fontSize: FontSize.large,
             color: Colors.primary,
-            fontFamily: Fonts["poppins-bold"],
+            fontFamily: Fonts["Roboto-Bold"],
             textAlign: "center",
             paddingTop: Spacing,
+            paddingBottom: Spacing * 4,
           }}
         >
           Puntaje actual: {score.correct}
         </Text>
       </View>
-    </SafeAreaView>
+    </ScrollView>
   );
 };
 

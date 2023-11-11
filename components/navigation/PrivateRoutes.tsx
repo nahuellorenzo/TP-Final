@@ -15,6 +15,14 @@ import { RootStackParamList } from "../../types";
 import MemoryGame from "../screens/MemoryGame";
 import Again from "../screens/Again";
 import CategoriesScreen from "../screens/Categories";
+import IntruccionesJuego2Screen from "../screens/InstructionsGame2";
+import InstruccionesJuego1Screen from "../screens/InstruccionesJuego1";
+import EstadisticasJuego1Screen from "../screens/StatisticsGame1";
+import ForgotPasswordScreen from "../screens/ForgotPassword";
+import NumberGame from "../screens/NumberGame";
+import InformationScreen from "../screens/Information";
+import Tutorial1Screen from "../screens/Tutorial1";
+
 
 /* const theme = {
   ...DefaultTheme,
@@ -50,6 +58,7 @@ import CategoriesScreen from "../screens/Categories";
       <Stack.Screen name="MemoryGame" component={MemoryGame} />
       <Stack.Screen name="Again" component={Again} />
       <Stack.Screen name="Categories" component={CategoriesScreen} />
+      <Stack.Screen name="InstruccionesJuego1" component={InstruccionesJuego1Screen} />
     </Stack.Navigator>
   );
 } */
@@ -60,6 +69,7 @@ import { FontAwesome } from '@expo/vector-icons';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
+import ForgotPassword from "../screens/ForgotPassword";
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -71,7 +81,7 @@ function HomeStack() {
       screenOptions={{
         headerStyle: { backgroundColor: '#1F41BB' },
         headerTintColor: '#fff',
-        headerTitleStyle: { fontWeight: 'bold' },
+        headerTitleStyle: { fontFamily: 'Roboto-Bold' },
       }}>
       <Stack.Screen
         name="Main"
@@ -89,6 +99,16 @@ function HomeStack() {
         options={{ title: 'Categorias' }}
       />
       <Stack.Screen
+        name="InstruccionesJuego1"
+        component={InstruccionesJuego1Screen}
+        options={{ title: 'Instrucciones' }}
+      />
+      <Stack.Screen
+        name="InstruccionesJuego2"
+        component={IntruccionesJuego2Screen}
+        options={{ title: 'Instrucciones2' }}
+      />
+      <Stack.Screen
         name="MemoryGame"
         component={MemoryGame}
         options={{ title: 'Memory Game' }}
@@ -97,6 +117,31 @@ function HomeStack() {
         name="Again"
         component={Again}
         options={{ title: 'Adivina!' }}
+      />
+      <Stack.Screen
+      name="EstadisticasJuego1"
+      component={EstadisticasJuego1Screen}
+      options={{ title: 'Resultado!' }}
+      />
+      <Stack.Screen
+        name="ForgotPassword"
+        component={ForgotPasswordScreen}
+        options={{ title: 'Recuperar Contraseña' }}
+      />
+      <Stack.Screen
+        name="NumberGame"
+        component={NumberGame}
+        options={{ title: 'Numerium' }}
+      />
+      <Stack.Screen
+        name="Information"
+        component={InformationScreen}
+        options={{ title: 'Information' }}
+      />
+      <Stack.Screen
+        name="Tutorial1"
+        component={Tutorial1Screen}
+        options={{ title: 'Tutorial 1' }}
       />
     </Stack.Navigator>
   );
@@ -109,7 +154,7 @@ function SettingsStack() {
       screenOptions={{
         headerStyle: { backgroundColor: '#1F41BB' },
         headerTintColor: '#fff',
-        headerTitleStyle: { fontWeight: 'bold' },
+        headerTitleStyle: { fontFamily: 'Roboto-Bold' },
       }}>
       <Stack.Screen
         name="UserProfile"

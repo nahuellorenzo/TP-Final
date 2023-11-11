@@ -18,8 +18,18 @@ export type RootStackParamList = {
   Main: undefined;
   UserProfile: undefined;
   MemoryGame: undefined;
-  Again: undefined;
+  Again: {
+    param1: string;
+    param2: string;
+  };
   Categories: undefined;
+  InstruccionesJuego2: undefined;
+  InstruccionesJuego1: undefined;
+  EstadisticasJuego1: undefined;
+  ForgotPassword: undefined;
+  NumberGame:undefined;
+  Information:undefined;
+  Tutorial1:undefined;
 };
 
 export type RootStackScreenProps<Screen extends keyof RootStackParamList> =

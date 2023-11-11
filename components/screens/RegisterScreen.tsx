@@ -214,7 +214,7 @@ const RegisterScreen: React.FC<Props> = ({ navigation: { navigate } }) => {
         >
           <Text
             style={{
-              fontFamily: Fonts["poppins-semiBold"],
+              fontFamily: Fonts["Roboto-Light"],
               color: Colors.primary,
               textAlign: "center",
               fontSize: FontSize.small,

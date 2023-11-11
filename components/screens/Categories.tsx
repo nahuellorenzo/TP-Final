@@ -1,15 +1,15 @@
 import React, { useEffect, useState, useContext } from "react";
 import {
-  Dimensions,
-  Image,
-  SafeAreaView,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-  ToastAndroid,
-  ImageBackground,
-  ScrollView
+    Dimensions,
+    Image,
+    SafeAreaView,
+    StyleSheet,
+    Text,
+    TouchableOpacity,
+    View,
+    ToastAndroid,
+    ImageBackground,
+    ScrollView
 } from "react-native";
 import Spacing from "../constants/Spacing";
 import FontSize from "../constants/FontSize";
@@ -21,9 +21,25 @@ import { useIsFocused } from "@react-navigation/native";
 import { ScoreContext } from "../context/ScoreContext";
 const { height } = Dimensions.get("window");
 const { width } = Dimensions.get("window");
-export var bandera=0;
+export var bandera: string;
+import { dropdownValue1 } from "./InstruccionesJuego1";
+import nivelesCat from "./../Similar/similar.json";
+
 type Props = NativeStackScreenProps<RootStackParamList, "Categories">;
 const CategoriesScreen: React.FC<Props> = ({ navigation: { navigate } }: Props) => {
+
+    if (dropdownValue1 == "Facil") {
+        var nombresCatTotales: string[] = Object.keys(nivelesCat.Facil)
+    }
+    else if ( dropdownValue1 == "Intermedio") {
+        var nombresCatTotales: string [] = Object.keys(nivelesCat.Intermedio)
+    }
+    else if (dropdownValue1 == "Dificil") { 
+        var nombresCatTotales: string [] = Object.keys(nivelesCat.Dificil)
+    }
+
+    const nombresCategorias: string[] = ["Entrenamiento", "Banderas", "Paisajes", "Peliculas", "Personas", "Camisetas de Futbol", "Oficios", "Figuras Geométricas", "Lugares", "Frutas"];
+    
     return (
         <ScrollView>
             <View
@@ -41,132 +57,49 @@ const CategoriesScreen: React.FC<Props> = ({ navigation: { navigate } }: Props) 
                         style={{
                             fontSize: FontSize.large,
                             color: Colors.primary,
-                            fontFamily: Fonts["poppins-bold"],
+                            fontFamily: Fonts["Roboto-Bold"],
                             textAlign: "center",
                         }}
                     >
-                        El siguiente juego es para trabajar tu memoria a corto plazo, se te mostrarán imágenes cada 2 segundos y debés recordar cuál era, para marcar si la segunda imagen es igual a la primera
+                        Seleccione una categoría
                     </Text>
-
-                    <TouchableOpacity
-                        onPress={() =>
-                            {navigate("MemoryGame")
-                            bandera=1}}
-                        style={{
-                            padding: Spacing * 2,
-                            backgroundColor: Colors.primary,
-                            marginVertical: Spacing * 2,
-                            borderRadius: Spacing,
-                            shadowColor: Colors.primary,
-                            shadowOffset: {
-                                width: 0,
-                                height: Spacing,
-                            },
-                            shadowOpacity: 0.3,
-                            shadowRadius: Spacing,
-                        }}
-                    >
-                        <Text
-                            style={{
-                                fontFamily: Fonts["poppins-bold"],
-                                color: Colors.onPrimary,
-                                textAlign: "center",
-                                fontSize: FontSize.large,
-                            }}
-                        >
-                            Entrenamiento
-                        </Text>
-                    </TouchableOpacity>
-
-                    <TouchableOpacity
-                        onPress={() =>
-                            {navigate("MemoryGame")
-                            bandera=2}}
-                        style={{
-                            padding: Spacing * 2,
-                            backgroundColor: Colors.primary,
-                            marginVertical: Spacing * 2,
-                            borderRadius: Spacing,
-                            shadowColor: Colors.primary,
-                            shadowOffset: {
-                                width: 0,
-                                height: Spacing,
-                            },
-                            shadowOpacity: 0.3,
-                            shadowRadius: Spacing,
-                        }}
-                    >
-                        <Text
-                            style={{
-                                fontFamily: Fonts["poppins-bold"],
-                                color: Colors.onPrimary,
-                                textAlign: "center",
-                                fontSize: FontSize.large,
-                            }}
-                        >
-                            Banderas
-                        </Text>
-                    </TouchableOpacity>
-
-                    <TouchableOpacity
-                        onPress={() =>
-                            {navigate("MemoryGame")
-                            bandera=3}}
-                        style={{
-                            padding: Spacing * 2,
-                            backgroundColor: Colors.primary,
-                            marginVertical: Spacing * 2,
-                            borderRadius: Spacing,
-                            shadowColor: Colors.primary,
-                            shadowOffset: {
-                                width: 0,
-                                height: Spacing,
-                            },
-                            shadowOpacity: 0.3,
-                            shadowRadius: Spacing,
-                        }}
-                    >
-                        <Text
-                            style={{
-                                fontFamily: Fonts["poppins-bold"],
-                                color: Colors.onPrimary,
-                                textAlign: "center",
-                                fontSize: FontSize.large,
-                            }}
-                        >
-                            Paisajes
-                        </Text>
-                    </TouchableOpacity>
-
-                    <TouchableOpacity
-                        onPress={() =>
-                            {navigate("MemoryGame")
-                            bandera=4}}
-                        style={{
-                            padding: Spacing * 2,
-                            backgroundColor: Colors.primary,
-                            marginVertical: Spacing * 2,
-                            borderRadius: Spacing,
-                            shadowColor: Colors.primary,
-                            shadowOffset: {
-                                width: 0,
-                                height: Spacing,
-                            },
-                            shadowOpacity: 0.3,
-                            shadowRadius: Spacing,
-                        }}
-                    >
-                        <Text
-                            style={{
-                                fontFamily: Fonts["poppins-bold"],
-                                color: Colors.onPrimary,
-                                textAlign: "center",
-                                fontSize: FontSize.large,
-                            }}
-                        >
-                            Peliculas
-                        </Text>
-                    </TouchableOpacity>
+                    {
+                        nombresCatTotales.length > 0 ? (nombresCatTotales.map((nombreCategoria, index) => (
+                            <TouchableOpacity key={index}
+                                onPress={() => {
+                                    navigate("MemoryGame")
+                                    bandera = nombreCategoria
+                                }}
+                                style={{
+                                    padding: Spacing * 2,
+                                    backgroundColor: Colors.primary,
+                                    marginVertical: Spacing * 2,
+                                    borderRadius: Spacing,
+                                    shadowColor: Colors.primary,
+                                    shadowOffset: {
+                                        width: 0,
+                                        height: Spacing,
+                                    },
+                                    shadowOpacity: 0.3,
+                                    shadowRadius: Spacing,
+                                }}
+                            >
+                                <Text
+                                    style={{
+                                        fontFamily: Fonts["Roboto-Bold"],
+                                        color: Colors.onPrimary,
+                                        textAlign: "center",
+                                        fontSize: FontSize.large,
+                                    }}
+                                >
+                                    {nombreCategoria}
+                                </Text>
+                            </TouchableOpacity>
+                        )))
+                            : (
+                                <Text>No hay nombres para mostrar.</Text>
+                            )
+                    }
                 </View>
             </View>
         </ScrollView>
