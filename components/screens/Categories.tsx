@@ -1,9 +1,6 @@
 import React, { useEffect, useState, useContext } from "react";
 import {
     Dimensions,
-    Image,
-    SafeAreaView,
-    StyleSheet,
     Text,
     TouchableOpacity,
     View,
