@@ -7,4 +7,12 @@ export const imagePaths6 = [
     require("./../../assets/imagesGame/Camisetas/image6.png"),
     require("./../../assets/imagesGame/Camisetas/image7.png"),
     require("./../../assets/imagesGame/Camisetas/image8.png"),
+    require("./../../assets/imagesGame/Camisetas/image9.png"),
+    require("./../../assets/imagesGame/Camisetas/image10.png"),
+    require("./../../assets/imagesGame/Camisetas/image11.png"),
+    require("./../../assets/imagesGame/Camisetas/image12.png"),
+    require("./../../assets/imagesGame/Camisetas/image13.png"),
+    require("./../../assets/imagesGame/Camisetas/image14.png"),
+    require("./../../assets/imagesGame/Camisetas/image15.png"),
+    require("./../../assets/imagesGame/Camisetas/image16.png"),
   ];
