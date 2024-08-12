@@ -46,16 +46,10 @@
       [
         {
           "imagen":[
-            "./../../assets/imagesGame/Camisetas/image3.png",
             "./../../assets/imagesGame/Camisetas/image5.png",
-            "./../../assets/imagesGame/Camisetas/image7.png",
-            "./../../assets/imagesGame/Camisetas/image9.png",
-            "./../../assets/imagesGame/Camisetas/image10.png",
             "./../../assets/imagesGame/Camisetas/image11.png",
-            "./../../assets/imagesGame/Camisetas/image12.png",
             "./../../assets/imagesGame/Camisetas/image13.png",
             "./../../assets/imagesGame/Camisetas/image14.png",
-            "./../../assets/imagesGame/Camisetas/image15.png",
             "./../../assets/imagesGame/Camisetas/image16.png"
           ]
         }
@@ -446,6 +440,30 @@
             "./../../assets/imagesGame/Camisetas/image4.png",
             "./../../assets/imagesGame/Camisetas/image6.png",
             "./../../assets/imagesGame/Camisetas/image8.png"
+          ]
+        },
+        {
+          "imagen":[
+            "./../../assets/imagesGame/Camisetas/image9.png",
+            "./../../assets/imagesGame/Camisetas/image16.png"
+          ]
+        },
+        {
+          "imagen":[
+            "./../../assets/imagesGame/Camisetas/image10.png",
+            "./../../assets/imagesGame/Camisetas/image13.png"
+          ]
+        },
+        {
+          "imagen":[
+            "./../../assets/imagesGame/Camisetas/image11.png",
+            "./../../assets/imagesGame/Camisetas/image15.png"
+          ]
+        },
+        {
+          "imagen":[
+            "./../../assets/imagesGame/Camisetas/image12.png",
+            "./../../assets/imagesGame/Camisetas/image14.png"
           ]
         }
       ],
