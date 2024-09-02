@@ -1,4 +1,5 @@
 import React from 'react';
+import { useContext } from 'react';
 import { View, Text, Modal, TouchableOpacity } from 'react-native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../../types';
@@ -6,6 +7,7 @@ import Spacing from '../constants/Spacing';
 import FontSize from '../constants/FontSize';
 import Colors from '../constants/Color';
 import Fonts from '../constants/Fonts';
+import { ScoreContext } from '../context/ScoreContext';
 
 type ModalGoNoGoProps = {
   isVisible: boolean;
@@ -14,6 +16,9 @@ type ModalGoNoGoProps = {
 };
 
 const ModalGoNoGo: React.FC<ModalGoNoGoProps> = ({ navigation, isVisible }) => {
+
+  const { score, updateScore } = useContext(ScoreContext);
+
   return (
     <Modal visible={isVisible} animationType="fade" transparent>
       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: 'rgba(0, 0, 0, 0.5)' }}>
@@ -64,6 +69,7 @@ const ModalGoNoGo: React.FC<ModalGoNoGoProps> = ({ navigation, isVisible }) => {
               alignSelf: 'center'
             }}
             onPress={() => {
+              updateScore(score.correct, score.incorrect, score.achievements, score.scoreToday, score.gonoGo)
               navigation.reset({
                 index: 0,
                 routes: [{ name: "Main" }],

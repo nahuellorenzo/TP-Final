@@ -14,6 +14,10 @@ export const ScoreProvider = ({ children }) => {
     fecha: '',
     racha: 0,
     achievements: [''],
+    gonoGo: {
+      attempts: 0,
+      facilitations: 0,
+    },
   });
 
   const [currentScore, setCurrentScore] = useState([0]);
@@ -47,7 +51,8 @@ export const ScoreProvider = ({ children }) => {
           console.log("data");
           console.log(data);
           setScore(prevScore => ({
-            ...prevScore, correct: data.scorecorrect, incorrect: data.scoreincorrect, scoreToday: data.scoreToday, racha: data.racha, achievements: data.achievements
+            ...prevScore, correct: data.scorecorrect, incorrect: data.scoreincorrect, scoreToday: data.scoreToday, racha: data.racha, achievements: data.achievements, gonoGo: {attempts: data.gonoGo?.attempts || 0,
+              facilitations: data.gonoGo?.facilitations || 0,}
           }))
           if (data.fecha) {
             if ((data.fecha.toDate().getFullYear() !== score.fecha.getFullYear()) || (data.fecha.toDate().getDate() !== score.fecha.getDate()) || (data.fecha.toDate().getMonth() !== score.fecha.getMonth())) {
@@ -95,25 +100,37 @@ export const ScoreProvider = ({ children }) => {
     fetchScores(fechaActual);
   }, [user.uid]);
 
-  const updateScore = async (correct, incorrect, achievements, scoreToday) => {
+  const updateScore = async (correct, incorrect, achievements, scoreToday, gonoGoData) => {
     const scoreRef = collection(db, 'score');
     const itemsRef = query(scoreRef, where(documentId(), '==', user.uid));
     const response = await getDocs(itemsRef);
     if (response.size > 0) {
-      const doc = response.docs[0]
-      const id = response.docs[0].id
+      const docRef = response.docs[0];
       const batch = writeBatch(db);
-      batch.update(doc.ref, { scorecorrect: correct, scoreincorrect: incorrect, achievements: achievements, scoreToday: scoreToday });
+      batch.update(docRef.ref, { 
+        scorecorrect: correct, 
+        scoreincorrect: incorrect, 
+        achievements: achievements, 
+        scoreToday: scoreToday,
+        gonoGo: gonoGoData 
+      });
       await batch.commit();
       setScore(prevScore => ({
-        ...prevScore, correct: correct, incorrect: incorrect
-      }))
-    }
-    else {
+        ...prevScore, 
+        correct: correct, 
+        incorrect: incorrect, 
+        gonoGo: gonoGoData 
+      }));
+    } else {
       const scoreDocRef = doc(scoreRef, user.uid);
-      await setDoc(scoreDocRef, { scorecorrect: correct, scoreincorrect: incorrect, email: user.email })
+      await setDoc(scoreDocRef, { 
+        scorecorrect: correct, 
+        scoreincorrect: incorrect, 
+        email: user.email,
+        gonoGo: gonoGoData 
+      });
     }
-  }
+  };
 
   return (
     <ScoreContext.Provider

@@ -1,0 +1,62 @@
+{
+    "oscuro": {
+        "claro": true,
+        "apagado": false,
+        "opaco": false,
+        "sombrio": false
+    },
+    "claro": {
+        "oscuro": true,
+        "apagado": false,
+        "opaco": false,
+        "sombrio": false
+    },
+    "apagado": {
+        "prendido": true,
+        "oscuro": false,
+        "tenue": false,
+        "palido": false
+    },
+    "frío": {
+        "caliente": true,
+        "templado": false,
+        "fresco": false,
+        "helado": false
+    },
+    "grande": {
+        "pequeño": true,
+        "alto": false,
+        "largo": false,
+        "gigante": false
+    },
+    "rápido": {
+        "lento": true,
+        "veloz": false,
+        "pronto": false,
+        "ágil": false
+    },
+    "feliz": {
+        "triste": true,
+        "alegre": false,
+        "contento": false,
+        "jubiloso": false
+    },
+    "duro": {
+        "blando": true,
+        "firme": false,
+        "sólido": false,
+        "resistente": false
+    },
+    "nuevo": {
+        "viejo": true,
+        "usado": false,
+        "reciente": false,
+        "moderno": false
+    },
+    "corto": {
+        "largo": true,
+        "breve": false,
+        "pequeño": false,
+        "fugaz": false
+    }
+}
