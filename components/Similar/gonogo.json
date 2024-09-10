@@ -1,59 +1,59 @@
 {
-    "oscuro": {
+    "Oscuro": {
         "claro": true,
         "apagado": false,
         "opaco": false,
         "sombrio": false
     },
-    "claro": {
+    "Claro": {
         "oscuro": true,
         "apagado": false,
         "opaco": false,
         "sombrio": false
     },
-    "apagado": {
+    "Apagado": {
         "prendido": true,
         "oscuro": false,
         "tenue": false,
         "palido": false
     },
-    "frío": {
+    "Frío": {
         "caliente": true,
         "templado": false,
         "fresco": false,
         "helado": false
     },
-    "grande": {
+    "Grande": {
         "pequeño": true,
         "alto": false,
         "largo": false,
         "gigante": false
     },
-    "rápido": {
+    "Rápido": {
         "lento": true,
         "veloz": false,
         "pronto": false,
         "ágil": false
     },
-    "feliz": {
+    "Feliz": {
         "triste": true,
         "alegre": false,
         "contento": false,
         "jubiloso": false
     },
-    "duro": {
+    "Duro": {
         "blando": true,
         "firme": false,
         "sólido": false,
         "resistente": false
     },
-    "nuevo": {
+    "Nuevo": {
         "viejo": true,
         "usado": false,
         "reciente": false,
         "moderno": false
     },
-    "corto": {
+    "Corto": {
         "largo": true,
         "breve": false,
         "pequeño": false,

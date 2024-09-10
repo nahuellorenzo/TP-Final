@@ -108,12 +108,12 @@ function HomeStack() {
       <Stack.Screen
         name="InstruccionesJuego2"
         component={IntruccionesJuego2Screen}
-        options={{ title: 'Instrucciones2' }}
+        options={{ title: 'Instrucciones' }}
       />
       <Stack.Screen
         name="InstruccionesJuego3"
         component={InstruccionesJuego3Screen}
-        options={{ title: 'Instrucciones3' }}
+        options={{ title: 'Instrucciones' }}
       />
       <Stack.Screen
         name="MemoryGame"

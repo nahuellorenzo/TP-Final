@@ -17,8 +17,6 @@ type ModalGoNoGoProps = {
 
 const ModalGoNoGo: React.FC<ModalGoNoGoProps> = ({ navigation, isVisible }) => {
 
-  const { score, updateScore } = useContext(ScoreContext);
-
   return (
     <Modal visible={isVisible} animationType="fade" transparent>
       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: 'rgba(0, 0, 0, 0.5)' }}>
@@ -69,7 +67,6 @@ const ModalGoNoGo: React.FC<ModalGoNoGoProps> = ({ navigation, isVisible }) => {
               alignSelf: 'center'
             }}
             onPress={() => {
-              updateScore(score.correct, score.incorrect, score.achievements, score.scoreToday, score.gonoGo)
               navigation.reset({
                 index: 0,
                 routes: [{ name: "Main" }],

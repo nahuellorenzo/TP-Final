@@ -1,26 +1,67 @@
 import {
-    Dimensions,
-    ImageBackground,
-    SafeAreaView,
-    StyleSheet,
-    Text,
-    TouchableOpacity,
-    View,
-  } from "react-native";
-  import React from "react";
-  import Spacing from "../constants/Spacing";
-  import FontSize from "../constants/FontSize";
-  import Colors from "../constants/Color";
-  import Fonts from "../constants/Fonts";
-  import { NativeStackScreenProps } from "@react-navigation/native-stack";
-  import { RootStackParamList } from "../../types";
-  const { height } = Dimensions.get("window");
-  
-  type Props = NativeStackScreenProps<RootStackParamList, "Welcome">;
-  
-  const WelcomeScreen: React.FC<Props> = ({ navigation: { navigate } }) => {
+  Dimensions,
+  ImageBackground,
+  SafeAreaView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
+import React from "react";
+import Spacing from "../constants/Spacing";
+import FontSize from "../constants/FontSize";
+import Colors from "../constants/Color";
+import Fonts from "../constants/Fonts";
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
+import { RootStackParamList } from "../../types";
+const { height } = Dimensions.get("window");
+import { useEffect, useState } from "react";
+import Animated, { useSharedValue, useAnimatedStyle, withTiming} from 'react-native-reanimated';
+
+// ...
+
+type Props = NativeStackScreenProps<RootStackParamList, "Welcome">;
+
+const WelcomeScreen: React.FC<Props> = ({ navigation: { navigate } }) => {
+  const [showImage, setShowImage] = useState(true);
+
+  const position = useSharedValue(0);
+
+const animatedStyle = useAnimatedStyle(() => {
+return {
+  transform: [{ translateY: position.value }],
+};
+});
+
+// Cuando la imagen deba moverse
+
+
+  useEffect(() => {
+    const timer1 = setTimeout(() => {
+      position.value = withTiming(-height / 3, { duration: 1000 }); // Ajusta la duración a tu gusto
+    }, 2000);
+    const timer = setTimeout(() => {
+      
+      setShowImage(false);
+    }, 3000); // Cambia el valor de 3000 a la cantidad de milisegundos que deseas mostrar la imagen sola
+    return () => {
+      clearTimeout( timer1)
+      clearTimeout( timer)};
+  }, []);
     return (
-      <SafeAreaView>
+      <SafeAreaView style={{flex:1}}>
+      {showImage ? (
+        <Animated.View style={[{ height: height, flex: 1, justifyContent: "center", alignItems: "center" }, animatedStyle]}>
+        <ImageBackground
+          style={{
+            height: height / 2.5,
+            width: '100%',
+          }}
+          resizeMode="contain"
+          source={require("./../../assets/images/log-PhotoRoom.png-PhotoRoom.png")}
+        />
+      </Animated.View>
+      ) : (
         <View>
           <ImageBackground
             style={{
@@ -115,6 +156,7 @@ import {
             </TouchableOpacity>
           </View>
         </View>
+         )}
       </SafeAreaView>
     );
   };

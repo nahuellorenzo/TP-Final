@@ -33,7 +33,7 @@ const NumberGame: React.FC<Props> = ({ navigation: { navigate } }: Props) => {
   const [finalNumber, setFinalNumber] = useState(0);
   const [resultado, setResultado] = useState(false);
   const [valor, setValor] = useState(0);
-  const { score, updateScore, setScore } = useContext(ScoreContext)
+  const { score, updateScore, setScore, setCurrentScore } = useContext(ScoreContext)
 
   useEffect(() => {
     let randomNumber = Math.floor(Math.random() * 10);
@@ -129,12 +129,63 @@ const NumberGame: React.FC<Props> = ({ navigation: { navigate } }: Props) => {
     const concatenatedNumber = miArreglo.map(String).join("");
     if (number2 === parseInt(concatenatedNumber, 10)) {
       setResultado(true);
+
+      if (score.correct + 1 >= 50) {
+        if (score.achievements.indexOf("50Total") === -1) {
+          score.achievements.push("50Total");
+        }
+        if (score.correct + 1 >= 150){
+          if (score.achievements.indexOf("150Total") === -1) {
+            score.achievements.push("150Total");
+          }
+          if (score.correct + 1 >= 500){
+            if (score.achievements.indexOf("500Total") === -1) {
+              score.achievements.push("500Total");
+            }
+            if (score.correct + 1 >= 1000){
+              if (score.achievements.indexOf("1000Total") === -1) {
+                score.achievements.push("1000Total");
+              }
+            }
+          }
+        }
+      }
+
+      switch (score.scoreToday + 1) {
+        case 1:
+          if (score.achievements.indexOf("1stToday") === -1) {
+            score.achievements.push("1stToday");
+          }
+          break;
+        case 10:
+          if (score.achievements.indexOf("10thToday") === -1) {
+            score.achievements.push("10thToday");
+          }
+          break;
+        case 25:
+          if (score.achievements.indexOf("25thToday") === -1) {
+            score.achievements.push("25thToday");
+          }
+          break;
+        case 50:
+          if (score.achievements.indexOf("50thToday") === -1) {
+            score.achievements.push("50thToday");
+          }
+          break;
+        default:
+          break;
+      }
+
       showToastCorrect();
       setScore(prevScore => ({
         ...prevScore,
         correct: score.correct + 1,
+        scoreToday: score.scoreToday + 1,
         incorrect: score.incorrect,
       }));
+      setCurrentScore(prevArray => {
+        return [...prevArray, prevArray[prevArray.length - 1] + 1];
+      });
     } else {
       setResultado(false);
       showToastInCorrect();
@@ -181,7 +232,7 @@ const NumberGame: React.FC<Props> = ({ navigation: { navigate } }: Props) => {
   }
 
   function JugarDenuevo() {
-    updateScore(score.correct, score.incorrect);
+    updateScore(score.correct, score.incorrect, score.achievements, score.scoreToday, null, null);
     return(
       <View
         style={{
