@@ -147,7 +147,7 @@ const GonoGoGame: React.FC<Props> = ({ navigation }) => {
         <TouchableOpacity
           style={{
             padding: Spacing * 1, // Reducir el tamaño del botón
-            backgroundColor: facilitationsLeft > 1 ? "green": Colors.gray,
+            backgroundColor: facilitationsLeft > 1 ? Colors.primary : Colors.gray,
             borderRadius: Spacing / 2, // Botón más redondeado
             justifyContent: "center",
             alignItems: "center",
@@ -157,7 +157,7 @@ const GonoGoGame: React.FC<Props> = ({ navigation }) => {
           onPress={handleFacilitate}
           disabled={facilitationsLeft <= 0 || options.length <= 2}
         >
-          <FontAwesome name="bomb" size={16} color="black" />
+          <FontAwesome name="bomb" size={16} color="white" />
         </TouchableOpacity>
       </View>
       <View
