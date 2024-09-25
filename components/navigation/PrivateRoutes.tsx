@@ -18,10 +18,12 @@ import CategoriesScreen from "../screens/Categories";
 import IntruccionesJuego2Screen from "../screens/InstructionsGame2";
 import InstruccionesJuego1Screen from "../screens/InstruccionesJuego1";
 import InstruccionesJuego3Screen from "../screens/InstruccionesJuego3";
+import InstruccionesJuegoOrderiumScreen from "../screens/InstruccionesJuegoOrderium";
 import EstadisticasJuego1Screen from "../screens/StatisticsGame1";
 import ForgotPasswordScreen from "../screens/ForgotPassword";
 import NumberGame from "../screens/NumberGame";
 import GonoGoGame from "../screens/GonoGoGame";
+import OrderiumGame from "../screens/OrderiumGame";
 import InformationScreen from "../screens/Information";
 import Tutorial1Screen from "../screens/Tutorial1";
 
@@ -116,6 +118,11 @@ function HomeStack() {
         options={{ title: 'Instrucciones' }}
       />
       <Stack.Screen
+        name="InstruccionesJuegoOrderium"
+        component={InstruccionesJuegoOrderiumScreen}
+        options={{ title: 'Instrucciones' }}
+      />
+      <Stack.Screen
         name="MemoryGame"
         component={MemoryGame}
         options={{ title: 'Memory Game' }}
@@ -144,6 +151,11 @@ function HomeStack() {
         name="GonoGoGame"
         component={GonoGoGame}
         options={{ title: 'Go no Go' }}
+      />
+      <Stack.Screen
+        name="OrderiumGame"
+        component={OrderiumGame}
+        options={{ title: 'Orderium' }}
       />
       <Stack.Screen
         name="Information"
