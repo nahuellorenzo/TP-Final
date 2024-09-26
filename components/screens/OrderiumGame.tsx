@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import {
     Text,
     StyleSheet,
@@ -7,6 +7,8 @@ import {
     ScrollView,
     Dimensions,
     ToastAndroid,
+    Alert,
+    Animated
 } from "react-native";
 import DraggableFlatList, { ScaleDecorator } from "react-native-draggable-flatlist";
 import Spacing from "../constants/Spacing";
@@ -17,16 +19,17 @@ import Toast from 'react-native-root-toast';
 import ModalOrderium from "./ModalOrderium";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../../types";
+import { useContext } from "react";
+import { ScoreContext } from "./../context/ScoreContext";
 
 const { height, width } = Dimensions.get("window");
 
 type Props = NativeStackScreenProps<RootStackParamList, "OrderiumGame">;
 
-// Simulación de JSON que usarás para cargar los datos
 const dataJSON = {
     "Ordenar las palabras alfabeticamente": [
-        { "Pala": 2, "Auto": 1, "Trompeta": 3 },
-        { "Boleto": 1, "Pedal": 3, "Faro": 2 }
+        { "Pala": 3, "Auto": 1, "Trompeta": 4, "Casa": 2 },
+        { "Boleto": 1, "Pedal": 4, "Faro": 3, "Caja": 2 }
     ],
     "Ordenar la fecha en orden cronologico": [
         { "12/12/2021": 1, "12/12/2024": 2, "12/12/2025": 3 },
@@ -43,12 +46,17 @@ const shuffleArray = (array: any[]) => {
 };
 
 const OrderiumGame: React.FC<Props> = ({ navigation }) => {
-
-    const [data, setData] = useState([]);
-    const [correctOrder, setCorrectOrder] = useState([]);
+    const [data, setData] = useState<any[]>([]);
+    const [correctOrder, setCorrectOrder] = useState<any[]>([]);
     const [modalVisible, setModalVisible] = useState(false);
+    const [facilitationCount, setFacilitationCount] = useState(0);
+    const [title, setTitle] = useState("Ordena las palabras");
+    const { updateOrderiumScore, setScore, score, updateScore } = useContext(ScoreContext);
+    const [startTime, setStartTime] = useState(Date.now());
+    const [attemptsCount, setAttemptsCount] = useState(0);
+    const [borderColor, setBorderColor] = useState('transparent');
+    const shakeAnimation = useRef(new Animated.Value(0)).current;
 
-    // Cargar una tarea aleatoria del JSON al iniciar
     useEffect(() => {
         loadRandomTask();
     }, []);
@@ -56,69 +64,131 @@ const OrderiumGame: React.FC<Props> = ({ navigation }) => {
     const loadRandomTask = () => {
         const categories = Object.keys(dataJSON);
         const randomCategory = categories[Math.floor(Math.random() * categories.length)];
+        setTitle(randomCategory);  // Cambia el título basado en la categoría seleccionada
+        
         const task = dataJSON[randomCategory][Math.floor(Math.random() * dataJSON[randomCategory].length)];
-        const taskArray = Object.entries(task); // Convertimos en array
-        const correct = taskArray.slice().sort((a, b) => Number(a[1]) - Number(b[1])); // Ordenamos por valor
+        const taskArray = Object.entries(task); 
+        const correct = taskArray.slice().sort((a, b) => Number(a[1]) - Number(b[1])); 
         setCorrectOrder(correct);
 
-        const shuffled = shuffleArray(taskArray.slice()); // Desordenamos
+        const shuffled = shuffleArray(taskArray.slice()); 
         const formattedData = shuffled.map((item, index) => ({
             key: index.toString(),
             label: item[0],
+            correctPosition: Number(item[1]),
+            locked: false, 
         }));
         setData(formattedData);
     };
 
-    const handleSubmit = () => {
-        const isCorrect = data.every(
-            (item, index) => item.label === correctOrder[index][0]
-        );
-
-        if (isCorrect) {
-            showToastCorrect();
-            handleModalVisible();
+    const handleFacilitation = () => {
+        const unlockedItems = data.filter(item => !item.locked);
+        if (unlockedItems.length > 2) {
+            const firstCorrectItem = unlockedItems.find(item => item.correctPosition === facilitationCount + 1);
+            
+            if (firstCorrectItem) {
+                const updatedData = data.map((item) => {
+                    if (item.key === firstCorrectItem.key) {
+                        return { ...item, locked: true }; 
+                    }
+                    return item;
+                }).sort((a, b) => a.locked ? -1 : 0); 
+                setData(updatedData);
+                setFacilitationCount(facilitationCount + 1);
+            }
         } else {
-            showToastInCorrect();
+            Alert.alert("Facilitación completa", "Solo quedan 2 elementos por ordenar.");
+        }
+    };
+
+    const handleSubmit = () => {
+        setAttemptsCount(prevCount => prevCount + 1);
+      
+        const isCorrect = data.every(
+          (item, index) => item.label === correctOrder[index][0]
+        );
+      
+        if (isCorrect) {
+          const timeSpent = (Date.now() - startTime) / 1000;
+          updateOrderiumScore(attemptsCount + 1, facilitationCount, timeSpent); 
+          setScore(prevScore => ({
+            ...prevScore,
+            correct: prevScore.correct + 1,
+          }));
+          updateScore(score.correct + 1, score.incorrect, score.achievements, score.scoreToday, null, null);
+          showToastCorrect();
+          handleModalVisible();
+        } else {
+          handleIncorrectAnswer(); // Llama a la función para mostrar la animación
         }
     };
 
     const handleModalVisible = () => {
         setModalVisible(!modalVisible);
-      };
+    };
+
+    const handleIncorrectAnswer = () => {
+        setBorderColor('red');
+        
+        Animated.sequence([
+            Animated.timing(shakeAnimation, {
+                toValue: 10,
+                duration: 50,
+                useNativeDriver: true,
+            }),
+            Animated.timing(shakeAnimation, {
+                toValue: -10,
+                duration: 50,
+                useNativeDriver: true,
+            }),
+            Animated.timing(shakeAnimation, {
+                toValue: 0,
+                duration: 50,
+                useNativeDriver: true,
+            }),
+        ]).start();
+
+        setTimeout(() => setBorderColor('transparent'), 1000);
+        showToastInCorrect();
+    };
 
     const showToastCorrect = () => {
-        Toast.show('Respuesta correcta!', {
-          duration: Toast.durations.LONG,
-          animation: true,
-          backgroundColor: Colors.primary,
-          textColor: Colors.onPrimary,
-          hideOnPress: true,
-          shadow: true,
+        Toast.show('¡Respuesta correcta!', {
+            duration: Toast.durations.LONG,
+            animation: true,
+            backgroundColor: Colors.primary,
+            textColor: Colors.onPrimary,
+            hideOnPress: true,
+            shadow: true,
         });
-      };
-    
-      const showToastInCorrect = () => {
-        Toast.show('Respuesta incorrecta, Vuelve a intentarlo!', {
-          duration: Toast.durations.LONG,
-          animation: true,
-          backgroundColor: Colors.primary,
-          textColor: Colors.onPrimary,
-          hideOnPress: true,
-          shadow: true,
+    };
+
+    const showToastInCorrect = () => {
+        Toast.show('Respuesta incorrecta, vuelve a intentarlo!', {
+            duration: Toast.durations.LONG,
+            animation: true,
+            backgroundColor: Colors.primary,
+            textColor: Colors.onPrimary,
+            hideOnPress: true,
+            shadow: true,
         });
-      };
+    };
 
     const renderItem = ({ item, drag, isActive }) => {
         return (
             <ScaleDecorator>
-                <View style={[styles.item, { backgroundColor: isActive ? "#ccc" : "#D3D3D3" }]}>
-                    <Text style={styles.itemText}>
-                        {item.label}
-                    </Text>
-                    <TouchableOpacity onPressIn={drag} style={styles.dragHandle}>
-                        <Text style={styles.dragHandleText}>≡</Text>
-                    </TouchableOpacity>
-                </View>
+                <Animated.View style={{ transform: [{ translateX: shakeAnimation }] }}>
+                    <View style={[styles.item, { backgroundColor: item.locked ? "#90EE90" : "#D3D3D3", borderColor: borderColor, borderWidth: 2 }]}>
+                        <Text style={styles.itemText}>
+                            {item.label}
+                        </Text>
+                        {!item.locked && (
+                            <TouchableOpacity onPressIn={drag} style={styles.dragHandle}>
+                                <Text style={styles.dragHandleText}>≡</Text>
+                            </TouchableOpacity>
+                        )}
+                    </View>
+                </Animated.View>
             </ScaleDecorator>
         );
     };
@@ -126,25 +196,26 @@ const OrderiumGame: React.FC<Props> = ({ navigation }) => {
     return (
         <ScrollView>
             <View style={styles.container}>
-                <Text style={styles.title}>Ordena las palabras</Text>
+                <Text style={styles.title}>{title}</Text>
 
                 <DraggableFlatList
                     data={data}
-                    onDragEnd={({ data }) => setData(data)} // Se actualiza el estado al soltar
+                    onDragEnd={({ data }) => setData(data)} 
                     keyExtractor={(item) => item.key}
                     renderItem={renderItem}
                     scrollEnabled={false}
                 />
 
-                {/* Botón de validación */}
-                <TouchableOpacity style={styles.submitButton} onPress={handleSubmit}>
-                    <Text style={styles.submitButtonText}>Hecho</Text>
-                </TouchableOpacity>
+                <View style={styles.buttonContainer}>
+                    <TouchableOpacity style={styles.submitButton} onPress={handleSubmit}>
+                        <Text style={styles.submitButtonText}>Hecho</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={styles.button} onPress={handleFacilitation}>
+                        <Text style={styles.buttonText}>Facilitación</Text>
+                    </TouchableOpacity>
+                </View>
 
-                <ModalOrderium
-          isVisible={modalVisible}
-          navigation={navigation}
-        />
+                <ModalOrderium isVisible={modalVisible} navigation={navigation} />
             </View>
         </ScrollView>
     );
@@ -176,25 +247,35 @@ const styles = StyleSheet.create({
         padding: 10,
         justifyContent: "center",
         alignItems: "center",
-        backgroundColor: "#000", // Fondo de la parte derecha para el ícono de drag
-        borderRadius: 5,
     },
     dragHandleText: {
-        color: "#fff",
-        fontSize: 20, // Tamaño del ícono de drag (tres líneas)
+        fontSize: 20,
+    },
+    buttonContainer: {
+        flexDirection: "row",
+        justifyContent: "space-between",
+        marginTop: 20,
     },
     submitButton: {
         backgroundColor: Colors.primary,
         padding: 15,
         borderRadius: 5,
-        alignItems: "center",
-        marginTop: Spacing * 2,
     },
     submitButtonText: {
-        fontSize: FontSize.large,
-        color: "#fff",
-        fontFamily: Fonts["poppins-bold"],
+        color: Colors.onPrimary,
+        fontSize: FontSize.medium,
+        textAlign: "center",
     },
+    button: {
+        backgroundColor: Colors.primary,
+        padding: 15,
+        borderRadius: 5,
+    },
+    buttonText: {
+        color: Colors.primary,
+        fontSize: FontSize.medium,
+        textAlign: "center",
+    }
 });
 
 export default OrderiumGame;

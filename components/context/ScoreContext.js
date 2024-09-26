@@ -15,6 +15,7 @@ export const ScoreProvider = ({ children }) => {
     racha: 0,
     achievements: [''],
     gonoGo: [],
+    orderium: [],
   });
 
   const [currentScore, setCurrentScore] = useState([0]);
@@ -142,6 +143,37 @@ export const ScoreProvider = ({ children }) => {
     }
   };
 
+  const updateOrderiumScore = async (attempts, facilitations, timeSpent) => {
+    const newOrderiumData = { attempts, facilitations, timeSpent };
+    const updatedOrderium = [...score.orderium, newOrderiumData];
+  
+    const scoreRef = collection(db, 'score');
+    const itemsRef = query(scoreRef, where(documentId(), '==', user.uid));
+    const response = await getDocs(itemsRef);
+  
+    if (response.size > 0) {
+      const docRef = response.docs[0];
+      const batch = writeBatch(db);
+  
+      batch.update(docRef.ref, {
+        orderium: updatedOrderium
+      });
+      await batch.commit();
+  
+      setScore(prevScore => ({
+        ...prevScore,
+        orderium: updatedOrderium
+      }));
+    } else {
+      const scoreDocRef = doc(scoreRef, user.uid);
+      await setDoc(scoreDocRef, {
+        email: user.email,
+        orderium: [newOrderiumData]
+      });
+    }
+  };
+  
+
   return (
     <ScoreContext.Provider
       value={{
@@ -150,6 +182,7 @@ export const ScoreProvider = ({ children }) => {
         updateScore,
         currentScore,
         setCurrentScore,
+        updateOrderiumScore,
       }}
     >
       {children}
