@@ -18,6 +18,7 @@ export var dropdownTimeValue1: number;
 import Onboarding from 'react-native-onboarding-swiper';
 export var dropdownTimeInicialValue1: number;
 import ModalOpcionesMemorium from "./ModalOpcionesMemorium";
+import AntDesign from '@expo/vector-icons/AntDesign';
 
 type Props = NativeStackScreenProps<RootStackParamList, "InstruccionesJuego1">;
 const InstruccionesJuego1Screen: React.FC<Props> = ({ navigation: { navigate } }: Props) => {
@@ -73,6 +74,16 @@ const InstruccionesJuego1Screen: React.FC<Props> = ({ navigation: { navigate } }
                         }}
                     >
                         El siguiente juego es para trabajar tu memoria a corto plazo, se te mostrarán imágenes cada 2 segundos y debés recordar cuál era, para marcar si la segunda imagen es igual a la primera
+                    </Text>
+
+                    <Text
+                        style={{
+                            justifyContent: 'center',
+                            alignItems: 'center',
+                            paddingTop: Spacing * 2.5,
+                            textAlign: "center",
+                        }}>
+                        <AntDesign name="sound" size={30} color="blue" />
                     </Text>
 
                     <Text
