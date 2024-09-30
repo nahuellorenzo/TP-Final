@@ -11,6 +11,8 @@ import Colors from "../constants/Color";
 import Fonts from "../constants/Fonts";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../../types";
+import { SoundComponent } from "../logic/audioInstructions";
+
 type Props = NativeStackScreenProps<RootStackParamList, "InstruccionesJuego2">;
 const InstruccionesJuego2Screen: React.FC<Props> = ({ navigation: { navigate } }: Props) => {
     return (
@@ -36,6 +38,9 @@ const InstruccionesJuego2Screen: React.FC<Props> = ({ navigation: { navigate } }
                     >
                        El siguiente juego es para trabajar tu memoria a corto plazo, se mostrará una serie de números por “x” segundos y luego deberas repetir la secuencia de números en el orden correcto.
                     </Text>
+
+                    <SoundComponent juego={"numerium"}/>
+                    
 
                     <TouchableOpacity
                         onPress={() => navigate("NumberGame")}

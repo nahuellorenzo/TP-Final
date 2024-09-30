@@ -18,8 +18,7 @@ export var dropdownTimeValue1: number;
 import Onboarding from 'react-native-onboarding-swiper';
 export var dropdownTimeInicialValue1: number;
 import ModalOpcionesMemorium from "./ModalOpcionesMemorium";
-import AntDesign from '@expo/vector-icons/AntDesign';
-import { Audio } from "expo-av";
+import { SoundComponent } from "../logic/audioInstructions";
 
 type Props = NativeStackScreenProps<RootStackParamList, "InstruccionesJuego1">;
 const InstruccionesJuego1Screen: React.FC<Props> = ({ navigation: { navigate } }: Props) => {
@@ -53,24 +52,6 @@ const InstruccionesJuego1Screen: React.FC<Props> = ({ navigation: { navigate } }
         setModalVisible(!modalVisible);
     };
 
-    const [sound, setSound] = useState<Audio.Sound | null>(null);
-
-    async function playSound() {
-        const { sound } = await Audio.Sound.createAsync(
-            require('../../assets/audio/instrucciones_memory_game.mp3')
-        );
-        setSound(sound);
-        await sound.playAsync();
-    }
-
-    useEffect(() => {
-        return sound
-            ? () => {
-                sound.unloadAsync();
-            }
-            : undefined;
-    }, [sound]);
-
     return (
         <ScrollView>
             <View
@@ -95,16 +76,7 @@ const InstruccionesJuego1Screen: React.FC<Props> = ({ navigation: { navigate } }
                         El siguiente juego es para trabajar tu memoria a corto plazo, se te mostrarán imágenes cada 2 segundos y debés recordar cuál era, para marcar si la segunda imagen es igual a la primera
                     </Text>
 
-                    <View
-                        style={{
-                            justifyContent: 'center',
-                            alignItems: 'center',
-                            paddingTop: Spacing * 2.5,
-                        }}>
-                        <TouchableOpacity onPress={playSound}>
-                            <AntDesign name="sound" size={50} color="blue" />
-                        </TouchableOpacity>
-                    </View>
+                    <SoundComponent juego={"memory_game"}/>
 
                     <Text
                         style={{

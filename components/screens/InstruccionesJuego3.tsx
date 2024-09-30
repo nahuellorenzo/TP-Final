@@ -11,6 +11,8 @@ import Colors from "../constants/Color";
 import Fonts from "../constants/Fonts";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../../types";
+import { SoundComponent } from "../logic/audioInstructions";
+
 type Props = NativeStackScreenProps<RootStackParamList, "InstruccionesJuego3">;
 const InstruccionesJuego3Screen: React.FC<Props> = ({ navigation: { navigate } }: Props) => {
     return (
@@ -60,6 +62,9 @@ const InstruccionesJuego3Screen: React.FC<Props> = ({ navigation: { navigate } }
                     >
                        Ademas cuentas con una bomba que te permitira eliminar una de las opciones incorrectas en caso de que tengas dudas. Usala sola cuando creas necesaria
                     </Text>
+
+                    <SoundComponent juego={"go_no_go"}/>
+                    
 
                     <TouchableOpacity
                         onPress={() => navigate("GonoGoGame")}
