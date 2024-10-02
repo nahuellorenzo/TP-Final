@@ -26,38 +26,68 @@ const InformationScreen: React.FC<Props> = ({
         <Text
           style={{
             fontSize: FontSize.xLarge,
-            color: Colors.primary,
+            color: Colors.background,
             fontFamily: Fonts["poppins-bold"],
             textAlign: "center",
             paddingTop: Spacing * 2,
+            paddingBottom: Spacing * 2,
+            backgroundColor: Colors.active,
           }}
         >
           Conozca Memory Game
         </Text>
-        <View style={{ alignContent: "center", alignSelf: "center" }}></View>
-        <Text
-          style={{
-            fontSize: FontSize.large,
-            color: Colors.primary,
-            fontFamily: Fonts["Roboto-Bold"],
-            textAlign: "justify",
-            padding: Spacing*2,
-          }}
-        >
-          Este juego está diseñado para fortalecer su memoria visual a corto
-          plazo. Al comparar imágenes, usted ejercita la capacidad de su cerebro
-          para retener y procesar información visual. Esto puede mejorar su
-          habilidad para recordar detalles visuales en la vida cotidiana, como
-          dónde dejó sus llaves o reconocer caras. Además, este ejercicio
-          estimula áreas del cerebro relacionadas con la atención y la
-          concentración, beneficiando su agudeza mental general.
-        </Text>
-        <SoundComponent juego={"informacion_memory_game"} />
+
         <Image
           source={require("../../assets/images/log-PhotoRoom.png-PhotoRoom.png")}
           style={{ width: 200, height: 200, alignSelf: "center" }}
         />
-      </View>
+
+        <Text
+          style={{
+            fontSize: 18,
+            backgroundColor: Colors.primary,
+            fontFamily: Fonts["Roboto-Bold"],
+            color: Colors.onPrimary,
+            borderRadius: Spacing,
+            textAlign: "center",
+            padding: Spacing * 2,
+            marginLeft: Spacing * 1.5,
+            marginRight: Spacing * 1.5,
+          }}
+        >
+          Este juego está diseñado para fortalecer su memoria visual a corto
+          plazo. Al comparar imágenes, usted ejercita la capacidad de su cerebro
+          para retener y procesar información visual.
+        </Text>
+        
+        <View
+            style={{
+                paddingBottom: Spacing * 2,
+            }}
+        >
+        <SoundComponent juego={"informacion_memory_game"}/>
+        </View>
+
+        <Text
+          style={{
+            fontSize: 18,
+            backgroundColor: Colors.primary,
+            fontFamily: Fonts["Roboto-Bold"],
+            color: Colors.onPrimary,
+            borderRadius: Spacing,
+            textAlign: "center",
+            padding: Spacing * 2,
+            marginLeft: Spacing * 1.5,
+            marginRight: Spacing * 1.5,
+          }}
+        >
+          Esto puede mejorar su
+          habilidad para recordar detalles visuales en la vida cotidiana, como
+          dónde dejó sus llaves o reconocer caras. Además, este ejercicio
+          estimula áreas del cerebro relacionadas con la atención y la
+          concentración, beneficiando su agudeza mental general
+        </Text>
+        </View>
     </ScrollView>
   );
 };
