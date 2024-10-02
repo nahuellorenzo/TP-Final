@@ -32,6 +32,7 @@ export type RootStackParamList = {
   GonoGoGame:undefined;
   Information:undefined;
   Tutorial1:undefined;
+  InformationJuego1:undefined;
 };
 
 export type RootStackScreenProps<Screen extends keyof RootStackParamList> =

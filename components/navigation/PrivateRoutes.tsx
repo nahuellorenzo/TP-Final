@@ -24,6 +24,7 @@ import NumberGame from "../screens/NumberGame";
 import GonoGoGame from "../screens/GonoGoGame";
 import InformationScreen from "../screens/Information";
 import Tutorial1Screen from "../screens/Tutorial1";
+import InformationJuego1 from "../screens/InformationJuego1";
 
 
 /* const theme = {
@@ -154,6 +155,11 @@ function HomeStack() {
         name="Tutorial1"
         component={Tutorial1Screen}
         options={{ title: 'Tutorial 1' }}
+      />
+      <Stack.Screen
+        name="InformationJuego1"
+        component={InformationJuego1}
+        options={{ title: 'Información' }}
       />
     </Stack.Navigator>
   );

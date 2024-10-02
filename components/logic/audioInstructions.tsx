@@ -16,6 +16,9 @@ export async function playSound(juego) {
     case "go_no_go":
       sound = require("../../assets/audio/instrucciones_go_no_go.mp3");
       break;
+    case "informacion_memory_game":
+      sound = require("../../assets/audio/informacion_memory_game.mp3");
+      break;
     default:
       throw new Error("Juego no soportado");
   }
