@@ -34,6 +34,7 @@ export type RootStackParamList = {
   OrderiumGame:undefined;
   Information:undefined;
   Tutorial1:undefined;
+  TutorialOrderium:undefined;
 };
 
 export type RootStackScreenProps<Screen extends keyof RootStackParamList> =

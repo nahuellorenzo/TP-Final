@@ -21,6 +21,7 @@ import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../../types";
 import { useContext } from "react";
 import { ScoreContext } from "./../context/ScoreContext";
+import orderiumData from './../Similar/orderiumData.json';
 
 const { height, width } = Dimensions.get("window");
 
@@ -62,15 +63,15 @@ const OrderiumGame: React.FC<Props> = ({ navigation }) => {
     }, []);
 
     const loadRandomTask = () => {
-        const categories = Object.keys(dataJSON);
+        const categories = Object.keys(orderiumData);
         const randomCategory = categories[Math.floor(Math.random() * categories.length)];
         setTitle(randomCategory);  // Cambia el título basado en la categoría seleccionada
         
-        const task = dataJSON[randomCategory][Math.floor(Math.random() * dataJSON[randomCategory].length)];
+        const task = orderiumData[randomCategory][Math.floor(Math.random() * orderiumData[randomCategory].length)];
         const taskArray = Object.entries(task); 
         const correct = taskArray.slice().sort((a, b) => Number(a[1]) - Number(b[1])); 
         setCorrectOrder(correct);
-
+    
         const shuffled = shuffleArray(taskArray.slice()); 
         const formattedData = shuffled.map((item, index) => ({
             key: index.toString(),
@@ -83,43 +84,55 @@ const OrderiumGame: React.FC<Props> = ({ navigation }) => {
 
     const handleFacilitation = () => {
         const unlockedItems = data.filter(item => !item.locked);
+
+        // Si quedan solo 2 elementos sin acomodar, no permitir más facilitaciones
         if (unlockedItems.length > 2) {
-            const firstCorrectItem = unlockedItems.find(item => item.correctPosition === facilitationCount + 1);
-            
-            if (firstCorrectItem) {
-                const updatedData = data.map((item) => {
-                    if (item.key === firstCorrectItem.key) {
-                        return { ...item, locked: true }; 
+            const nextCorrectItem = unlockedItems.find(item => item.correctPosition === facilitationCount + 1);
+
+            if (nextCorrectItem) {
+                const updatedData = data.map(item => {
+                    if (item.key === nextCorrectItem.key) {
+                        return { ...item, locked: true };
                     }
                     return item;
-                }).sort((a, b) => a.locked ? -1 : 0); 
+                }).sort((a, b) => {
+                    // Los elementos bloqueados deben mantenerse en su posición correcta
+                    if (a.locked && b.locked) return a.correctPosition - b.correctPosition;
+                    // Los desbloqueados mantienen su orden
+                    if (!a.locked && !b.locked) return 0;
+                    // Los bloqueados van antes que los desbloqueados
+                    return a.locked ? -1 : 1;
+                });
+
                 setData(updatedData);
                 setFacilitationCount(facilitationCount + 1);
             }
         } else {
-            Alert.alert("Facilitación completa", "Solo quedan 2 elementos por ordenar.");
+            // Alertar al usuario que ya no puede usar la facilitación
+            Alert.alert("Facilitación bloqueada", "Solo quedan 2 elementos por ordenar, no se puede usar más la facilitación.");
         }
     };
 
+
     const handleSubmit = () => {
         setAttemptsCount(prevCount => prevCount + 1);
-      
+
         const isCorrect = data.every(
-          (item, index) => item.label === correctOrder[index][0]
+            (item, index) => item.label === correctOrder[index][0]
         );
-      
+
         if (isCorrect) {
-          const timeSpent = (Date.now() - startTime) / 1000;
-          updateOrderiumScore(attemptsCount + 1, facilitationCount, timeSpent); 
-          setScore(prevScore => ({
-            ...prevScore,
-            correct: prevScore.correct + 1,
-          }));
-          updateScore(score.correct + 1, score.incorrect, score.achievements, score.scoreToday, null, null);
-          showToastCorrect();
-          handleModalVisible();
+            const timeSpent = (Date.now() - startTime) / 1000;
+            updateOrderiumScore(attemptsCount + 1, facilitationCount, timeSpent);
+            setScore(prevScore => ({
+                ...prevScore,
+                correct: prevScore.correct + 1,
+            }));
+            updateScore(score.correct + 1, score.incorrect, score.achievements, score.scoreToday, null, null);
+            showToastCorrect();
+            handleModalVisible();
         } else {
-          handleIncorrectAnswer(); // Llama a la función para mostrar la animación
+            handleIncorrectAnswer(); // Llama a la función para mostrar la animación
         }
     };
 
@@ -129,7 +142,7 @@ const OrderiumGame: React.FC<Props> = ({ navigation }) => {
 
     const handleIncorrectAnswer = () => {
         setBorderColor('red');
-        
+
         Animated.sequence([
             Animated.timing(shakeAnimation, {
                 toValue: 10,
@@ -200,7 +213,7 @@ const OrderiumGame: React.FC<Props> = ({ navigation }) => {
 
                 <DraggableFlatList
                     data={data}
-                    onDragEnd={({ data }) => setData(data)} 
+                    onDragEnd={({ data }) => setData(data)}
                     keyExtractor={(item) => item.key}
                     renderItem={renderItem}
                     scrollEnabled={false}
@@ -210,8 +223,14 @@ const OrderiumGame: React.FC<Props> = ({ navigation }) => {
                     <TouchableOpacity style={styles.submitButton} onPress={handleSubmit}>
                         <Text style={styles.submitButtonText}>Hecho</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity style={styles.button} onPress={handleFacilitation}>
-                        <Text style={styles.buttonText}>Facilitación</Text>
+                    <TouchableOpacity
+                        style={styles.button}
+                        onPress={handleFacilitation}
+                        disabled={data.filter(item => !item.locked).length <= 2}  // Deshabilitar si quedan 2 o menos elementos desbloqueados
+                    >
+                        <Text style={[styles.buttonText, { color: data.filter(item => !item.locked).length <= 2 ? 'gray' : Colors.onPrimary }]}>
+                            Facilitación
+                        </Text>
                     </TouchableOpacity>
                 </View>
 
