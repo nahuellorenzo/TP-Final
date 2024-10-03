@@ -33,6 +33,9 @@ export type RootStackParamList = {
   Information:undefined;
   Tutorial1:undefined;
   InformationJuego1:undefined;
+  InformationJuego2:undefined;
+  InformationJuego3:undefined;
+
 };
 
 export type RootStackScreenProps<Screen extends keyof RootStackParamList> =

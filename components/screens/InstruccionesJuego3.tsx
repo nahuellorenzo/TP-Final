@@ -3,8 +3,10 @@ import {
   Text,
   TouchableOpacity,
   View,
-  ScrollView
+  ScrollView,
+  StyleSheet
 } from "react-native";
+import { Entypo } from "@expo/vector-icons";
 import Spacing from "../constants/Spacing";
 import FontSize from "../constants/FontSize";
 import Colors from "../constants/Color";
@@ -94,6 +96,11 @@ const InstruccionesJuego3Screen: React.FC<Props> = ({ navigation: { navigate } }
                         </Text>
                     </TouchableOpacity>
                 </View>
+                <View style={styles.buttonContainer_Boton}>
+            <TouchableOpacity onPress={() => navigate("InformationJuego3")}>
+              <Entypo name="info-with-circle" size={24} color="grey" />
+            </TouchableOpacity>
+          </View>
             </View>
         </ScrollView>
     );
@@ -101,3 +108,12 @@ const InstruccionesJuego3Screen: React.FC<Props> = ({ navigation: { navigate } }
 
 
 export default InstruccionesJuego3Screen;
+
+const styles = StyleSheet.create({
+    buttonContainer_Boton: {
+      flexDirection: "column",
+      alignItems: "flex-end",
+      marginTop: 20,
+    },
+  });
+  
