@@ -55,17 +55,18 @@ const InformationScreen: React.FC<Props> = ({
             marginRight: Spacing * 1.5,
           }}
         >
-          Este juego está diseñado para fortalecer su memoria visual a corto
-          plazo. Al comparar imágenes, usted ejercita la capacidad de su cerebro
-          para retener y procesar información visual.
+          Este juego está diseñado para mejorar su memoria de trabajo verbal y
+          numérica. Al recordar secuencias de números, usted ejercita la
+          capacidad de su cerebro para mantener y manipular información a corto
+          plazo.
         </Text>
-        
+
         <View
-            style={{
-                paddingBottom: Spacing * 2,
-            }}
+          style={{
+            paddingBottom: Spacing * 2,
+          }}
         >
-        <SoundComponent juego={"informacion_memory_game"}/>
+          <SoundComponent juego={"informacion_numerium"} />
         </View>
 
         <Text
@@ -81,13 +82,12 @@ const InformationScreen: React.FC<Props> = ({
             marginRight: Spacing * 1.5,
           }}
         >
-          Esto puede mejorar su
-          habilidad para recordar detalles visuales en la vida cotidiana, como
-          dónde dejó sus llaves o reconocer caras. Además, este ejercicio
-          estimula áreas del cerebro relacionadas con la atención y la
-          concentración, beneficiando su agudeza mental general
+          Esta habilidad es fundamental para tareas cotidianas como recordar
+          números de teléfono, hacer cálculos mentales o seguir instrucciones
+          complejas. Además, este ejercicio puede ayudar a mejorar su capacidad
+          de concentración y atención sostenida.
         </Text>
-        </View>
+      </View>
     </ScrollView>
   );
 };

@@ -55,17 +55,19 @@ const InformationScreen: React.FC<Props> = ({
             marginRight: Spacing * 1.5,
           }}
         >
-          Este juego está diseñado para fortalecer su memoria visual a corto
-          plazo. Al comparar imágenes, usted ejercita la capacidad de su cerebro
-          para retener y procesar información visual.
+          El juego Go no Go trabaja su memoria semántica y su control
+          inhibitorio. Al buscar antónimos, usted ejercita su capacidad para
+          acceder y manipular su conocimiento del lenguaje, fortaleciendo las
+          conexiones en áreas del cerebro relacionadas con el procesamiento del
+          lenguaje.
         </Text>
-        
+
         <View
-            style={{
-                paddingBottom: Spacing * 2,
-            }}
+          style={{
+            paddingBottom: Spacing * 2,
+          }}
         >
-        <SoundComponent juego={"informacion_memory_game"}/>
+          <SoundComponent juego={"informacion_go_no_go"} />
         </View>
 
         <Text
@@ -81,13 +83,12 @@ const InformationScreen: React.FC<Props> = ({
             marginRight: Spacing * 1.5,
           }}
         >
-          Esto puede mejorar su
-          habilidad para recordar detalles visuales en la vida cotidiana, como
-          dónde dejó sus llaves o reconocer caras. Además, este ejercicio
-          estimula áreas del cerebro relacionadas con la atención y la
-          concentración, beneficiando su agudeza mental general
+          Además, al tener que inhibir respuestas incorrectas, usted mejora su
+          control cognitivo. Esto puede ayudarle a mejorar su vocabulario, su
+          capacidad de expresión y su habilidad para tomar decisiones rápidas y
+          precisas en situaciones que requieren discernimiento.
         </Text>
-        </View>
+      </View>
     </ScrollView>
   );
 };
