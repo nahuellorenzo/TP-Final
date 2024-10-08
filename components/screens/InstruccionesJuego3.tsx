@@ -49,18 +49,6 @@ const InstruccionesJuego3Screen: React.FC<Props> = ({ navigation: { navigate } }
                        Se te mostrara una palabra junto a 4 opciones de respuesta posibles y deberas seleccionar la respuesta cuyo significado es lo contrario a la palabra inicial
                     </Text>
 
-                    <Text
-                        style={{
-                            fontSize: FontSize.large,
-                            color: Colors.primary,
-                            fontFamily: Fonts["poppins-bold"],
-                            textAlign: "center",
-                            paddingTop: Spacing * 2,
-                        }}
-                    >
-                       Ademas cuentas con una bomba que te permitira eliminar una de las opciones incorrectas en caso de que tengas dudas. Usala sola cuando creas necesaria
-                    </Text>
-
                     <TouchableOpacity
                         onPress={() => navigate("GonoGoGame")}
                         style={{
@@ -86,6 +74,33 @@ const InstruccionesJuego3Screen: React.FC<Props> = ({ navigation: { navigate } }
                             }}
                         >
                             Comenzar
+                        </Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                        onPress={() => navigate("TutorialGoNoGo")}
+                        style={{
+                            padding: Spacing * 2,
+                            backgroundColor: Colors.primary,
+                            marginVertical: Spacing * 2, 
+                            borderRadius: Spacing,
+                            shadowColor: Colors.primary,
+                            shadowOffset: {
+                                width: 0,
+                                height: Spacing,
+                            },
+                            shadowOpacity: 0.3,
+                            shadowRadius: Spacing,
+                        }}
+                    >
+                        <Text
+                            style={{
+                                fontFamily: Fonts["Roboto-bold"],
+                                color: Colors.onPrimary,
+                                textAlign: "center",
+                                fontSize: FontSize.large,
+                            }}
+                        >
+                            Ver Tutorial
                         </Text>
                     </TouchableOpacity>
                 </View>

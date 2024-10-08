@@ -27,6 +27,7 @@ import OrderiumGame from "../screens/OrderiumGame";
 import InformationScreen from "../screens/Information";
 import Tutorial1Screen from "../screens/Tutorial1";
 import TutorialOrderium from "../screens/TutorialOrderium";
+import TutorialGoNoGo from "../screens/TutorialGoNoGo";
 
 
 /* const theme = {
@@ -151,7 +152,7 @@ function HomeStack() {
       <Stack.Screen
         name="GonoGoGame"
         component={GonoGoGame}
-        options={{ title: 'Go no Go' }}
+        options={{ title: 'Contrarium' }}
       />
       <Stack.Screen
         name="OrderiumGame"
@@ -171,6 +172,11 @@ function HomeStack() {
       <Stack.Screen
         name="TutorialOrderium"
         component={TutorialOrderium}
+        options={{ title: 'Tutorial' }}
+      />
+      <Stack.Screen
+        name="TutorialGoNoGo"
+        component={TutorialGoNoGo}
         options={{ title: 'Tutorial' }}
       />
     </Stack.Navigator>

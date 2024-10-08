@@ -21,7 +21,14 @@ import NewLoader from "./Loader3";
 const { height } = Dimensions.get("window");
 const { width } = Dimensions.get("window");
 type Props = NativeStackScreenProps<RootStackParamList, "NumberGame">;
-const NumberGame: React.FC<Props> = ({ navigation: { navigate } }: Props) => {
+const NumberGame: React.FC<Props> = ({ route, navigation: { navigate } }: Props) => {
+
+  const { digitDisplayTime, distractorTime, numberOfDigits } = route.params;
+
+  // Variables configurables
+  const digitDisplay= digitDisplayTime; // Tiempo de visualización de cada dígito (en milisegundos)
+  const distractor= distractorTime; // Tiempo del distractor (en milisegundos)
+  const numberDigits = numberOfDigits; // Número de dígitos a mostrar
 
   const [number, setNumber] = useState(0);
   let arregloNumeros: number[] = [];
@@ -39,55 +46,31 @@ const NumberGame: React.FC<Props> = ({ navigation: { navigate } }: Props) => {
     let randomNumber = Math.floor(Math.random() * 10);
     setNumber(randomNumber);
     arregloNumeros.push(randomNumber);
-    const numero1 = setTimeout(() => {
-      setLoader(true);
-      randomNumber = Math.floor(Math.random() * 10);
-      setNumber(randomNumber);
-      arregloNumeros.push(randomNumber);
-    }, 1000);
-
-    const numero2 = setTimeout(() => {
-      setLoader(false);
-    }, 2000);
-
-    const numero3 = setTimeout(() => {
-      setLoader(true);
-      randomNumber = Math.floor(Math.random() * 10);
-      setNumber(randomNumber);
-      arregloNumeros.push(randomNumber);
-    }, 3000);
-
-    const numero4 = setTimeout(() => {
-      setLoader(false);
-    }, 4000);
-
-    const numero5 = setTimeout(() => {
-      setLoader(true);
-      randomNumber = Math.floor(Math.random() * 10);
-      setNumber(randomNumber);
-      arregloNumeros.push(randomNumber);
-    }, 5000);
-
-    const numero6 = setTimeout(() => {
-      setLoader(false);
-    }, 6000);
-
-    const numero7 = setTimeout(() => {
+  
+    for (let i = 1; i < numberOfDigits; i++) {
+  
+      setTimeout(() => {
+        setLoader(true);
+        randomNumber = Math.floor(Math.random() * 10);
+        setNumber(randomNumber);
+        arregloNumeros.push(randomNumber);
+      }, i * digitDisplayTime + distractorTime * (i - 1));
+  
+      setTimeout(() => {
+        setLoader(false);
+      }, i * digitDisplayTime + distractorTime * i);
+    }
+  
+    const finalTimeout = setTimeout(() => {
       setUltimo(true);
       setMiArreglo([...arregloNumeros]);
-      console.log(arregloNumeros)
-    }, 7000);
-
+      console.log(arregloNumeros);
+    }, (numberOfDigits - 1) * (digitDisplayTime + distractorTime) + digitDisplayTime); // Corrigiendo el último dígito
+  
     return () => {
-      clearTimeout(numero1);
-      clearTimeout(numero2);
-      clearTimeout(numero3);
-      clearTimeout(numero4);
-      clearTimeout(numero5);
-      clearTimeout(numero6);
-      clearTimeout(numero7);
-    }
-  }, [valor,setValor]);
+      clearTimeout(finalTimeout);
+    };
+  }, [valor, digitDisplayTime, distractorTime, numberOfDigits]);
 
   const handleInputChange = (text) => {
     setNumber2(parseInt(text));

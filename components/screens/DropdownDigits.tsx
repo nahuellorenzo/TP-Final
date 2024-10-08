@@ -5,19 +5,19 @@ import React, { useState } from 'react';
   import Colors from "../constants/Color";
 
   const data = [
-    { label: '2 segundos', value: 2000 },
-    { label: '4 segundos', value: 4000 },
-    { label: '6 segundos', value: 6000 },
-    { label: '8 segundos', value: 8000 },
+    { label: '3 digitos', value: 3 },
+    { label: '4 digitos', value: 4 },
+    { label: '5 digitos', value: 5 },
+    { label: '6 digitos', value: 6 },
   ];
 
-  type DropdownTimeProps = {
+  type DropdownDigitsProps = {
     value: number;
     onValueChange: (value: number) => void;
   };
   
-  const DropdownTimeComponent: React.FC<DropdownTimeProps> = ({ value:propValue, onValueChange }) => {
-    const [value, setValue] = useState(propValue || 2000);
+  const DropdownDigitsComponent: React.FC<DropdownDigitsProps> = ({ value:propValue, onValueChange }) => {
+    const [value, setValue] = useState(propValue || 3);
 
     const renderItem = item => {
       return (
@@ -60,7 +60,7 @@ import React, { useState } from 'react';
     );
   };
 
-  export default DropdownTimeComponent;
+  export default DropdownDigitsComponent;
 
   const styles = StyleSheet.create({
     dropdown: {

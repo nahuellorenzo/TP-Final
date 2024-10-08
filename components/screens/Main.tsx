@@ -141,7 +141,7 @@ import Toast from 'react-native-root-toast';
                 fontSize: FontSize.large,
               }}
             >
-                Go no Go
+                Contrarium
             </Text>
           </TouchableOpacity>
 
