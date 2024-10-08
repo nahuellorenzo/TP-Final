@@ -147,37 +147,44 @@ import Toast from 'react-native-root-toast';
 
           <TouchableOpacity
           onPress={() => navigate("InstruccionesJuegoOrderium")}
-            style={{
-              padding: Spacing * 3,
-              backgroundColor: Colors.primary,
-              marginVertical: Spacing * 4,
-              borderRadius: Spacing,
-              shadowColor: Colors.primary,
-              shadowOffset: {
-                width: 0,
-                height: Spacing,
-              },
-              shadowOpacity: 0.3,
-              shadowRadius: Spacing,
-              display:"flex",
-              flexDirection:"row",
-              justifyContent:"center",
-              alignItems:"center",
-            }}
+          style={{
+            padding: Spacing * 3,
+            backgroundColor: Colors.second_gray,
+            marginVertical: Spacing * 4,
+            borderRadius: Spacing,
+            shadowColor: Colors.gray,
+            shadowOffset: {
+              width: 0,
+              height: Spacing,
+            },
+            shadowOpacity: 0.3,
+            shadowRadius: Spacing,
+            display:"flex",
+            flexDirection:"row",
+            justifyContent:"flex-start",
+            alignItems:"center",
+          }}
           >
+            <Ionicons
+                  name="lock-closed"
+                  color={Colors.onPrimary}
+                  size={Spacing * 4}
+                  style={{textAlign:"justify"}}
+                />
             <Text
               style={{
                 fontFamily: Fonts["Roboto-Bold"],
                 color: Colors.onPrimary,
                 textAlign: "center",
                 fontSize: FontSize.large,
+                paddingLeft:Spacing*6,
               }}
             >
-                Orderium
+              Juego 4
             </Text>
           </TouchableOpacity>
 
-          <TouchableOpacity
+          {/* <TouchableOpacity
           onPress={() => showToast1()}
             style={{
               padding: Spacing * 3,
@@ -214,7 +221,7 @@ import Toast from 'react-native-root-toast';
             >
               Juego 3
             </Text>
-          </TouchableOpacity>
+          </TouchableOpacity> */}
           <View style={styles.buttonContainer_Boton}>
           <TouchableOpacity
             onPress={() => navigate("Information")}
