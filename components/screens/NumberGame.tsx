@@ -23,7 +23,11 @@ const { width } = Dimensions.get("window");
 type Props = NativeStackScreenProps<RootStackParamList, "NumberGame">;
 const NumberGame: React.FC<Props> = ({ route, navigation: { navigate } }: Props) => {
 
-  const { digitDisplayTime, distractorTime, numberOfDigits } = route.params;
+  const {
+    digitDisplayTime = 1000, // valor por defecto de 1000ms
+    distractorTime = 2000,    // valor por defecto de 2000ms
+    numberOfDigits = 3        // valor por defecto de 3 dígitos
+  } = route.params || {};
 
   // Variables configurables
   const digitDisplay= digitDisplayTime; // Tiempo de visualización de cada dígito (en milisegundos)
