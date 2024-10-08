@@ -136,6 +136,7 @@ const GonoGoGame: React.FC<Props> = ({ navigation }) => {
     setScore(prevScore => ({
       ...prevScore,
       correct: score.correct + 1,
+      scoreToday: score.scoreToday + 1,
       gonoGo: updatedGonoGo // Actualizar el array en el estado
     }));
 
