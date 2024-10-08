@@ -18,16 +18,20 @@ import CategoriesScreen from "../screens/Categories";
 import IntruccionesJuego2Screen from "../screens/InstructionsGame2";
 import InstruccionesJuego1Screen from "../screens/InstruccionesJuego1";
 import InstruccionesJuego3Screen from "../screens/InstruccionesJuego3";
+import InstruccionesJuegoOrderiumScreen from "../screens/InstruccionesJuegoOrderium";
 import EstadisticasJuego1Screen from "../screens/StatisticsGame1";
 import ForgotPasswordScreen from "../screens/ForgotPassword";
 import NumberGame from "../screens/NumberGame";
 import GonoGoGame from "../screens/GonoGoGame";
+import OrderiumGame from "../screens/OrderiumGame";
 import InformationScreen from "../screens/Information";
 import Tutorial1Screen from "../screens/Tutorial1";
 import InformationJuego1 from "../screens/InformationJuego1";
 import InformationJuego2 from "../screens/InformationJuego2";
 import InformationJuego3 from "../screens/InformationJuego3";
 
+import TutorialOrderium from "../screens/TutorialOrderium";
+import TutorialGoNoGo from "../screens/TutorialGoNoGo";
 
 
 /* const theme = {
@@ -120,6 +124,11 @@ function HomeStack() {
         options={{ title: 'Instrucciones' }}
       />
       <Stack.Screen
+        name="InstruccionesJuegoOrderium"
+        component={InstruccionesJuegoOrderiumScreen}
+        options={{ title: 'Instrucciones' }}
+      />
+      <Stack.Screen
         name="MemoryGame"
         component={MemoryGame}
         options={{ title: 'Memory Game' }}
@@ -147,7 +156,12 @@ function HomeStack() {
       <Stack.Screen
         name="GonoGoGame"
         component={GonoGoGame}
-        options={{ title: 'Go no Go' }}
+        options={{ title: 'Contrarium' }}
+      />
+      <Stack.Screen
+        name="OrderiumGame"
+        component={OrderiumGame}
+        options={{ title: 'Orderium' }}
       />
       <Stack.Screen
         name="Information"
@@ -173,6 +187,16 @@ function HomeStack() {
         name="InformationJuego3"
         component={InformationJuego3}
         options={{ title: 'Información' }}
+      />
+      <Stack.Screen
+        name="TutorialOrderium"
+        component={TutorialOrderium}
+        options={{ title: 'Tutorial' }}
+      />
+      <Stack.Screen
+        name="TutorialGoNoGo"
+        component={TutorialGoNoGo}
+        options={{ title: 'Tutorial' }}
       />
     </Stack.Navigator>
   );

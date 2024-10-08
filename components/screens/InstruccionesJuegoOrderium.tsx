@@ -3,20 +3,16 @@ import {
   Text,
   TouchableOpacity,
   View,
-  ScrollView,
-  StyleSheet
+  ScrollView
 } from "react-native";
-import { Entypo } from "@expo/vector-icons";
 import Spacing from "../constants/Spacing";
 import FontSize from "../constants/FontSize";
 import Colors from "../constants/Color";
 import Fonts from "../constants/Fonts";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../../types";
-import { SoundComponent } from "../logic/audioInstructions";
-
-type Props = NativeStackScreenProps<RootStackParamList, "InstruccionesJuego3">;
-const InstruccionesJuego3Screen= ({ navigation: { navigate } }) => {
+type Props = NativeStackScreenProps<RootStackParamList, "InstruccionesJuegoOrderium">;
+const InstruccionesJuegoOrderiumScreen: React.FC<Props> = ({ navigation: { navigate } }: Props) => {
     return (
         <ScrollView>
             <View
@@ -50,16 +46,23 @@ const InstruccionesJuego3Screen= ({ navigation: { navigate } }) => {
                             paddingTop: Spacing * 2,
                         }}
                     >
-                       Se te mostrara una palabra junto a 4 opciones de respuesta posibles y deberas seleccionar la respuesta cuyo significado es lo contrario a la palabra inicial
+                       Se te mostrara una palabra 
                     </Text>
-                    <View style={styles.buttonContainer_Boton}>
-                    <SoundComponent juego={"go_no_go"}/>
-            <TouchableOpacity onPress={() => navigate("InformationJuego3")}>
-              <Entypo name="info-with-circle" size={24} color="grey" style={styles.infomration}/>
-            </TouchableOpacity>
-                </View>
+
+                    <Text
+                        style={{
+                            fontSize: FontSize.large,
+                            color: Colors.primary,
+                            fontFamily: Fonts["poppins-bold"],
+                            textAlign: "center",
+                            paddingTop: Spacing * 2,
+                        }}
+                    >
+                       Ademas cuentas con una bomba que te permitira eliminar una de las opciones incorrectas en caso de que tengas dudas. Usala sola cuando creas necesaria
+                    </Text>
+
                     <TouchableOpacity
-                        onPress={() => navigate("GonoGoGame")}
+                        onPress={() => navigate("OrderiumGame")}
                         style={{
                             padding: Spacing * 2,
                             backgroundColor: Colors.primary,
@@ -84,12 +87,9 @@ const InstruccionesJuego3Screen= ({ navigation: { navigate } }) => {
                         >
                             Comenzar
                         </Text>
-                        </TouchableOpacity>
-                </View>
-                <View>
-            
-            <TouchableOpacity
-                        onPress={() => navigate("TutorialGoNoGo")}
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                        onPress={() => navigate("TutorialOrderium")}
                         style={{
                             padding: Spacing * 2,
                             backgroundColor: Colors.primary,
@@ -115,24 +115,11 @@ const InstruccionesJuego3Screen= ({ navigation: { navigate } }) => {
                             Ver Tutorial
                         </Text>
                     </TouchableOpacity>
-
-            </View>
+                </View>
             </View>
         </ScrollView>
     );
 };
 
 
-export default InstruccionesJuego3Screen;
-
-const styles = StyleSheet.create({
-    buttonContainer_Boton: {
-      flexDirection: "row",
-      justifyContent: "space-evenly",
-      marginTop: 10,
-    },
-    infomration:{
-      marginTop: 37,
-    }
-  });
-  
+export default InstruccionesJuegoOrderiumScreen;

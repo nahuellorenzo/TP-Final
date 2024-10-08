@@ -34,7 +34,7 @@ const InformationScreen: React.FC<Props> = ({
             backgroundColor: Colors.active,
           }}
         >
-          Conozca Go No Go
+          Conozca Contrarium
         </Text>
 
         <Image
@@ -55,7 +55,7 @@ const InformationScreen: React.FC<Props> = ({
             marginRight: Spacing * 1.5,
           }}
         >
-          El juego Go no Go trabaja su memoria semántica y su control
+          El juego Contrarium trabaja su memoria semántica y su control
           inhibitorio. Al buscar antónimos, usted ejercita su capacidad para
           acceder y manipular su conocimiento del lenguaje, fortaleciendo las
           conexiones en áreas del cerebro relacionadas con el procesamiento del

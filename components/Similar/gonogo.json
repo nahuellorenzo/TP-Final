@@ -58,5 +58,71 @@
         "breve": false,
         "pequeño": false,
         "fugaz": false
+    },
+    "Limpio": {
+        "sucio": true,
+        "pulcro": false,
+        "ordenado": false,
+        "aseado": false
+    },
+    "Fuerte": {
+        "débil": true,
+        "robusto": false,
+        "potente": false,
+        "vigoroso": false
+    },
+    "Suave": {
+        "áspero": true,
+        "blando": false,
+        "liso": false,
+        "tierno": false
+    },
+    "Pesado": {
+        "ligero": true,
+        "denso": false,
+        "macizo": false,
+        "grueso": false
+    },
+    "Barato": {
+        "caro": true,
+        "económico": false,
+        "asequible": false,
+        "modesto": false
+    },
+    "Lento": {
+        "rápido": true,
+        "pausado": false,
+        "tardío": false,
+        "moroso": false
+    },
+    "Caliente": {
+        "frío": true,
+        "ardiente": false,
+        "tórrido": false,
+        "cálido": false
+    },
+    "Viejo": {
+        "nuevo": true,
+        "antiguo": false,
+        "vetusto": false,
+        "primitivo": false
+    },
+    "Alto": {
+        "bajo": true,
+        "elevado": false,
+        "grande": false,
+        "crecido": false
+    },
+    "Ancho": {
+        "estrecho": true,
+        "amplio": false,
+        "espacioso": false,
+        "holgado": false
+    },
+    "Sencillo": {
+        "complicado": true,
+        "simple": false,
+        "fácil": false,
+        "claro": false
     }
 }

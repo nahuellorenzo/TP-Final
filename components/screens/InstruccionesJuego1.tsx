@@ -76,7 +76,13 @@ const InstruccionesJuego1Screen: React.FC<Props> = ({
             marcar si la segunda imagen es igual a la primera
           </Text>
 
+          
+          <View style={styles.buttonContainer_Boton}>
           <SoundComponent juego={"memory_game"} />
+            <TouchableOpacity onPress={() => navigate("InformationJuego1")}>
+              <Entypo name="info-with-circle" size={24} color="grey"  style={styles.infomration} />
+            </TouchableOpacity>
+          </View>
 
           <Text
             style={{
@@ -123,11 +129,6 @@ const InstruccionesJuego1Screen: React.FC<Props> = ({
             />
           </View>
 
-          <View style={styles.buttonContainer_Boton}>
-            <TouchableOpacity onPress={() => navigate("InformationJuego1")}>
-              <Entypo name="info-with-circle" size={24} color="grey" />
-            </TouchableOpacity>
-          </View>
 
           <TouchableOpacity
             onPress={() => navigate("Categories")}
@@ -182,10 +183,10 @@ const styles = StyleSheet.create({
       marginTop: 20,
     },
     buttonContainer_Boton: {
-      flexDirection: "column",
-      alignItems: "flex-end",
-      marginTop: 20,
-    },
+        flexDirection: "row",
+        justifyContent: "space-evenly",
+        marginTop: 10,
+      },
     buttonWrapper: {
       flex: 1,
       alignContent: "center",
@@ -239,6 +240,9 @@ const styles = StyleSheet.create({
       justifyContent: 'center',
       flexDirection: 'row',
     },
+    infomration:{
+        marginTop: 37,
+      },
     item: {
       justifyContent: 'center',
       backgroundColor: Color.gray,

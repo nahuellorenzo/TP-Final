@@ -141,7 +141,39 @@ import Toast from 'react-native-root-toast';
                 fontSize: FontSize.large,
               }}
             >
-                Go no Go
+                Contrarium
+            </Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+          onPress={() => navigate("InstruccionesJuegoOrderium")}
+            style={{
+              padding: Spacing * 3,
+              backgroundColor: Colors.primary,
+              marginVertical: Spacing * 4,
+              borderRadius: Spacing,
+              shadowColor: Colors.primary,
+              shadowOffset: {
+                width: 0,
+                height: Spacing,
+              },
+              shadowOpacity: 0.3,
+              shadowRadius: Spacing,
+              display:"flex",
+              flexDirection:"row",
+              justifyContent:"center",
+              alignItems:"center",
+            }}
+          >
+            <Text
+              style={{
+                fontFamily: Fonts["Roboto-Bold"],
+                color: Colors.onPrimary,
+                textAlign: "center",
+                fontSize: FontSize.large,
+              }}
+            >
+                Orderium
             </Text>
           </TouchableOpacity>
 

@@ -61,6 +61,52 @@ const GonoGoGame: React.FC<Props> = ({ navigation }) => {
     if (!palabras[currentWord][key]) {
       showToastInCorrect();
     } else {
+
+      if (score.correct + 1 >= 50) {
+        if (score.achievements.indexOf("50Total") === -1) {
+          score.achievements.push("50Total");
+        }
+        if (score.correct + 1 >= 150){
+          if (score.achievements.indexOf("150Total") === -1) {
+            score.achievements.push("150Total");
+          }
+          if (score.correct + 1 >= 500){
+            if (score.achievements.indexOf("500Total") === -1) {
+              score.achievements.push("500Total");
+            }
+            if (score.correct + 1 >= 1000){
+              if (score.achievements.indexOf("1000Total") === -1) {
+                score.achievements.push("1000Total");
+              }
+            }
+          }
+        }
+      }
+
+      switch (score.scoreToday + 1) {
+        case 1:
+          if (score.achievements.indexOf("1stToday") === -1) {
+            score.achievements.push("1stToday");
+          }
+          break;
+        case 10:
+          if (score.achievements.indexOf("10thToday") === -1) {
+            score.achievements.push("10thToday");
+          }
+          break;
+        case 25:
+          if (score.achievements.indexOf("25thToday") === -1) {
+            score.achievements.push("25thToday");
+          }
+          break;
+        case 50:
+          if (score.achievements.indexOf("50thToday") === -1) {
+            score.achievements.push("50thToday");
+          }
+          break;
+        default:
+          break;
+      }
       showToastCorrect();
       handleRoundEnd(); // Terminar la ronda y almacenar los datos
     }
