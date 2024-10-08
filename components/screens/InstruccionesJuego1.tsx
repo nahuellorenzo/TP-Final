@@ -78,7 +78,7 @@ const InstruccionesJuego1Screen: React.FC<Props> = ({
 
           
           <View style={styles.buttonContainer_Boton}>
-          <SoundComponent juego={"memory_game"} />
+          <SoundComponent juego={"memory_game"}/>
             <TouchableOpacity onPress={() => navigate("InformationJuego1")}>
               <Entypo name="info-with-circle" size={24} color="grey"  style={styles.infomration} />
             </TouchableOpacity>
