@@ -96,12 +96,12 @@ function HomeStack() {
       <Stack.Screen
         name="Main"
         component={MainScreen}
-        options={{ title: 'Home Page' }}
+        options={{ title: 'Inicio' }}
       />
       <Stack.Screen
         name="UserProfile"
         component={UserProfileScreen}
-        options={{ title: 'User Profile' }}
+        options={{ title: 'Perfil' }}
       />
       <Stack.Screen
         name="Categories"
@@ -232,7 +232,7 @@ function RootNavigatorPrivate() {
           name="Hola"
           component={HomeStack}
           options={{
-            tabBarLabel: 'Home',
+            tabBarLabel: 'Inicio',
             tabBarIcon: ({ color, size }) => (
               <MaterialCommunityIcons name="home" color={color} size={size} />
             ),
@@ -243,7 +243,7 @@ function RootNavigatorPrivate() {
           name="SettingsStack"
           component={SettingsStack}
           options={{
-            tabBarLabel: 'Profile',
+            tabBarLabel: 'Perfil',
             tabBarIcon: ({ color, size }) => (
               <FontAwesome name="user" size={24} color={color} />
             ),
