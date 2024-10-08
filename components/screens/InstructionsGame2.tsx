@@ -15,6 +15,8 @@ import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../../types";
 import { SoundComponent } from "../logic/audioInstructions";
 import ModalOpcionesNumerium from "./ModalNumerium";
+import Octicons from '@expo/vector-icons/Octicons';
+
 type Props = NativeStackScreenProps<RootStackParamList, "InstruccionesJuego2">;
     const InstruccionesJuego2Screen = ({ navigation: { navigate } }) => {
         const [isModalVisible, setModalVisible] = useState(false);
@@ -58,7 +60,7 @@ type Props = NativeStackScreenProps<RootStackParamList, "InstruccionesJuego2">;
                     <View style={styles.buttonContainer_Boton}>
                     <SoundComponent juego={"numerium"} />
             <TouchableOpacity onPress={() => navigate("InformationJuego2")}>
-              <Entypo name="info-with-circle" size={24} color="grey" style={styles.infomration} />
+            <Octicons name="info" size={38} color="blue" style={styles.infomration}/>
             </TouchableOpacity>
           </View>
                     <TouchableOpacity
@@ -166,6 +168,6 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   infomration:{
-    marginTop: 37,
+    marginTop: 32,
   }
 });

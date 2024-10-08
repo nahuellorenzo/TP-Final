@@ -14,6 +14,7 @@ import Fonts from "../constants/Fonts";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../../types";
 import { SoundComponent } from "../logic/audioInstructions";
+import Octicons from '@expo/vector-icons/Octicons';
 
 type Props = NativeStackScreenProps<RootStackParamList, "InstruccionesJuego3">;
 const InstruccionesJuego3Screen= ({ navigation: { navigate } }) => {
@@ -55,7 +56,7 @@ const InstruccionesJuego3Screen= ({ navigation: { navigate } }) => {
                     <View style={styles.buttonContainer_Boton}>
                     <SoundComponent juego={"go_no_go"}/>
             <TouchableOpacity onPress={() => navigate("InformationJuego3")}>
-              <Entypo name="info-with-circle" size={24} color="grey" style={styles.infomration}/>
+            <Octicons name="info" size={38} color="blue" style={styles.infomration}/>
             </TouchableOpacity>
                 </View>
                     <TouchableOpacity
@@ -132,7 +133,7 @@ const styles = StyleSheet.create({
       marginTop: 10,
     },
     infomration:{
-      marginTop: 37,
+      marginTop: 32,
     }
   });
   

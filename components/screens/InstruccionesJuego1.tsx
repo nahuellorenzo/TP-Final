@@ -15,6 +15,7 @@ export var dropdownTimeInicialValue1: number;
 import ModalOpcionesMemorium from "./ModalOpcionesMemorium";
 import { SoundComponent } from "../logic/audioInstructions";
 import Color from "../constants/Color";
+import Octicons from '@expo/vector-icons/Octicons';
 
 
 type Props = NativeStackScreenProps<RootStackParamList, "InstruccionesJuego1">;
@@ -80,7 +81,8 @@ const InstruccionesJuego1Screen: React.FC<Props> = ({
           <View style={styles.buttonContainer_Boton}>
           <SoundComponent juego={"memory_game"}/>
             <TouchableOpacity onPress={() => navigate("InformationJuego1")}>
-              <Entypo name="info-with-circle" size={24} color="grey"  style={styles.infomration} />
+            <Octicons name="info" size={38} color="blue" style={styles.infomration}/>
+              
             </TouchableOpacity>
           </View>
 
@@ -241,7 +243,7 @@ const styles = StyleSheet.create({
       flexDirection: 'row',
     },
     infomration:{
-        marginTop: 37,
+        marginTop: 32,
       },
     item: {
       justifyContent: 'center',
