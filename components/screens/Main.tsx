@@ -56,7 +56,7 @@ const MainScreen: React.FC<Props> = ({ navigation: { navigate } }) => {
             <TouchableOpacity onPress={() => navigate("Information")}>
               <Entypo name="info-with-circle" size={40} color="grey" />
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => navigate("Information")}>
+            <TouchableOpacity onPress={() => navigate("MotivationMessage")}>
               <AntDesign name="home" size={40} color="blue" />
             </TouchableOpacity>
           </View>
@@ -191,45 +191,6 @@ const MainScreen: React.FC<Props> = ({ navigation: { navigate } }) => {
               Juego 4
             </Text>
           </TouchableOpacity>
-
-          {/* <TouchableOpacity
-          onPress={() => showToast1()}
-            style={{
-              padding: Spacing * 3,
-              backgroundColor: Colors.second_gray,
-              marginVertical: Spacing * 4,
-              borderRadius: Spacing,
-              shadowColor: Colors.gray,
-              shadowOffset: {
-                width: 0,
-                height: Spacing,
-              },
-              shadowOpacity: 0.3,
-              shadowRadius: Spacing,
-              display:"flex",
-              flexDirection:"row",
-              justifyContent:"flex-start",
-              alignItems:"center",
-            }}
-          >
-            <Ionicons
-                  name="lock-closed"
-                  color={Colors.onPrimary}
-                  size={Spacing * 4}
-                  style={{textAlign:"justify"}}
-                />
-            <Text
-              style={{
-                fontFamily: Fonts["Roboto-Bold"],
-                color: Colors.onPrimary,
-                textAlign: "center",
-                fontSize: FontSize.large,
-                paddingLeft:Spacing*6,
-              }}
-            >
-              Juego 3
-            </Text>
-          </TouchableOpacity> */}
         </View>
       </View>
     </ScrollView>

@@ -1,9 +1,3 @@
-/**
- * If you are not familiar with React Navigation, refer to the "Fundamentals" guide:
- * https://reactnavigation.org/docs/getting-started
- *
- */
-
 import { DefaultTheme, NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import * as React from "react";
@@ -24,7 +18,7 @@ import Tutorial1Screen from "../screens/Tutorial1";
 import InformationJuego1 from "../screens/InformationJuego1";
 import InformationJuego2 from "../screens/InformationJuego2";
 import InformationJuego3 from "../screens/InformationJuego3";
-
+import MotivationMessageScreen from "../screens/MotivationMessage";
 
 const theme = {
   ...DefaultTheme,
@@ -42,10 +36,6 @@ export default function Navigation() {
   );
 }
 
-/**
- * A root stack navigator is often used for displaying modals on top of all other content.
- * https://reactnavigation.org/docs/modal
- */
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
 function RootNavigator() {
@@ -70,6 +60,7 @@ function RootNavigator() {
       <Stack.Screen name="InformationJuego1" component={InformationJuego1} />
       <Stack.Screen name="InformationJuego2" component={InformationJuego2} />
       <Stack.Screen name="InformationJuego3" component={InformationJuego3} />
+      <Stack.Screen name="MotivationMessage" component={MotivationMessageScreen} />
     </Stack.Navigator>
   );
 }

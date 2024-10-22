@@ -80,6 +80,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
 import ForgotPassword from "../screens/ForgotPassword";
+import MotivationMessageScreen from "../screens/MotivationMessage";
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -197,6 +198,11 @@ function HomeStack() {
         name="TutorialGoNoGo"
         component={TutorialGoNoGo}
         options={{ title: 'Tutorial' }}
+      />
+      <Stack.Screen
+        name="MotivationMessage"
+        component={MotivationMessageScreen}
+        options={{ title: 'Mensaje' }}
       />
     </Stack.Navigator>
   );
