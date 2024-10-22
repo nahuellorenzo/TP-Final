@@ -9,14 +9,12 @@ import { RootStackParamList } from "../../types";
 import DropdownComponent from "./Dropdown";
 export var dropdownValue1: string;
 export var dropdownTimeValue1: number;
-import Onboarding from "react-native-onboarding-swiper";
-import { Entypo } from "@expo/vector-icons";
 export var dropdownTimeInicialValue1: number;
 import ModalOpcionesMemorium from "./ModalOpcionesMemorium";
 import { SoundComponent } from "../logic/audioInstructions";
 import Color from "../constants/Color";
 import Octicons from '@expo/vector-icons/Octicons';
-
+import { VideoTutorialComponent } from "../logic/tutorials";
 
 type Props = NativeStackScreenProps<RootStackParamList, "InstruccionesJuego1">;
 const InstruccionesJuego1Screen: React.FC<Props> = ({
@@ -82,8 +80,8 @@ const InstruccionesJuego1Screen: React.FC<Props> = ({
           <SoundComponent juego={"memory_game"}/>
             <TouchableOpacity onPress={() => navigate("InformationJuego1")}>
             <Octicons name="info" size={38} color="blue" style={styles.infomration}/>
-              
             </TouchableOpacity>
+            <VideoTutorialComponent juego={"memory_game"} />
           </View>
 
           <Text
@@ -188,6 +186,7 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         justifyContent: "space-evenly",
         marginTop: 10,
+        display: "flex",
       },
     buttonWrapper: {
       flex: 1,
