@@ -52,15 +52,6 @@ const MainScreen: React.FC<Props> = ({ navigation: { navigate } }) => {
             marginVertical: Spacing * 0.1,
           }}
         >
-          <View style={styles.buttonContainer_Boton}>
-            <TouchableOpacity onPress={() => navigate("Information")}>
-              <Entypo name="info-with-circle" size={40} color="grey" />
-            </TouchableOpacity>
-            <TouchableOpacity onPress={() => navigate("MotivationMessage")}>
-              <AntDesign name="home" size={40} color="blue" />
-            </TouchableOpacity>
-          </View>
-
           <TouchableOpacity
             onPress={() => navigate("InstruccionesJuego1")}
             style={{
@@ -190,6 +181,15 @@ const MainScreen: React.FC<Props> = ({ navigation: { navigate } }) => {
             >
               Juego 4
             </Text>
+          </TouchableOpacity>
+        </View>
+
+        <View style={styles.buttonContainer_Boton}>
+          <TouchableOpacity onPress={() => navigate("Information")}>
+            <Entypo name="info-with-circle" size={40} color="grey" />
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => navigate("MotivationMessage")}>
+            <AntDesign name="home" size={40} color="blue" />
           </TouchableOpacity>
         </View>
       </View>
