@@ -9,6 +9,12 @@ export async function playTutorial(juego: any) {
     case "memory_game":
       youtubeVideoURL = "https://youtu.be/a7O-G3lhkdM";
       break;
+    case "numerium":
+      youtubeVideoURL = "https://youtu.be/fvhIj9yVP4g";
+      break;
+    case "contrarium":
+      youtubeVideoURL = "https://youtu.be/IxeTPgcmhOI";
+      break;
     default:
       throw new Error("Juego no soportado");
   }

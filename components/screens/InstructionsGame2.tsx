@@ -16,6 +16,8 @@ import { RootStackParamList } from "../../types";
 import { SoundComponent } from "../logic/audioInstructions";
 import ModalOpcionesNumerium from "./ModalNumerium";
 import Octicons from '@expo/vector-icons/Octicons';
+import { VideoTutorialComponent } from "../logic/tutorials";
+
 
 type Props = NativeStackScreenProps<RootStackParamList, "InstruccionesJuego2">;
     const InstruccionesJuego2Screen = ({ navigation: { navigate } }) => {
@@ -62,6 +64,7 @@ type Props = NativeStackScreenProps<RootStackParamList, "InstruccionesJuego2">;
             <TouchableOpacity onPress={() => navigate("InformationJuego2")}>
             <Octicons name="info" size={38} color="blue" style={styles.infomration}/>
             </TouchableOpacity>
+            <VideoTutorialComponent juego={"numerium"} />
           </View>
                     <TouchableOpacity
                         onPress={() => navigate("Tutorial1")}

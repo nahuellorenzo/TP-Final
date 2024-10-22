@@ -15,23 +15,27 @@ import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../../types";
 import Loader from "./Loader";
 import { ScoreContext } from "../context/ScoreContext";
-import Toast from 'react-native-root-toast';
+import Toast from "react-native-root-toast";
 import DogLoader from "./Loader2";
 import NewLoader from "./Loader3";
 const { height } = Dimensions.get("window");
 const { width } = Dimensions.get("window");
-type Props = NativeStackScreenProps<RootStackParamList, "NumberGame">;
-const NumberGame: React.FC<Props> = ({ route, navigation: { navigate } }: Props) => {
+import { VideoTutorialComponent } from "../logic/tutorials";
 
+type Props = NativeStackScreenProps<RootStackParamList, "NumberGame">;
+const NumberGame: React.FC<Props> = ({
+  route,
+  navigation: { navigate },
+}: Props) => {
   const {
     digitDisplayTime = 1000, // valor por defecto de 1000ms
-    distractorTime = 2000,    // valor por defecto de 2000ms
-    numberOfDigits = 3        // valor por defecto de 3 dígitos
+    distractorTime = 2000, // valor por defecto de 2000ms
+    numberOfDigits = 3, // valor por defecto de 3 dígitos
   } = route.params || {};
 
   // Variables configurables
-  const digitDisplay= digitDisplayTime; // Tiempo de visualización de cada dígito (en milisegundos)
-  const distractor= distractorTime; // Tiempo del distractor (en milisegundos)
+  const digitDisplay = digitDisplayTime; // Tiempo de visualización de cada dígito (en milisegundos)
+  const distractor = distractorTime; // Tiempo del distractor (en milisegundos)
   const numberDigits = numberOfDigits; // Número de dígitos a mostrar
 
   const [number, setNumber] = useState(0);
@@ -44,33 +48,33 @@ const NumberGame: React.FC<Props> = ({ route, navigation: { navigate } }: Props)
   const [finalNumber, setFinalNumber] = useState(0);
   const [resultado, setResultado] = useState(false);
   const [valor, setValor] = useState(0);
-  const { score, updateScore, setScore, setCurrentScore } = useContext(ScoreContext)
+  const { score, updateScore, setScore, setCurrentScore } =
+    useContext(ScoreContext);
 
   useEffect(() => {
     let randomNumber = Math.floor(Math.random() * 10);
     setNumber(randomNumber);
     arregloNumeros.push(randomNumber);
-  
+
     for (let i = 1; i < numberOfDigits; i++) {
-  
       setTimeout(() => {
         setLoader(true);
         randomNumber = Math.floor(Math.random() * 10);
         setNumber(randomNumber);
         arregloNumeros.push(randomNumber);
       }, i * digitDisplayTime + distractorTime * (i - 1));
-  
+
       setTimeout(() => {
         setLoader(false);
       }, i * digitDisplayTime + distractorTime * i);
     }
-  
+
     const finalTimeout = setTimeout(() => {
       setUltimo(true);
       setMiArreglo([...arregloNumeros]);
       console.log(arregloNumeros);
     }, (numberOfDigits - 1) * (digitDisplayTime + distractorTime) + digitDisplayTime); // Corrigiendo el último dígito
-  
+
     return () => {
       clearTimeout(finalTimeout);
     };
@@ -81,8 +85,8 @@ const NumberGame: React.FC<Props> = ({ route, navigation: { navigate } }: Props)
   };
 
   const showToastCorrect = () => {
-    try{
-      Toast.show('Respuesta correcta!', {
+    try {
+      Toast.show("Respuesta correcta!", {
         duration: Toast.durations.LONG,
         animation: true,
         backgroundColor: Colors.primary,
@@ -90,15 +94,14 @@ const NumberGame: React.FC<Props> = ({ route, navigation: { navigate } }: Props)
         hideOnPress: true,
         shadow: true,
       });
+    } catch (error) {
+      console.log(error);
     }
-    catch(error){
-      console.log(error)
-    }
-  }
+  };
 
   const showToastInCorrect = () => {
-    try{
-      Toast.show('Respuesta incorrecta, Vuelve a intentarlo!', {
+    try {
+      Toast.show("Respuesta incorrecta, Vuelve a intentarlo!", {
         duration: Toast.durations.LONG,
         animation: true,
         backgroundColor: Colors.primary,
@@ -106,11 +109,10 @@ const NumberGame: React.FC<Props> = ({ route, navigation: { navigate } }: Props)
         hideOnPress: true,
         shadow: true,
       });
+    } catch (error) {
+      console.log(error);
     }
-    catch(error){
-      console.log(error)
-    }
-  }
+  };
 
   const handleProbar = () => {
     const concatenatedNumber = miArreglo.map(String).join("");
@@ -121,15 +123,15 @@ const NumberGame: React.FC<Props> = ({ route, navigation: { navigate } }: Props)
         if (score.achievements.indexOf("50Total") === -1) {
           score.achievements.push("50Total");
         }
-        if (score.correct + 1 >= 150){
+        if (score.correct + 1 >= 150) {
           if (score.achievements.indexOf("150Total") === -1) {
             score.achievements.push("150Total");
           }
-          if (score.correct + 1 >= 500){
+          if (score.correct + 1 >= 500) {
             if (score.achievements.indexOf("500Total") === -1) {
               score.achievements.push("500Total");
             }
-            if (score.correct + 1 >= 1000){
+            if (score.correct + 1 >= 1000) {
               if (score.achievements.indexOf("1000Total") === -1) {
                 score.achievements.push("1000Total");
               }
@@ -164,26 +166,26 @@ const NumberGame: React.FC<Props> = ({ route, navigation: { navigate } }: Props)
       }
 
       showToastCorrect();
-      setScore(prevScore => ({
+      setScore((prevScore) => ({
         ...prevScore,
         correct: score.correct + 1,
         scoreToday: score.scoreToday + 1,
         incorrect: score.incorrect,
       }));
-      setCurrentScore(prevArray => {
+      setCurrentScore((prevArray) => {
         return [...prevArray, prevArray[prevArray.length - 1] + 1];
       });
     } else {
       setResultado(false);
       showToastInCorrect();
-      setScore(prevScore => ({
+      setScore((prevScore) => ({
         ...prevScore,
         correct: score.correct,
         incorrect: score.incorrect + 1,
       }));
-      setContadorFallidos(contadorFalldios + 1)
+      setContadorFallidos(contadorFalldios + 1);
     }
-    console.log("actualice")
+    console.log("actualice");
   };
 
   const reiniciarComponente = () => {
@@ -195,7 +197,7 @@ const NumberGame: React.FC<Props> = ({ route, navigation: { navigate } }: Props)
     setUltimo(false);
     setFinalNumber(0);
     setResultado(false);
-    setValor(valor+1);
+    setValor(valor + 1);
   };
 
   function NumberDisplay({ numbers }) {
@@ -205,94 +207,105 @@ const NumberGame: React.FC<Props> = ({ route, navigation: { navigate } }: Props)
     return (
       <View>
         {resultado && (
-        <Text style={{
-          fontSize: FontSize.xxLarge,
-          color: Colors.primary,
-          fontFamily: Fonts["Roboto-Bold"],
-          textAlign: "center",
-          marginTop: Spacing * 4,
-        }}>
-          El numero era: {finalNumber}
-        </Text>)}
+          <Text
+            style={{
+              fontSize: FontSize.xxLarge,
+              color: Colors.primary,
+              fontFamily: Fonts["Roboto-Bold"],
+              textAlign: "center",
+              marginTop: Spacing * 4,
+            }}
+          >
+            El numero era: {finalNumber}
+          </Text>
+        )}
       </View>
     );
   }
 
   function JugarDenuevo() {
-    updateScore(score.correct, score.incorrect, score.achievements, score.scoreToday, null, null);
-    return(
+    updateScore(
+      score.correct,
+      score.incorrect,
+      score.achievements,
+      score.scoreToday,
+      null,
+      null
+    );
+    return (
       <View
         style={{
-          marginTop: Spacing*-2,
-        }}>
+          marginTop: Spacing * -2,
+        }}
+      >
         <View
+          style={{
+            flexDirection: "row",
+            justifyContent: "space-between",
+          }}
+        >
+          <TouchableOpacity
+            onPress={() => {
+              reiniciarComponente();
+            }}
             style={{
-              flexDirection: "row",
-              justifyContent: "space-between",
+              backgroundColor: Colors.primary,
+              paddingVertical: Spacing * 1.5,
+              paddingHorizontal: Spacing * 2,
+              width: "48%",
+              borderRadius: Spacing,
+              shadowColor: Colors.primary,
+              shadowOffset: {
+                width: 0,
+                height: Spacing,
+              },
+              shadowOpacity: 0.3,
+              shadowRadius: Spacing,
             }}
           >
-            <TouchableOpacity
-              onPress={() => {
-                reiniciarComponente();
-              }}
+            <Text
               style={{
-                backgroundColor: Colors.primary,
-                paddingVertical: Spacing * 1.5,
-                paddingHorizontal: Spacing * 2,
-                width: "48%",
-                borderRadius: Spacing,
-                shadowColor: Colors.primary,
-                shadowOffset: {
-                  width: 0,
-                  height: Spacing,
-                },
-                shadowOpacity: 0.3,
-                shadowRadius: Spacing,
+                fontFamily: Fonts["Roboto-Bold"],
+                color: Colors.onPrimary,
+                fontSize: FontSize.large,
+                textAlign: "center",
               }}
             >
-              <Text
-                style={{
-                  fontFamily: Fonts["Roboto-Bold"],
-                  color: Colors.onPrimary,
-                  fontSize: FontSize.large,
-                  textAlign: "center",
-                }}
-              >
-                Juegar de Nuevo
-              </Text>
-            </TouchableOpacity>
+              Juegar de Nuevo
+            </Text>
+          </TouchableOpacity>
 
-            <TouchableOpacity
-              onPress={() => {
-                navigate("Main");
-              }}
+          <TouchableOpacity
+            onPress={() => {
+              navigate("Main");
+            }}
+            style={{
+              paddingVertical: Spacing * 1.5,
+              paddingHorizontal: Spacing * 2,
+              width: "48%",
+              borderRadius: Spacing,
+              shadowOffset: {
+                width: 0,
+                height: Spacing,
+              },
+              shadowOpacity: 0.3,
+              shadowRadius: Spacing,
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <Text
               style={{
-                paddingVertical: Spacing * 1.5,
-                paddingHorizontal: Spacing * 2,
-                width: "48%",
-                borderRadius: Spacing,
-                shadowOffset: {
-                  width: 0,
-                  height: Spacing,
-                },
-                shadowOpacity: 0.3,
-                shadowRadius: Spacing,
-                justifyContent: "center", 
-                alignItems: "center",
+                fontFamily: Fonts["Roboto-Bold"],
+                color: Colors.text,
+                fontSize: FontSize.large,
+                textAlign: "center",
               }}
             >
-              <Text
-                style={{
-                  fontFamily: Fonts["Roboto-Bold"],
-                  color: Colors.text,
-                  fontSize: FontSize.large,
-                  textAlign: "center",
-                }}
-              >
-                Salir
-              </Text>
-            </TouchableOpacity>
-          </View>
+              Salir
+            </Text>
+          </TouchableOpacity>
+        </View>
       </View>
     );
   }
@@ -300,8 +313,8 @@ const NumberGame: React.FC<Props> = ({ route, navigation: { navigate } }: Props)
   return (
     <ScrollView>
       <View>
-        {
-          loader === true ? (<View>
+        {loader === true ? (
+          <View>
             <View
               style={{
                 paddingHorizontal: Spacing * 4,
@@ -323,146 +336,151 @@ const NumberGame: React.FC<Props> = ({ route, navigation: { navigate } }: Props)
               style={{
                 paddingHorizontal: Spacing * 4,
                 paddingTop: Spacing * 5,
-              }}>
-              <NewLoader/>
+              }}
+            >
+              <NewLoader />
             </View>
           </View>
-          ) :
-            (
-              <View>
-                {ultimo === false ? (
-                  <View
+        ) : (
+          <View>
+            {ultimo === false ? (
+              <View
+                style={{
+                  paddingHorizontal: Spacing * 4,
+                  paddingTop: Spacing * 4,
+                }}
+              >
+                <Text
+                  style={{
+                    fontSize: FontSize.xxLarge,
+                    color: Colors.primary,
+                    fontFamily: Fonts["Roboto-Bold"],
+                    textAlign: "center",
+                  }}
+                >
+                  Recuerda este Numero!
+                </Text>
+                <View
+                  style={{
+                    paddingHorizontal: Spacing * 4,
+                    paddingTop: Spacing,
+                  }}
+                >
+                  <Text
                     style={{
-                      paddingHorizontal: Spacing * 4,
-                      paddingTop: Spacing * 4,
+                      color: Colors.primary,
+                      fontSize: FontSize.xxLarge * 5,
+                      marginTop: Spacing * 4,
+                      alignSelf: "center",
+                    }}
+                  >
+                    {number}
+                  </Text>
+                </View>
+              </View>
+            ) : (
+              <View
+                style={{
+                  paddingHorizontal: Spacing * 4,
+                  paddingTop: Spacing * 4,
+                }}
+              >
+                <Text
+                  style={{
+                    fontSize: FontSize.xxLarge,
+                    color: Colors.primary,
+                    fontFamily: Fonts["Roboto-Bold"],
+                    textAlign: "center",
+                  }}
+                >
+                  ¿Cual es el numero?
+                </Text>
+                <NumberDisplay numbers={arregloNumeros} />
+                <View
+                  style={{
+                    marginVertical: Spacing * 3,
+                  }}
+                >
+                  {!resultado && (
+                    <AppTextInput
+                      editable={!resultado}
+                      placeholder="Numero"
+                      keyboardType="numeric"
+                      onChangeText={(text) => handleInputChange(text)}
+                    />
+                  )}
+                  <TouchableOpacity
+                    onPress={handleProbar}
+                    disabled={resultado}
+                    style={{
+                      padding: Spacing * 2,
+                      backgroundColor: resultado
+                        ? Colors.second_gray
+                        : Colors.primary,
+                      marginVertical: Spacing * 3,
+                      borderRadius: Spacing,
+                      shadowColor: resultado ? Colors.gray : Colors.primary,
+                      shadowOffset: {
+                        width: 0,
+                        height: Spacing,
+                      },
+                      shadowOpacity: 0.3,
+                      shadowRadius: Spacing,
                     }}
                   >
                     <Text
                       style={{
-                        fontSize: FontSize.xxLarge,
-                        color: Colors.primary,
-                        fontFamily: Fonts["Roboto-Bold"],
+                        fontFamily: Fonts["poppins-bold"],
+                        color: Colors.onPrimary,
                         textAlign: "center",
+                        fontSize: FontSize.large,
                       }}
                     >
-                      Recuerda este Numero!
+                      Probar
                     </Text>
-                    <View
+                  </TouchableOpacity>
+                  {contadorFalldios > 4 && (
+                    <TouchableOpacity
+                      onPress={reiniciarComponente}
+                      disabled={resultado}
                       style={{
-                        paddingHorizontal: Spacing * 4,
-                        paddingTop: Spacing,
-                      }}>
+                        padding: Spacing * 2,
+                        backgroundColor: resultado
+                          ? Colors.second_gray
+                          : Colors.primary,
+                        marginVertical: Spacing * 2,
+                        borderRadius: Spacing,
+                        shadowColor: resultado ? Colors.gray : Colors.primary,
+                        shadowOffset: {
+                          width: 0,
+                          height: Spacing,
+                        },
+                        shadowOpacity: 0.3,
+                        shadowRadius: Spacing,
+                      }}
+                    >
                       <Text
                         style={{
-                          color: Colors.primary,
-                          fontSize: FontSize.xxLarge*5,
-                          marginTop: Spacing * 4,
-                          alignSelf: "center",
+                          fontFamily: Fonts["poppins-bold"],
+                          color: Colors.onPrimary,
+                          textAlign: "center",
+                          fontSize: FontSize.large,
                         }}
                       >
-                        {number}
+                        Probar con otro numero
                       </Text>
-                    </View>
-                  </View>
-                ) : (
-                  <View
-                    style={{
-                      paddingHorizontal: Spacing * 4,
-                      paddingTop: Spacing * 4,
-                    }}
-                  >
-                    <Text
-                      style={{
-                        fontSize: FontSize.xxLarge,
-                        color: Colors.primary,
-                        fontFamily: Fonts["Roboto-Bold"],
-                        textAlign: "center",
-                      }}
-                    >
-                      ¿Cual es el numero?
-                    </Text>
-                    <NumberDisplay numbers={arregloNumeros} />
-                    <View
-                      style={{
-                        marginVertical: Spacing * 3,
-                      }}
-                    >
-                      {!resultado && (
-                      <AppTextInput
-                        editable={!resultado}
-                        placeholder="Numero"
-                        keyboardType="numeric"
-                        onChangeText={(text) => handleInputChange(text)}
-                      />)}
-                      <TouchableOpacity 
-                        onPress={handleProbar}
-                        disabled={resultado}
-                        style={{
-                          padding: Spacing * 2,
-                          backgroundColor: resultado ? Colors.second_gray : Colors.primary,
-                          marginVertical: Spacing * 3,
-                          borderRadius: Spacing,
-                          shadowColor: resultado ? Colors.gray : Colors.primary,
-                          shadowOffset: {
-                            width: 0,
-                            height: Spacing,
-                          },
-                          shadowOpacity: 0.3,
-                          shadowRadius: Spacing,
-                        }}
-                      >
-                        <Text
-                          style={{
-                            fontFamily: Fonts["poppins-bold"],
-                            color: Colors.onPrimary,
-                            textAlign: "center",
-                            fontSize: FontSize.large,
-                          }}
-                        >
-                          Probar
-                        </Text>
-                      </TouchableOpacity>
-                      {contadorFalldios > 4 &&(
-                        <TouchableOpacity 
-                        onPress={reiniciarComponente}
-                        disabled={resultado}
-                        style={{
-                          padding: Spacing * 2,
-                          backgroundColor: resultado ? Colors.second_gray : Colors.primary,
-                          marginVertical: Spacing * 2,
-                          borderRadius: Spacing,
-                          shadowColor: resultado ? Colors.gray : Colors.primary,
-                          shadowOffset: {
-                            width: 0,
-                            height: Spacing,
-                          },
-                          shadowOpacity: 0.3,
-                          shadowRadius: Spacing,
-                        }}
-                      >
-                        <Text
-                          style={{
-                            fontFamily: Fonts["poppins-bold"],
-                            color: Colors.onPrimary,
-                            textAlign: "center",
-                            fontSize: FontSize.large,
-                          }}
-                        >
-                          Probar con otro numero
-                        </Text>
-                      </TouchableOpacity>
-                      )}
-                    </View>
-                    {resultado && (
-                      <JugarDenuevo />)}
-                  </View>
-                )}
+                    </TouchableOpacity>
+                  )}
+                  <VideoTutorialComponent juego={"numerium"} />
+                </View>
+                {resultado && <JugarDenuevo />}
               </View>
             )}
+          </View>
+        )}
       </View>
     </ScrollView>
   );
 };
-
 
 export default NumberGame;

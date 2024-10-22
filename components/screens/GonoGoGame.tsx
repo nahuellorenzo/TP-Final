@@ -6,7 +6,7 @@ import {
   ScrollView,
   Dimensions,
 } from "react-native";
-import Toast from 'react-native-root-toast';
+import Toast from "react-native-root-toast";
 import ModalGoNoGo from "./ModalGoNoGo";
 import palabras from "./../Similar/gonogo.json";
 import Spacing from "../constants/Spacing";
@@ -16,14 +16,14 @@ import Fonts from "../constants/Fonts";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../../types";
 import { ScoreContext } from "../context/ScoreContext";
-import FontAwesome from '@expo/vector-icons/FontAwesome';
+import FontAwesome from "@expo/vector-icons/FontAwesome";
+import { VideoTutorialComponent } from "../logic/tutorials";
 
 type Props = NativeStackScreenProps<RootStackParamList, "GonoGoGame">;
 
 const { height, width } = Dimensions.get("window");
 
 const GonoGoGame: React.FC<Props> = ({ navigation }) => {
-
   const [currentWord, setCurrentWord] = useState<string>("");
   const [options, setOptions] = useState<string[]>([]);
   const [facilitationsUsed, setFacilitationsUsed] = useState<number>(0); // Facilitaciones usadas en la ronda actual
@@ -61,20 +61,19 @@ const GonoGoGame: React.FC<Props> = ({ navigation }) => {
     if (!palabras[currentWord][key]) {
       showToastInCorrect();
     } else {
-
       if (score.correct + 1 >= 50) {
         if (score.achievements.indexOf("50Total") === -1) {
           score.achievements.push("50Total");
         }
-        if (score.correct + 1 >= 150){
+        if (score.correct + 1 >= 150) {
           if (score.achievements.indexOf("150Total") === -1) {
             score.achievements.push("150Total");
           }
-          if (score.correct + 1 >= 500){
+          if (score.correct + 1 >= 500) {
             if (score.achievements.indexOf("500Total") === -1) {
               score.achievements.push("500Total");
             }
-            if (score.correct + 1 >= 1000){
+            if (score.correct + 1 >= 1000) {
               if (score.achievements.indexOf("1000Total") === -1) {
                 score.achievements.push("1000Total");
               }
@@ -114,10 +113,13 @@ const GonoGoGame: React.FC<Props> = ({ navigation }) => {
 
   const handleFacilitate = () => {
     if (facilitationsLeft > 0 && options.length > 2) {
-      const incorrectOptions = options.filter(option => !palabras[currentWord][option]);
+      const incorrectOptions = options.filter(
+        (option) => !palabras[currentWord][option]
+      );
       if (incorrectOptions.length > 0) {
-        const optionToRemove = incorrectOptions[Math.floor(Math.random() * incorrectOptions.length)];
-        setOptions(options.filter(option => option !== optionToRemove));
+        const optionToRemove =
+          incorrectOptions[Math.floor(Math.random() * incorrectOptions.length)];
+        setOptions(options.filter((option) => option !== optionToRemove));
         setFacilitationsLeft(facilitationsLeft - 1);
         setFacilitationsUsed(facilitationsUsed + 1); // Incrementar facilitaciones usadas en la ronda actual
       }
@@ -133,15 +135,22 @@ const GonoGoGame: React.FC<Props> = ({ navigation }) => {
 
     const updatedGonoGo = [...score.gonoGo, newGonoGoEntry]; // Agregar la nueva entrada al array
 
-    setScore(prevScore => ({
+    setScore((prevScore) => ({
       ...prevScore,
       correct: score.correct + 1,
       scoreToday: score.scoreToday + 1,
-      gonoGo: updatedGonoGo // Actualizar el array en el estado
+      gonoGo: updatedGonoGo, // Actualizar el array en el estado
     }));
 
     // También actualizar en Firebase (si es necesario en este punto)
-    updateScore(score.correct + 1, score.incorrect, score.achievements, score.scoreToday, newGonoGoEntry.attempts, newGonoGoEntry.facilitations);
+    updateScore(
+      score.correct + 1,
+      score.incorrect,
+      score.achievements,
+      score.scoreToday,
+      newGonoGoEntry.attempts,
+      newGonoGoEntry.facilitations
+    );
 
     handleModalVisible();
   };
@@ -151,7 +160,7 @@ const GonoGoGame: React.FC<Props> = ({ navigation }) => {
   };
 
   const showToastCorrect = () => {
-    Toast.show('Respuesta correcta!', {
+    Toast.show("Respuesta correcta!", {
       duration: Toast.durations.LONG,
       animation: true,
       backgroundColor: Colors.primary,
@@ -162,7 +171,7 @@ const GonoGoGame: React.FC<Props> = ({ navigation }) => {
   };
 
   const showToastInCorrect = () => {
-    Toast.show('Respuesta incorrecta, Vuelve a intentarlo!', {
+    Toast.show("Respuesta incorrecta, Vuelve a intentarlo!", {
       duration: Toast.durations.LONG,
       animation: true,
       backgroundColor: Colors.primary,
@@ -174,27 +183,30 @@ const GonoGoGame: React.FC<Props> = ({ navigation }) => {
 
   return (
     <ScrollView>
-      <View style={{
-        flexDirection: "row", // Colocar la palabra y el botón en la misma fila
-        justifyContent: "space-between", // Separar la palabra y el botón
-        alignItems: "center", // Alinear verticalmente en el centro
-        marginHorizontal: Spacing * 3,
-        paddingTop: Spacing * 3,
-      }}>
+      <View
+        style={{
+          flexDirection: "row", // Colocar la palabra y el botón en la misma fila
+          justifyContent: "space-between", // Separar la palabra y el botón
+          alignItems: "center", // Alinear verticalmente en el centro
+          marginHorizontal: Spacing * 3,
+          paddingTop: Spacing * 3,
+        }}
+      >
         <Text
           style={{
             fontSize: FontSize.xLarge,
             color: Colors.primary,
             fontFamily: Fonts["poppins-bold"],
             textAlign: "left",
-            
-          }}>
+          }}
+        >
           {currentWord}
         </Text>
         <TouchableOpacity
           style={{
             padding: Spacing * 1, // Reducir el tamaño del botón
-            backgroundColor: facilitationsLeft > 1 ? Colors.primary : Colors.gray,
+            backgroundColor:
+              facilitationsLeft > 1 ? Colors.primary : Colors.gray,
             borderRadius: Spacing / 2, // Botón más redondeado
             justifyContent: "center",
             alignItems: "center",
@@ -211,7 +223,8 @@ const GonoGoGame: React.FC<Props> = ({ navigation }) => {
         style={{
           marginVertical: Spacing,
           padding: Spacing * 2,
-        }}>
+        }}
+      >
         {options.map((key) => (
           <TouchableOpacity
             style={{
@@ -236,16 +249,15 @@ const GonoGoGame: React.FC<Props> = ({ navigation }) => {
                 color: Colors.onPrimary,
                 textAlign: "center",
                 fontSize: FontSize.large,
-              }}>
+              }}
+            >
               {key}
             </Text>
           </TouchableOpacity>
         ))}
 
-        <ModalGoNoGo
-          isVisible={modalVisible}
-          navigation={navigation}
-        />
+        <ModalGoNoGo isVisible={modalVisible} navigation={navigation} />
+        <VideoTutorialComponent juego={"contrarium"} />
       </View>
     </ScrollView>
   );
