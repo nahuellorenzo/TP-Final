@@ -58,7 +58,7 @@ return {
             width: '100%',
           }}
           resizeMode="contain"
-          source={require("./../../assets/images/log-PhotoRoom.png-PhotoRoom.png")}
+          source={require("./../../assets/images/logo_memorium.png")}
         />
       </Animated.View>
       ) : (
@@ -68,7 +68,7 @@ return {
               height: height / 2.5,
             }}
             resizeMode="contain"
-            source={require("./../../assets/images/log-PhotoRoom.png-PhotoRoom.png")}
+            source={require("./../../assets/images/logo_memorium.png")}
           />
           <View
             style={{

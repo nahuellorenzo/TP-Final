@@ -15,14 +15,20 @@ import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../../types";
 
 type Props = NativeStackScreenProps<RootStackParamList, "MotivationMessage">;
-    const MotivationMessageScreen = ({ navigation: { navigate } }) => {
+const MotivationMessageScreen = ({ navigation: { navigate } }) => {
   return (
     <ScrollView>
       <View
-      style={{
-        backgroundColor: Colors.active,
-      }}
+        style={{
+          backgroundColor: Colors.active,
+        }}
       >
+            <View style={{ justifyContent: "center", alignItems: "center", paddingTop: Spacing }}>
+              <Image
+                source={require("../../assets/images/logo_memorium_white.png")}
+                style={{ width: 65, height: 60 }}
+              />
+            </View>
         <Text
           style={{
             fontSize: FontSize.xLarge,
@@ -30,17 +36,22 @@ type Props = NativeStackScreenProps<RootStackParamList, "MotivationMessage">;
             fontFamily: Fonts["poppins-bold"],
             textAlign: "center",
             paddingTop: Spacing * 2,
-            paddingBottom: Spacing * 2,
           }}
         >
           Bienvenido a Memorium
         </Text>
-
-        <Image
-          source={require("../../assets/images/log-PhotoRoom.png-PhotoRoom.png")}
-          style={{ width: 200, height: 200, alignSelf: "center" }}
-        />
-    </View>
+        <Text
+          style={{
+            fontSize: FontSize.large,
+            color: Colors.background,
+            fontFamily: Fonts["poppins-regular"],
+            textAlign: "center",
+            paddingBottom: Spacing,
+          }}
+        >
+          Tu viaje de entrenamiento mental
+        </Text>
+      </View>
     </ScrollView>
   );
 };

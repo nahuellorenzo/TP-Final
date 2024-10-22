@@ -38,7 +38,7 @@ const InformationScreen: React.FC<Props> = ({
         </Text>
 
         <Image
-          source={require("../../assets/images/log-PhotoRoom.png-PhotoRoom.png")}
+          source={require("../../assets/images/logo_memorium.png")}
           style={{ width: 200, height: 200, alignSelf: "center" }}
         />
 

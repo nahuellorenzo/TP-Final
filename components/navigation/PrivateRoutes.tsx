@@ -202,7 +202,7 @@ function HomeStack() {
       <Stack.Screen
         name="MotivationMessage"
         component={MotivationMessageScreen}
-        options={{ title: 'Mensaje' }}
+        options={{ title: 'Mensaje Motivacional' }}
       />
     </Stack.Navigator>
   );
