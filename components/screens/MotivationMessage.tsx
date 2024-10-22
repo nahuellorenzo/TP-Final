@@ -18,7 +18,11 @@ type Props = NativeStackScreenProps<RootStackParamList, "MotivationMessage">;
     const MotivationMessageScreen = ({ navigation: { navigate } }) => {
   return (
     <ScrollView>
-      <View>
+      <View
+      style={{
+        backgroundColor: Colors.active,
+      }}
+      >
         <Text
           style={{
             fontSize: FontSize.xLarge,
@@ -27,7 +31,6 @@ type Props = NativeStackScreenProps<RootStackParamList, "MotivationMessage">;
             textAlign: "center",
             paddingTop: Spacing * 2,
             paddingBottom: Spacing * 2,
-            backgroundColor: Colors.active,
           }}
         >
           Bienvenido a Memorium
@@ -35,7 +38,7 @@ type Props = NativeStackScreenProps<RootStackParamList, "MotivationMessage">;
 
         <Image
           source={require("../../assets/images/log-PhotoRoom.png-PhotoRoom.png")}
-          style={{ width: 200, height: 200, alignSelf: "center", backgroundColor: Colors.active }}
+          style={{ width: 200, height: 200, alignSelf: "center" }}
         />
     </View>
     </ScrollView>
