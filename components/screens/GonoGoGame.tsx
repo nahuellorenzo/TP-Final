@@ -17,7 +17,7 @@ import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../../types";
 import { ScoreContext } from "../context/ScoreContext";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
-import { VideoTutorialComponent } from "../logic/tutorials";
+import { VideoTutorialComponent } from "./tutorials";
 
 type Props = NativeStackScreenProps<RootStackParamList, "GonoGoGame">;
 

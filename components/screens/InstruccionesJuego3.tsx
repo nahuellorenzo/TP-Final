@@ -6,7 +6,7 @@ import {
   ScrollView,
   StyleSheet,
 } from "react-native";
-import { Entypo } from "@expo/vector-icons";
+import { Entypo, MaterialIcons } from "@expo/vector-icons";
 import Spacing from "../constants/Spacing";
 import FontSize from "../constants/FontSize";
 import Colors from "../constants/Color";
@@ -15,7 +15,6 @@ import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../../types";
 import { SoundComponent } from "../logic/audioInstructions";
 import Octicons from "@expo/vector-icons/Octicons";
-import { VideoTutorialComponent } from "../logic/tutorials";
 
 type Props = NativeStackScreenProps<RootStackParamList, "InstruccionesJuego3">;
 const InstruccionesJuego3Screen = ({ navigation: { navigate } }) => {
@@ -65,7 +64,18 @@ const InstruccionesJuego3Screen = ({ navigation: { navigate } }) => {
                 style={styles.infomration}
               />
             </TouchableOpacity>
-            <VideoTutorialComponent juego={"contrarium"} />
+            <TouchableOpacity
+              onPress={() =>
+                navigate("VideoTutorials", { juego: "contrarium" })
+              }
+            >
+              <MaterialIcons
+                name="video-library"
+                size={38}
+                color="blue"
+                style={styles.infomration}
+              />
+            </TouchableOpacity>
           </View>
           <TouchableOpacity
             onPress={() => navigate("GonoGoGame")}

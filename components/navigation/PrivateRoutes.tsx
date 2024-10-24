@@ -29,9 +29,10 @@ import Tutorial1Screen from "../screens/Tutorial1";
 import InformationJuego1 from "../screens/InformationJuego1";
 import InformationJuego2 from "../screens/InformationJuego2";
 import InformationJuego3 from "../screens/InformationJuego3";
-
 import TutorialOrderium from "../screens/TutorialOrderium";
 import TutorialGoNoGo from "../screens/TutorialGoNoGo";
+import VideoTutorials from "../screens/tutorials"; // Ensure this path is correct
+
 
 
 /* const theme = {
@@ -203,6 +204,11 @@ function HomeStack() {
         name="MotivationMessage"
         component={MotivationMessageScreen}
         options={{ title: 'Mensaje Motivacional' }}
+      />
+      <Stack.Screen
+        name="VideoTutorials"
+        component={VideoTutorials}
+        options={{ title: 'Video Tutorials' }}
       />
     </Stack.Navigator>
   );

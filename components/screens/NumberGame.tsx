@@ -20,7 +20,7 @@ import DogLoader from "./Loader2";
 import NewLoader from "./Loader3";
 const { height } = Dimensions.get("window");
 const { width } = Dimensions.get("window");
-import { VideoTutorialComponent } from "../logic/tutorials";
+import { VideoTutorialComponent } from "./tutorials";
 
 type Props = NativeStackScreenProps<RootStackParamList, "NumberGame">;
 const NumberGame: React.FC<Props> = ({

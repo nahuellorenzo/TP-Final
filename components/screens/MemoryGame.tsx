@@ -55,7 +55,7 @@ import Animated, {
 } from "react-native-reanimated";
 import { withSpring } from "react-native-reanimated";
 import DogLoader from "./Loader2";
-import { VideoTutorialComponent } from "../logic/tutorials";
+import { VideoTutorialComponent } from "./tutorials";
 
 export var confetti: boolean;
 

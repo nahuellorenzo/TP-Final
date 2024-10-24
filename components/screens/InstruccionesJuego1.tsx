@@ -1,5 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { Text, TouchableOpacity, View, ScrollView, Modal, StyleSheet } from "react-native";
+import {
+  Text,
+  TouchableOpacity,
+  View,
+  ScrollView,
+  Modal,
+  StyleSheet,
+} from "react-native";
 import Spacing from "../constants/Spacing";
 import FontSize from "../constants/FontSize";
 import Colors from "../constants/Color";
@@ -13,8 +20,8 @@ export var dropdownTimeInicialValue1: number;
 import ModalOpcionesMemorium from "./ModalOpcionesMemorium";
 import { SoundComponent } from "../logic/audioInstructions";
 import Color from "../constants/Color";
-import Octicons from '@expo/vector-icons/Octicons';
-import { VideoTutorialComponent } from "../logic/tutorials";
+import Octicons from "@expo/vector-icons/Octicons";
+import { MaterialIcons } from "@expo/vector-icons";
 
 type Props = NativeStackScreenProps<RootStackParamList, "InstruccionesJuego1">;
 const InstruccionesJuego1Screen: React.FC<Props> = ({
@@ -75,13 +82,28 @@ const InstruccionesJuego1Screen: React.FC<Props> = ({
             marcar si la segunda imagen es igual a la primera
           </Text>
 
-          
           <View style={styles.buttonContainer_Boton}>
-          <SoundComponent juego={"memory_game"}/>
+            <SoundComponent juego={"memory_game"} />
             <TouchableOpacity onPress={() => navigate("InformationJuego1")}>
-            <Octicons name="info" size={38} color="blue" style={styles.infomration}/>
+              <Octicons
+                name="info"
+                size={38}
+                color="blue"
+                style={styles.infomration}
+              />
             </TouchableOpacity>
-            <VideoTutorialComponent juego={"memory_game"} />
+            <TouchableOpacity
+              onPress={() =>
+                navigate("VideoTutorials", { juego: "memory_game" })
+              }
+            >
+              <MaterialIcons
+                name="video-library"
+                size={38}
+                color="blue"
+                style={styles.infomration}
+              />
+            </TouchableOpacity>
           </View>
 
           <Text
@@ -129,7 +151,6 @@ const InstruccionesJuego1Screen: React.FC<Props> = ({
             />
           </View>
 
-
           <TouchableOpacity
             onPress={() => navigate("Categories")}
             disabled={!dropdownValue}
@@ -169,109 +190,109 @@ const InstruccionesJuego1Screen: React.FC<Props> = ({
 export default InstruccionesJuego1Screen;
 
 const styles = StyleSheet.create({
-    centeredView: {
-      flex: 1,
-      justifyContent: 'center',
-      alignItems: 'center',
-      marginTop: 22,
-    },
-    buttonContainer_Modal: {
-      flexDirection: "row",
-      width: "80%",
-      justifyContent: "center",
-      alignItems: "center",
-      marginTop: 20,
-    },
-    buttonContainer_Boton: {
-        flexDirection: "row",
-        justifyContent: "space-evenly",
-        marginTop: 10,
-        display: "flex",
-      },
-    buttonWrapper: {
-      flex: 1,
-      alignContent: "center",
-      alignItems: "center",
-      justifyContent: "center",
-      display: "flex",
-      flexWrap: "wrap",
-      marginHorizontal: Spacing * 2
-    },
-    button: {
-      borderRadius: 10,
-      padding: 10,
-      elevation: 2,
-      width: 90,
-      alignSelf: "stretch",
-      flexDirection: "row",
-      justifyContent: "center",
-      alignItems: "center",
-    },
-    buttonOpen: {
-      backgroundColor: Color.second_gray,
-    },
-    buttonClose: {
-      backgroundColor: "#FF0000",
-    },
-    textStyle: {
-      color: "white",
-      fontFamily: "Roboto-Bold",
-      textAlign: "center",
-    },
-    textStyle_2: {
-      color: Color.text,
-      fontFamily: "Roboto-Bold",
-      textAlign: "center",
-    },
-    modalText: {
-      marginBottom: 15,
-      textAlign: "center",
-      color: Color.primary,
-      fontFamily: "Roboto-Bold"
-    },
-    container: {
-      flex: 1,
-    },
-    content: {
-      paddingHorizontal: Spacing * 4,
-      justifyContent: 'center',
-      flex: 1,
-    },
-    itemContainer: {
-      justifyContent: 'center',
-      flexDirection: 'row',
-    },
-    infomration:{
-        marginTop: 32,
-      },
-    item: {
-      justifyContent: 'center',
-      backgroundColor: Color.gray,
-      borderWidth: 1,
-      borderRadius: 10,
-      padding: 16,
-      marginVertical: 8,
-      fontFamily: Fonts["Roboto-Bold"],
-      fontSize: 12,
-      textAlign: 'center',
-      flex: 1,
-    },
-    header: {
-      fontSize: 18,
-      backgroundColor: Color.primary,
-      fontFamily: Fonts["Roboto-Bold"],
-      color: Colors.onPrimary,
-      borderRadius: Spacing,
-      textAlign: "center",
-      padding: Spacing * 2,
-    },
-    logoutButton: {
-      marginVertical: Spacing * 2,
-      padding: Spacing,
-      backgroundColor: Colors.red,
-      borderRadius: Spacing / 2,
-      flexDirection: "column",
-      alignItems: "center",
-      marginTop: 25,
-    },
-  });
+  centeredView: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: 22,
+  },
+  buttonContainer_Modal: {
+    flexDirection: "row",
+    width: "80%",
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: 20,
+  },
+  buttonContainer_Boton: {
+    flexDirection: "row",
+    justifyContent: "space-evenly",
+    marginTop: 10,
+    display: "flex",
+  },
+  buttonWrapper: {
+    flex: 1,
+    alignContent: "center",
+    alignItems: "center",
+    justifyContent: "center",
+    display: "flex",
+    flexWrap: "wrap",
+    marginHorizontal: Spacing * 2,
+  },
+  button: {
+    borderRadius: 10,
+    padding: 10,
+    elevation: 2,
+    width: 90,
+    alignSelf: "stretch",
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  buttonOpen: {
+    backgroundColor: Color.second_gray,
+  },
+  buttonClose: {
+    backgroundColor: "#FF0000",
+  },
+  textStyle: {
+    color: "white",
+    fontFamily: "Roboto-Bold",
+    textAlign: "center",
+  },
+  textStyle_2: {
+    color: Color.text,
+    fontFamily: "Roboto-Bold",
+    textAlign: "center",
+  },
+  modalText: {
+    marginBottom: 15,
+    textAlign: "center",
+    color: Color.primary,
+    fontFamily: "Roboto-Bold",
+  },
+  container: {
+    flex: 1,
+  },
+  content: {
+    paddingHorizontal: Spacing * 4,
+    justifyContent: "center",
+    flex: 1,
+  },
+  itemContainer: {
+    justifyContent: "center",
+    flexDirection: "row",
+  },
+  infomration: {
+    marginTop: 32,
+  },
+  item: {
+    justifyContent: "center",
+    backgroundColor: Color.gray,
+    borderWidth: 1,
+    borderRadius: 10,
+    padding: 16,
+    marginVertical: 8,
+    fontFamily: Fonts["Roboto-Bold"],
+    fontSize: 12,
+    textAlign: "center",
+    flex: 1,
+  },
+  header: {
+    fontSize: 18,
+    backgroundColor: Color.primary,
+    fontFamily: Fonts["Roboto-Bold"],
+    color: Colors.onPrimary,
+    borderRadius: Spacing,
+    textAlign: "center",
+    padding: Spacing * 2,
+  },
+  logoutButton: {
+    marginVertical: Spacing * 2,
+    padding: Spacing,
+    backgroundColor: Colors.red,
+    borderRadius: Spacing / 2,
+    flexDirection: "column",
+    alignItems: "center",
+    marginTop: 25,
+  },
+});
