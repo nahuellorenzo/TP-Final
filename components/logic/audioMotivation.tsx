@@ -4,36 +4,32 @@ import Spacing from "../constants/Spacing";
 import React from "react";
 import { AntDesign } from "@expo/vector-icons";
 
-export async function playSound(juego) {
+export async function playSound(number) {
   let sound;
-  switch (juego) {
-    case "memory_game":
-      sound = require("../../assets/audio/instrucciones_memory_game.mp3");
+  switch (number) {
+    case "motivation_1":
+      sound = require("../../assets/audio/audio_motivation_1.mp3");
       break;
-    case "numerium":
-      sound = require("../../assets/audio/instrucciones_numerium.mp3");
+    case "motivation_2":
+      sound = require("../../assets/audio/audio_motivation_2.mp3");
       break;
-    case "go_no_go":
-      sound = require("../../assets/audio/instrucciones_go_no_go.mp3");
+    case "motivation_3":
+      sound = require("../../assets/audio/audio_motivation_3.mp3");
       break;
-    case "informacion_memory_game":
-      sound = require("../../assets/audio/informacion_memory_game.mp3");
-      break;
-    case "informacion_numerium":
-      sound = require("../../assets/audio/informacion_numerium.mp3");
-      break;
-    case "informacion_go_no_go":
-      sound = require("../../assets/audio/informacion_go_no_go.mp3");
+    case "motivation_4":
+      sound = require("../../assets/audio/audio_motivation_4.mp3");
       break;
     default:
-      throw new Error("Juego no soportado");
+      throw new Error("number no soportado");
   }
 
   const { sound: loadedSound } = await Audio.Sound.createAsync(sound);
   await loadedSound.playAsync();
 }
 
-export const SoundComponentMotivation: React.FC<{ juego: string }> = ({ juego }) => {
+export const SoundComponentMotivation: React.FC<{ number: string }> = ({
+  number,
+}) => {
   return (
     <View
       style={{
@@ -42,7 +38,7 @@ export const SoundComponentMotivation: React.FC<{ juego: string }> = ({ juego })
         paddingTop: Spacing * 2.5,
       }}
     >
-      <TouchableOpacity onPress={() => playSound(juego)}>
+      <TouchableOpacity onPress={() => playSound(number)}>
         <AntDesign name="sound" size={50} color="white" />
       </TouchableOpacity>
     </View>

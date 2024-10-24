@@ -35,7 +35,7 @@ const MotivationMessageScreen: React.FC<Props> = ({
               necesita mantenerse activa y en forma.
             </Text>
           </View>
-          <SoundComponentMotivation juego={"motivation_1"} />
+          <SoundComponentMotivation number={"motivation_1"} />
         </View>
         <View id="motivation_2">
           <View style={styles.messageContainer}>
@@ -46,7 +46,7 @@ const MotivationMessageScreen: React.FC<Props> = ({
               tus actividades diarias con mayor confianza.
             </Text>
           </View>
-          <SoundComponentMotivation juego={"motivation_2"} />
+          <SoundComponentMotivation number={"motivation_2"} />
         </View>
         <View id="motivation_3">
           <View style={styles.messageContainer}>
@@ -58,12 +58,13 @@ const MotivationMessageScreen: React.FC<Props> = ({
               compromiso con tu bienestar.
             </Text>
           </View>
-          <SoundComponentMotivation juego={"motivation_3"} />
+          <SoundComponentMotivation number={"motivation_3"} />
         </View>
         <Text style={styles.subtitle}>
           El mejor momento para comenzar a cuidar tu memoria es ahora. ¡Estamos
           aquí para acompañarte en cada paso del camino!
         </Text>
+        <SoundComponentMotivation number={"motivation_4"} />
         <TouchableOpacity
             onPress={() => navigate("Main")}
             style={{
