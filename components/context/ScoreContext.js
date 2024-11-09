@@ -101,13 +101,13 @@ export const ScoreProvider = ({ children }) => {
     fetchScores(fechaActual);
   }, [user.uid]);
 
-  const updateScore = async (correct, incorrect, achievements, scoreToday, attempts, facilitations) => {
+  const updateScore = async (correct, incorrect, achievements, scoreToday, attempts, facilitations, time) => {
     
     let newGonoGoData
     let updatedGonoGo
     
-    if (attempts != null && facilitations != null) {
-      newGonoGoData = { attempts, facilitations };
+    if (attempts != null && facilitations != null && time != null){ 
+      newGonoGoData = { attempts, facilitations, time};
       updatedGonoGo = [...score.gonoGo, newGonoGoData];
     }
     else{

@@ -31,8 +31,10 @@ const GonoGoGame: React.FC<Props> = ({ navigation }) => {
   const [facilitationsLeft, setFacilitationsLeft] = useState<number>(3); // Permite usar hasta 3 veces
   const [modalVisible, setModalVisible] = useState(false);
   const { score, setScore, updateScore } = useContext(ScoreContext);
+  const [startTime, setStartTime] = useState<number | null>(null);
 
   useEffect(() => {
+    setStartTime(Date.now());
     selectRandomWord();
   }, []);
 
@@ -125,10 +127,13 @@ const GonoGoGame: React.FC<Props> = ({ navigation }) => {
   };
 
   const handleRoundEnd = () => {
+    const endTime = Date.now();
+    const totalTime = Math.floor((endTime - (startTime ?? 0)) / 1000);
     // Agregar la entrada de intentos y facilitaciones al array de gonoGo
     const newGonoGoEntry = {
       attempts: attempts + 1, // Total de intentos
-      facilitations: facilitationsUsed, // Total de facilitaciones usadas
+      facilitations: facilitationsUsed,
+      time: totalTime, // Total de facilitaciones usadas
     };
 
     const updatedGonoGo = [...score.gonoGo, newGonoGoEntry]; // Agregar la nueva entrada al array
@@ -141,7 +146,7 @@ const GonoGoGame: React.FC<Props> = ({ navigation }) => {
     }));
 
     // También actualizar en Firebase (si es necesario en este punto)
-    updateScore(score.correct + 1, score.incorrect, score.achievements, score.scoreToday+1, newGonoGoEntry.attempts, newGonoGoEntry.facilitations);
+    updateScore(score.correct + 1, score.incorrect, score.achievements, score.scoreToday+1, newGonoGoEntry.attempts, newGonoGoEntry.facilitations, newGonoGoEntry.time);
 
     handleModalVisible();
   };
