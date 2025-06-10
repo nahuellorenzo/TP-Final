@@ -44,7 +44,7 @@ import Toast from 'react-native-root-toast';
       <ScrollView>
         <View
           style={{
-            padding: Spacing * 2,
+            padding: Spacing,
           }}
         >  
           <View
@@ -56,9 +56,9 @@ import Toast from 'react-native-root-toast';
         <TouchableOpacity
           onPress={() => navigate("InstruccionesJuego1")}
             style={{
-              padding: Spacing * 3,
+              padding: Spacing * 2.5,
               backgroundColor: Colors.primary,
-              marginVertical: Spacing * 4,
+              marginVertical: Spacing * 1.7,
               borderRadius: Spacing,
               shadowColor: Colors.primary,
               shadowOffset: {
@@ -84,9 +84,9 @@ import Toast from 'react-native-root-toast';
           <TouchableOpacity
           onPress={() => navigate("InstruccionesJuego2")}
             style={{
-              padding: Spacing * 3,
+              padding: Spacing * 2.5,
               backgroundColor: Colors.primary,
-              marginVertical: Spacing * 4,
+              marginVertical: Spacing * 1.7,
               borderRadius: Spacing,
               shadowColor: Colors.primary,
               shadowOffset: {
@@ -114,13 +114,13 @@ import Toast from 'react-native-root-toast';
           </TouchableOpacity>
 
           <TouchableOpacity
-          onPress={() => showToast1()}
+          onPress={() => navigate("InstruccionesJuego3")}
             style={{
-              padding: Spacing * 3,
-              backgroundColor: Colors.second_gray,
-              marginVertical: Spacing * 4,
+              padding: Spacing * 2.5,
+              backgroundColor: Colors.primary,
+              marginVertical: Spacing * 1.7,
               borderRadius: Spacing,
-              shadowColor: Colors.gray,
+              shadowColor: Colors.primary,
               shadowOffset: {
                 width: 0,
                 height: Spacing,
@@ -129,26 +129,83 @@ import Toast from 'react-native-root-toast';
               shadowRadius: Spacing,
               display:"flex",
               flexDirection:"row",
-              justifyContent:"flex-start",
+              justifyContent:"center",
               alignItems:"center",
             }}
           >
-            <Ionicons
-                  name="lock-closed"
-                  color={Colors.onPrimary}
-                  size={Spacing * 4}
-                  style={{textAlign:"justify"}}
-                />
             <Text
               style={{
                 fontFamily: Fonts["Roboto-Bold"],
                 color: Colors.onPrimary,
                 textAlign: "center",
                 fontSize: FontSize.large,
-                paddingLeft:Spacing*6,
               }}
             >
-              Juego 3
+                Contrarium
+            </Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+          onPress={() => navigate("InstruccionesJuegoOrderium")}
+          style={{
+            padding: Spacing * 2.5,
+            backgroundColor: Colors.primary,
+            marginVertical: Spacing * 1.7,
+            borderRadius: Spacing,
+            shadowColor: Colors.primary,
+            shadowOffset: {
+              width: 0,
+              height: Spacing,
+            },
+            shadowOpacity: 0.3,
+            shadowRadius: Spacing,
+            display:"flex",
+            flexDirection:"row",
+            justifyContent:"center",
+            alignItems:"center",
+          }}
+        >
+          <Text
+            style={{
+              fontFamily: Fonts["Roboto-Bold"],
+              color: Colors.onPrimary,
+              textAlign: "center",
+              fontSize: FontSize.large,
+            }}
+          >
+              Orderium
+            </Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+          onPress={() => navigate("InstruccionesJuego5")}
+          style={{
+            padding: Spacing * 2.5,
+            backgroundColor: Colors.primary,
+            marginVertical: Spacing * 1.7,
+            borderRadius: Spacing,
+            shadowColor: Colors.primary,
+            shadowOffset: {
+              width: 0,
+              height: Spacing,
+            },
+            shadowOpacity: 0.3,
+            shadowRadius: Spacing,
+            display:"flex",
+            flexDirection:"row",
+            justifyContent:"center",
+            alignItems:"center",
+          }}
+        >
+          <Text
+            style={{
+              fontFamily: Fonts["Roboto-Bold"],
+              color: Colors.onPrimary,
+              textAlign: "center",
+              fontSize: FontSize.large,
+            }}
+          >
+              Abecedarium
             </Text>
           </TouchableOpacity>
           <View style={styles.buttonContainer_Boton}>

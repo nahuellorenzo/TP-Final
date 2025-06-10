@@ -30,7 +30,7 @@ type Props = NativeStackScreenProps<RootStackParamList, "Again">;
 
 const Again: React.FC<Props> = ({ navigation: { navigate }, route }) =>{
   const { logout, user } = useContext(LoginContext);
-  const { score, updateScore } = useContext(ScoreContext)
+  const { score, updateScore, updateMemoryGameScore } = useContext(ScoreContext)
   const { param1, param2 } = route.params;
 
   const [shoot, setShoot] = useState(false);
@@ -128,7 +128,7 @@ const Again: React.FC<Props> = ({ navigation: { navigate }, route }) =>{
           {/* Botón "No" */}
           <TouchableOpacity
             onPress={() =>{ 
-              updateScore(score.correct, score.incorrect, score.achievements, score.scoreToday)
+              updateScore(score.correct, score.incorrect, score.achievements, score.scoreToday, null, null)
               navigate("EstadisticasJuego1")}}
             style={{
               paddingVertical: Spacing * 1.5,
@@ -155,19 +155,6 @@ const Again: React.FC<Props> = ({ navigation: { navigate }, route }) =>{
             </Text>
           </TouchableOpacity>
         </View>
-
-        <Text
-          style={{
-            fontSize: FontSize.large,
-            color: Colors.primary,
-            fontFamily: Fonts["Roboto-Bold"],
-            textAlign: "center",
-            paddingTop: Spacing,
-            paddingBottom: Spacing * 4,
-          }}
-        >
-          Puntaje actual: {score.correct}
-        </Text>
       </View>
     </ScrollView>
   );
